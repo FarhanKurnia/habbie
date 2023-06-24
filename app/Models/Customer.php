@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    // use HasFactory;
     protected $table = 'customers';
     protected $primaryKey = 'id_customer';
     protected $fillable = [
@@ -25,6 +24,16 @@ class Customer extends Model
     // one customer has one cart
     public function cart(){
     	return $this->hasOne(Cart::class);
+    }
+
+    // one customer has many order
+    public function order(){
+    	return $this->hasMany(Order::class);
+    }
+
+    // one customer owned by one payment
+    public function payment(){
+    	return $this->belongsTo(Payment::class);
     }
 
 }

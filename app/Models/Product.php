@@ -16,4 +16,9 @@ class Product extends Model
     public function cart(){
     	return $this->belongsTo(Product::class, 'product_id');
     }
+
+    // many products owned by one order
+    public function order(){
+    	return $this->belongsTo(Product::class, 'product_id');
+    }
 }
