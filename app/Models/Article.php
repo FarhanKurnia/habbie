@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    use HasFactory;
-
+    protected $table = 'articles';
+    protected $primaryKey = 'id_article';
     protected $fillable = [
-        'title', 'post', 'image', 'slug'
+        'title', 'post', 'image', 'slug','user_id'
     ];
+
+    // many articles owned by one user
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+        
+    }
 }
