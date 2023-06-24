@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
     DB::table('products')->insert([[
         'name' => 'Jasmine Tea',
-        'category'=>'Telon oil',
+        'category_id'=>1,
         'image' => 'path/image.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => '15.000',
@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'Flower Anggrek Bulan',
-        'category'=>'Telon oil',
+        'category_id'=>2,
         'image' => 'path/image.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => '20.000',

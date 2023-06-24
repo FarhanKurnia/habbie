@@ -10,7 +10,7 @@ class Product extends Model
     protected $table = 'products';
     protected $primaryKey = 'id_product';
     protected $fillable = [
-        'name', 'category', 'image', 'description', 'price', 'stock', 'rating', 'discount_id'
+        'name', 'category_id', 'image', 'description', 'price', 'stock', 'rating', 'discount_id'
     ];
 
     // many products owned by one cart
@@ -27,5 +27,10 @@ class Product extends Model
     public function discount(){
         return $this->belongsTo(Discount::class, 'discount_id');
         
+    }
+
+    // many product owned by one catergory
+    public function category(){
+        return $this->belongsTo(Product_Category::class,'category_id');
     }
 }
