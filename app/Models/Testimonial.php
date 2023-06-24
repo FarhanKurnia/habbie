@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Testimonial extends Model
 {
-    use HasFactory;
-
+    protected $table = 'testimonials';
+    protected $primaryKey = 'id_testimonial';
     protected $fillable = [
-        'name','description','image'
+        'name','description','image','user_id'
     ];
+
+    // many testimonials owned by one user
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+        
+    }
 }

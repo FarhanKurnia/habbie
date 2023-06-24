@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function article(){
         return $this->hasMany(Article::class);
     }
+
+    // One user has many testimoinals
+    public function Testimonial(){
+        return $this->hasMany(Testimonial::class);
+    }
 }
