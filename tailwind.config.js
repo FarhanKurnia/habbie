@@ -6,14 +6,17 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
+    fontFamily: {
+      'sans': ['nunito', 'sans-serif']
+    },
     colors: {
-      'pink-bloosom':'#F9D6D4',
+      'pink-bloosom': '#F9D6D4',
       'pink-primary': '#DE586C',
-      'grey':'#4B4D4F',
-      'green':'#39AE41',
+      'grey': '#4B4D4F',
+      'green': '#39AE41',
       'teal-shadow': '#BADBBF',
-      'teal':'#DAEDDD',
-      'grey-secondary':'#F0F0F0',
+      'teal': '#DAEDDD',
+      'grey-secondary': '#F0F0F0',
       'grey-secondary-50': '#F7F7F7',
       'white': '#FFFFFF'
     },
@@ -26,7 +29,9 @@ module.exports = {
       {
         mytheme: {
           "primary": "#DE586C",
+          "secondary": "#f6d860",
           "base-100": "#FFFFFF",
+          "neutral": "#F9D6D4",
           "accent": "#39AE41"
         }
       }
