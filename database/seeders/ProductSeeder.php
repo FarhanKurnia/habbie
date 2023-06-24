@@ -12,7 +12,6 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-    // ['name', 'category', 'image', 'description', 'price', 'stock', 'rating'];
     DB::table('products')->insert([[
         'name' => 'Jasmine Tea',
         'category'=>'Telon oil',
