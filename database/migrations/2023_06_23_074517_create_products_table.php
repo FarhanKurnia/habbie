@@ -20,8 +20,13 @@ return new class extends Migration
             $table->string('price');
             $table->string('stock');
             $table->string('rating');
+            $table->unsignedBigInteger('discount_id')->nullable();
             $table->timestamps();
+            
+            $table->foreign('discount_id')->references('id_discount')->on('discounts')->onDelete('cascade');        
         });
+
+        
     }
 
     /**
