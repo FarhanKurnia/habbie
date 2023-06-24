@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id('id_cart');
             $table->string('status');
             $table->timestamps();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('customer_id');
+            
+            $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id_customer')->on('customers')->onDelete('cascade');
         });
     }
 

@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
-
+    protected $table = 'products';
+    protected $primaryKey = 'id_product';
     protected $fillable = ['name', 'category', 'image', 'description', 'price', 'stock', 'rating',
     ];
+
+    // many products owned by one cart
+    public function cart(){
+    	return $this->belongsTo(Product::class, 'product_id');
+    }
 }
