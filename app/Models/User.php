@@ -51,7 +51,12 @@ class User extends Authenticatable
     }
 
     // One user has many testimoinals
-    public function Testimonial(){
+    public function testimonial(){
         return $this->hasMany(Testimonial::class);
+    }
+
+    // One user has many reviews
+    public function review(){
+        return $this->hasMany(Review::class);
     }
 }

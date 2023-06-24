@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('rating');
             $table->string('review');            
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+        
+            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');        
         });
     }
 

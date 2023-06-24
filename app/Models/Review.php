@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory;
-
+    protected $table = 'reviews';
+    protected $primaryKey = 'id_review';
     protected $fillable = [
-        'name', 'rating', 'review'
+        'name', 'rating', 'review', 'user_id'
     ];
+
+    // many reviews owned by one user
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+        
+    }
 }
