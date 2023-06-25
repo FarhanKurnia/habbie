@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -24,13 +24,13 @@ class Product extends Model
     }
 
     // many product owned by one discount
-    public function discount(){
+    public function discount(): BelongsTo{
         return $this->belongsTo(Discount::class, 'discount_id');
         
     }
 
     // many product owned by one catergory
-    public function category(){
+    public function category(): BelongsTo{
         return $this->belongsTo(Product_Category::class,'category_id');
     }
 }
