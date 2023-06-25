@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
         'price' => '15.000',
         'stock' => 50,
         'rating' => 5,
+        'slug' => 'jasmine-tea',
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
@@ -31,6 +32,7 @@ class ProductSeeder extends Seeder
         'price' => '20.000',
         'stock' => 50,
         'rating' => 4,
+        'slug' => 'flower-anggrek-bulan',
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ]]);

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('stock');
             $table->string('rating');
+            $table->string('slug');
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->timestamps();

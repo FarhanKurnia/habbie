@@ -10,7 +10,7 @@ class Product extends Model
     protected $table = 'products';
     protected $primaryKey = 'id_product';
     protected $fillable = [
-        'name', 'category_id', 'image', 'description', 'price', 'stock', 'rating', 'discount_id'
+        'name', 'category_id', 'image', 'description', 'price', 'stock', 'rating', 'discount_id', 'slug'
     ];
 
     // many products owned by one cart
