@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Voucher;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
-class VoucherController extends Controller
+class OfferController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class VoucherController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Voucher $voucher)
+    public function show(Offer $voucher)
     {
         //
     }
@@ -42,7 +42,7 @@ class VoucherController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Voucher $voucher)
+    public function edit(Offer $voucher)
     {
         //
     }
@@ -50,7 +50,7 @@ class VoucherController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Voucher $voucher)
+    public function update(Request $request, Offer $voucher)
     {
         //
     }
@@ -58,7 +58,7 @@ class VoucherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Voucher $voucher)
+    public function destroy(Offer $voucher)
     {
         //
     }

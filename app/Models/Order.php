@@ -10,7 +10,8 @@ class Order extends Model
     protected $table = 'orders';
     protected $primaryKey = 'id_order';
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'status', 'total', 'resi', 'customer_id', 'product_id', 'voucher_id'
+        'name', 'email', 'phone', 'address', 'status', 'total', 'resi', 'customer_id', 'product_id', 
+        // 'voucher_id'
     ];
 
     // many orders owned by one customer
@@ -29,7 +30,7 @@ class Order extends Model
     }
 
     // many orders owned by one voucher
-    public function voucher(){
-        return $this->belongsTo(Voucher::class,'voucher_id');
-    }
+    // public function voucher(){
+    //     return $this->belongsTo(Voucher::class,'voucher_id');
+    // }
 }

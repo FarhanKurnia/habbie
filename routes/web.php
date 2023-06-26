@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 // Route Customer
 //home
-Route::get('/home', [HomeController::class, 'index'])->name('index');
+Route::get('/home', [HomeController::class, 'index']);
 
 // Products Route [Customer]
 //get all products
@@ -33,7 +33,7 @@ Route::get('/products/categories/{slug}', [ProductClientController::class, 'inde
 
 // Offers Route [Customer]
 //Offers
-Route::get('/offers', [OfferClientController::class, 'index'])->name('index');
+Route::get('/offers', [OfferClientController::class, 'index']);
 
 
 

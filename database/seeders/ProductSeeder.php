@@ -272,6 +272,32 @@ class ProductSeeder extends Seeder
         'discount_id' => 1,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
+    ],
+    [
+        'name' => 'Special Product buy 3 get 1',
+        'category_id'=>2,
+        'image' => 'path/image.jpg',
+        'description' => 'Lorem ipsum dolor sit amet',
+        'price' => 80000,
+        'stock' => 50,
+        'rating' => 4,
+        'slug' => 'special-product-buy-3-get-1',
+        'discount_id' => 1,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'name' => 'Special Product buy 2 only 60000',
+        'category_id'=>2,
+        'image' => 'path/image.jpg',
+        'description' => 'Lorem ipsum dolor sit amet',
+        'price' => 60000,
+        'stock' => 50,
+        'rating' => 4,
+        'slug' => 'special-product-buy-2-only-60000',
+        'discount_id' => 1,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ]]);
     }
 }

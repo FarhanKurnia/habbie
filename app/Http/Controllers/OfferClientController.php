@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Voucher;
+use App\Models\Offer;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OfferClientController extends Controller
@@ -11,7 +12,17 @@ class OfferClientController extends Controller
      */
     public function index()
     {
-        //
+        //products 
+        $products = new Product();
+        //offers
+        $offers = new Offer();
+
+        //link recommendation
+        $randomRecommendation = $products->all()->random(1);
+        //offer
+        $offers = $offers->get();
+        return view('test.customer.offer.offer-client',compact('randomRecommendation','offers'));
+        
     }
 
     /**
