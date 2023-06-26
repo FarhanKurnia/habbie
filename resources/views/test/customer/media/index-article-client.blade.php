@@ -61,7 +61,7 @@
                     <td>{{ $product->slug }}</td>
                     <td>
                         @php
-                            echo url("/product/{$product->slug}"); 
+                            echo url("/test/products/{$product->slug}"); 
                         @endphp
                     </td>
                 </tr>
@@ -125,7 +125,7 @@
                     <td>{{ $relatedArticle->slug }}</td>
                     <td>
                         @php
-                            echo url("/media/{$relatedArticle->slug}"); 
+                            echo url("/test/media/{$relatedArticle->slug}"); 
                         @endphp
                     </td>
                 </tr>
