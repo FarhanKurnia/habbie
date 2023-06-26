@@ -54,7 +54,7 @@ class ArticleClientController extends Controller
         
         //link recommendation
         $randomRecommendation = $products->all()->random(1);
-        //find article
+        //find article 
         $oneArticle = $articles->where('slug',$slug)->firstOrFail();
         //latest recommendation with same category as above
         $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
