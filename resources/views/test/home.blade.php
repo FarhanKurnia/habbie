@@ -9,7 +9,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="10">Random one recommendation using: $randomRecommendation</th>
+                <th colspan="11">Random one recommendation using: $randomRecommendation</th>
             </tr>
             <tr>
                 <th>No</th>
@@ -22,6 +22,7 @@
                 <th>rating</th>
                 <th>discount_id</th>
                 <th>slug</th>
+                <th>link</th>
             </tr>
         </thead>
         <tbody>
@@ -49,14 +50,20 @@
                                 echo "Rp. ".$normalPrice = $product->price;
                             }
                         @endphp 
-                    </td>                    <td>{{ $product->stock }}</td>
+                    </td>                    
+                    <td>{{ $product->stock }}</td>
                     <td>{{ $product->rating }}</td>
                     @if ($product->discount_id != null)
-                    <td>{{ $product->discount_id }}</td>
+                            <td>{{ $product->discount_id }}</td>
                     @else
-                    <td>Null</td>
+                        <td>Null</td>
                     @endif
                     <td>{{ $product->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/product/{$product->slug}"); 
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -66,7 +73,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="10">Body recommendation using: $bodyRecommendation</th>
+                <th colspan="11">Body recommendation using: $bodyRecommendation</th>
             </tr>
             <tr>
                 <th>No</th>
@@ -79,6 +86,7 @@
                 <th>rating</th>
                 <th>discount_id</th>
                 <th>slug</th>
+                <th>link</th>
             </tr>
         </thead>
         <tbody>
@@ -114,6 +122,11 @@
                     <td>Null</td>
                     @endif
                     <td>{{ $product->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/product/{$product->slug}"); 
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -123,7 +136,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="10">Latest recommendation using: $latestRecommendation</th>
+                <th colspan="11">Latest recommendation using: $latestRecommendation</th>
             </tr>
             <tr>
                 <th>No</th>
@@ -136,6 +149,7 @@
                 <th>rating</th>
                 <th>discount_id</th>
                 <th>slug</th>
+                <th>link</th>
             </tr>
         </thead>
         <tbody>
@@ -172,6 +186,11 @@
                     <td>Null</td>
                     @endif
                     <td>{{ $product->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/product/{$product->slug}"); 
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -181,7 +200,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="10">Latest articles using: $latestArticles</th>
+                <th colspan="7">Latest articles using: $latestArticles</th>
             </tr>
             <tr>
                 <th>No</th>
@@ -190,6 +209,7 @@
                 <th>image</th>
                 <th>slug</th>
                 <th>user_id</th>
+                <th>link</th>
             </tr>
         </thead>
         <tbody>
@@ -204,6 +224,11 @@
                     <td>{{ $article->image }}</td>
                     <td>{{ $article->slug }}</td>
                     <td>{{ $article->user->name }}</td>
+                    <td>
+                        @php
+                            echo url("/article/{$article->slug}"); 
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
