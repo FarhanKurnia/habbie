@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route Customer
 Route::get('/home', [HomeController::class, 'index'])->name('index');
+Route::get('/product/{slug}', [ProductClientController::class, 'show'])->name('show');
+

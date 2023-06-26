@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Product;
+
+use Illuminate\Http\Request;
+
+class ProductClientController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //products 
+        $products = new Product();
+        //all products
+        $allProducts = $products->with('category')->all();
+        return view('test.index-product-client', compact('allProducts'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($slug)
+    {
+        //products 
+        $products = new Product();
+        //product
+        $product = $products->where('slug',$slug)->with('category')->firstOrFail();
+        //latest recommendation with same category as above
+        $category_id = $product->category_id;
+        $latestRecommendation = $products->where('category_id',$category_id)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
+        return view('test.show-product-client', compact('product','latestRecommendation'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}
