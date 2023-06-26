@@ -13,12 +13,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Data Needs:
-        // Recomendation one product with random func
-        // Recomendation three product for body 
-        // Recomendation product by category
-        // Latest Article
-
         //articles
         $articles = new Article();
         //products 
@@ -31,7 +25,7 @@ class HomeController extends Controller
         $latestRecommendation = $products->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         //latest articles
         $latestArticles = $articles->with('user')->orderBy('id_article','DESC')->limit(2)->get();
-        return view('test.home', compact('products','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
+        return view('test.customer.home.home', compact('products','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
     }
 
     /**

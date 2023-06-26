@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductClientController;
+use App\Http\Controllers\OfferClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,11 +22,19 @@ Route::get('/', function () {
 // Route Customer
 //home
 Route::get('/home', [HomeController::class, 'index'])->name('index');
+
+// Products Route [Customer]
+//get all products
+Route::get('/products', [ProductClientController::class, 'allProduct']);
 //get one product
-Route::get('/product/{slug}', [ProductClientController::class, 'show']);
+Route::get('/products/{slug}', [ProductClientController::class, 'show']);
 //get one categories product / index
-Route::get('/product/categories/{slug}', [ProductClientController::class, 'index']);
-//
-Route::get('/categories/{slug}', [ProductClientController::class, 'index']);
+Route::get('/products/categories/{slug}', [ProductClientController::class, 'index']);
+
+// Offers Route [Customer]
+//Offers
+Route::get('/offers', [OfferClientController::class, 'index'])->name('index');
+
+
 
 

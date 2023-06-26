@@ -22,7 +22,21 @@ class ProductClientController extends Controller
         $randomRecommendation = $products->all()->random(1);
         //all products
         $productsByCat = $products->where('category_id',$cat)->with('category')->get();
-        return view('test.index-product-client', compact('randomRecommendation','productsByCat'));
+        return view('test.customer.product.index-product-client', compact('randomRecommendation','productsByCat'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function allProduct()
+    {
+        //products 
+        $products = new Product();
+        //link recommendation
+        $randomRecommendation = $products->all()->random(1);
+        //all products
+        $allProduct = $products->all();
+        return view('test.customer.product.all-product-client', compact('randomRecommendation','allProduct'));
     }
 
     /**
@@ -56,7 +70,7 @@ class ProductClientController extends Controller
         //latest recommendation with same category as above
         $category_id = $oneProduct->category_id;
         $latestRecommendation = $products->where('category_id',$category_id)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
-        return view('test.show-product-client', compact('randomRecommendation','oneProduct','latestRecommendation'));
+        return view('test.customer.product.show-product-client', compact('randomRecommendation','oneProduct','latestRecommendation'));
     }
 
     /**
