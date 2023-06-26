@@ -16,12 +16,13 @@ class ProductClientController extends Controller
         $products = new Product();
         //categories
         $categories = new Product_Category();
-
         $cat = $categories->where('slug',$slug)->firstOrFail();
         $cat = $cat->id_category;
+        //link recommendation
+        $randomRecommendation = $products->all()->random(1);
         //all products
         $productsByCat = $products->where('category_id',$cat)->with('category')->get();
-        return view('test.index-product-client', compact('productsByCat'));
+        return view('test.index-product-client', compact('randomRecommendation','productsByCat'));
     }
 
     /**
@@ -47,12 +48,15 @@ class ProductClientController extends Controller
     {
         //products 
         $products = new Product();
+        
         //product
-        $product = $products->where('slug',$slug)->with('category')->firstOrFail();
+        $oneProduct = $products->where('slug',$slug)->with('category')->firstOrFail();
+        //link recommendation
+        $randomRecommendation = $products->all()->random(1);
         //latest recommendation with same category as above
-        $category_id = $product->category_id;
+        $category_id = $oneProduct->category_id;
         $latestRecommendation = $products->where('category_id',$category_id)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
-        return view('test.show-product-client', compact('product','latestRecommendation'));
+        return view('test.show-product-client', compact('randomRecommendation','oneProduct','latestRecommendation'));
     }
 
     /**

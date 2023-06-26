@@ -5,6 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    {{-- random recommendation--}}
+    <table border="1">
+        <thead>
+            <tr>
+                <th colspan="11">Random one recommendation using: $randomRecommendation</th>
+            </tr>
+            <tr>
+                <th>No</th>
+                <th>name</th>
+                <th>category_id</th>
+                <th>image</th>
+                <th>description</th>
+                <th>price</th>
+                <th>stock</th>
+                <th>rating</th>
+                <th>discount_id</th>
+                <th>slug</th>
+                <th>link</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $no = '1';
+            @endphp
+            @foreach($randomRecommendation as $product)
+                <tr>
+                    <td>{{ $no++}}</td>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->category_id }}</td>
+                    <td>{{ $product->image }}</td>
+                    <td>{{ $product->description }}</td>
+                    <td>
+                        @php
+                        // handle discount
+                            $checkDiscount = $product->discount_id;
+                            $normalPrice = $product->price;
+                            if($checkDiscount != null){
+                                $discount = $product->discount['rule'];
+                                $discountPrice = ($discount/100)*$normalPrice;
+                                $discountPrice = $normalPrice-$discountPrice;
+                                echo "<s>"."Rp. ".$normalPrice."</s>"."  Rp. ".$discountPrice;
+                            } else{
+                                echo "Rp. ".$normalPrice = $product->price;
+                            }
+                        @endphp 
+                    </td>                    
+                    <td>{{ $product->stock }}</td>
+                    <td>{{ $product->rating }}</td>
+                    @if ($product->discount_id != null)
+                            <td>{{ $product->discount_id }}</td>
+                    @else
+                        <td>Null</td>
+                    @endif
+                    <td>{{ $product->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/product/{$product->slug}"); 
+                        @endphp
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+<br>
     {{-- One Product--}}
     <table border="1">
         <thead>
@@ -30,32 +94,33 @@
             @endphp
             <tr>
                 <td>{{ $no++}}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->category->name }}</td>
-                <td>{{ $product->image }}</td>
-                <td>{{ $product->description }}</td>
+                <td>{{ $oneProduct->name }}</td>
+                <td>{{ $oneProduct->category->name }}</td>
+                <td>{{ $oneProduct->image }}</td>
+                <td>{{ $oneProduct->description }}</td>
                 <td>
                     @php
                         // handle discount
-                        $checkDiscount = $product->discount_id;
-                        $normalPrice = $product->price;
+                        $checkDiscount = $oneProduct->discount_id;
+                        $normalPrice = $oneProduct->price;
                         if($checkDiscount != null){
-                            $discount = $product->discount['rule'];
+                            $discount = $oneProduct->discount['rule'];
                             $discountPrice = ($discount/100)*$normalPrice;
                             $discountPrice = $normalPrice-$discountPrice;
                             echo "<s>"."Rp. ".$normalPrice."</s>"."  Rp. ".$discountPrice;
                         } else{
-                            echo "Rp. ".$normalPrice = $product->price;
+                            echo "Rp. ".$normalPrice = $oneProduct->price;
                         }
                     @endphp 
-                </td>                    <td>{{ $product->stock }}</td>
-                <td>{{ $product->rating }}</td>
-                @if ($product->discount_id != null)
-                    <td>{{ $product->discount_id }}</td>
+                </td>                    
+                <td>{{ $oneProduct->stock }}</td>
+                <td>{{ $oneProduct->rating }}</td>
+                @if ($oneProduct->discount_id != null)
+                    <td>{{ $oneProduct->discount_id }}</td>
                 @else
                     <td>Null</td>
                 @endif
-                <td>{{ $product->slug }}</td>
+                <td>{{ $oneProduct->slug }}</td>
                 </tr>
         </tbody>
     </table>
