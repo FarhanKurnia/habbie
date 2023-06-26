@@ -23,28 +23,28 @@ Route::get('/', function () {
 
 // Route Customer
 //home
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/test/home', [HomeController::class, 'index']);
 
 // Products Route [Customer]
 //get all products
-Route::get('/products', [ProductClientController::class, 'allProduct']);
+Route::get('/test/products', [ProductClientController::class, 'allProduct']);
 //get one product
-Route::get('/products/{slug}', [ProductClientController::class, 'show']);
+Route::get('/test/products/{slug}', [ProductClientController::class, 'show']);
 //get one categories product / index
-Route::get('/products/categories/{slug}', [ProductClientController::class, 'index']);
+Route::get('/test/products/categories/{slug}', [ProductClientController::class, 'index']);
 
 // Offers Route [Customer]
 //Offers
-Route::get('/offers', [OfferClientController::class, 'index']);
+Route::get('/test/offers', [OfferClientController::class, 'index']);
 
 // Testimonials Route [Customer]
 //Testimonial
-Route::get('/testimonials', [TestimonialClientController::class, 'index']);
+Route::get('/test/testimonials', [TestimonialClientController::class, 'index']);
 
 // Medias Route [Customer]
 //Testimonial
-Route::get('/media', [ArticleClientController::class, 'index']);
-Route::get('/media/{slug}', [ArticleClientController::class, 'show']);
+Route::get('/test/media', [ArticleClientController::class, 'index']);
+Route::get('/test/media/{slug}', [ArticleClientController::class, 'show']);
 
 
 
