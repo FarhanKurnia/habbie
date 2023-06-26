@@ -3,6 +3,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductClientController;
 use App\Http\Controllers\OfferClientController;
 use App\Http\Controllers\TestimonialClientController;
+use App\Http\Controllers\ArticleClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,11 @@ Route::get('/offers', [OfferClientController::class, 'index']);
 // Testimonials Route [Customer]
 //Testimonial
 Route::get('/testimonials', [TestimonialClientController::class, 'index']);
+
+// Medias Route [Customer]
+//Testimonial
+Route::get('/media', [ArticleClientController::class, 'index']);
+Route::get('/media/{slug}', [ArticleClientController::class, 'show']);
 
 
 

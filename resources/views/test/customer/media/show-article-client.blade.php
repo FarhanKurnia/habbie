@@ -69,61 +69,65 @@
         </tbody>
     </table>
 <br>
-    {{-- Testimonials--}}
+    {{-- Top Articles--}}
     <table border="1">
         <thead>
             <tr>
-                <th colspan="6">Testimonials using: $testimonials</th>
+                <th colspan="6">articles using: $oneArticle</th>
             </tr>
             <tr>
                 <th>No</th>
-                <th>name</th>
+                <th>title</th>
                 <th>image</th>
-                <th>profesi</th>
-                <th>lokasi</th>
-                <th>description</th>
+                <th>post</th>
+                <th>slug</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $no = '1';
             @endphp
-            @foreach($testimonials as $testimonial)
-                <tr>
-                    <td>{{ $no++}}</td>
-                    <td>{{ $testimonial->name }}</td>
-                    <td>{{ $testimonial->image }}</td>
-                    <td>{{ $testimonial->profesi }}</td>
-                    <td>{{ $testimonial->lokasi }}</td>
-                    <td>{{ $testimonial->description }}</td>
-                </tr>
-            @endforeach
+            <tr>
+                <td>{{ $no++}}</td>
+                <td>{{ $oneArticle->title }}</td>
+                <td>{{ $oneArticle->image }}</td>
+                <td>{{ $oneArticle->post }}</td>
+                <td>{{ $oneArticle->slug }}</td>
+            </tr>
         </tbody>
     </table>
 <br>
-    {{-- Reviews--}}
+    {{-- Related Articles--}}
     <table border="1">
         <thead>
             <tr>
-                <th colspan="6">Reviews using: $testimonials</th>
+                <th colspan="6">Reviews using: $latestArticles</th>
             </tr>
             <tr>
                 <th>No</th>
-                <th>name</th>
-                <th>rating</th>
-                <th>description</th>
+                <th>title</th>
+                <th>image</th>
+                <th>post</th>
+                <th>slug</th>
+                <th>link</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $no = '1';
             @endphp
-            @foreach($reviews as $review)
+            @foreach($latestArticles as $latestArticle)
                 <tr>
                     <td>{{ $no++}}</td>
-                    <td>{{ $review->name }}</td>
-                    <td>{{ $review->rating }}</td>
-                    <td>{{ $review->description }}</td>
+                    <td>{{ $latestArticle->title }}</td>
+                    <td>{{ $latestArticle->image }}</td>
+                    <td>{{ $latestArticle->post }}</td>
+                    <td>{{ $latestArticle->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/media/{$latestArticle->slug}"); 
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
