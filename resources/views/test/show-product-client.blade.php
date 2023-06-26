@@ -64,7 +64,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="10">Latest recommendation using: $latestRecommendation</th>
+                <th colspan="11">Latest recommendation using: $latestRecommendation</th>
             </tr>
             <tr>
                 <th>No</th>
@@ -77,6 +77,7 @@
                 <th>rating</th>
                 <th>discount_id</th>
                 <th>slug</th>
+                <th>link</th>
             </tr>
         </thead>
         <tbody>
@@ -113,6 +114,11 @@
                     <td>Null</td>
                     @endif
                     <td>{{ $product->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/product/{$product->slug}"); 
+                        @endphp
+                    </td>
                 </tr>
             @endforeach
         </tbody>
