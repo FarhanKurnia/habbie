@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id('id_testimonial');
             $table->string('name');
-            $table->string('description');
+            $table->string('profesi');
+            $table->string('lokasi');
             $table->string('image');
+            $table->string('description');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             

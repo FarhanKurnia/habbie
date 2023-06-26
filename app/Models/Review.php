@@ -10,7 +10,7 @@ class Review extends Model
     protected $table = 'reviews';
     protected $primaryKey = 'id_review';
     protected $fillable = [
-        'name', 'rating', 'review', 'user_id'
+        'name', 'rating', 'description', 'user_id'
     ];
 
     // many reviews owned by one user
