@@ -19,6 +19,11 @@ Route::get('/', function () {
 });
 
 // Route Customer
+//home
 Route::get('/home', [HomeController::class, 'index'])->name('index');
-Route::get('/product/{slug}', [ProductClientController::class, 'show'])->name('show');
+//get one product
+Route::get('/product/{slug}', [ProductClientController::class, 'show']);
+//get one categories product / index
+Route::get('/product/categories/{slug}', [ProductClientController::class, 'index']);
+
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
-
+use App\Models\Product_Category;
 use Illuminate\Http\Request;
 
 class ProductClientController extends Controller
@@ -10,13 +10,18 @@ class ProductClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($slug)
     {
         //products 
         $products = new Product();
+        //categories
+        $categories = new Product_Category();
+
+        $cat = $categories->where('slug',$slug)->firstOrFail();
+        $cat = $cat->id_category;
         //all products
-        $allProducts = $products->with('category')->all();
-        return view('test.index-product-client', compact('allProducts'));
+        $productsByCat = $products->where('category_id',$cat)->with('category')->get();
+        return view('test.index-product-client', compact('productsByCat'));
     }
 
     /**
