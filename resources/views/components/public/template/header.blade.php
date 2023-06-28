@@ -24,9 +24,21 @@
                 <li tabindex="0">
                     <details>
                         <summary class="text-sm font-bold">PRODUCT</summary>
-                        <ul class="p-2 z-10">
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
+                        <ul class="flex flex-row p-2 z-10">
+                            <li>
+                                <ul class="flex flex-col float-left">
+                                    <li><a class="#">AROMATIC TELON OIL</a></li>
+                                    <li><a class="#">AROMATIC CAJUPUT OIL</a></li>
+                                    <li><a class="#">ESSENTIALS OIL</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="flex flex-col float-left">
+                                    <li><a class="#">AROMATIC TELON OIL</a></li>
+                                    <li><a class="#">AROMATIC CAJUPUT OIL</a></li>
+                                    <li><a class="#">ESSENTIALS OIL</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </details>
                 </li>
