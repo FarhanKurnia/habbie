@@ -20,3 +20,21 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('pages.public.about');
 });
+
+Route::get('/offers', function () {
+    return view('pages.public.offers.index');
+});
+
+Route::get('/products', function () {
+    return view('pages.public.products.index');
+});
+
+Route::get('/products/{slug}', function ($slug) {
+    
+    $data = [
+        'slug' => $slug,
+        'title' => 'Test Product'
+    ];
+
+    return view('pages.public.products.detail', ['data' => $data]);
+});
