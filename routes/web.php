@@ -1,9 +1,5 @@
 <?php
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductClientController;
-use App\Http\Controllers\OfferClientController;
-use App\Http\Controllers\TestimonialClientController;
-use App\Http\Controllers\ArticleClientController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,31 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route Customer
-//home
-Route::get('/test/home', [HomeController::class, 'index']);
-
-// Products Route [Customer]
-//get all products
-Route::get('/test/products', [ProductClientController::class, 'allProduct']);
-//get one product
-Route::get('/test/products/{slug}', [ProductClientController::class, 'show']);
-//get one categories product / index
-Route::get('/test/products/categories/{slug}', [ProductClientController::class, 'index']);
-
-// Offers Route [Customer]
-//Offers
-Route::get('/test/offers', [OfferClientController::class, 'index']);
-
-// Testimonials Route [Customer]
-//Testimonial
-Route::get('/test/testimonials', [TestimonialClientController::class, 'index']);
-
-// Medias Route [Customer]
-//Testimonial
-Route::get('/test/media', [ArticleClientController::class, 'index']);
-Route::get('/test/media/{slug}', [ArticleClientController::class, 'show']);
-
-
+Route::prefix('test')->group(function () {
+    // Home
+    Route::get('/home', [ClientController::class, 'indexHome']);
+    // Products
+    Route::get('/products', [ClientController::class, 'indexProducts']);
+    Route::get('/products/{slug}', [ClientController::class, 'showProduct']);
+    Route::get('/categories/{slug}', [ClientController::class, 'indexProductsByCat']);
+    //Offers
+    Route::get('/offers', [ClientController::class, 'indexOffers']);
+    //Testimonials
+    Route::get('/testimonials', [ClientController::class, 'indexTestimonials']);
+    //Medias
+    Route::get('/media', [ClientController::class, 'indexArticles']);
+    Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+});
 
 

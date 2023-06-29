@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    {{--Categories--}}
+{{--Categories--}}
     <table border="1">
         <thead>
             <tr>
@@ -29,7 +29,7 @@
                     <td>{{ $category->slug }}</td>
                     <td>
                         @php
-                            echo url("/test/products/categories/{$category->slug}"); 
+                            echo url("/test/categories/{$category->slug}"); 
                         @endphp
                     </td>                
                 </tr>
