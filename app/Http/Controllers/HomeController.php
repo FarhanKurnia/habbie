@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Article;
+use App\Models\Product_Category;
 
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //category
+        $categories = Product_Category::all();
         //articles
         $articles = new Article();
         //products 
@@ -25,7 +28,7 @@ class HomeController extends Controller
         $latestRecommendation = $products->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         //latest articles
         $latestArticles = $articles->with('user')->orderBy('id_article','DESC')->limit(2)->get();
-        return view('test.customer.home.home', compact('products','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
+        return view('test.customer.home.home', compact('categories','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
     }
 
     /**

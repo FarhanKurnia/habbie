@@ -62,7 +62,8 @@ class ProductClientController extends Controller
     {
         //products 
         $products = new Product();
-        
+        //category
+        $categories = Product_Category::all();
         //product
         $oneProduct = $products->where('slug',$slug)->with('category')->firstOrFail();
         //link recommendation
@@ -70,7 +71,7 @@ class ProductClientController extends Controller
         //latest recommendation with same category as above
         $category_id = $oneProduct->category_id;
         $latestRecommendation = $products->where('category_id',$category_id)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
-        return view('test.customer.product.show-product-client', compact('randomRecommendation','oneProduct','latestRecommendation'));
+        return view('test.customer.product.show-product-client', compact('categories','randomRecommendation','oneProduct','latestRecommendation'));
     }
 
     /**

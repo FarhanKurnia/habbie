@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Product;
+use App\Models\Product_Category;
 use Illuminate\Http\Request;
 
 class ArticleClientController extends Controller
@@ -17,13 +18,15 @@ class ArticleClientController extends Controller
         //articles
         $articles = new Article();
 
+        //category
+        $categories = Product_Category::all();
         //link recommendation
         $randomRecommendation = $products->all()->random(1);
         //offer
         $oneArticle = $articles->first();
         //review
         $relatedArticles = $articles->get();
-        return view('test.customer.media.index-article-client',compact('randomRecommendation','oneArticle','relatedArticles'));
+        return view('test.customer.media.index-article-client',compact('categories','randomRecommendation','oneArticle','relatedArticles'));
     }
 
     /**
@@ -52,13 +55,15 @@ class ArticleClientController extends Controller
         //articles
         $articles = new Article();
         
+        //category
+        $categories = Product_Category::all();
         //link recommendation
         $randomRecommendation = $products->all()->random(1);
         //find article 
         $oneArticle = $articles->where('slug',$slug)->firstOrFail();
         //latest recommendation with same category as above
         $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
-        return view('test.customer.media.show-article-client', compact('randomRecommendation','oneArticle','latestArticles'));
+        return view('test.customer.media.show-article-client', compact('categories','randomRecommendation','oneArticle','latestArticles'));
     }
 
     /**

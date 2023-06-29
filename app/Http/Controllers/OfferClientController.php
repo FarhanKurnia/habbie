@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Product_Category;
 
 class OfferClientController extends Controller
 {
@@ -12,6 +13,8 @@ class OfferClientController extends Controller
      */
     public function index()
     {
+        //category
+        $categories = Product_Category::all();
         //products 
         $products = new Product();
         //offers
@@ -21,7 +24,7 @@ class OfferClientController extends Controller
         $randomRecommendation = $products->all()->random(1);
         //offer
         $offers = $offers->get();
-        return view('test.customer.offer.offer-client',compact('randomRecommendation','offers'));
+        return view('test.customer.offer.offer-client',compact('categories','randomRecommendation','offers'));
         
     }
 
