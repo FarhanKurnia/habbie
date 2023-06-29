@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('stock');
             $table->string('rating');
             $table->string('slug');
+            $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->timestamps();

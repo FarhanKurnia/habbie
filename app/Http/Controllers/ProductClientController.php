@@ -14,12 +14,12 @@ class ProductClientController extends Controller
     {
         //products 
         $products = new Product();
-        //categories
-        $categories = new Product_Category();
-        $cat = $categories->where('slug',$slug)->firstOrFail();
+        //category
+        $categories = Product_Category::where('deleted_at',null)->get();
+        $cat = $categories->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
         $cat = $cat->id_category;
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
         $productsByCat = $products->where('category_id',$cat)->with('category')->get();
         return view('test.customer.product.index-product-client', compact('randomRecommendation','productsByCat'));
@@ -32,11 +32,14 @@ class ProductClientController extends Controller
     {
         //products 
         $products = new Product();
+        
+        //category
+        $categories = Product_Category::where('deleted_at',null)->get();
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
-        $allProduct = $products->all();
-        return view('test.customer.product.all-product-client', compact('randomRecommendation','allProduct'));
+        $allProduct = $products->where('deleted_at',null)->get();
+        return view('test.customer.product.all-product-client', compact('categories','randomRecommendation','allProduct'));
     }
 
     /**
@@ -63,14 +66,14 @@ class ProductClientController extends Controller
         //products 
         $products = new Product();
         //category
-        $categories = Product_Category::all();
+        $categories = Product_Category::where('deleted_at',null)->get();
         //product
-        $oneProduct = $products->where('slug',$slug)->with('category')->firstOrFail();
+        $oneProduct = $products->where([['slug',$slug],['deleted_at',null]])->with('category')->firstOrFail();
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //latest recommendation with same category as above
         $category_id = $oneProduct->category_id;
-        $latestRecommendation = $products->where('category_id',$category_id)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
+        $latestRecommendation = $products->where([['category_id',$category_id],['deleted_at',null]])->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         return view('test.customer.product.show-product-client', compact('categories','randomRecommendation','oneProduct','latestRecommendation'));
     }
 

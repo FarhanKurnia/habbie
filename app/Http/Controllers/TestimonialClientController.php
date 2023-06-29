@@ -11,7 +11,7 @@ class TestimonialClientController extends Controller
 {
     public function index(){
         //category
-        $categories = Product_Category::all();
+        $categories = Product_Category::where('deleted_at',null)->get();
         //products 
         $products = new Product();
         //testimonials
@@ -20,11 +20,11 @@ class TestimonialClientController extends Controller
         $reviews = new Review();
 
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //offer
-        $testimonials = $testimonials->get();
+        $testimonials = $testimonials->where('deleted_at',null)->get();
         //review
-        $reviews = $reviews->get();
+        $reviews = $reviews->where('deleted_at',null)->get();
         return view('test.customer.testimonial.testimonial-client',compact('categories','randomRecommendation','testimonials','reviews'));
     }
 }

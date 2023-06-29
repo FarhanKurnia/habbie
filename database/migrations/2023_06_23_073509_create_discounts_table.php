@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('rule');
             $table->string('description');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

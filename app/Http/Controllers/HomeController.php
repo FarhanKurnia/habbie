@@ -15,19 +15,19 @@ class HomeController extends Controller
     public function index()
     {
         //category
-        $categories = Product_Category::all();
+        $categories = Product_Category::where('deleted_at',null)->get();
         //articles
         $articles = new Article();
         //products 
         $products = new Product();
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //body recommendation
-        $bodyRecommendation = $products->with('category')->limit(3)->get();
+        $bodyRecommendation = $products->where('deleted_at',null)->with('category')->limit(3)->get();
         //latest recommendation
-        $latestRecommendation = $products->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
+        $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         //latest articles
-        $latestArticles = $articles->with('user')->orderBy('id_article','DESC')->limit(2)->get();
+        $latestArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->limit(2)->get();
         return view('test.customer.home.home', compact('categories','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('link');
             $table->enum('status',['active','non-active']);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -56,11 +56,11 @@ class ArticleClientController extends Controller
         $articles = new Article();
         
         //category
-        $categories = Product_Category::all();
+        $categories = Product_Category::where('deleted_at',null)->get();
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //find article 
-        $oneArticle = $articles->where('slug',$slug)->firstOrFail();
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
         //latest recommendation with same category as above
         $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
         return view('test.customer.media.show-article-client', compact('categories','randomRecommendation','oneArticle','latestArticles'));

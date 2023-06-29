@@ -14,16 +14,16 @@ class OfferClientController extends Controller
     public function index()
     {
         //category
-        $categories = Product_Category::all();
+        $categories = Product_Category::where('deleted_at',null)->get();
         //products 
         $products = new Product();
         //offers
         $offers = new Offer();
 
         //link recommendation
-        $randomRecommendation = $products->all()->random(1);
+        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //offer
-        $offers = $offers->get();
+        $offers = $offers->where('deleted_at',null)->get();
         return view('test.customer.offer.offer-client',compact('categories','randomRecommendation','offers'));
         
     }

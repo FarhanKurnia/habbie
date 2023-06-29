@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('product_id');
             // $table->unsignedBigInteger('voucher_id');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
             
             $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
