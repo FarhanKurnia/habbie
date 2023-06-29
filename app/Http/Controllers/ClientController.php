@@ -59,7 +59,7 @@ class ClientController extends Controller
         //link recommendation
         $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
-        $allProduct = $products->where('deleted_at',null)->paginate(5);
+        $allProduct = $products->where('deleted_at',null)->paginate(8);
         return view('test.customer.product.all-product-client', compact('categories','randomRecommendation','allProduct'));
     }
     public function indexProductsByCat($slug)
@@ -73,7 +73,7 @@ class ClientController extends Controller
         //link recommendation
         $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
-        $productsByCat = $products->where('category_id',$cat)->with('category')->paginate(5);
+        $productsByCat = $products->where('category_id',$cat)->with('category')->paginate(8);
         return view('test.customer.product.index-product-client', compact('categories','randomRecommendation','productsByCat'));
     }
     public function showProduct($slug)
