@@ -14,14 +14,21 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('id_product');
             $table->string('name');
-            $table->string('category');
             $table->string('image');
             $table->string('description');
-            $table->string('price');
+            $table->integer('price');
             $table->string('stock');
             $table->string('rating');
+            $table->string('slug');
+            $table->unsignedBigInteger('discount_id')->nullable();
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
+            
+            $table->foreign('category_id')->references('id_category')->on('product_categories')->onDelete('cascade');        
+            $table->foreign('discount_id')->references('id_discount')->on('discounts')->onDelete('cascade');        
         });
+
+        
     }
 
     /**

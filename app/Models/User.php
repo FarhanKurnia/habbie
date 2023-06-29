@@ -17,6 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'id_user';
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // One user has many articles
+    public function article(){
+        return $this->hasMany(Article::class);
+    }
+
+    // One user has many testimoinals
+    public function testimonial(){
+        return $this->hasMany(Testimonial::class);
+    }
+
+    // One user has many reviews
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
 }

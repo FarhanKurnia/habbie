@@ -1,28 +1,26 @@
 # Welcome to Habbie Store
+## Implementations
+1. Create MySQL database</br>
 
-
-## Project Setup
-
-Clone repository.
-
+2. Clone Repository </br>
+    ```
     git clone https://github.com/FarhanKurnia/habbie.git
-   
-Install laravel dependencies
+    ```
 
+3. Install Composer </br>
+    ```
     composer install
- 
-Install nodejs package
- 
-    npm install
- 
-Run build for production
+    ```
 
-    npm run build
+4. Copy and Set up environment</br>
+    ```
+    cp .env.example .env
+    ```
 
-Or for development
+5. Customize environment (.env) files with DB name that has been created.</br>
 
-    npm run dev
+6. Migrate database</br>
+    ```
+    php artisan migrate
+    ```
 
- 
-
- 
