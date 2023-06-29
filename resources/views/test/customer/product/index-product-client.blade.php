@@ -165,5 +165,9 @@
         </tbody>
     </table>
 <br>
+Halaman : {{ $productsByCat->currentPage() }} <br/>
+Jumlah Data : {{ $productsByCat->total() }} <br/>
+Data Per Halaman : {{ $productsByCat->perPage() }} <br/>
+{{ $productsByCat->links() }}
 </body>
 </html>
