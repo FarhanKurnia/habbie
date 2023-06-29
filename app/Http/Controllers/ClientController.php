@@ -59,7 +59,7 @@ class ClientController extends Controller
         //link recommendation
         $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
-        $allProduct = $products->where('deleted_at',null)->get();
+        $allProduct = $products->where('deleted_at',null)->paginate(5);
         return view('test.customer.product.all-product-client', compact('categories','randomRecommendation','allProduct'));
     }
     public function indexProductsByCat($slug)

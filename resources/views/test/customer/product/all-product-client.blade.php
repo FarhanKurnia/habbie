@@ -162,8 +162,13 @@
                     </td>
                 </tr>
             @endforeach
+
         </tbody>
     </table>
 <br>
+Halaman : {{ $allProduct->currentPage() }} <br/>
+Jumlah Data : {{ $allProduct->total() }} <br/>
+Data Per Halaman : {{ $allProduct->perPage() }} <br/>
+{{ $allProduct->links() }}
 </body>
 </html>
