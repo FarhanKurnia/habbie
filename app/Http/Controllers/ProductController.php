@@ -137,7 +137,7 @@ class ProductController extends Controller
         $products = new Product();
         $product = $products->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
         $product->update([
-            'deleted_at' => now(),
+            'deleted_at' => Carbon::now(),
             'slug' => $slug."-deleted",
         ]);
         if ($product) {
