@@ -60,9 +60,9 @@
                     @endif
                     <td>{{ $product->slug }}</td>
                     <td>
-                        @php
-                            echo route('showProducts',$product->slug); 
-                        @endphp
+                        <a href="{{route('showProducts',$product->slug)}}">Show </a>
+                        <a href="{{route('editProducts',$product->slug)}}">Edit </a>
+                        <a href="{{route('deleteProducts',$product->slug)}}">Delete </a>
                     </td>
                 </tr>
             @endforeach

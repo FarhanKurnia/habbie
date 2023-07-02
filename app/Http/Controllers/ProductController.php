@@ -94,17 +94,17 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_product)
+    public function update(Request $request, $slug)
     {
         //products
         $products = new Product();
-        $slug = $request->name;
-        $slug = preg_replace('/\s+/', '_', $slug);
-        $product = $products->findOrFail($id_product);
+        $getSlug = $request->name;
+        $getSlug = preg_replace('/\s+/', '_', $slug);
+        $product = $products->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
         $product->update([
             'name' => $request->name,
             'image' => '/path/images.jpg',
-            'slug' => $slug,
+            'slug' => $getSlug,
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
@@ -142,17 +142,11 @@ class ProductController extends Controller
         ]);
         if ($product) {
             return redirect()
-                ->route('indexProducts')
-                ->with([
-                    'success' => 'Post has been updated successfully'
-                ]);
+                ->route('indexProducts');
         } else {
             return redirect()
                 ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Some problem has occured, please try again'
-                ]);
+                ->withInput();
         }
     }
 }

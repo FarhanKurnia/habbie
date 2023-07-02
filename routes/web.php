@@ -42,8 +42,8 @@ Route::prefix('test')->group(function () {
     Route::get('/admin/products/add', [ProductController::class, 'create']);
     Route::post('/admin/products/store', [ProductController::class, 'store'])->name('storeProducts');
     Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
-    Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit']);
-    Route::patch('/admin/products/update/{id_product}', [ProductController::class, 'update'])->name('updateProducts');
+    Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
+    Route::patch('/admin/products/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
     Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
 

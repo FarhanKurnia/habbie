@@ -6,7 +6,7 @@
 </head>
 <body>
     <!-- form update -->
-    <form action="{{ route('updateProducts',$oneProduct->id_product) }}" method="POST">
+    <form action="{{ route('updateProducts',$oneProduct->slug) }}" method="POST">
         @csrf
         @method('PATCH')
         <table border="1">
