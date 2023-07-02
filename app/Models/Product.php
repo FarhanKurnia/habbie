@@ -13,15 +13,10 @@ class Product extends Model
         'name', 'category_id', 'image', 'description', 'price', 'stock', 'rating', 'discount_id', 'slug'
     ];
 
-    // many products owned by one cart
-    public function cart(){
-    	return $this->belongsTo(Product::class, 'product_id');
-    }
-
     // many products owned by one order
-    public function order(){
-    	return $this->belongsTo(Product::class, 'product_id');
-    }
+    // public function order(){
+    // 	return $this->belongsTo(Product::class, 'product_id');
+    // }
 
     // many product owned by one discount
     public function discount(): BelongsTo{
@@ -32,5 +27,10 @@ class Product extends Model
     // many product owned by one catergory
     public function category(): BelongsTo{
         return $this->belongsTo(Product_Category::class,'category_id');
+    }
+
+    // one order has many order product
+    public function orderproduct(){
+        return $this->hasMany(OrderProduct::class, 'order_id');
     }
 }

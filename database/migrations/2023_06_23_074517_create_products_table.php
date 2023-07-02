@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('description');
             $table->integer('price');
-            $table->string('stock');
-            $table->string('rating');
-            $table->string('slug');
+            $table->integer('stock');
+            $table->integer('rating');
+            $table->string('slug')->unique();
             $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->unsignedBigInteger('category_id');

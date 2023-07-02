@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('test')->group(function () {
+//customer    
     // Home
     Route::get('/home', [ClientController::class, 'indexHome']);
     // Products
@@ -31,6 +34,19 @@ Route::prefix('test')->group(function () {
     //Medias
     Route::get('/media', [ClientController::class, 'indexArticles']);
     Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+    //Order
+    Route::get('/order', [ClientController::class, 'order']);
+
+//admin
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
+    Route::get('/admin/add-products', [ProductController::class, 'create']);
+    Route::post('/admin/store-products', [ProductController::class, 'store'])->name('storeProducts');
+    Route::get('/admin/show-products', [ProductController::class, 'show']);
+    Route::put('/admin/update-products', [ProductController::class, 'update']);
+    Route::put('/admin/delete-products', [ProductController::class, 'delete']);
+
+
+
 });
 
 

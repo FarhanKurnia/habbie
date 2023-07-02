@@ -165,5 +165,9 @@ class ClientController extends Controller
         return view('test.customer.media.show-article-client', compact('categories','randomRecommendation','oneArticle','latestArticles'));
     }
 
+//view order function
+    public function order(){
+        return view('test.customer.order.order-client');
+    }
 
 }

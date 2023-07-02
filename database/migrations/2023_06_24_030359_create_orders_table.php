@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('total');
             $table->string('resi');
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('product_id');
+            // $table->unsignedBigInteger('product_id');
             // $table->unsignedBigInteger('voucher_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
             
-            $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
+            // $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
             $table->foreign('customer_id')->references('id_customer')->on('customers')->onDelete('cascade');
             // $table->foreign('voucher_id')->references('id_voucher')->on('vouchers')->onDelete('cascade');
         });
