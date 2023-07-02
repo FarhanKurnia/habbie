@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,16 +38,24 @@ Route::prefix('test')->group(function () {
     Route::get('/order', [ClientController::class, 'order']);
 
 //admin
+    //Products
     Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
-    Route::get('/admin/products/add', [ProductController::class, 'create']);
+    Route::get('/admin/products/add', [ProductController::class, 'create'])->name('createProducts');
     Route::post('/admin/products/store', [ProductController::class, 'store'])->name('storeProducts');
     Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
     Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
     Route::patch('/admin/products/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
     Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
+    //Categories Products
+    Route::get('/admin/categories', [ProductCategoryController::class, 'index'])->name('indexCategories');
+    Route::get('/admin/categories/add', [ProductCategoryController::class, 'create'])->name('createCategories');
+    Route::post('/admin/categories/store', [ProductCategoryController::class, 'store'])->name('storeCategories');
+    Route::get('/admin/categories/show/{slug}', [ProductCategoryController::class, 'show'])->name('showCategories');
+    Route::get('/admin/categories/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('editCategories');
+    Route::patch('/admin/categories/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
+    Route::get('/admin/categories/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
 
+    
 
 });
-
-

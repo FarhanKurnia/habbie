@@ -11,7 +11,7 @@
         @method('PATCH')
         <table border="1">
             <tr>
-                <th colspan="2">Form Add Products</th>
+                <th colspan="2">Form Update Products</th>
             </tr>
             <tr>
                 <td>Name</td>
