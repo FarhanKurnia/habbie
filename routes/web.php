@@ -2,6 +2,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,6 +57,14 @@ Route::prefix('test')->group(function () {
     Route::patch('/admin/categories/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
     Route::get('/admin/categories/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
 
-    
+    //Offers
+    Route::get('/admin/offers', [OfferController::class, 'index'])->name('indexOffers');
+    Route::get('/admin/offers/add', [OfferController::class, 'create'])->name('createOffers');
+    Route::post('/admin/offers/store', [OfferController::class, 'store'])->name('storeOffers');
+    Route::get('/admin/offers/show/{slug}', [OfferController::class, 'show'])->name('showOffers');
+    Route::get('/admin/offers/edit/{slug}', [OfferController::class, 'edit'])->name('editOffers');
+    Route::patch('/admin/offers/update/{slug}', [OfferController::class, 'update'])->name('updateOffers');
+    Route::get('/admin/offers/delete/{slug}', [OfferController::class, 'delete'])->name('deleteOffers');
+
 
 });

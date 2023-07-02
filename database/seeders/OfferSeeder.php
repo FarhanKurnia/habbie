@@ -15,18 +15,20 @@ class OfferSeeder extends Seeder
     {
         DB::table('offers')->insert([[
             'name' => 'Buy 3 get 1 free',
+            'slug' => 'buy-3-get-1-free',
             'image' => 'path/image.jpg',
             'description'=>'Lorem ipsim dolor sit amet',
-            'link' => 'http://localhost:8000/products/special-product-buy-3-get-1',
+            'product_id' => 20,
             'status' => 'active',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
             'name' => 'Buy 3 only 60K',
+            'slug' => 'buy-3-only-60k',
             'image' => 'path/image.jpg',
             'description'=>'Lorem ipsim dolor sit amet',
-            'link' => 'http://localhost:8000/products/special-product-buy-2-only-60000',
+            'product_id' => 21,
             'status' => 'active',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

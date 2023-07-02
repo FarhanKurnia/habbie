@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id('id_offer');
             $table->string('name');
             $table->string('image');
+            $table->string('slug');
             $table->string('description');
-            $table->string('link');
             $table->enum('status',['active','non-active']);
+            $table->unsignedBigInteger('product_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');        
+
         });
     }
 

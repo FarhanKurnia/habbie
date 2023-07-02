@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discount;
+use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Product_Category;
 use Carbon\Carbon;
@@ -45,7 +46,7 @@ class ProductController extends Controller
         $slug = $request->name;
         $slug = preg_replace('/\s+/', '_', $slug);
         $slug = strtolower($slug);
-        
+
         Product::create([
             'name' => $request->name,
             'image' => '/path/images.jpg',
@@ -56,7 +57,6 @@ class ProductController extends Controller
             'rating' => $request->rating,
             'discount_id' => $request->discount,
             'category_id' => $request->category,
-
         ]);
         return redirect()->route('indexProducts');
     }

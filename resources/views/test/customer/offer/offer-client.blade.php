@@ -126,7 +126,7 @@
                     <td>{{ $offer->name }}</td>
                     <td>{{ $offer->image }}</td>
                     <td>{{ $offer->description }}</td>
-                    <td>{{ $offer->link }}</td>
+                    <td>{{ route('showProducts',$offer->product->slug) }}</td>
                     <td>{{ $offer->status }}</td>
                 </tr>
             @endforeach
