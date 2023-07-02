@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Product_Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -62,32 +63,96 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($slug)
     {
-        //
+        //products
+        $products = new Product();
+        $oneProduct = $products->where([['slug',$slug],['deleted_at',null]])->with('category')->firstOrFail();
+        return view('test.admin.product.show-product-admin', compact('oneProduct'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit($slug)
     {
-        //
+        //products
+        $products = new Product();
+        //categories
+        $categories = new Product_Category();
+        //discounts
+        $discounts = new Discount();
+
+        $oneProduct = $products->where([['slug',$slug],['deleted_at',null]])->with('category')->firstOrFail();
+        $indexCategories = $categories->where('deleted_at',null)->get();
+        $indexDiscounts = $discounts->where('deleted_at',null)->get();
+
+        return view('test.admin.product.update-product-admin',compact('oneProduct','indexCategories','indexDiscounts'));
+    
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id_product)
     {
-        //
+        //products
+        $products = new Product();
+        $slug = $request->name;
+        $slug = preg_replace('/\s+/', '_', $slug);
+        $product = $products->findOrFail($id_product);
+        $product->update([
+            'name' => $request->name,
+            'image' => '/path/images.jpg',
+            'slug' => $slug,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'rating' => $request->rating,
+            'discount_id' => $request->discount,
+            'category_id' => $request->category,
+        ]);
+        if ($product) {
+            return redirect()
+                ->route('indexProducts')
+                ->with([
+                    'success' => 'Post has been updated successfully'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function delete($slug)
     {
-        //
+        //products
+        $products = new Product();
+        $product = $products->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $product->update([
+            'deleted_at' => now(),
+            'slug' => $slug."-deleted",
+        ]);
+        if ($product) {
+            return redirect()
+                ->route('indexProducts')
+                ->with([
+                    'success' => 'Post has been updated successfully'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
     }
 }

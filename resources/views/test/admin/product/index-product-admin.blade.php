@@ -61,7 +61,7 @@
                     <td>{{ $product->slug }}</td>
                     <td>
                         @php
-                            echo url("/test/products/{$product->slug}"); 
+                            echo route('showProducts',$product->slug); 
                         @endphp
                     </td>
                 </tr>

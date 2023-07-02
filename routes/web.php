@@ -25,7 +25,7 @@ Route::prefix('test')->group(function () {
     Route::get('/home', [ClientController::class, 'indexHome']);
     // Products
     Route::get('/products', [ClientController::class, 'indexProducts']);
-    Route::get('/products/{slug}', [ClientController::class, 'showProduct']);
+    Route::get('/products/{slug}', [ClientController::class, 'showProduct'])->name('showProductsClient');
     Route::get('/categories/{slug}', [ClientController::class, 'indexProductsByCat']);
     //Offers
     Route::get('/offers', [ClientController::class, 'indexOffers']);
@@ -39,11 +39,12 @@ Route::prefix('test')->group(function () {
 
 //admin
     Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
-    Route::get('/admin/add-products', [ProductController::class, 'create']);
-    Route::post('/admin/store-products', [ProductController::class, 'store'])->name('storeProducts');
-    Route::get('/admin/show-products', [ProductController::class, 'show']);
-    Route::put('/admin/update-products', [ProductController::class, 'update']);
-    Route::put('/admin/delete-products', [ProductController::class, 'delete']);
+    Route::get('/admin/products/add', [ProductController::class, 'create']);
+    Route::post('/admin/products/store', [ProductController::class, 'store'])->name('storeProducts');
+    Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
+    Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit']);
+    Route::patch('/admin/products/update/{id_product}', [ProductController::class, 'update'])->name('updateProducts');
+    Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
 
 
