@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 class ArticleController extends Controller
 {
     /**
@@ -12,7 +13,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        //articles
+        $articles = new Article();
+
+        $indexArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article')->paginate(10);
+        return view('test.admin.article.index-article-admin', compact('indexArticles'));
     }
 
     /**
@@ -20,7 +25,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('test.admin.article.create-article-admin');
     }
 
     /**
@@ -28,38 +33,95 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $slug = $request->title;
+        $slug = preg_replace('/\s+/', '_', $slug);
+        $slug = strtolower($slug);
+        $excerpt = Str::limit($request->post,250);
+
+        Article::create([
+            'title' => $request->title,
+            'post' => $request->post,
+            'excerpt' => $excerpt,
+            'image' => $request->image,
+            'slug' => $slug,
+            'user_id' => $request->user_id,
+        ]);
+        return redirect()->route('indexArticles');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show($slug)
     {
-        //
+        //Articles
+        $articles = new Article();
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        return view('test.admin.article.show-article-admin', compact('oneArticle'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit($slug)
     {
-        //
+        //articles
+        $articles = new Article();
+
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->with('user')->firstOrFail();
+        return view('test.admin.article.update-article-admin',compact('oneArticle'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $slug)
     {
-        //
+        //articles
+        $articles = new Article();
+        $getSlug = $request->title;
+        $getSlug = preg_replace('/\s+/', '_', $getSlug);
+        $getSlug = strtolower($getSlug);
+        $excerpt = Str::limit($request->post,250);
+
+        $article = $articles->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        $article->update([
+            'title' => $request->title,
+            'post' => $request->post,
+            'excerpt' => $excerpt,
+            'image' => $request->image,
+            'slug' => $getSlug,
+            'user_id' => $request->user_id,
+        ]);
+        if ($article) {
+            return redirect()
+                ->route('indexArticles');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function delete($slug)
     {
-        //
+        //articles
+        $articles = new Article();
+        $article = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $article->update([
+            'deleted_at' => Carbon::now(),
+            'slug' => $slug."-deleted",
+        ]);
+        if ($article) {
+            return redirect()
+                ->route('indexArticles');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput();
+        }
     }
 }

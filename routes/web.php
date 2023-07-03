@@ -3,6 +3,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,15 @@ Route::prefix('test')->group(function () {
     Route::get('/admin/offers/edit/{slug}', [OfferController::class, 'edit'])->name('editOffers');
     Route::patch('/admin/offers/update/{slug}', [OfferController::class, 'update'])->name('updateOffers');
     Route::get('/admin/offers/delete/{slug}', [OfferController::class, 'delete'])->name('deleteOffers');
+
+    //Articles
+    Route::get('/admin/articles', [ArticleController::class, 'index'])->name('indexArticles');
+    Route::get('/admin/articles/add', [ArticleController::class, 'create'])->name('createArticles');
+    Route::post('/admin/articles/store', [ArticleController::class, 'store'])->name('storeArticles');
+    Route::get('/admin/articles/show/{slug}', [ArticleController::class, 'show'])->name('showArticles');
+    Route::get('/admin/articles/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
+    Route::patch('/admin/articles/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
+    Route::get('/admin/articles/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
 
 
 });

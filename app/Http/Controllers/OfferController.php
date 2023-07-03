@@ -42,7 +42,7 @@ class OfferController extends Controller
         
         Offer::create([
             'name' => $request->name,
-            'image' => '/path/images.jpg',
+            'image' => $request->image,
             'slug' => $slug,
             'description' => $request->description,
             'product_id' => $request->product,
