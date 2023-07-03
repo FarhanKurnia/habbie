@@ -30,7 +30,7 @@
                 <td>
                     <select name="status" id="status">
                         <option value="active" {{ $oneOffer->status == "active" ? 'selected':'' }}>active</option>
-                        <option value="non-active" {{ $oneOffer->rating == "non-active" ? 'selected':'' }}>non-active</option>
+                        <option value="non-active" {{ $oneOffer->status == "non-active" ? 'selected':'' }}>non-active</option>
                     </select>
                 </td>                
             </tr>

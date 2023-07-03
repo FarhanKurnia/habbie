@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DiscountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,6 +76,15 @@ Route::prefix('test')->group(function () {
     Route::get('/admin/articles/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
     Route::patch('/admin/articles/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
     Route::get('/admin/articles/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
+
+    //Discounts
+    Route::get('/admin/discounts', [DiscountController::class, 'index'])->name('indexDiscounts');
+    Route::get('/admin/discounts/add', [DiscountController::class, 'create'])->name('createDiscounts');
+    Route::post('/admin/discounts/store', [DiscountController::class, 'store'])->name('storeDiscounts');
+    Route::get('/admin/discounts/show/{slug}', [DiscountController::class, 'show'])->name('showDiscounts');
+    Route::get('/admin/discounts/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
+    Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
+    Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
 
 
 });

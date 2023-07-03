@@ -16,7 +16,7 @@ class ArticleController extends Controller
         //articles
         $articles = new Article();
 
-        $indexArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article')->paginate(10);
+        $indexArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->paginate(10);
         return view('test.admin.article.index-article-admin', compact('indexArticles'));
     }
 
