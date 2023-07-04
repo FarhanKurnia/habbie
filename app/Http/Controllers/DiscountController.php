@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Carbon;
 use App\Models\Discount;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class DiscountController extends Controller
@@ -105,11 +106,24 @@ class DiscountController extends Controller
     {
         //discounts
         $discounts = new Discount();
+        //products
+        $products = new Product();
         $discount = $discounts->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $id_discount=$discount->id_discount;
+        $indexProducts = $products->where('discount_id',$id_discount)->get();
+        if($indexProducts != null){
+            foreach($indexProducts as $product){
+                $product->update([
+                    'discount_id' => null
+                ]);
+            }
+        }
+        
         $discount->update([
             'deleted_at' => Carbon::now(),
             'slug' => $slug."-deleted",
         ]);
+
         if ($discount) {
             return redirect()
                 ->route('indexDiscounts');
