@@ -34,7 +34,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $slug = $request->title;
-        $slug = preg_replace('/\s+/', '_', $slug);
+        $slug = preg_replace('/\s+/', '-', $slug);
         $slug = strtolower($slug);
         $excerpt = Str::limit($request->post,250);
 
@@ -80,7 +80,7 @@ class ArticleController extends Controller
         //articles
         $articles = new Article();
         $getSlug = $request->title;
-        $getSlug = preg_replace('/\s+/', '_', $getSlug);
+        $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
         $excerpt = Str::limit($request->post,250);
 

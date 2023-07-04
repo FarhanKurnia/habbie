@@ -34,7 +34,7 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $slug = $request->name;
-        $slug = preg_replace('/\s+/', '_', $slug);
+        $slug = preg_replace('/\s+/', '-', $slug);
         $slug = strtolower($slug);
         
         Product_Category::create([
@@ -74,7 +74,7 @@ class ProductCategoryController extends Controller
         //products
         $categories = new Product_Category();
         $getSlug = $request->name;
-        $getSlug = preg_replace('/\s+/', '_', $getSlug);
+        $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
 
         $category = $categories->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
