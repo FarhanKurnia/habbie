@@ -49,3 +49,12 @@ $(document).ready(function () {
 
 
 });
+
+document.addEventListener('livewire:load', function () {
+    Livewire.on('showToast', function () {
+        console.log('toast');
+        setTimeout(function () {
+            Livewire.emit('hideToast', false);
+        }, 1000);
+    });
+});
