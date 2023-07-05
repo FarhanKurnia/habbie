@@ -9,18 +9,18 @@ class CartList extends Component
     protected $listeners = ['cartUpdated' => '$refresh'];
     public $cartItems = [];
 
+    public function refreshCart()
+    {
+        $this->cartItems = \Cart::getContent();
+    }
+
     public function removeCart($id)
     {
         \Cart::remove($id);
+        $this->emit('addToCart');
 
-        session()->flash('success', 'Item has removed !');
-    }
-
-    public function clearAllCart()
-    {
-        \Cart::clear();
-
-        session()->flash('success', 'All Item Cart Clear Successfully !');
+        $msg = 'Item has removed !';
+        $this->emit('showToast', $msg);
     }
 
     public function render()
