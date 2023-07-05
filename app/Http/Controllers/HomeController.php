@@ -20,12 +20,14 @@ class HomeController extends Controller
         //link recommendation
         $randomRecommendation = $products->all()->random(1);
         //body recommendation
-        $bodyRecommendation = $products->with('category')->limit(3)->get();
+        $bodyRecommendation = $products->with('category')->orderBy('id_product', 'DESC')->limit(3)->get();
         //latest recommendation
         $latestRecommendation = $products->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         //latest articles
         $latestArticles = $articles->with('user')->orderBy('id_article','DESC')->limit(2)->get();
-        return view('test.customer.home.home', compact('products','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
+        // return view('test.customer.home.home', compact('products','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
+        return view('pages.public.home', compact('randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
+
     }
 
     /**
