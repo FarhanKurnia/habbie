@@ -27,6 +27,7 @@
                     <p class="text-pink-primary text-lg">{{ $discountName }}</p>
                 @else
                     <p class="font-semibold text-lg">{{ \App\Helpers\CurrencyFormat::data($product->price) }}</p>
+                    <br />
                 @endif
             </div>
     </a>
