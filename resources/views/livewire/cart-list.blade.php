@@ -28,7 +28,8 @@
                                 </span>
                             </td>
                             <td class="cursor-pointer">
-                                <a href="{{ url('products/' . $item['attributes']->slug) }}" class="flex flex-row gap-10 items-center">
+                                <a href="{{ url('products/' . $item['attributes']->slug) }}"
+                                    class="flex flex-row gap-10 items-center">
                                     <span>
                                         <img class="h-20" src="{{ url($item['attributes']->image) }}"
                                             alt="{{ $item['name'] }}">
@@ -45,16 +46,19 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="p-6 bg-grey-secondary-50 w-1/3 ml-auto rounded">
-                <div class="flex flex-row items-center justify-between">
-                    <p class="text-xl">Total: </p>
-                    <p class="text-2xl font-bold pr-2">{{ \App\Helpers\CurrencyFormat::data((Cart::getTotal())) }}</p>
-                </div>
-                <div class="text-right pt-6">
-                    <button class="btn btn-primary rounded-full text-base-100">Checkout</button>
-                </div>
 
-            </div>
+            @if (!!Cart::getTotal())
+                <div class="p-6 bg-grey-secondary-50 w-1/3 ml-auto rounded">
+                    <div class="flex flex-row items-center justify-between">
+                        <p class="text-xl">Total: </p>
+                        <p class="text-2xl font-bold pr-2">{{ \App\Helpers\CurrencyFormat::data(Cart::getTotal()) }}
+                        </p>
+                    </div>
+                    <div class="text-right pt-6">
+                        <button class="btn btn-primary rounded-full text-base-100">Checkout</button>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
