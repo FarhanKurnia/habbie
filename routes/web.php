@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.public.home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', function () {
     return view('pages.public.about');
@@ -29,18 +26,14 @@ Route::get('/offers', function () {
     return view('pages.public.offers.index');
 });
 
-Route::get('/products', function () {
-    return view('pages.public.products.index');
-});
+Route::get('/products', [ProductClientController::class, 'allProduct']);
 
-Route::get('/products/{slug}', function ($slug) {
-    
-    $data = [
-        'slug' => $slug,
-        'title' => 'Test Product'
-    ];
+Route::get('/products/{slug}', [ProductClientController::class, 'show'])->name('products.show');
 
-    return view('pages.public.products.detail', ['data' => $data]);
+Route::get('products/categories/{slug}', [ProductClientController::class, 'index']);
+
+Route::get('cart', function (){
+    return view('pages.public.cart');
 });
 
 // Route Customer
