@@ -1,9 +1,14 @@
 <div class="container mx-auto ">
-    <div class="slider relative">
-        @foreach (range(1, 4) as $item)
+    <div class="slider relative overflow-x-hidden">
+        @php
+            
+            $slide = 1;
+
+        @endphp
+        @foreach (range(1, 7) as $item)
+            
             <div>
-                <img src="{{ asset('storage/img/img-slide.jpg') }}" alt="" class="w-full object-cover "
-                    style="height: 520px;">
+                <img src="{{ asset('storage/img/slide-'.$slide++.'.png') }}" alt="" class=" lg:w-full lg:h-full">
             </div>
         @endforeach
     </div>
