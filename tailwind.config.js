@@ -7,7 +7,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': ['nunito', 'sans-serif']
+      'sans': ['DINPro-Medium', 'sans-serif'],
+      'bold': ['DINPro-Bold', 'sans-serif']
     },
     colors: {
       'pink-bloosom': '#F9D6D4',
@@ -18,7 +19,8 @@ module.exports = {
       'teal': '#DAEDDD',
       'grey-secondary': '#F0F0F0',
       'grey-secondary-50': '#F7F7F7',
-      'white': '#FFFFFF'
+      'white': '#FFFFFF',
+      'grey-secondary': '#CCCCCC'
     },
     extend: {},
   },
