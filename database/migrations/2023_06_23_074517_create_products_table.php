@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->integer('rating');
+            $table->integer('weight');
             $table->string('slug')->unique();
             $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('discount_id')->nullable();
