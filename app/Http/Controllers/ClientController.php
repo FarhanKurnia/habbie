@@ -28,7 +28,7 @@ class ClientController extends Controller
         $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         //latest articles
         $latestArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->limit(2)->get();
-        return view('test.customer.home.home', compact('categories','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
+        return view('pages.public.home', compact('categories','randomRecommendation','bodyRecommendation','latestRecommendation','latestArticles'));
     }
 
 // Offers function
@@ -45,7 +45,7 @@ class ClientController extends Controller
         $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //offer
         $offers = $offers->where('deleted_at',null)->get();
-        return view('test.customer.offer.offer-client',compact('categories','randomRecommendation','offers'));   
+        return view('pages.public.offers.index',compact('categories','randomRecommendation','offers'));   
     }
 
 // Products function
@@ -60,7 +60,7 @@ class ClientController extends Controller
         $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
         $allProduct = $products->where('deleted_at',null)->paginate(8);
-        return view('test.customer.product.all-product-client', compact('categories','randomRecommendation','allProduct'));
+        return view('pages.public.products.index', compact('categories','randomRecommendation','allProduct'));
     }
     public function indexProductsByCat($slug)
     {
@@ -74,7 +74,7 @@ class ClientController extends Controller
         $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //all products
         $productsByCat = $products->where('category_id',$cat)->with('category')->paginate(8);
-        return view('test.customer.product.index-product-client', compact('categories','randomRecommendation','productsByCat'));
+        return view('pages.public.products.category', compact('categories','randomRecommendation','productsByCat'));
     }
     public function showProduct($slug)
     {
@@ -89,7 +89,7 @@ class ClientController extends Controller
         //latest recommendation with same category as above
         $category_id = $oneProduct->category_id;
         $latestRecommendation = $products->where([['category_id',$category_id],['deleted_at',null]])->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
-        return view('test.customer.product.show-product-client', compact('categories','randomRecommendation','oneProduct','latestRecommendation'));
+        return view('pages.public.products.detail', compact('categories','randomRecommendation','oneProduct','latestRecommendation'));
     }
 
 // Categories function
