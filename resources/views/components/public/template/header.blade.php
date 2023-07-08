@@ -24,22 +24,7 @@
                     <li tabindex="0">
                         <details>
                             <summary class="text-sm font-bold">PRODUCT</summary>
-                            <ul class="flex flex-row p-2 z-20">
-                                <li>
-                                    <ul class="flex flex-col float-left">
-                                        <li><a class="#">AROMATIC TELON OIL</a></li>
-                                        <li><a class="#">AROMATIC CAJUPUT OIL</a></li>
-                                        <li><a class="#">ESSENTIALS OIL</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <ul class="flex flex-col float-left">
-                                        <li><a class="#">AROMATIC TELON OIL</a></li>
-                                        <li><a class="#">AROMATIC CAJUPUT OIL</a></li>
-                                        <li><a class="#">ESSENTIALS OIL</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <livewire:menu-category-product />
                         </details>
                     </li>
                     <li><a class="text-sm font-bold">TESTIMONIAL</a></li>
@@ -123,3 +108,4 @@
         </div>
     </div>
 </header>
+
