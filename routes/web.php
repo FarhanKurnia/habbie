@@ -36,6 +36,18 @@ Route::get('cart', function (){
     return view('pages.public.cart');
 });
 
+Route::get('login', function (){
+    return view('pages.public.login');
+});
+
+Route::get('register', function (){
+    return view('pages.public.register');
+});
+
+Route::get('checkout', function (){
+    return view('pages.public.checkout');
+});
+
 // Route Customer
 //home
 Route::get('/test/home', [HomeController::class, 'index']);
