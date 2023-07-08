@@ -5,7 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    {{-- random recommendation--}}
+{{--Categories--}}
+    <table border="1">
+        <thead>
+            <tr>
+                <th colspan="4">Categories using: $categories</th>
+            </tr>
+            <tr>
+                <th>No</th>
+                <th>name</th>
+                <th>slug</th>
+                <th>link</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $no = '1';
+            @endphp
+            @foreach($categories as $category)
+                <tr>
+                    <td>{{ $no++}}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->slug }}</td>
+                    <td>
+                        @php
+                            echo url("/test/categories/{$category->slug}"); 
+                        @endphp
+                    </td>                
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+<br>
+{{-- random recommendation--}}
     <table border="1">
         <thead>
             <tr>
@@ -61,7 +93,7 @@
                     <td>{{ $product->slug }}</td>
                     <td>
                         @php
-                            echo url("/test/products/{$product->slug}");;; 
+                            echo route('showProductsClient',$product->slug); 
                         @endphp
                     </td>
                 </tr>
@@ -69,7 +101,7 @@
         </tbody>
     </table>
 <br>
-    {{-- body recommendation--}}
+{{-- body recommendation--}}
     <table border="1">
         <thead>
             <tr>
@@ -124,7 +156,7 @@
                     <td>{{ $product->slug }}</td>
                     <td>
                         @php
-                            echo url("/test/products/{$product->slug}"); 
+                            echo route('showProductsClient',$product->slug); 
                         @endphp
                     </td>
                 </tr>
@@ -132,7 +164,7 @@
         </tbody>
     </table>
 <br>
-    {{-- latest recommendation--}}
+{{-- latest recommendation--}}
     <table border="1">
         <thead>
             <tr>
@@ -188,7 +220,7 @@
                     <td>{{ $product->slug }}</td>
                     <td>
                         @php
-                            echo url("/test/products/{$product->slug}"); 
+                            echo route('showProductsClient',$product->slug); 
                         @endphp
                     </td>
                 </tr>
@@ -196,7 +228,7 @@
         </tbody>
     </table>
 <br>
-    {{-- latest article--}}
+{{-- latest article--}}
     <table border="1">
         <thead>
             <tr>
@@ -226,7 +258,7 @@
                     <td>{{ $article->user->name }}</td>
                     <td>
                         @php
-                            echo url("/article/{$article->slug}"); 
+                            echo url("/test/media/{$article->slug}"); 
                         @endphp
                     </td>
                 </tr>

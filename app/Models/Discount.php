@@ -10,7 +10,7 @@ class Discount extends Model
     protected $table = 'discounts';
     protected $primaryKey = 'id_discount';
     protected $fillable = [
-        'name','rule','description'
+        'name','slug','rule','description','status','deleted_at'
     ];
 
     // one discount has many products

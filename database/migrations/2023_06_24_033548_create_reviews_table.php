@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('rating',[1,2,3,4,5]);
             $table->string('description');            
             $table->unsignedBigInteger('user_id');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         
             $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');        

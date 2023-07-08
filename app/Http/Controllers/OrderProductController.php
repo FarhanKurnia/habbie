@@ -1,28 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Offer;
-use App\Models\Product;
+
+use App\Models\Order_Product;
 use Illuminate\Http\Request;
 
-class OfferClientController extends Controller
+class OrderProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //products 
-        $products = new Product();
-        //offers
-        $offers = new Offer();
-
-        //link recommendation
-        $randomRecommendation = $products->all()->random(1);
-        //offer
-        $offers = $offers->get();
-        return view('test.customer.offer.offer-client',compact('randomRecommendation','offers'));
-        
+        //
     }
 
     /**
@@ -44,7 +34,7 @@ class OfferClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Order_Product $order_Product)
     {
         //
     }
@@ -52,7 +42,7 @@ class OfferClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Order_Product $order_Product)
     {
         //
     }
@@ -60,7 +50,7 @@ class OfferClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Order_Product $order_Product)
     {
         //
     }
@@ -68,7 +58,7 @@ class OfferClientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order_Product $order_Product)
     {
         //
     }

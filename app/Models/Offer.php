@@ -10,11 +10,11 @@ class Offer extends Model
     protected $table = 'offers';
     protected $primaryKey = 'id_offer';
     protected $fillable = [
-        'name', 'image', 'description', 'link', 'status'
+        'name','slug', 'image', 'description', 'product_id', 'status','deleted_at'
     ];
 
-    // one voucher has many orders
-    // public function orders(){
-    //     return $this->hasMany(Order::class);
-    // }
+    // one offers has many products
+    public function product(){
+        return $this->belongsTo(Product::class,'product_id');
+    }
 }
