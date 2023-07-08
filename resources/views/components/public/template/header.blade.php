@@ -19,7 +19,7 @@
                 </div>
     
                 {{-- menu desktop --}}
-                <ul class="menu menu-horizontal hidden lg:flex font">
+                <ul class="menu menu-horizontal hidden lg:flex">
                     <li><a class="text-sm font-bold">OFFERS</a></li>
                     <li tabindex="0">
                         <details>
