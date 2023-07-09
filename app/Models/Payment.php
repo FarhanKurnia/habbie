@@ -10,7 +10,7 @@ class Payment extends Model
     protected $table = 'payments';
     protected $primaryKey = 'id_payment';
     protected $fillable = [
-        'total', 'status', 'order_id','customer_id'
+        'total', 'status', 'order_id','user_id'
     ];
 
     // one payment has one order
@@ -19,7 +19,7 @@ class Payment extends Model
     }
 
     // one payment has one customer
-    public function customer(){
-        return $this->hasOne(Customer::class, 'customer_id');
+    public function user(){
+        return $this->belongsTo(Customer::class, 'user_id');
     }
 }

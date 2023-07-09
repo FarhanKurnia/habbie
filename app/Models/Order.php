@@ -10,15 +10,8 @@ class Order extends Model
     protected $table = 'orders';
     protected $primaryKey = 'id_order';
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'status', 'total', 'resi', 'customer_id', 
-        // 'product_id', 
-        // 'voucher_id'
+        'name', 'email', 'phone', 'address', 'status', 'total', 'resi', 'user_id', 
     ];
-
-    // many orders owned by one customer
-    public function customer(){
-    	return $this->belongsTo(Cart::class, 'customer_id');
-    }
 
     // one order has many products
     // public function product(){
@@ -28,6 +21,11 @@ class Order extends Model
     // one order owned by one payment
     public function payment(){
         return $this->belongsTo(Payment::class, 'order_id');
+    }
+
+    // one order owned by one payment
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // many orders owned by one voucher

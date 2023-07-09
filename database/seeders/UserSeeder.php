@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'email'=>'farhan@mail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
+            'role_id' => 1,
             'remember_token' => null,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'email'=>'gandhi@mail.com',
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
+            'role_id' => 1,
             'remember_token' => null,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
