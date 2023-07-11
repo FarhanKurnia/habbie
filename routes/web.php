@@ -42,14 +42,19 @@ Route::prefix('test')->group(function () {
     Route::get('/order', [ClientController::class, 'order']);
 
 //customer (login role: customer n admin)
+    //Order
+    Route::middleware(['auth','verified','customer'])->group(function () {
+        Route::get('/order', [ClientController::class, 'order']);
+    });
     
 
 //admin (login role: admin)
-    Route::middleware(['auth', 'admin','verified'])->group(function () {
+    Route::middleware(['auth','verified', 'admin'])->group(function () {
         // Dashboard
-        Route::get('/dashboard', function () {
+        Route::get('/admin/dashboard', function () {
             return view('test.admin.dashboard.dashboard-admin');
         })->name('dashboard');
+
         //Products
         Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
         Route::get('/admin/products/add', [ProductController::class, 'create'])->name('createProducts');
