@@ -34,6 +34,10 @@
                 <td><input class="form-control" type="text" name="stock" value="{{ old('stock', $oneProduct->stock) }}"required></td>
             </tr>
             <tr>
+                <td>Weight</td>
+                <td><input class="form-control" type="text" name="weight" value="{{ old('weight', $oneProduct->weight) }}"required></td>
+            </tr>
+            <tr>
                 <td>Rating</td>
                 <td>
                     <select name="rating" id="rating">

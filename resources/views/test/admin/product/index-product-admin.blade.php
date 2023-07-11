@@ -19,6 +19,7 @@
                 <th>description</th>
                 <th>price</th>
                 <th>stock</th>
+                <th>weight</th>
                 <th>rating</th>
                 <th>discount_id</th>
                 <th>slug</th>

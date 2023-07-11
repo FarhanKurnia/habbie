@@ -55,6 +55,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'stock' => $request->stock,
             'rating' => $request->rating,
+            'weight' => $request->weight,
             'discount_id' => $request->discount,
             'category_id' => $request->category,
         ]);
@@ -111,6 +112,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'stock' => $request->stock,
             'rating' => $request->rating,
+            'weight' => $request->weight,
             'discount_id' => $request->discount,
             'category_id' => $request->category,
         ]);
