@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Verification;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -18,16 +22,27 @@ class AuthController extends Controller
             'email' => 'required|unique:users',
             'password' => 'required'
         ]);
+        $token = Str::random(128);
+        $name = $request->name;
+        $email = $request->email;
         $user = new User;
         $user->create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name' => $name,
+            'email' => $email,
             'password' => bcrypt($request->password) ,
             'role_id' => 2,
+            'token_verification' =>$token ,
             'email_verified' => false,
         ]);
+        $data = [
+            'title' => 'Email Verification',
+            'name' => $name,
+            'url' => route('verification',$token),
+        ];
+        Mail::to($email)->send(new Verification($data));
         return redirect()->route('login');
     }
+
 //Login
     public function login(){
         return view('test.login');
@@ -39,7 +54,6 @@ class AuthController extends Controller
             'email'=>'required|email:dns',
         	'password' => 'required',
         ]);
-
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
             // return redirect()->intended('/test/home/home');
@@ -52,6 +66,7 @@ class AuthController extends Controller
         return back()->with('loginError','Login Failed!');
     }
     
+    //logout
     public function logout()
     {
         Auth::logout();
@@ -60,7 +75,25 @@ class AuthController extends Controller
         return redirect(route('login'));
     }
 
+    // Verification Account after register
+   public function verification($token)
+   {
+        $user = User::where('token_verification',$token)->firstOrFail();
+        if($user->email_verified == false){
+            $user->update([
+                'email_verified' => true,
+                'email_verified_at' => Carbon::now(),
+            ]);
+            $log = 'Email berhasil diverifikasi';
+        }else{
+            $log = 'Email sudah diverifikasi';
+        }
+        return view('test.mail.email-verification-success',compact('user','log'));
+   }
+
+    //profile
     public function profile(){
-        dd(Auth::user());
+        $user = Auth::user();
+        dd($user);
     }
 }
