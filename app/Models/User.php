@@ -23,6 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'email_verified',
+        'email_verified_at',
+        'token_verification',
     ];
 
     /**
@@ -58,5 +62,15 @@ class User extends Authenticatable
     // One user has many reviews
     public function review(){
         return $this->hasMany(Review::class);
+    }
+
+    // one user has many orders
+    public function user(){
+        return $this->hasMany(Order::class);
+    }
+
+    // one user has has many payments
+    public function payment(){
+        return $this->hasMany(Payment::class);
     }
 }

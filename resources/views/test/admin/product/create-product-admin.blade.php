@@ -25,6 +25,10 @@
                 <td><input class="form-control" type="text" name="price" required></td>
             </tr>
             <tr>
+                <td>Weight</td>
+                <td><input class="form-control" type="text" name="weight" required></td>
+            </tr>
+            <tr>
                 <td>Stock</td>
                 <td><input class="form-control" type="text" name="stock" required></td>
             </tr>
