@@ -93,7 +93,7 @@
                         </p>
                     </div>
                     <div class="text-right lg:pt-6 pt-0">
-                        <button class="btn btn-primary rounded-full text-base-100">Checkout</button>
+                        <a href="{{ url('checkout') }}"><button class="btn btn-primary rounded-full text-base-100">Checkout</button></a>
                     </div>
                 </div>
             @endif
