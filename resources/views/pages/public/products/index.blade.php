@@ -22,11 +22,8 @@
                 ])
             @endforeach
         </div>
-        <div class="py-4 text-right">
-            <div class="join">
-                <button class="join-item btn">< Prev</button>
-                <button class="join-item btn btn-active">Next ></button>
-            </div>
+        <div class="p-4 pagination">
+            {{ $allProduct->links() }}
         </div>
 
     </div>
