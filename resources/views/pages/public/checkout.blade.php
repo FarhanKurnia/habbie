@@ -6,7 +6,7 @@
     <div class="container mx-auto px-6 lg:px-0">
         <div class="flex flex-row gap-8">
             <div class="w-2/3">
-                <livewire:form-check-ongkir />
+                <livewire:form-checkout />
             </div>
             <div class="p-4 bg-grey-secondary-50 w-1/3">
                 @php
