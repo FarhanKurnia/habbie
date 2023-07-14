@@ -6,6 +6,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\TestPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,8 @@ Route::get('register', function (){
 Route::get('checkout', function (){
     return view('pages.public.checkout');
 });
+
+Route::get('payment', [TestPaymentController::class, 'show']);
 
 Route::prefix('test')->group(function () {
 //general (not login)
