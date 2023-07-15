@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Services\Order;
 
 class FormCheckout extends Component
 {
@@ -152,7 +153,7 @@ class FormCheckout extends Component
             });
     
             $this->orderData = [
-                'products' => $cartTransformed,
+                'products' => json_decode($cartTransformed, true),
                 'customer' => [
                     'customer_id' => 12,
                     'email' => 'johndoe@mail.com',
@@ -166,13 +167,16 @@ class FormCheckout extends Component
                 'shipping' => $selectedCost,
                 'subtototal' =>  \Cart::getTotal() + $selectedCost['value']
             ];
-    
-            $this->validate([
-                'address' => 'required',
-                'postal_code' => 'required'
-            ]);
 
-            $this->emit('createOrder', $this->orderData);
+            $order = new Order($this->orderData);
+            $order->createOrder();
+    
+            // $this->validate([
+            //     'address' => 'required',
+            //     'postal_code' => 'required'
+            // ]);
+
+            // $this->emit('createOrder', $this->orderData);
     
             // dd($this->orderData['products']);
         } else {
