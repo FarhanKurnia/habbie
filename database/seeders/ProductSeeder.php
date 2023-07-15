@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         [
         'name' => 'product 1',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 2',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 3',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 4',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -72,7 +72,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 5',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -86,7 +86,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 6',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -100,7 +100,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 7',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -114,7 +114,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 8',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -128,7 +128,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 9',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -142,7 +142,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 10',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -156,7 +156,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 11',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -170,7 +170,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 12',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -184,7 +184,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 13',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -198,7 +198,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 14',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -212,7 +212,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 15',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -226,7 +226,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 16',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 30000,
         'stock' => 50,
@@ -240,7 +240,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 17',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -254,7 +254,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 18',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -268,7 +268,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 19',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 15000,
         'stock' => 50,
@@ -282,7 +282,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'product 20',
         'category_id'=>1,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 20000,
         'stock' => 50,
@@ -296,7 +296,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Special Product buy 3 get 1',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 80000,
         'stock' => 50,
@@ -310,7 +310,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Special Product buy 2 only 60000',
         'category_id'=>2,
-        'image' => 'path/image.jpg',
+        'image' => 'storage/img/sample-product.jpg',
         'description' => 'Lorem ipsum dolor sit amet',
         'price' => 60000,
         'stock' => 50,
