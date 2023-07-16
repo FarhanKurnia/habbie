@@ -20,7 +20,8 @@ module.exports = {
       'grey-secondary': '#F0F0F0',
       'grey-secondary-50': '#F7F7F7',
       'white': '#FFFFFF',
-      'grey-secondary': '#CCCCCC'
+      'grey-secondary': '#CCCCCC',
+      'danger': '#d81b25'
     },
     extend: {},
   },

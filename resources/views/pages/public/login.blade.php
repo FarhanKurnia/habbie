@@ -11,21 +11,42 @@
         ])
 
         <div class="lg:w-1/3 mx-auto px-6 lg:px-0">
-            <form action="" class="flex flex-col space-y-6 pb-6">
-                @csrf
+            @if (session()->has('loginError'))
+                {{ session('loginError') }}
+            @endif
+
+            @if (session()->has('info'))
+                <div class="bg-teal-shadow rounded p-4 font-bold">
+                    <p>{{ session()->get('info') }}</p>
+                </div>
+            @endif
+
+            <form action="{{ route('authenticate') }}" class="flex flex-col space-y-6 pb-6" method="POST">
+                {{ csrf_field() }}
                 <input type="email" placeholder="Email"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
+                    class="bg-grey-secondary-50 input w-full rounded-full border-1 @error('email') border-danger @enderror"
+                    name="email" required />
+                @error('email')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
                 <input type="password" placeholder="Password"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
-                <div class="flex flex-row px-4 gap-3">
-                    <input type="checkbox" checked="checked" class="checkbox" />
+                    class="bg-grey-secondary-50 input border-1 @error('password') border-danger @enderror w-full rounded-full"
+                    name="password" required />
+                @error('password')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
+                <div class="flex flex-row px-4 gap-3 items-center">
+                    <input type="checkbox" {{ old('remember') ? 'checked="checked"' : '' }} class="checkbox"
+                        name="remember" />
                     <p class="text-sm text-grey">Remember me</p>
                 </div>
-                <button type="submit" class="btn btn-primary w-1/3 mx-auto rounded-full font-bold text-white">Login</button>
+                <button type="submit" value="Proses"
+                    class="btn btn-primary w-1/3 mx-auto rounded-full font-bold text-white">Login</button>
             </form>
 
             <div class="p-4 bg-grey-secondary-50 rounded">
-                <p>Belum punya akun? <a href="{{ url('register') }}" class="font-bold text-pink-primary">Daftar Disini</a></p>
+                <p>Belum punya akun? <a href="{{ url('register') }}" class="font-bold text-pink-primary">Daftar Disini</a>
+                </p>
             </div>
         </div>
 

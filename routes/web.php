@@ -39,13 +39,21 @@ Route::get('cart', function (){
     return view('pages.public.cart');
 });
 
-Route::get('login', function (){
-    return view('pages.public.login');
-});
+// Auth
+Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
+Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
+Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
+Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
+Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
-Route::get('register', function (){
-    return view('pages.public.register');
-});
+// Route::get('login', function (){
+//     return view('pages.public.login');
+// });
+
+// Route::get('register', function (){
+//     return view('pages.public.register');
+// });
 
 Route::get('checkout', function (){
     return view('pages.public.checkout');
@@ -130,13 +138,8 @@ Route::prefix('test')->group(function () {
         Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
         Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
     });
-// Auth
-    Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
-    Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
-    Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
-    Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
-    Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
-    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+// // Auth
+
 
 //Debug
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');

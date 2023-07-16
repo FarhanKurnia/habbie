@@ -8,19 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Verification;
 use Carbon\Carbon;
+use Livewire\Livewire;
 
 class AuthController extends Controller
 {
 // Register
     public function register(){
-        return view('test.register');
+        return view('pages.public.register');
     }
 
     public function registerProcess(Request $request){
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required'
+            'name' => 'required|string|min:4|max:255',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required|min:8|confirmed'
         ]);
         $token = Str::random(128);
         $name = $request->name;
@@ -40,21 +41,28 @@ class AuthController extends Controller
             'url' => route('verification',$token),
         ];
         Mail::to($email)->send(new Verification($data));
+
+        $msg = 'Silahkan cek email untuk verifikasi';
+        session()->flash('info', $msg);
+
         return redirect()->route('login');
     }
 
 //Login
     public function login(){
-        return view('test.login');
+        return view('pages.public.login');
     }
 
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email'=>'required|email:dns',
-        	'password' => 'required',
+        	'password' => 'required|min:8',
         ]);
-        if(Auth::attempt($credentials)) {
+
+        $remember = $request->has('remember');
+
+        if(Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             // return redirect()->intended('/test/home/home');
             if (Auth::user()->role_id == 1) {
@@ -88,7 +96,7 @@ class AuthController extends Controller
         }else{
             $log = 'Email sudah diverifikasi';
         }
-        return view('test.mail.email-verification-success',compact('user','log'));
+        return view('pages.mail.email-verification-success',compact('user','log'));
    }
 
     //profile

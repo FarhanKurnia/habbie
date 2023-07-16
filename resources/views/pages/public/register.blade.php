@@ -11,19 +11,34 @@
         ])
 
         <div class="lg:w-1/3 mx-auto px-6 lg:px-0">
-            <form action="" class="flex flex-col space-y-6 pb-6">
-                @csrf
-                <input type="text" placeholder="Full Name"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
-                <input type="email" placeholder="Email"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
-                <input type="number" placeholder="Phone"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
-                <input type="password" placeholder="Password"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
-                <input type="password" placeholder="Password Confirm"
-                    class="bg-grey-secondary-50 input input-bordered w-full rounded-full" />
-                <button type="submit" class="btn btn-primary w-1/2 mx-auto rounded-full font-bold text-white">Register
+            <form action="{{ route('registerProcess') }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-6 pb-6">
+                {{ csrf_field() }}
+                <input type="text" placeholder="Full Name" name="name" required
+                    class="bg-grey-secondary-50 input w-full rounded-full border-1 @error('password') border-danger @enderror" />
+                @error('name')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
+
+                <input type="email" placeholder="Email" name="email" required
+                    class="bg-grey-secondary-50 input w-full rounded-full border-1 @error('email') border-danger @enderror" />
+                @error('email')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
+
+                <input type="password" placeholder="Password" name="password" required
+                    class="bg-grey-secondary-50 input w-full rounded-full border-1 @error('password') border-danger @enderror" />
+                @error('password')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
+
+                <input type="password" placeholder="Password Confirm" name="password_confirmation" required
+                    class="bg-grey-secondary-50 input w-full rounded-full border-1 @error('password') border-danger @enderror" />
+                @error('password_confirmation')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
+
+                <button type="submit" value="Proses"
+                    class="btn btn-primary w-1/2 mx-auto rounded-full font-bold text-white">Register
                     Account</button>
             </form>
 
