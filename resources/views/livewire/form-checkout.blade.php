@@ -2,9 +2,17 @@
     <form action="" wire:submit.prevent="submitOrder" method="POST">
         <div class="lg:py-14 flex flex-col space-y-6 w-full">
 
-            <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="No.HP" wire:model="phoneNumber" required>
+            <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="No.HP"
+                wire:model="phoneNumber" required>
+            @error('phoneNumber')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
 
-            <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Alamat" wire:model="address" required></textarea>
+            <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Alamat" wire:model="address"
+                required></textarea>
+            @error('address')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
 
             <select class="select rounded-full bg-grey-secondary-50" wire:model="selectedProvince" required>
                 <option value="">Pilih Provinsi</option>
@@ -49,8 +57,12 @@
                 @endforeach
             </select>
 
-            <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="Kode Pos" wire:model="postalCode" required>
-            
+            <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="Kode Pos"
+                wire:model="postalCode" required>
+            @error('postalCode')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
+
             <select wire:model="selectedCourier" {{ is_null($selectedSubdistrict) ? 'disabled' : '' }}
                 class="select rounded-full bg-grey-secondary-50 {{ is_null($selectedSubdistrict) ? ' opacity-30' : ' opacity-100 ' }}"
                 required>
@@ -95,9 +107,10 @@
                     @endforeach
                 @endif
             </div>
-        @endif
-
-        <button type="submit" class="btn btn-primary text-white rounded-full">Submit</button>
+            @endif
+            
+            <button type="submit" {{ is_null($selectedCourier) ? 'disabled' : '' }}
+                class="btn btn-primary text-white rounded-full">Submit</button>
 
     </form>
 
