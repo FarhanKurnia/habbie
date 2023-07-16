@@ -3,7 +3,7 @@
 @section('title', 'Checkout Orders')
 
 @section('content')
-    <div class="container mx-auto w-1/3 px-6 lg:px-0">
+    <div class="container mx-auto lg:w-1/3 px-6 lg:px-0">
         <div class="my-14">
             <div class="bg-grey-secondary-50">
                 @php
@@ -39,7 +39,7 @@
                     </span>
                 </div>
             </div>
-            <button id="pay-button" type="" class="btn btn-primary text-white rounded-full">Lenjut Pembayaran</button>
+            <button id="pay-button" type="" class="btn btn-primary text-white rounded-full">Lanjut Pembayaran</button>
         </div>
 
     </div>
