@@ -15,8 +15,14 @@ class TestPaymentController extends Controller
     
     public function show()
     {
+
+        // query data order from db
+
+        // ambil order status
+
+        // payload data order
         $order = [
-            'id' => 13,
+            'id' => rand(14, 999),
             'subtotal' => \Cart::getTotal(),
             'products' => json_decode(\Cart::getContent(),true),
             'customer' => [
