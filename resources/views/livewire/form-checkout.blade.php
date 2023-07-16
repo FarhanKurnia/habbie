@@ -1,6 +1,8 @@
 <div class="flex flex-col pb-14">
     <form action="" wire:submit.prevent="submitOrder" method="POST">
-        <div class="py-14 flex flex-col space-y-6 w-full">
+        <div class="lg:py-14 flex flex-col space-y-6 w-full">
+
+            <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="No.HP" wire:model="phoneNumber" required>
 
             <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Alamat" wire:model="address" required></textarea>
 
@@ -95,7 +97,7 @@
             </div>
         @endif
 
-        <button type="submit" class="btn btn-primary text-white rounded-full">Lenjut Pembayaran</button>
+        <button type="submit" class="btn btn-primary text-white rounded-full">Submit</button>
 
     </form>
 
