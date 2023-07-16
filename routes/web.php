@@ -49,7 +49,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 Route::middleware(['auth','verified','customer'])->group(function () {
-    Route::get('payment', [TestPaymentController::class, 'show']);
+    Route::get('payment/{slug}', [TestPaymentController::class, 'show']);
     Route::get('checkout', function (){
         return view('pages.public.checkout');
     });
