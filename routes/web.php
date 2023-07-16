@@ -6,6 +6,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +45,7 @@ Route::prefix('test')->group(function () {
 //customer (login role: customer n admin)
     //Order
     Route::middleware(['auth','verified','customer'])->group(function () {
-        Route::get('/order', [ClientController::class, 'order']);
+        // Route::get('/order', [ClientController::class, 'order']);
     });
     
 
@@ -110,6 +111,8 @@ Route::prefix('test')->group(function () {
 
 //Debug
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
+    Route::get('/order',[OrderController::class,'store'])->name('order');
+
 
 
 });
