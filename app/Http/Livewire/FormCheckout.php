@@ -25,6 +25,7 @@ class FormCheckout extends Component
     public $selectedCourier;
     public $selectedCost;
     public $orderData;
+    public $phoneNumber;
 
     public function fetchData()
     {
@@ -157,7 +158,7 @@ class FormCheckout extends Component
                 'customer' => [
                     'customer_id' => 12,
                     'email' => 'johndoe@mail.com',
-                    'phone' => '6287654321009',
+                    'phone' => $this->phoneNumber,
                     'address' => $this->address,
                     'province' => json_decode($this->selectedProvince, true)['name'],
                     'city' => json_decode($this->selectedCity, true)['name'],
@@ -168,13 +169,16 @@ class FormCheckout extends Component
                 'subtototal' =>  \Cart::getTotal() + $selectedCost['value']
             ];
 
+            $this->validate([
+                'address' => 'required|min:5',
+                'postalCode' => 'required|min:4',
+                'phoneNumber' => 'required|min:10',
+                'selectedCost' => 'required'
+            ]);
+
             $order = new Order($this->orderData);
             $order->createOrder();
     
-            // $this->validate([
-            //     'address' => 'required',
-            //     'postal_code' => 'required'
-            // ]);
 
             // $this->emit('createOrder', $this->orderData);
     
