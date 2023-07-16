@@ -4,15 +4,22 @@
 
 @section('content')
     <div class="container mx-auto px-6 lg:px-0">
-        <div class="flex flex-row gap-8">
-            <div class="w-2/3">
+        @include('components.public.partials.title', [
+            'title' => 'Form Checkout',
+            'align' => 'left',
+            'color' => 'pink-primary',
+        ])
+
+        <div class="flex flex-col lg:flex-row lg:gap-8">
+            <div class="lg:w-2/3">
                 <livewire:form-checkout />
             </div>
-            <div class="p-4 bg-grey-secondary-50 w-1/3">
+            <div class="p-4 bg-grey-secondary-50 lg:w-1/3">
                 @php
                     $cartItems = \Cart::getContent();
                 @endphp
-                <ul class="pt-4">
+                <h4 class="font-bold p-4">Order Details</h4>
+                <ul class="lg:pt-4">
                     @foreach ($cartItems as $item)
                         <li class="my-6">
                             <a href="{{ url('products/' . $item['attributes']->slug) }}">
@@ -32,7 +39,7 @@
                         </li>
                     @endforeach
                 </ul>
-                <a href="{{ url('/cart') }}" class="underline text-primary">Edit Kerajanang</a>
+                <a href="{{ url('/cart') }}" class="underline text-primary">Edit Keranjang</a>
                 <livewire:info-total />
             </div>
         </div>
