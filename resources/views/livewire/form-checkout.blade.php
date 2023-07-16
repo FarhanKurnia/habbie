@@ -102,15 +102,16 @@
                                 <p class="text-sm">{{ 'Estimasi Pengiriman ' . $cost['cost'][0]['etd'] . ' Hari' }}</p>
                             </span>
                             <input type="radio" wire:model="selectedCost" class="radio checked:bg-pink-primary"
-                                value="{{ json_encode($data) }}" />
+                                value="{{ json_encode($data) }}" required />
                         </label>
-                    @endforeach
+                        @endforeach
+
                 @endif
             </div>
-            @endif
-            
-            <button type="submit" {{ is_null($selectedCourier) ? 'disabled' : '' }}
-                class="btn btn-primary text-white rounded-full">Submit</button>
+        @endif
+
+        <button type="submit" {{ is_null($selectedCost) ? 'disabled' : '' }}
+            class="btn btn-primary text-white rounded-full">Submit</button>
 
     </form>
 
