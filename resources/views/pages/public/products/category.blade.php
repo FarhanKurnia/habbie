@@ -1,13 +1,13 @@
 @extends('layouts.base-layout')
 
-@section('title', $productsByCat[0]->category->name)
+@section('title', $category->name)
 
 @section('content')
 
 
     <div class="container mx-auto pt-14 px-6 lg:px-0">
         @include('components.public.partials.title', [
-            'title' => 'Categories: '. $productsByCat[0]->category->name,
+            'title' => 'Categories: '. $category->name,
             'align' => 'left',
             'color' => 'pink-primary',
         ])
@@ -22,11 +22,8 @@
                 ])
             @endforeach
         </div>
-        <div class="py-4 text-right">
-            <div class="join">
-                <button class="join-item btn">< Prev</button>
-                <button class="join-item btn btn-active">Next ></button>
-            </div>
+        <div class="p-4 pagination">
+            {{ $productsByCat->links() }}
         </div>
 
     </div>
