@@ -10,7 +10,9 @@ class Order extends Model
     protected $table = 'orders';
     protected $primaryKey = 'id_order';
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'status', 'total', 'resi', 'user_id', 
+        'name', 'email', 'phone', 'address','province','city','subdistrict',
+        'postal_code', 'status', 'sub_total', 'resi', 'user_id','shipping_code',
+        'shipping_service','shipping_value','shipping_etd','invoice', 
     ];
 
     // one order has many products

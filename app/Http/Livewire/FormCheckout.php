@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use App\Services\Order;
+use App\Services\OrderService;
 
 class FormCheckout extends Component
 {
@@ -176,8 +176,8 @@ class FormCheckout extends Component
                 'selectedCost' => 'required'
             ]);
 
-            $order = new Order($this->orderData);
-            $order->createOrder();
+            $order = new OrderService($this->orderData);
+            $order->create();
     
 
             // $this->emit('createOrder', $this->orderData);
