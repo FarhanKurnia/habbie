@@ -20,23 +20,7 @@ class CreateSnapTokenService extends Midtrans {
                 'order_id' => $this->order['id'],
                 'gross_amount' => $this->order['subtotal'],
             ],
-            // 'item_details' => $this->order['products'],
-            // sample data item_details:
-            'item_details' => [
-                [
-                    'id' => 1,
-                    'price' => '150000',
-                    'quantity' => 1,
-                    'name' => 'Flashdisk Toshiba 32GB',
-                ],
-                [
-                    'id' => 2,
-                    'price' => '60000',
-                    'quantity' => 2,
-                    'name' => 'Memory Card VGEN 4GB',
-                ],
-            ],
-
+            'item_details' => array_values($this->order['products']),
             'customer_details' => $this->order['customer']
             // sample data customer detail 
             // 'customer_details' => [
