@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use App\Services\OrderService;
+use Illuminate\Support\Facades\Auth;
 
 class FormCheckout extends Component
 {
@@ -26,6 +27,7 @@ class FormCheckout extends Component
     public $selectedCost;
     public $orderData;
     public $phoneNumber;
+    public $invoice;
 
     public function fetchData()
     {
@@ -51,7 +53,8 @@ class FormCheckout extends Component
     public function updatedSelectedProvince($value)
     {
         $id = json_decode($value, true)['id'];
-        // map data citiest with specifi id
+
+        // map data citiest with specific id
         $data = collect($this->data)
         ->where('province_id', $id)
         ->groupBy('province_id')
@@ -100,7 +103,6 @@ class FormCheckout extends Component
     {
         $this->selectedCourier = $value;
         $this->checkOngkir();
-        // dd($this->selectedCourier);
     }
 
     public function checkOngkir()
@@ -135,12 +137,13 @@ class FormCheckout extends Component
     public function setOngkir()
     {
         $this->emit('setOngkir', json_decode($this->selectedCost));
-        // dd();
     }
 
     public function submitOrder()
     {
         if(!!\Cart::getTotal()){
+            $user = Auth::user();
+
             $selectedCost = json_decode($this->selectedCost, true);
             $cartItems = \Cart::getContent();
     
@@ -154,10 +157,11 @@ class FormCheckout extends Component
             });
     
             $this->orderData = [
-                'products' => json_decode($cartTransformed, true),
+                'products' => array_values(json_decode($cartTransformed, true)),
                 'customer' => [
-                    'customer_id' => 12,
-                    'email' => 'johndoe@mail.com',
+                    'customer_id' => $user->id_user,
+                    'name' => $user->name,
+                    'email' => $user->email,
                     'phone' => $this->phoneNumber,
                     'address' => $this->address,
                     'province' => json_decode($this->selectedProvince, true)['name'],
@@ -177,12 +181,10 @@ class FormCheckout extends Component
             ]);
 
             $order = new OrderService($this->orderData);
-            $order->create();
-    
+            $invoice = $order->create();
 
-            // $this->emit('createOrder', $this->orderData);
-    
-            // dd($this->orderData['products']);
+            return redirect()->to('/payment/' . $invoice);
+
         } else {
             $msg = 'Empty Cart, Process Failed.';
 
@@ -198,13 +200,11 @@ class FormCheckout extends Component
         $this->couriers = ['JNE', 'SICEPAT', 'JNT', 'ANTERAJA'];
         $this->selectedCourier = null;
         $this->selectedCost = null;
+
     }
 
     public function render()
     {
-        // dd($this->provinces);
-        // dd($this->cities);
-
         return view('livewire.form-checkout');
     }
 }
