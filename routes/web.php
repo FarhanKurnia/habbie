@@ -105,6 +105,11 @@ Route::prefix('test')->group(function () {
     Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
     Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
     Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
+    Route::get('/request-otp',[AuthController::class,'requestOTP'])->name('requestOTP');
+    Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('requestOTPProcess');
+
+    Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword');
+    Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
     Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
     Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
