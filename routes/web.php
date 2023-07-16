@@ -25,9 +25,7 @@ Route::get('/about', function () {
     return view('pages.public.about');
 });
 
-Route::get('/offers', function () {
-    return view('pages.public.offers.index');
-});
+Route::get('/offers', [ClientController::class, 'indexOffers']);
 
 Route::get('/products', [ClientController::class, 'indexProducts']);
 
@@ -47,19 +45,15 @@ Route::get('/login',[AuthController::class,'login'])->name('login')->middleware(
 Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
-// Route::get('login', function (){
-//     return view('pages.public.login');
-// });
 
-// Route::get('register', function (){
-//     return view('pages.public.register');
-// });
 
-Route::get('checkout', function (){
-    return view('pages.public.checkout');
+Route::middleware(['auth','verified','customer'])->group(function () {
+    Route::get('payment', [TestPaymentController::class, 'show']);
+    Route::get('checkout', function (){
+        return view('pages.public.checkout');
+    });
 });
 
-Route::get('payment', [TestPaymentController::class, 'show']);
 
 Route::prefix('test')->group(function () {
 //general (not login)
@@ -138,7 +132,6 @@ Route::prefix('test')->group(function () {
         Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
         Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
     });
-// // Auth
 
 
 //Debug
