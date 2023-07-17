@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('shipping_value');
             $table->string('shipping_etd');
             $table->string('invoice');
+            $table->integer('total');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

@@ -39,7 +39,21 @@
             </tr>
             <tr> 
                 <td></td>
-                <td colspan="2"> status</td>
+                <td colspan="2"> biaya pengiriman</td>
+                <td colspan="11">{{$orderProducts[0]->order->shipping_value}}</td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td colspan="11">pengiriman {{$orderProducts[0]->order->shipping_code}} [{{$orderProducts[0]->order->shipping_service}}]</td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td colspan="2"> total</td>
+                <td colspan="11">{{$orderProducts[0]->order->total}}</td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td colspan="2"> status pembayaran</td>
                 <td colspan="11">{{$orderProducts[0]->order->status}}</td>
             </tr>
         </tbody>

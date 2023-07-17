@@ -117,8 +117,4 @@ Route::prefix('test')->group(function () {
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
     Route::get('/order',[OrderController::class,'store'])->name('order');
     Route::get('/order/{invoice}',[OrderController::class,'getOrder'])->name('getOrder');
-
-
-
-
 });

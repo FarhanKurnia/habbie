@@ -38,19 +38,19 @@ class OrderController extends Controller
               "id" => 21,
               "name" => "Special Product buy 3 get 1",
               "quantity" => 1,
-              "price" => 16000,
+              "price" => 80000,
             ],
             [
               "id" => 19,
               "name" => "product 19",
               "quantity" => 1,
-              "price" => 15000,
+              "price" => 30000,
             ],
             [
               "id" => 20,
               "name" => "product 20",
               "quantity" => 2,
-              "price" => 4000,
+              "price" => 60000,
             ],
         ];
 
@@ -73,7 +73,7 @@ class OrderController extends Controller
             "etd" => "2-3"
         ];
 
-        $subtotal = 63000;
+        $subtotal = 170000;
 
         // Invoice number
         $date = Carbon::now();
@@ -109,6 +109,7 @@ class OrderController extends Controller
             'shipping_value' => $shipping['value'],
             'shipping_etd' => $shipping['etd'],  
             'invoice' => $invoice,
+            'total'=> $shipping['value']+$subtotal,
             'user_id' => $id_user, 
         ]);
 
@@ -128,11 +129,6 @@ class OrderController extends Controller
         $id_order = $order[0]->id_order;
         $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product')->get();
         return view('test.customer.order.order-payment-client',compact('orderProducts'));
-        // foreach($order_products as $order_product){
-        //     echo $order_product->product->id_product;
-        //     echo $order_product->product->name;
-        //     echo $order_product->product->price;
-        // }
     }
 
     /**
