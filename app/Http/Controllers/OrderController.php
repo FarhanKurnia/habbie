@@ -123,6 +123,18 @@ class OrderController extends Controller
         }  
     }
 
+    public function getOrder($invoice){
+        $order = Order::where('invoice',$invoice)->get();
+        $id_order = $order[0]->id_order;
+        $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product')->get();
+        return view('test.customer.order.order-payment-client',compact('orderProducts'));
+        // foreach($order_products as $order_product){
+        //     echo $order_product->product->id_product;
+        //     echo $order_product->product->name;
+        //     echo $order_product->product->price;
+        // }
+    }
+
     /**
      * Display the specified resource.
      */
