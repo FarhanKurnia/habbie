@@ -13,18 +13,18 @@ class DiscountSeeder extends Seeder
     public function run(): void
     {
         DB::table('discounts')->insert([[
-            'name' => 'Discount 80%',
-            'rule' => 80,
-            'slug' => 'discount-80%',
+            'name' => 'Discount 20%',
+            'rule' => 20,
+            'slug' => 'discount-20%',
             'status' => 'active',
             'description'=>'Lorem ipsim dolor sit amet',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'name' => 'Discount 75%',
-            'slug' => 'discount-75%',
-            'rule' => 75,
+            'name' => 'Discount 10%',
+            'slug' => 'discount-10%',
+            'rule' => 10,
             'status' => 'active',
             'description'=>'Lorem ipsim dolor sit amet',
             'created_at' => Carbon::now(),

@@ -38,18 +38,21 @@ class OrderController extends Controller
               "id" => 21,
               "name" => "Special Product buy 3 get 1",
               "quantity" => 1,
+              "discount"=>16000,
               "price" => 80000,
             ],
             [
               "id" => 19,
               "name" => "product 19",
               "quantity" => 1,
+              "discount"=>0,
               "price" => 30000,
             ],
             [
               "id" => 20,
               "name" => "product 20",
               "quantity" => 2,
+              "discount"=>0,
               "price" => 60000,
             ],
         ];
@@ -73,7 +76,8 @@ class OrderController extends Controller
             "etd" => "2-3"
         ];
 
-        $subtotal = 170000;
+        // $subtotal = 170000;
+        $subtotal = 227000;
 
         // Invoice number
         $date = Carbon::now();
@@ -119,6 +123,10 @@ class OrderController extends Controller
             OrderProduct::create([
                 "order_id" => $id_order,
                 "product_id" => $product['id'],
+                "price" => $product['price'],
+                "discount"=> $product['discount'],
+                "sub_total"=> $product['price']-$product['discount'],
+                "total" => ($product['price']-$product['discount'])*$product['quantity'],
                 "qty"=>$product['quantity'],
             ]);
         }  

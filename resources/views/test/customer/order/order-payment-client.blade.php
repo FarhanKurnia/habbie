@@ -16,7 +16,10 @@
                 <th>id_product</th>
                 <th>name</th>
                 <th>price</th>
+                <th>discount</th>
+                <th>sub total price</th>
                 <th>qty</th>
+                <th>total price</th>
             </tr>
         </thead>
         <tbody>
@@ -28,18 +31,21 @@
                     <td>{{ $no++}}</td>
                     <td>{{ $orderProduct->product->id_product}}</td>
                     <td>{{ $orderProduct->product->name }}</td>
-                    <td>{{ $orderProduct->product->price }}</td>
+                    <td>{{ $orderProduct->price }}</td>
+                    <td>{{ $orderProduct->discount }}</td>
+                    <td>{{ $orderProduct->sub_total }}</td>
                     <td>{{ $orderProduct->qty }}</td>
+                    <td>{{ $orderProduct->total }}</td>
                 </tr>
             @endforeach
             <tr> 
                 <td></td>
-                <td colspan="2"> subtotal</td>
+                <td colspan="6"> subtotal</td>
                 <td colspan="11">{{$orderProducts[0]->order->sub_total}}</td>
             </tr>
             <tr> 
                 <td></td>
-                <td colspan="2"> biaya pengiriman</td>
+                <td colspan="6"> biaya pengiriman</td>
                 <td colspan="11">{{$orderProducts[0]->order->shipping_value}}</td>
             </tr>
             <tr> 
@@ -48,12 +54,12 @@
             </tr>
             <tr> 
                 <td></td>
-                <td colspan="2"> total</td>
+                <td colspan="6"> total</td>
                 <td colspan="11">{{$orderProducts[0]->order->total}}</td>
             </tr>
             <tr> 
                 <td></td>
-                <td colspan="2"> status pembayaran</td>
+                <td colspan="6"> status pembayaran</td>
                 <td colspan="11">{{$orderProducts[0]->order->status}}</td>
             </tr>
         </tbody>
