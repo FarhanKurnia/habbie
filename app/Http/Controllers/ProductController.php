@@ -49,7 +49,7 @@ class ProductController extends Controller
 
         Product::create([
             'name' => $request->name,
-            'image' => '/path/images.jpg',
+            'image' => 'storage/img/sample-product.jpg',
             'slug' => $slug,
             'description' => $request->description,
             'price' => $request->price,
@@ -106,7 +106,7 @@ class ProductController extends Controller
         $product = $products->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
         $product->update([
             'name' => $request->name,
-            'image' => '/path/images.jpg',
+            'image' => 'storage/img/sample-product.jpg',
             'slug' => $getSlug,
             'description' => $request->description,
             'price' => $request->price,
