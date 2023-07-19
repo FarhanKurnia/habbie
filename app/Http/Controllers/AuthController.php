@@ -13,7 +13,7 @@ use Livewire\Livewire;
 
 class AuthController extends Controller
 {
-// Register
+    // Register
     public function register(){
         return view('pages.public.register');
     }
@@ -49,7 +49,7 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-//Login
+    // Login
     public function login(){
         return view('pages.public.login');
     }
@@ -101,7 +101,7 @@ class AuthController extends Controller
    }
 
    public function forgetPassword(){
-        return view('test.forget-password');  
+        return view('pages.public.forget-password');  
    }
 
    // Forget Password
@@ -122,7 +122,7 @@ class AuthController extends Controller
 
    // Request OTP View
    public function requestOTP(){
-        return view('test.request-otp');
+        return view('pages.public.request-otp');
    }
 
    // Request OTP (One Time Password) for forget password
@@ -141,7 +141,11 @@ class AuthController extends Controller
             ];
             Mail::to($email)->send(new ForgetPassword($data));
         }
-        return redirect()->route('forget-password');
+
+        $msg = 'Silahkan cek email Anda untuk mendapatkan informasi Kode OTP';
+        session()->flash('info', $msg);
+
+        return redirect()->route('forgetPassword');
    }
 
     //profile debug
