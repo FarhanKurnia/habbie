@@ -18,4 +18,10 @@ class Discount extends Model
         return $this->hasMany(Product::class,'discount_id');
         
     }
+
+     // one discount has many order_products
+     public function orderproduct(){
+        return $this->hasMany(OrderProduct::class,'discount_id');
+        
+    }
 }

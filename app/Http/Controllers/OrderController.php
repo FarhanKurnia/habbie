@@ -40,6 +40,7 @@ class OrderController extends Controller
               "quantity" => 1,
               "discount"=>16000,
               "price" => 80000,
+              "discount_id" => 1
             ],
             [
               "id" => 19,
@@ -47,6 +48,7 @@ class OrderController extends Controller
               "quantity" => 1,
               "discount"=>0,
               "price" => 30000,
+              "discount_id" => null
             ],
             [
               "id" => 20,
@@ -54,6 +56,7 @@ class OrderController extends Controller
               "quantity" => 2,
               "discount"=>0,
               "price" => 60000,
+              "discount_id" => null
             ],
         ];
 
@@ -123,10 +126,11 @@ class OrderController extends Controller
             OrderProduct::create([
                 "order_id" => $id_order,
                 "product_id" => $product['id'],
+                "discount_id" => $product['discount_id'],
                 "price" => $product['price'],
-                "discount"=> $product['discount'],
-                "sub_total"=> $product['price']-$product['discount'],
-                "total" => ($product['price']-$product['discount'])*$product['quantity'],
+                "discount_price"=> $product['discount'],
+                "sub_total_price"=> $product['price']-$product['discount'],
+                "total_price" => ($product['price']-$product['discount'])*$product['quantity'],
                 "qty"=>$product['quantity'],
             ]);
         }  
