@@ -137,8 +137,8 @@ class OrderController extends Controller
     }
 
     public function getOrder($invoice){
-        $order = Order::where('invoice',$invoice)->get();
-        $id_order = $order[0]->id_order;
+        $order = Order::where([['invoice',$invoice],['status','pending']])->firstOrFail();
+        $id_order = $order->id_order;
         $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product')->get();
         return view('test.customer.order.order-payment-client',compact('orderProducts'));
     }
