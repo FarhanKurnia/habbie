@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('token_verification');
             $table->boolean('email_verified');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('otp')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('role_id');
+            $table->timestamp('deleted_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

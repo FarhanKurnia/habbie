@@ -133,12 +133,20 @@ Route::prefix('test')->group(function () {
         Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
         Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
     });
-
+// Auth
+    Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
+    Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
+    Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
+    Route::get('/request-otp',[AuthController::class,'requestOTP'])->name('requestOTP')->middleware('guest');;
+    Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('requestOTPProcess');
+    Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword')->middleware('guest');;
+    Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
+    Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
+    Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 //Debug
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
     Route::get('/order',[OrderController::class,'store'])->name('order');
-
-
-
+    Route::get('/order/{invoice}',[OrderController::class,'getOrder'])->name('getOrder');
 });

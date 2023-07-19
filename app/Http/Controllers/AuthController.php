@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Verification;
+use App\Mail\ForgetPassword;
 use Carbon\Carbon;
 use Livewire\Livewire;
 
@@ -20,7 +21,7 @@ class AuthController extends Controller
     public function registerProcess(Request $request){
         $request->validate([
             'name' => 'required|string|min:4|max:255',
-            'email' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|max:255|email:dns',
             'password' => 'required|min:8|confirmed'
         ]);
         $token = Str::random(128);
@@ -99,7 +100,51 @@ class AuthController extends Controller
         return view('pages.mail.email-verification-success',compact('user','log'));
    }
 
-    //profile
+   public function forgetPassword(){
+        return view('test.forget-password');  
+   }
+
+   // Forget Password
+   public function forgetPasswordProcess(Request $request)
+   {
+        $request->validate([
+            'email'=>'required|email:dns',
+            'otp' => 'required',
+            'password' => 'required'
+        ]);
+        $user = User::where([['deleted_at',null],['email',$request->email],['otp',$request->otp]])->firstOrFail();
+        $user->update([
+            'otp' => null,
+            'password' => bcrypt($request->password),
+        ]);
+        return redirect()->route('login');
+   }
+
+   // Request OTP View
+   public function requestOTP(){
+        return view('test.request-otp');
+   }
+
+   // Request OTP (One Time Password) for forget password
+   public function requestOTPProcess(Request $request)
+   {
+        $otp = Str::random(12);
+        $email = $request->email;
+        $user = User::where([['deleted_at',null],['email',$email]])->count();
+
+        if($user>0){
+            User::where([['deleted_at',null],['email',$email]])->update(['otp'=>$otp]);
+            $data = [
+                'title' => 'Email Forget Password',
+                'otp' => $otp,
+                'url' => route('forgetPassword'),
+            ];
+            Mail::to($email)->send(new ForgetPassword($data));
+        }
+        return redirect()->route('forget-password');
+   }
+
+    //profile debug
     public function profile(){
         $user = Auth::user();
         dd($user);
