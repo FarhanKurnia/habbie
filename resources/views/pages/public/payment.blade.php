@@ -19,24 +19,11 @@
                                 <div>
                                     <h4 class="font-bold text-xl">{{ $item['product']['name'] }}</h4>
 
-                                    @php
-                                        $price = $item['product']['price'];
-                                            
-                                    @endphp
-
-                                    @if ($item['product']['discount'])
-                                        @php
-                                            
-                                            $discount = $item['product']['discount']['rule'];
-                                            $price = $price - (( $discount / 100 ) * $price );
-                                        @endphp
-                                    @endif
-
                                     <p class="text-sm text-grey-secondary">
-                                        {{ \App\Helpers\CurrencyFormat::data($price) . ' X ' . $item['qty'] }}
+                                        {{ \App\Helpers\CurrencyFormat::data($item['price'] - $item['discount_price']) . ' X ' . $item['qty'] }}
                                     </p>
                                     <p class="font-bold">
-                                        {{ \App\Helpers\CurrencyFormat::data($price * $item['qty']) }}
+                                        {{ \App\Helpers\CurrencyFormat::data($item['sub_total_price']) }}
                                     </p>
                                 </div>
                             </div>
@@ -46,7 +33,7 @@
                 <div class="my-8 p-4 flex flex-col space-y-4">
                     <span class="flex justify-between">
                         <p>Subtotal Produk</p>
-                        <p >{{ \App\Helpers\CurrencyFormat::data($order['sub_total'] - $order['shipping_value']) }}</p>
+                        <p >{{ \App\Helpers\CurrencyFormat::data($order['sub_total']) }}</p>
                     </span>
                     <span class="flex justify-between items-center">
                         <span>
@@ -58,7 +45,7 @@
                     </span>
                     <span class="flex justify-between">
                         <p>Total</p>
-                        <p class="font-bold text-xl text-pink-primary">{{ \App\Helpers\CurrencyFormat::data($order['sub_total']) }}</p>
+                        <p class="font-bold text-xl text-pink-primary">{{ \App\Helpers\CurrencyFormat::data($order['total']) }}</p>
                     </span>
                 </div>
             </div>
