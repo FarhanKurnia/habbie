@@ -35,10 +35,16 @@
                 @error('password')
                     @include('components.public.partials.error-message', ['message' => $message])
                 @enderror
-                <div class="flex flex-row px-4 gap-3 items-center">
-                    <input type="checkbox" {{ old('remember') ? 'checked="checked"' : '' }} class="checkbox"
-                        name="remember" />
-                    <p class="text-sm text-grey">Remember me</p>
+                <div class="flex flex-row items-center justify-between">
+                    <div class="flex flex-row px-4 gap-3 items-center">
+                        <input type="checkbox" {{ old('remember') ? 'checked="checked"' : '' }} class="checkbox"
+                            name="remember" />
+                        <p class="text-sm text-grey">Remember me</p>
+                    </div>
+
+                    <div>
+                        <a href="{{ url('/request-otp') }}"><p class="text-sm text-pink-primary">Forget Password</p></a>
+                    </div>
                 </div>
                 <button type="submit" value="Proses"
                     class="btn btn-primary w-1/3 mx-auto rounded-full font-bold text-white">Login</button>
