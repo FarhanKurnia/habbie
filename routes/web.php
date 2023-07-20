@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\TestPaymentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,10 @@ Route::get('cart', function (){
 Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
 Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
 Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
+Route::get('/request-otp',[AuthController::class,'requestOTP'])->name('requestOTP')->middleware('guest');;
+Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('requestOTPProcess');
+Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword')->middleware('guest');;
+Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
 Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
 Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
@@ -50,10 +55,9 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::middleware(['auth','verified','customer'])->group(function () {
     Route::get('payment/{slug}', [TestPaymentController::class, 'show']);
-    Route::get('checkout', function (){
-        return view('pages.public.checkout');
-    });
+    Route::get('checkout', [CheckoutController::class, 'show']);
 });
+
 
 
 Route::prefix('test')->group(function () {
@@ -134,16 +138,16 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
     });
 // Auth
-    Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
-    Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
-    Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
-    Route::get('/request-otp',[AuthController::class,'requestOTP'])->name('requestOTP')->middleware('guest');;
-    Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('requestOTPProcess');
-    Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword')->middleware('guest');;
-    Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
-    Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
-    Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
-    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+//     Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
+//     Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
+//     Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
+//     Route::get('/request-otp',[AuthController::class,'requestOTP'])->name('requestOTP')->middleware('guest');;
+//     Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('requestOTPProcess');
+//     Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword')->middleware('guest');;
+//     Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
+//     Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
+//     Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
+//     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 //Debug
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
