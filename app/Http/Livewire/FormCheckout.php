@@ -148,13 +148,16 @@ class FormCheckout extends Component
             $cartItems = \Cart::getContent();
     
             $cartTransformed = $cartItems->map(function ($item) {
+                $sub_total_price = $item->price - $item['attributes']->discount_price;
                 return [
                     'id' => $item->id,
                     'name' => $item->name,
-                    'quantity' => $item->quantity, // 3
-                    'price' => $item->price, // 10000
-                    // 'discount' => harga potongan: price * rule
-                    // 'discount_id'
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'discount_price' => $item['attributes']->discount_price,
+                    'discount_id' => $item['attributes']->discount_id,
+                    'sub_total_price' => $sub_total_price,
+                    'total_price' => $sub_total_price * $item->quantity
                 ];
             });
     
@@ -172,7 +175,7 @@ class FormCheckout extends Component
                     'postal_code' => $this->postalCode
                 ],
                 'shipping' => $selectedCost,
-                'subtototal' =>  \Cart::getTotal() + $selectedCost['value']
+                'subtotal' =>  \Cart::getTotal()
             ];
 
             $this->validate([
