@@ -62,12 +62,30 @@ class OrderService {
         $products = collect($orderData['products']);
 
         $products->map(function ($item) use ($orderId) {
+
+            // if(!$item['discount_id']){
+
+            // }
+
             OrderProduct::create([
                 "order_id" => $orderId,
                 "product_id" => $item['id'],
                 "qty" => $item['quantity'],
+                "price" => $item['price'],
+                // "discount" => $item['discount'],
+
+                
             ]);
         });
+
+        // dari cart,tambahin atribut: discount, discount_id, 
+        // "order_id" => $id_order,
+        //         "product_id" => $product['id'],
+        //         "price" => $product['price'],
+        //         "discount"=> $product['discount'],
+        //         "sub_total"=> $product['price']-$product['discount'],
+        //         "total" => ($product['price']-$product['discount'])*$product['quantity'],
+        //         "qty"=>$product['quantity'],
     }
 
     public function create()
