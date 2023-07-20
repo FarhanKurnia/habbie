@@ -31,7 +31,8 @@ class OrderService {
     {
         $customer = $orderData['customer'];
         $shipping = $orderData['shipping'];
-        $subtotal = $orderData['subtototal'];
+        $subtotal = $orderData['subtotal'];
+
 
         $order = Order::create([
             'name' => $customer['name'], 
@@ -44,6 +45,7 @@ class OrderService {
             'postal_code' => $customer['postal_code'],
             'status' => 'pending', 
             'sub_total' => $subtotal,
+            'total' => $subtotal + $shipping['value'],
             'shipping_code' => $shipping['code'], 
             'shipping_service' => $shipping['service'],
             'shipping_value' => $shipping['value'],
@@ -51,6 +53,8 @@ class OrderService {
             'invoice' => $invoice,
             'user_id' => $customer['customer_id'], 
         ]);
+
+        // dd($orderData, \Cart::getContent());
 
         $id_order = $order->id_order;
 
@@ -60,32 +64,22 @@ class OrderService {
     protected function insertOrderProduct($orderData, $orderId)
     {
         $products = collect($orderData['products']);
+        
+        // dd($orderData);
 
         $products->map(function ($item) use ($orderId) {
-
-            // if(!$item['discount_id']){
-
-            // }
 
             OrderProduct::create([
                 "order_id" => $orderId,
                 "product_id" => $item['id'],
                 "qty" => $item['quantity'],
                 "price" => $item['price'],
-                // "discount" => $item['discount'],
-
-                
+                "discount_price" => $item['discount_price'],
+                "discount_id" => $item['discount_id'],
+                "sub_total_price" => $item['sub_total_price'],
+                "total_price" => $item['total_price']
             ]);
         });
-
-        // dari cart,tambahin atribut: discount, discount_id, 
-        // "order_id" => $id_order,
-        //         "product_id" => $product['id'],
-        //         "price" => $product['price'],
-        //         "discount"=> $product['discount'],
-        //         "sub_total"=> $product['price']-$product['discount'],
-        //         "total" => ($product['price']-$product['discount'])*$product['quantity'],
-        //         "qty"=>$product['quantity'],
     }
 
     public function create()
