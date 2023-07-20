@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [ClientController::class, 'indexHome']);
+Route::get('/', [ClientController::class, 'indexHome'])->name('home');
 
 Route::get('/about', function () {
     return view('pages.public.about');
@@ -61,28 +61,10 @@ Route::middleware(['auth','verified','customer'])->group(function () {
 
 
 Route::prefix('test')->group(function () {
-//general (not login)
-    // Home
-    Route::get('/home', [ClientController::class, 'indexHome'])->name('home');
-    // Products
-    Route::get('/products', [ClientController::class, 'indexProducts']);
-    Route::get('/products/{slug}', [ClientController::class, 'showProduct'])->name('showProductsClient');
-    Route::get('/categories/{slug}', [ClientController::class, 'indexProductsByCat']);
-    //Offers
-    Route::get('/offers', [ClientController::class, 'indexOffers']);
-    //Testimonials
     Route::get('/testimonials', [ClientController::class, 'indexTestimonials']);
     //Medias
     Route::get('/media', [ClientController::class, 'indexArticles']);
     Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
-    //Order
-    Route::get('/order', [ClientController::class, 'order']);
-
-//customer (login role: customer n admin)
-    //Order
-    Route::middleware(['auth','verified','customer'])->group(function () {
-        // Route::get('/order', [ClientController::class, 'order']);
-    });
     
 
 //admin (login role: admin)
@@ -137,17 +119,6 @@ Route::prefix('test')->group(function () {
         Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
         Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
     });
-// Auth
-//     Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
-//     Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
-//     Route::post('/register',[AuthController::class,'registerProcess'])->name('registerProcess');
-//     Route::get('/request-otp',[AuthController::class,'requestOTP'])->name('requestOTP')->middleware('guest');;
-//     Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('requestOTPProcess');
-//     Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword')->middleware('guest');;
-//     Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
-//     Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
-//     Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
-//     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 //Debug
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
