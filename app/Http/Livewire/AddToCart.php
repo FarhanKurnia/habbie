@@ -18,7 +18,9 @@ class AddToCart extends Component
 
     public function addToCart()
     {
-
+        // init
+        $discountId = 0;
+        $discountPrice = 0;
         $fixprice = $this->product->price;
 
         if($this->product->discount_id){
@@ -26,6 +28,8 @@ class AddToCart extends Component
             $discount = $this->product->discount->rule;
             $discountPrice = ($discount / 100) * $normalPrice;
             $fixprice = $normalPrice - $discountPrice;
+            $discountId = $this->product->discount_id;
+            $discountPrice = $this->product->price * (($this->product->discount->rule) / 100);
         } 
 
         $quantity = $this->quantity ?? 1;
@@ -36,7 +40,10 @@ class AddToCart extends Component
         //     'price' => floatval($fixprice),
         //     'quantity' => intval($quantity),
         //     'attributes' => [
-        //         'image' => $this->product->image 
+        //         'image' => $this->product->image,
+        //         'slug' => $this->product->slug,
+        //         'discount_id' => $discountId,
+        //         'discount_price' => $discountPrice
         //     ]
         // ]);
         
@@ -47,8 +54,10 @@ class AddToCart extends Component
             'quantity' => intval($quantity),
             'attributes' => [
                 'image' => $this->product->image,
-                'slug' => $this->product->slug, 
-                ]
+                'slug' => $this->product->slug,
+                'discount_id' => $discountId,
+                'discount_price' => $discountPrice
+            ]
         ]);
         $msg = 'Product added to cart successfully.';
 
