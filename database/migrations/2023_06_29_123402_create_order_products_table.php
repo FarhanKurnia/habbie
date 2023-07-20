@@ -15,11 +15,17 @@ return new class extends Migration
             $table->id('id_order_product');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('discount_id')->nullable();
+            $table->integer('price');
+            $table->integer('discount_price');
+            $table->integer('sub_total_price');
+            $table->integer('total_price');
             $table->integer('qty');
             $table->timestamps();
 
             $table->foreign('order_id')->references('id_order')->on('orders')->onDelete('cascade');        
             $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');        
+            $table->foreign('discount_id')->references('id_discount')->on('discounts')->onDelete('cascade');        
 
         });
     }

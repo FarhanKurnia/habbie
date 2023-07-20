@@ -38,19 +38,25 @@ class OrderController extends Controller
               "id" => 21,
               "name" => "Special Product buy 3 get 1",
               "quantity" => 1,
+              "discount"=>16000,
               "price" => 80000,
+              "discount_id" => 1
             ],
             [
               "id" => 19,
               "name" => "product 19",
               "quantity" => 1,
+              "discount"=>0,
               "price" => 30000,
+              "discount_id" => null
             ],
             [
               "id" => 20,
               "name" => "product 20",
               "quantity" => 2,
+              "discount"=>0,
               "price" => 60000,
+              "discount_id" => null
             ],
         ];
 
@@ -73,7 +79,8 @@ class OrderController extends Controller
             "etd" => "2-3"
         ];
 
-        $subtotal = 170000;
+        // $subtotal = 170000;
+        $subtotal = 227000;
 
         // Invoice number
         $date = Carbon::now();
@@ -119,14 +126,19 @@ class OrderController extends Controller
             OrderProduct::create([
                 "order_id" => $id_order,
                 "product_id" => $product['id'],
+                "discount_id" => $product['discount_id'],
+                "price" => $product['price'],
+                "discount_price"=> $product['discount'],
+                "sub_total_price"=> $product['price']-$product['discount'],
+                "total_price" => ($product['price']-$product['discount'])*$product['quantity'],
                 "qty"=>$product['quantity'],
             ]);
         }  
     }
 
     public function getOrder($invoice){
-        $order = Order::where('invoice',$invoice)->get();
-        $id_order = $order[0]->id_order;
+        $order = Order::where([['invoice',$invoice],['status','!=','failed']])->firstOrFail();
+        $id_order = $order->id_order;
         $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product')->get();
         return view('test.customer.order.order-payment-client',compact('orderProducts'));
     }
