@@ -23,6 +23,7 @@ class AddToCart extends Component
         $discountPrice = 0;
         $fixprice = $this->product->price;
 
+        
         if($this->product->discount_id){
             $normalPrice = $this->product->price;
             $discount = $this->product->discount->rule;
@@ -31,7 +32,8 @@ class AddToCart extends Component
             $discountId = $this->product->discount_id;
             $discountPrice = $this->product->price * (($this->product->discount->rule) / 100);
         } 
-
+        
+        // dd($fixprice);
         $quantity = $this->quantity ?? 1;
 
         // dd([
