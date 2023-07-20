@@ -151,8 +151,10 @@ class FormCheckout extends Component
                 return [
                     'id' => $item->id,
                     'name' => $item->name,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
+                    'quantity' => $item->quantity, // 3
+                    'price' => $item->price, // 10000
+                    // 'discount' => harga potongan: price * rule
+                    // 'discount_id'
                 ];
             });
     
@@ -182,6 +184,8 @@ class FormCheckout extends Component
 
             $order = new OrderService($this->orderData);
             $invoice = $order->create();
+
+            \Cart::clear();
 
             return redirect()->to('/payment/' . $invoice);
 
