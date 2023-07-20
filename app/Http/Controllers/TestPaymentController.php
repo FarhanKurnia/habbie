@@ -20,7 +20,7 @@ class TestPaymentController extends Controller
         // query data order from db
         $order = Order::where([['invoice', $slug], ['status', 'pending']])->firstOrFail();
         $id_order = $order->id_order;
-        $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product', 'product.discount')->get();
+        $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product')->get();
         
         // decode from json to array
         $order = json_decode($order, true);
@@ -29,17 +29,10 @@ class TestPaymentController extends Controller
         // map arryay
         $itemDetails = array_map(function ($item) {
 
-            $price = $item['product']['price'];
-
-            if($item['product']['discount']){
-                $discount = $item['product']['discount']['rule'];
-                $price = $price - (( $discount / 100 ) * $price );
-            }
-
             return [
-                'id' => $item['product']['id_product'],
+                'id' => $item['product_id'],
                 'name' => $item['product']['name'],
-                'price' => $price,
+                'price' => $item['sub_total_price'],
                 'quantity' => $item['qty']
             ];
         }, $orderProducts);
@@ -92,7 +85,7 @@ class TestPaymentController extends Controller
             Cookie::queue(Cookie::make($invoice, $snapToken, 60));
         } 
 
-        // dd($order, $orderProducts, $itemDetails);
+        // dd($order, $orderProducts, $itemDetails, $payloadOrder);
         return view('pages.public.payment', compact('snapToken', 'order', 'orderStatus', 'orderProducts'));
 
     }
