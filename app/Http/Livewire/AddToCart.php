@@ -19,7 +19,7 @@ class AddToCart extends Component
     public function addToCart()
     {
         // init
-        $discountId = 0;
+        $discountId = null;
         $discountPrice = 0;
         $fixprice = $this->product->price;
 

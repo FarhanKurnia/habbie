@@ -148,16 +148,32 @@ class FormCheckout extends Component
             $cartItems = \Cart::getContent();
     
             $cartTransformed = $cartItems->map(function ($item) {
-                $sub_total_price = $item->price - $item['attributes']->discount_price;
+                // $sub_total_price = $item->price - $item['attributes']->discount_price;
+                $normal_price = $item->price + $item['attributes']->discount_price;
+                // dd([
+                //     'id' => $item->id,
+                //     'name' => $item->name,
+                //     'quantity' => $item->quantity,
+                //     'discount_price' => $item['attributes']->discount_price,
+                //     'discount_id' => $item['attributes']->discount_id,
+                //     // 'price' => $item->price,
+                //     'price' => $normal_price,
+                //     // 'sub_total_price' => $sub_total_price,
+                //     'sub_total_price' => $item->price,
+                //     'total_price' => $item->price * $item->quantity
+                // ]);
+                
                 return [
                     'id' => $item->id,
                     'name' => $item->name,
                     'quantity' => $item->quantity,
-                    'price' => $item->price,
                     'discount_price' => $item['attributes']->discount_price,
                     'discount_id' => $item['attributes']->discount_id,
-                    'sub_total_price' => $sub_total_price,
-                    'total_price' => $sub_total_price * $item->quantity
+                    // 'price' => $item->price,
+                    'price' => $normal_price,
+                    // 'sub_total_price' => $sub_total_price,
+                    'sub_total_price' => $item->price,
+                    'total_price' => $item->price * $item->quantity
                 ];
             });
     
