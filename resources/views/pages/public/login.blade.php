@@ -12,7 +12,9 @@
 
         <div class="lg:w-1/3 mx-auto px-6 lg:px-0">
             @if (session()->has('loginError'))
-                {{ session('loginError') }}
+                <div class="p-2 bg-danger w-full rounded">
+                    <p class="text-white">{{ session('loginError') }}</p>
+                </div>
             @endif
 
             @if (session()->has('info'))
