@@ -90,7 +90,33 @@
                     </div>
 
                     {{-- login desktop --}}
-                    <a href="#" class="text-sm font-bold">MY ACCOUNT</a>
+                    <div class="dropdown dropdown-hover">
+                        <label tabindex="0" class="text-sm font-bold">
+                            @if (is_null(Auth::user()))
+                                ACCOUNT
+
+                            @else
+                               Hai, {{ strtok(Auth::user()->name, " ") }}
+                            @endif
+
+                        </label>
+                        {{-- {{Auth::user()}} --}}
+                        @if (is_null(Auth::user()))
+                            <ul tabindex="0"
+                                class="dropdown-content z-[20] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('/register') }}">Register</a></li>
+                            </ul>
+                        @else
+                            <ul tabindex="0"
+                                class="dropdown-content z-[20] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><a>Invoice</a></li>
+                                <li><a>Profile</a></li>
+                                <li><a href="{{ url('/logout') }}">Logout</a></li>
+
+                            </ul>
+                        @endif
+                    </div>
 
                     {{-- cart desktop --}}
                     <livewire:cart-info />
