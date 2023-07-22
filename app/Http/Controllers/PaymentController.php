@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Payment;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class PaymentController extends Controller
 {
@@ -12,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -26,9 +29,27 @@ class PaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function callback(Request $request)
     {
-        //
+        try {
+            //code...
+            Order::where('invoice', $request->order_id)->update([
+                'status' => 'process',
+            ]);
+            // dd($request);
+            Payment::create([
+                'gross_amount' => $request->gross_amount, 
+                'transaction_time' => $request->transaction_time,
+                'transaction_status' => $request->transaction_status, 
+                'transaction_id' => $request->transaction_id,
+                'order_id' => null,
+                'invoice_id' => $request->order_id
+            ]);
+            return "aman aja";
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th;
+        }
     }
 
     /**

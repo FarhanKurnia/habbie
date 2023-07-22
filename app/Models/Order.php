@@ -22,7 +22,7 @@ class Order extends Model
 
     // one order owned by one payment
     public function payment(){
-        return $this->belongsTo(Payment::class, 'order_id');
+        return $this->hasOne(Payment::class);
     }
 
     // one order owned by one payment

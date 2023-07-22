@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateSnapTokenService;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\OrderProduct;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
@@ -103,6 +104,15 @@ class TestPaymentController extends Controller
             if($transaction_status == 'capture' || $transaction_status == 'settlement'){
                 Order::where('invoice', $order_id)->update([
                     'status' => 'process',
+                ]);
+                $order = Order::where('invoice',$order_id)->get();
+                Payment::create([
+                    'gross_amount' => $request->gross_amount, 
+                    'transaction_time' => $request->transaction_time,
+                    'transaction_status' => $request->transaction_status, 
+                    'transaction_id' => $request->transaction_id,
+                    'order_id' => $order['id_order'],
+                    'invoice_id' => $request->order_id
                 ]);
             }
 
