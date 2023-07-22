@@ -1,4 +1,4 @@
-<ul class="flex flex-row p-2 z-20">
+<ul class="flex flex-col lg:flex-row p-2 z-20">
     <li>
         <ul class="flex flex-col">
             @foreach ($categories as $index => $category)

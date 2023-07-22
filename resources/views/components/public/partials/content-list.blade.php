@@ -5,7 +5,7 @@
     <div>
         <h3 class="text-2xl font-bold text-pink-primary lg:py-4">{{ $offer['name'] }}</h3>
         <p>{{ $offer['description'] }}</p>
-        <a href="{{ url('/offers/'. $offer['slug']) }}">
+        <a href="{{ url('/product/'. $offer['slug']) }}">
             <button class="btn btn-primary rounded-full font-bold text-white my-6">Shop Now</button>
         </a>
     </div>
