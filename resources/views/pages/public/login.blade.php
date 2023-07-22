@@ -12,15 +12,11 @@
 
         <div class="lg:w-1/3 mx-auto px-6 lg:px-0">
             @if (session()->has('loginError'))
-                <div class="p-2 bg-danger w-full rounded">
-                    <p class="text-white">{{ session('loginError') }}</p>
-                </div>
+                <livewire:alert :message="session('loginError')" :background="'bg-danger'" />
             @endif
 
             @if (session()->has('info'))
-                <div class="bg-teal-shadow rounded p-4 font-bold">
-                    <p>{{ session()->get('info') }}</p>
-                </div>
+                <livewire:alert :message="session()->get('info')" :background="'bg-green'" />
             @endif
 
             <form action="{{ route('authenticate') }}" class="flex flex-col space-y-6 pb-6" method="POST">
