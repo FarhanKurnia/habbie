@@ -20,6 +20,6 @@ class Verified
             return $next($request);
        }
 
-       return back()->with('loginError','Opps, You need verified email');
+       return back()->with('error','Opps, You need verified email');
     }
 }

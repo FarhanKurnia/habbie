@@ -48,7 +48,7 @@ Route::post('/request-otp',[AuthController::class,'requestOTPProcess'])->name('r
 Route::get('/forget-password',[AuthController::class,'forgetPassword'])->name('forgetPassword')->middleware('guest');;
 Route::post('/forget-password',[AuthController::class,'forgetPasswordProcess'])->name('forgetPasswordProcess');
 Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
-Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate')->middleware('verified');
+Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 
