@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('shipping_etd');
             $table->string('invoice');
             $table->integer('total');
-            $table->integer('total_weight');
+            $table->integer('total_weight')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
