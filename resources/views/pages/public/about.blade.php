@@ -21,16 +21,24 @@
     <div class="bg-pink-bloosom">
         <div class="container mx-auto py-14">
             <div
-                class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:items-center lg:gap-4 lg:justify-center m-6 lg:m-0">
-                @include('components.public.partials.content-card')
-                @include('components.public.partials.content-card')
-                @include('components.public.partials.content-card')
+                class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:items-center lg:gap-10 lg:justify-center m-6 lg:m-0">
+                @include('components.public.partials.content-card', [ 'srcImg' => 'icon_reseller_1.png'])
+                @include('components.public.partials.content-card', [ 'srcImg' => 'icon_reseller_2.png'])
+                @include('components.public.partials.content-card', [ 'srcImg' => 'icon_reseller_3.png'])
             </div>
         </div>
     </div>
 
     <div class="container mx-auto py-14 ">
         @include('components.public.partials.title', ['title' => 'Cerita Varian Habbie', 'align' => 'center', 'color' => 'grey'])
+        {{-- <div>
+            @php
+                $content = [
+
+                ];
+            @endphp
+            @include('components.public.partials.content-slider', ['products' => $content ]);
+        </div> --}}
         <div class="flex relative">
             <div class="carousel py-14 relative">
                 <div id="content1" class="carousel-item w-full">
