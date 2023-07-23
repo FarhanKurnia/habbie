@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
 use App\Services\Midtrans\CallbackService;
+use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Database\Eloquent\Casts\Json;
 
 class TestPaymentController extends Controller
 {
@@ -93,37 +95,56 @@ class TestPaymentController extends Controller
 
     public function callback(Request $request)
     {
-        $serverKey = config('services.midtrans.serverKey');
-        $order_id = $request->order_id;
-        $status_code = $request->status_code;
-        $gross_amount = $request->gross_amount;
-        $transaction_status = $request->transaction_status;
+        try {
+            $serverKey = config('services.midtrans.serverKey');
+            $order_id = $request->order_id;
+            $status_code = $request->status_code;
+            $gross_amount = $request->gross_amount;
+            $transaction_status = $request->transaction_status;
+            $transaction_id = $request->transaction_id;
+            $transaction_time = $request->transaction_time;
+    
+            $hashed = hash("sha512", $order_id.$status_code.$gross_amount.$serverKey);
+            
+            if($hashed == $request->signature_key){
+    
+                if($transaction_status == 'pending'){
+                    Order::where('invoice', $order_id)->update([
+                        'status' => 'pending',
+                    ]);
 
-        $hashed = hash("sha512", $order_id.$status_code.$gross_amount.$serverKey);
-        if($hashed == $request->signature_key){
-            if($transaction_status == 'capture' || $transaction_status == 'settlement'){
-                Order::where('invoice', $order_id)->update([
-                    'status' => 'process',
-                ]);
-                $order = Order::where('invoice',$order_id)->get();
-                Payment::create([
-                    'gross_amount' => $request->gross_amount, 
-                    'transaction_time' => $request->transaction_time,
-                    'transaction_status' => $request->transaction_status, 
-                    'transaction_id' => $request->transaction_id,
-                    'order_id' => $order['id_order'],
-                    'invoice_id' => $request->order_id
-                ]);
+                    return response()->json(['message' => 'Payment Status Pending']);
+                }
+    
+                if($transaction_status == 'capture' || $transaction_status == 'settlement'){
+                    Order::where('invoice', $order_id)->update([
+                        'status' => 'process',
+                    ]);
+                    $order = Order::where('invoice',$order_id)->get();
+                    Payment::create([
+                        'gross_amount' => $gross_amount, 
+                        'transaction_time' => $transaction_time,
+                        'transaction_status' => $transaction_status, 
+                        'transaction_id' => $transaction_id,
+                        'order_id' => $order[0]['id_order'],
+                        'invoice_id' => $order_id
+                    ]);
+
+                    return response()->json(['message' => 'Payment Status Success']);
+                }
+    
+                if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny'){
+                    Order::where('invoice', $order_id)->update([
+                        'status' => 'failed',
+                    ]);
+
+                    return response()->json(['message' => 'Payment Status Failed']);    
+                }
             }
-
-            if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny'){
-                Order::where('invoice', $order_id)->update([
-                    'status' => 'failed',
-                ]);
-
-            }
-
+        } catch(\Throwable $th){
+            return $th;
         }
+
     }
 
 }
