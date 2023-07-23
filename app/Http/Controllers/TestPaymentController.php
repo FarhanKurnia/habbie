@@ -100,6 +100,7 @@ class TestPaymentController extends Controller
             $order_id = $request->order_id;
             $status_code = $request->status_code;
             $gross_amount = $request->gross_amount;
+            $payment_type = $request->payment_type;
             $transaction_status = $request->transaction_status;
             $transaction_id = $request->transaction_id;
             $transaction_time = $request->transaction_time;
@@ -117,12 +118,14 @@ class TestPaymentController extends Controller
                 }
     
                 if($transaction_status == 'capture' || $transaction_status == 'settlement'){
-                    Order::where('invoice', $order_id)->update([
+                    $order = Order::where('invoice', $order_id)->get();
+                    $order[0]->update([
                         'status' => 'process',
                     ]);
-                    $order = Order::where('invoice',$order_id)->get();
+                    // $order = Order::where('invoice',$order_id)->get();
                     Payment::create([
                         'gross_amount' => $gross_amount, 
+                        'payment_type' => $payment_type,
                         'transaction_time' => $transaction_time,
                         'transaction_status' => $transaction_status, 
                         'transaction_id' => $transaction_id,

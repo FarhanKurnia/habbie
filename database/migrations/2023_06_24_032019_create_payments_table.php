@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_payment');
             $table->string('gross_amount');
             $table->string('transaction_time');
+            $table->string('payment_type');
             $table->string('transaction_status');
             $table->string('transaction_id');
             $table->unsignedBigInteger('order_id')->nullable();
