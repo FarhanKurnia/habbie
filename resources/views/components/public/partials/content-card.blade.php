@@ -1,6 +1,6 @@
 <div class="card lg:w-96 bg-base-100 shadow-xl">
-    <figure class="px-10 pt-10">
-        <img src="{{ asset('storage/img/img-slide.jpg') }}" alt="" />
+    <figure class="px-10 pt-10 w-1/2 mx-auto">
+        <img src="{{ asset('storage/img/' . $srcImg) }}" alt="" />
     </figure>
     <div class="card-body items-center text-center">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
