@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id('id_payment');
             $table->string('gross_amount');
+            $table->string('va_number')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('acquirer')->nullable();
             $table->string('transaction_time');
             $table->string('payment_type');
             $table->string('transaction_status');

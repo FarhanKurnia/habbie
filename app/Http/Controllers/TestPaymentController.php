@@ -98,6 +98,8 @@ class TestPaymentController extends Controller
         try {
             $serverKey = config('services.midtrans.serverKey');
             $order_id = $request->order_id;
+            $va_number = $request->va_numbers[0]['va_number'];
+            $bank = $request->va_numbers[0]['bank'];
             $status_code = $request->status_code;
             $gross_amount = $request->gross_amount;
             $payment_type = $request->payment_type;
@@ -123,8 +125,11 @@ class TestPaymentController extends Controller
                         'status' => 'process',
                     ]);
                     // $order = Order::where('invoice',$order_id)->get();
+                    // handle BANK Payment
                     Payment::create([
                         'gross_amount' => $gross_amount, 
+                        'va_number' => $va_number,
+                        'bank' => $bank,
                         'payment_type' => $payment_type,
                         'transaction_time' => $transaction_time,
                         'transaction_status' => $transaction_status, 
