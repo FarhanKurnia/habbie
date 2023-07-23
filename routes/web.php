@@ -39,6 +39,14 @@ Route::get('cart', function (){
     return view('pages.public.cart');
 });
 
+Route::get('testimonials', function (){
+    return view('pages.public.testimonials');
+});
+
+Route::get('membership', function (){
+    return view('pages.public.membership');
+});
+
 // Auth
 Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
 Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
