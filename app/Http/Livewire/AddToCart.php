@@ -61,7 +61,8 @@ class AddToCart extends Component
                 'discount_id' => $discountId,
                 'discount_price' => $discountPrice,
                 'original_price' => $this->product->price,
-                'discount_rule' => $discount
+                'discount_rule' => $discount,
+                'weight' => $this->product->weight
             ]
         ]);
         $msg = 'Product added to cart successfully.';
