@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateSnapTokenService;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\OrderProduct;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
 use App\Services\Midtrans\CallbackService;
+use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Database\Eloquent\Casts\Json;
 
 class TestPaymentController extends Controller
 {
@@ -92,28 +95,64 @@ class TestPaymentController extends Controller
 
     public function callback(Request $request)
     {
-        $serverKey = config('services.midtrans.serverKey');
-        $order_id = $request->order_id;
-        $status_code = $request->status_code;
-        $gross_amount = $request->gross_amount;
-        $transaction_status = $request->transaction_status;
+        try {
+            $serverKey = config('services.midtrans.serverKey');
+            $order_id = $request->order_id;
+            $va_number = $request->va_numbers[0]['va_number'];
+            $bank = $request->va_numbers[0]['bank'];
+            $status_code = $request->status_code;
+            $gross_amount = $request->gross_amount;
+            $payment_type = $request->payment_type;
+            $transaction_status = $request->transaction_status;
+            $transaction_id = $request->transaction_id;
+            $transaction_time = $request->transaction_time;
+    
+            $hashed = hash("sha512", $order_id.$status_code.$gross_amount.$serverKey);
+            
+            if($hashed == $request->signature_key){
+    
+                if($transaction_status == 'pending'){
+                    Order::where('invoice', $order_id)->update([
+                        'status' => 'pending',
+                    ]);
 
-        $hashed = hash("sha512", $order_id.$status_code.$gross_amount.$serverKey);
-        if($hashed == $request->signature_key){
-            if($transaction_status == 'capture' || $transaction_status == 'settlement'){
-                Order::where('invoice', $order_id)->update([
-                    'status' => 'process',
-                ]);
+                    return response()->json(['message' => 'Payment Status Pending']);
+                }
+    
+                if($transaction_status == 'capture' || $transaction_status == 'settlement'){
+                    $order = Order::where('invoice', $order_id)->get();
+                    $order[0]->update([
+                        'status' => 'process',
+                    ]);
+                    // $order = Order::where('invoice',$order_id)->get();
+                    // handle BANK Payment
+                    Payment::create([
+                        'gross_amount' => $gross_amount, 
+                        'va_number' => $va_number,
+                        'bank' => $bank,
+                        'payment_type' => $payment_type,
+                        'transaction_time' => $transaction_time,
+                        'transaction_status' => $transaction_status, 
+                        'transaction_id' => $transaction_id,
+                        'order_id' => $order[0]['id_order'],
+                        'invoice_id' => $order_id
+                    ]);
+
+                    return response()->json(['message' => 'Payment Status Success']);
+                }
+    
+                if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny'){
+                    Order::where('invoice', $order_id)->update([
+                        'status' => 'failed',
+                    ]);
+
+                    return response()->json(['message' => 'Payment Status Failed']);    
+                }
             }
-
-            if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny'){
-                Order::where('invoice', $order_id)->update([
-                    'status' => 'failed',
-                ]);
-
-            }
-
+        } catch(\Throwable $th){
+            return $th;
         }
+
     }
 
 }

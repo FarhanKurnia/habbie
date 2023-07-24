@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id('id_payment');
-            $table->string('total');
-            $table->string('status');
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('user_id');
+            $table->string('gross_amount');
+            $table->string('va_number')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('acquirer')->nullable();
+            $table->string('transaction_time');
+            $table->string('payment_type');
+            $table->string('transaction_status');
+            $table->string('transaction_id');
+            $table->unsignedBigInteger('order_id')->nullable();
+            $table->string('invoice_id');
             $table->timestamps();
-            
             $table->foreign('order_id')->references('id_order')->on('orders')->onDelete('cascade');
-            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
         });
     }
 

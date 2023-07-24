@@ -12,7 +12,7 @@ class Order extends Model
     protected $fillable = [
         'name', 'email', 'phone', 'address','province','city','subdistrict',
         'postal_code', 'status', 'sub_total', 'resi', 'user_id','shipping_code',
-        'shipping_service','shipping_value','shipping_etd','invoice', 'total',
+        'shipping_service','shipping_value','shipping_etd','invoice', 'total', 'total_weight'
     ];
 
     // one order has many products
@@ -22,7 +22,7 @@ class Order extends Model
 
     // one order owned by one payment
     public function payment(){
-        return $this->belongsTo(Payment::class, 'order_id');
+        return $this->hasOne(Payment::class);
     }
 
     // one order owned by one payment

@@ -37,6 +37,18 @@ class UserSeeder extends Seeder
             'remember_token' => null,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
+        ],
+        [
+            'name' => 'kurnia',
+            'email'=>'kurnia@mail.com',
+            'email_verified' => true,
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'token_verification' => Str::random(128),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]
         ]);
     }
