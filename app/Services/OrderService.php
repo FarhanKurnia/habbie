@@ -32,6 +32,7 @@ class OrderService {
         $customer = $orderData['customer'];
         $shipping = $orderData['shipping'];
         $subtotal = $orderData['subtotal'];
+        $totalWeight = $orderData['total_weight'];
 
 
         $order = Order::create([
@@ -52,6 +53,7 @@ class OrderService {
             'shipping_etd' => $shipping['etd'],  
             'invoice' => $invoice,
             'user_id' => $customer['customer_id'], 
+            'total_weight' => $totalWeight
         ]);
 
         // dd($orderData, \Cart::getContent());
