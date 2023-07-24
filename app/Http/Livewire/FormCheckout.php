@@ -28,6 +28,7 @@ class FormCheckout extends Component
     public $orderData;
     public $phoneNumber;
     public $invoice;
+    public $totalWeight;
 
     public function fetchData()
     {
@@ -119,7 +120,7 @@ class FormCheckout extends Component
                 'originType' => 'subdistrict',
                 'destination' => json_decode($this->selectedSubdistrict, true)['id'],
                 'destinationType' => 'subdistrict',
-                'weight' => 1000,
+                'weight' => $this->totalWeight,
                 'courier' => strtolower($this->selectedCourier),
             ]);
     
@@ -191,6 +192,7 @@ class FormCheckout extends Component
                     'postal_code' => $this->postalCode
                 ],
                 'shipping' => $selectedCost,
+                'total_weight' => $this->totalWeight,
                 'subtotal' =>  \Cart::getTotal()
             ];
 
@@ -217,9 +219,22 @@ class FormCheckout extends Component
 
     }
 
+    public function getTotalWeight()
+    {
+        if(!!\Cart::getTotal()){
+            $cartItems = \Cart::getContent();
+            $cartTransformed = $cartItems->map(function ($item) {
+                $totalWeightItem = $item['attributes']['weight'] * $item['quantity'];
+                $this->totalWeight += $totalWeightItem;
+            });
+        }
+    
+    }
+
     public function mount()
     {
         $this->fetchData();
+        $this->getTotalWeight();
         $this->couriers = ['JNE', 'SICEPAT', 'JNT', 'ANTERAJA'];
         $this->selectedCourier = null;
         $this->selectedCost = null;
