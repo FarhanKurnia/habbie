@@ -86,7 +86,7 @@ class TestPaymentController extends Controller
         } 
 
         // dd($order, $orderProducts, $itemDetails, $payloadOrder);
-        return view('pages.public.payment', compact('snapToken', 'order', 'orderStatus', 'orderProducts'));
+        return view('pages.public.payment', compact('snapToken', 'order', 'orderStatus', 'orderProducts', 'invoice'));
 
     }
 
