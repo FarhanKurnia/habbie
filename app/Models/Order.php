@@ -22,7 +22,7 @@ class Order extends Model
 
     // one order owned by one payment
     public function payment(){
-        return $this->hasOne(Payment::class);
+        return $this->hasOne(Payment::class,'order_id');
     }
 
     // one order owned by one payment
@@ -37,6 +37,6 @@ class Order extends Model
 
     // one order has many order product
     public function orderproduct(){
-        return $this->belongsTo(OrderProduct::class, 'order_id');
+        return $this->hasMany(OrderProduct::class, 'order_id');
     }
 }

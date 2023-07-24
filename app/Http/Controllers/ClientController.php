@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Article;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Product_Category;
 use App\Models\Testimonial;
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -150,4 +153,20 @@ class ClientController extends Controller
         return view('test.customer.order.order-client');
     }
 
+//Invoice Client
+    public function indexInvoiceClient(){
+        $user = Auth::user();
+        $id_user = $user['id_user'];
+        $invoices = Order::where('user_id',$id_user)->with('user','orderproduct','payment')->get();
+        return view('test.customer.invoice.index-invoice-client',compact('invoices'));
+    }
+
+    public function showInvoiceClient($invoice){
+        $user = Auth::user();
+        $id_user = $user['id_user'];
+        $invoices = Order::where([['invoice',$invoice],['user_id',$id_user]])->with('user','orderproduct','payment')->firstOrFail();
+        $id_order = $invoices->id_order;
+        $orders = OrderProduct::where('order_id',$id_order)->with('product','discount',)->get();
+        return view('test.customer.invoice.show-invoice-client',compact('invoices','orders'));
+    }
 }
