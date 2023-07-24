@@ -52,7 +52,19 @@
                                 </a>
                             </td>
                             <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-center">
-                                {{ \App\Helpers\CurrencyFormat::data($item['price']) }}
+                                @if ($item['attributes']['discount_id'])
+                                    <span class="flex justify-center gap-2 items-center">
+                                        <span class="flex flex-col">
+                                            <s
+                                                class="text-xs text-grey-secondary">{{ \App\Helpers\CurrencyFormat::data($item['attributes']['original_price']) }}</s>
+                                            <i class="text-xs text-pink-primary">Discount
+                                                {{ $item['attributes']['discount_rule'] }}%</i>
+                                        </span>
+                                        <p>{{ \App\Helpers\CurrencyFormat::data($item['price']) }}</p>
+                                    </span>
+                                @else
+                                    <p>{{ \App\Helpers\CurrencyFormat::data($item['price']) }}</p>
+                                @endif
                             </td>
                             <td class="flex flex-row items-center relative md:table-cell lg:w-1/6">
                                 <span wire:click="removeCart('{{ $item['id'] }}')"
@@ -68,8 +80,19 @@
                                 </div>
                                 <div class="w-2/3 lg:w-full">
                                     <h3 class="lg:hidden text-pink-primary font-bold">{{ $item['name'] }}</h3>
-                                    <p class="lg:hidden text-grey-secondary text-sm">
-                                        {{ \App\Helpers\CurrencyFormat::data($item['price']) }}</p>
+                                    @if ($item['attributes']['discount_id'])
+                                        <span class="lg:hidden flex justify-left gap-2 items-center">
+                                            <s
+                                            class="text-xs text-grey-secondary">{{ \App\Helpers\CurrencyFormat::data($item['attributes']['original_price']) }}</s>
+                                            <i class="text-xs text-pink-primary">Discount
+                                                {{ $item['attributes']['discount_rule'] }}%</i>
+                                        </span>
+                                    @else
+                                        <p>{{ \App\Helpers\CurrencyFormat::data($item['price']) }}</p>
+                                    @endif
+
+                                    {{-- <i class="lg:hidden text-grey-secondary text-sm">
+                                        {{ \App\Helpers\CurrencyFormat::data($item['price']) }}</i> --}}
                                     <livewire:cart-update :item="$item" :key="$item['id']" />
                                     <p class="lg:hidden text-grey text-lg mt-4 font-bold">
                                         {{ \App\Helpers\CurrencyFormat::data($item['price'] * $item['quantity']) }}
@@ -86,14 +109,17 @@
             </table>
 
             @if (!!Cart::getTotal())
-                <div class="mt-6 p-4 flex lg:block items-center justify-between bg-grey-secondary-50 lg:w-1/3 ml-auto rounded">
+                <div
+                    class="mt-6 p-4 flex lg:block items-center justify-between bg-grey-secondary-50 lg:w-1/3 ml-auto rounded">
                     <div class="flex flex-row items-center justify-between gap-4">
                         <p class="lg:text-xl">Total: </p>
-                        <p class="lg:text-2xl text-xl font-bold pr-2">{{ \App\Helpers\CurrencyFormat::data(Cart::getTotal()) }}
+                        <p class="lg:text-2xl text-xl font-bold pr-2">
+                            {{ \App\Helpers\CurrencyFormat::data(Cart::getTotal()) }}
                         </p>
                     </div>
                     <div class="text-right lg:pt-6 pt-0">
-                        <a href="{{ url('checkout') }}"><button class="btn btn-primary rounded-full text-base-100">Checkout</button></a>
+                        <a href="{{ url('checkout') }}"><button
+                                class="btn btn-primary rounded-full text-base-100">Checkout</button></a>
                     </div>
                 </div>
             @endif
