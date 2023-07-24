@@ -20,6 +20,7 @@ class AddToCart extends Component
     {
         // init
         $discountId = null;
+        $discount = null;
         $discountPrice = 0;
         $fixprice = $this->product->price;
 
@@ -58,7 +59,9 @@ class AddToCart extends Component
                 'image' => $this->product->image,
                 'slug' => $this->product->slug,
                 'discount_id' => $discountId,
-                'discount_price' => $discountPrice
+                'discount_price' => $discountPrice,
+                'original_price' => $this->product->price,
+                'discount_rule' => $discount
             ]
         ]);
         $msg = 'Product added to cart successfully.';
