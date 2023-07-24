@@ -18,12 +18,16 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-xl">{{ $item['product']['name'] }}</h4>
-
+                                    @if ($item['discount_id'])
+                                        <s class="text-xs text-pink-primary">
+                                            {{ \App\Helpers\CurrencyFormat::data($item['price']) }}
+                                        </s>
+                                    @endif
                                     <p class="text-sm text-grey-secondary">
                                         {{ \App\Helpers\CurrencyFormat::data($item['price'] - $item['discount_price']) . ' X ' . $item['qty'] }}
                                     </p>
                                     <p class="font-bold">
-                                        {{ \App\Helpers\CurrencyFormat::data($item['sub_total_price']) }}
+                                        {{ \App\Helpers\CurrencyFormat::data($item['sub_total_price'] * $item['qty'] ) }}
                                     </p>
                                 </div>
                             </div>
@@ -33,19 +37,21 @@
                 <div class="my-8 p-4 flex flex-col space-y-4">
                     <span class="flex justify-between">
                         <p>Subtotal Produk</p>
-                        <p >{{ \App\Helpers\CurrencyFormat::data($order['sub_total']) }}</p>
+                        <p>{{ \App\Helpers\CurrencyFormat::data($order['sub_total']) }}</p>
                     </span>
                     <span class="flex justify-between items-center">
                         <span>
                             <p>Biaya Ongkir</p>
-                            <p class="text-sm text-grey-secondary">{{$order['shipping_code'] . " " . $order['shipping_service']}}</p>
-                            <p class="text-sm text-grey-secondary">Estimasi Pengiriman {{$order['shipping_etd']}} Hari</p>
+                            <p class="text-sm text-grey-secondary">
+                                {{ $order['shipping_code'] . ' ' . $order['shipping_service'] }}</p>
+                            <p class="text-sm text-grey-secondary">Estimasi Pengiriman {{ $order['shipping_etd'] }} Hari</p>
                         </span>
                         <p class="">{{ \App\Helpers\CurrencyFormat::data($order['shipping_value']) }}</p>
                     </span>
                     <span class="flex justify-between">
                         <p>Total</p>
-                        <p class="font-bold text-xl text-pink-primary">{{ \App\Helpers\CurrencyFormat::data($order['total']) }}</p>
+                        <p class="font-bold text-xl text-pink-primary">
+                            {{ \App\Helpers\CurrencyFormat::data($order['total']) }}</p>
                     </span>
                 </div>
             </div>
@@ -67,22 +73,17 @@
             snap.pay('{{ $snapToken }}', {
 
                 onSuccess: function(result) {
-                    window.location.replace('http://localhost:8000/invoice/' + {{ $order['invoice'] }});
+                    // document.cookie = '{{ $invoice }}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                    window.location.replace('http://localhost:8000/invoice/' + {{ $invoice }});
+                    // window.location.replace('http://localhost:8000/cart');
                 },
 
                 onPending: function(result) {
-                    console.log(result)
+                    console.log(invoice, result);
                 },
 
                 onError: function(result) {
-                    // document.cookie.split
-
-                    function deleteCookie(key) {
-                        document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                    }
-
-                    deleteCookie('{{$order['invoice']}}');
-                    
+                    // document.cookie = '{{ $invoice }}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                     window.location.replace('http://localhost:8000/cart');
                 }
             });
