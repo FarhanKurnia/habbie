@@ -100,6 +100,8 @@ class TestPaymentController extends Controller
             $order_id = $request->order_id;
             $va_number = $request->va_numbers[0]['va_number'];
             $bank = $request->va_numbers[0]['bank'];
+            $biller_code = $request->biller_code;
+            $bill_key = $request->bill_key;
             $status_code = $request->status_code;
             $gross_amount = $request->gross_amount;
             $payment_type = $request->payment_type;
@@ -125,18 +127,63 @@ class TestPaymentController extends Controller
                         'status' => 'process',
                     ]);
                     // $order = Order::where('invoice',$order_id)->get();
-                    // handle BANK Payment
-                    Payment::create([
-                        'gross_amount' => $gross_amount, 
-                        'va_number' => $va_number,
-                        'bank' => $bank,
-                        'payment_type' => $payment_type,
-                        'transaction_time' => $transaction_time,
-                        'transaction_status' => $transaction_status, 
-                        'transaction_id' => $transaction_id,
-                        'order_id' => $order[0]['id_order'],
-                        'invoice_id' => $order_id
-                    ]);
+                    // handle VA BANK BCA, BNI ad Payment
+                    // if (!empty($va_number)) {
+                    if ($va_number) {
+                        Payment::create([
+                            'gross_amount' => $gross_amount, 
+                            'va_number' => $va_number,
+                            'bank' => $bank,
+                            'payment_type' => $payment_type,
+                            'transaction_time' => $transaction_time,
+                            'transaction_status' => $transaction_status, 
+                            'transaction_id' => $transaction_id,
+                            'order_id' => $order[0]['id_order'],
+                            'invoice_id' => $order_id
+                        ]);
+                      }else {
+                        // handle Mandiri Bill Payment dan BANK Permata masih fail
+                        Payment::create([
+                            'gross_amount' => $gross_amount, 
+                            'va_number' => $biller_code.$bill_key,
+                            'bank' => 'mandiri',
+                            'payment_type' => 'bill_payment',
+                            'transaction_time' => $transaction_time,
+                            'transaction_status' => $transaction_status, 
+                            'transaction_id' => $transaction_id,
+                            'order_id' => $order[0]['id_order'],
+                            'invoice_id' => $order_id
+                        ]);
+                      }
+                    // if($va_number){
+                    //     Payment::create([
+                    //         'gross_amount' => $gross_amount, 
+                    //         'va_number' => $va_number,
+                    //         'bank' => $bank,
+                    //         'payment_type' => $payment_type,
+                    //         'transaction_time' => $transaction_time,
+                    //         'transaction_status' => $transaction_status, 
+                    //         'transaction_id' => $transaction_id,
+                    //         'order_id' => $order[0]['id_order'],
+                    //         'invoice_id' => $order_id
+                    //     ]);
+                    // }
+                    // if($biller_code){
+                    //     $bank = "mandiri";
+                    //     $payment_type = "bill_payment";
+                    //     Payment::create([
+                    //         'gross_amount' => $gross_amount, 
+                    //         'va_number' => $biller_code.$bill_key,
+                    //         'bank' => $bank,
+                    //         'payment_type' => $payment_type,
+                    //         'transaction_time' => $transaction_time,
+                    //         'transaction_status' => $transaction_status, 
+                    //         'transaction_id' => $transaction_id,
+                    //         'order_id' => $order[0]['id_order'],
+                    //         'invoice_id' => $order_id
+                    //     ]);
+                    // }
+                    
 
                     return response()->json(['message' => 'Payment Status Success']);
                 }
