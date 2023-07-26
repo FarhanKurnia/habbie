@@ -1,4 +1,4 @@
-<div class="card pt-8 pb-4 {{ $index === 1 ? 'bg-base-100' : 'bg-transparent' }}">
+<div class="card pt-8 pb-4 hover:bg-base-100">
     <a href="{{ route('products.show', [$product->slug]) }}">
         <figure><img class="w-1/5 lg:w-1/4" src="{{ url($product->image) }}" alt="{{ $product->name }}" /></figure>
     </a>
