@@ -78,7 +78,7 @@ class TestPaymentController extends Controller
 
         $orderStatus = $order['status'];
 
-        $invoice = $order['invoice']; 
+        $invoice = strval($order['invoice']); 
         $snapToken = Cookie::get($invoice);
         
         if(is_null($snapToken)){
