@@ -157,7 +157,7 @@ class ClientController extends Controller
     public function indexInvoiceClient(){
         $user = Auth::user();
         $id_user = $user['id_user'];
-        $invoices = Order::where('user_id',$id_user)->with('user','orderproduct','payment')->get();
+        $invoices = Order::where('user_id',$id_user)->with('user','orderproduct','payment')->paginate(5);
         return view('pages.public.invoice.index',compact('invoices'));
     }
 
