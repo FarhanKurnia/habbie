@@ -158,7 +158,7 @@ class ClientController extends Controller
         $user = Auth::user();
         $id_user = $user['id_user'];
         $invoices = Order::where('user_id',$id_user)->with('user','orderproduct','payment')->get();
-        return view('test.customer.invoice.index-invoice-client',compact('invoices'));
+        return view('pages.public.invoice.index',compact('invoices'));
     }
 
     public function showInvoiceClient($invoice){
@@ -167,6 +167,6 @@ class ClientController extends Controller
         $invoices = Order::where([['invoice',$invoice],['user_id',$id_user]])->with('user','orderproduct','payment')->firstOrFail();
         $id_order = $invoices->id_order;
         $orders = OrderProduct::where('order_id',$id_order)->with('product','discount',)->get();
-        return view('test.customer.invoice.show-invoice-client',compact('invoices','orders'));
+        return view('pages.public.invoice.detail',compact('invoices','orders'));
     }
 }
