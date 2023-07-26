@@ -74,8 +74,10 @@
 
                 onSuccess: function(result) {
                     // document.cookie = '{{ $invoice }}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-                    window.location.replace('http://localhost:8000/invoice/' + {{ $invoice }});
+                    // window.location.replace('http://localhost:8000/invoice/' + {{ $invoice }});
+                    // console.log({{ $invoice }});
                     // window.location.replace('http://localhost:8000/cart');
+                    window.location.replace('{{ url("invoice/".$invoice) }}');
                 },
 
                 onPending: function(result) {
@@ -84,7 +86,8 @@
 
                 onError: function(result) {
                     // document.cookie = '{{ $invoice }}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-                    window.location.replace('http://localhost:8000/cart');
+                    // window.location.replace('http://localhost:8000/cart');
+                    window.location.replace('{{ url("invoice/".$invoice) }}');
                 }
             });
         });
