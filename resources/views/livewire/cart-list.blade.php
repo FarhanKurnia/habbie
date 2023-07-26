@@ -1,6 +1,12 @@
 <div class="container mx-auto">
 
+
     <div class="lg:w-3/4 mx-auto pb-10">
+        @if (session()->has('error'))
+            <div class="mx-auto mb-4">
+                <livewire:alert :message="session('error')" :background="'bg-danger'" />
+            </div>
+        @endif
         <h3 class="text-grey pb-4">Produk yang ada di keranjang belanja</h3>
         <div class="">
             <table class="min-w-full divide-y divide-gray-200 table">
@@ -83,12 +89,12 @@
                                     @if ($item['attributes']['discount_id'])
                                         <span class="lg:hidden flex justify-left gap-2 items-center">
                                             <s
-                                            class="text-xs text-grey-secondary">{{ \App\Helpers\CurrencyFormat::data($item['attributes']['original_price']) }}</s>
+                                                class="text-xs text-grey-secondary">{{ \App\Helpers\CurrencyFormat::data($item['attributes']['original_price']) }}</s>
                                             <i class="text-xs text-pink-primary">Discount
                                                 {{ $item['attributes']['discount_rule'] }}%</i>
                                         </span>
                                     @else
-                                        <p>{{ \App\Helpers\CurrencyFormat::data($item['price']) }}</p>
+                                        <p class="lg:hidden">{{ \App\Helpers\CurrencyFormat::data($item['price']) }}</p>
                                     @endif
 
                                     {{-- <i class="lg:hidden text-grey-secondary text-sm">
