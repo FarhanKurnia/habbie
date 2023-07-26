@@ -18,13 +18,11 @@ class OrderService {
     {
         $date = Carbon::now();
         $start_rand = rand(10000,99999);
-        // $end_rand = rand(10000,99999);
+        $end_rand = rand(10000,99999);
         $result = $date->format('Y-m-d');
         $result = explode('-', $result);
         $result = implode("", $result);
-        // $invoice = $start_rand.$result.$end_rand;
-        $invoice = 'inv-'.$start_rand.$result;
-
+        $invoice = $start_rand.$result.$end_rand;
 
         return $invoice;
     }
