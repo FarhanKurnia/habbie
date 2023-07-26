@@ -64,6 +64,8 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::middleware(['auth','verified','customer'])->group(function () {
     Route::get('payment/{slug}', [TestPaymentController::class, 'show']);
     Route::get('checkout', [CheckoutController::class, 'show']);
+    Route::get('invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
+    Route::get('invoice',[ClientController::class,'indexInvoiceClient']);
 });
 
 
@@ -132,8 +134,8 @@ Route::prefix('test')->group(function () {
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
     Route::get('/order',[OrderController::class,'store'])->name('order');
     // Route::get('/order/{invoice}',[OrderController::class,'getOrder'])->name('getOrder');
-    Route::get('/invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
-    Route::get('/invoice',[ClientController::class,'indexInvoiceClient']);
+    // Route::get('/invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
+    // Route::get('/invoice',[ClientController::class,'indexInvoiceClient']);
 
     
 
