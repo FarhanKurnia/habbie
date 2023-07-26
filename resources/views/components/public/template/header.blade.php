@@ -56,8 +56,7 @@
                             </svg>
                         </label>
                         <ul tabindex="0"
-                            class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-10">
-                            <li></li>
+                            class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-20">
                             <li><a href="{{ url('/offers') }}">Offers</a></li>
                             <li>
                                 <a>Products</a>
@@ -66,8 +65,14 @@
                             <li><a>Testimonial</a></li>
                             <li><a>Membership</a></li>
                             <li><a>Media</a></li>
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            @if (is_null(Auth::user()))
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('/register') }}">Register</a></li>
+                            @else
+                                {{-- <li><a href="{{ url('/invoice') }}">Invoice</a></li> --}}
+                                <li><a href="{{ url('/invoice') }}">Invoice</a></li>
+                                <li><a href="{{ url('/logout') }}">Logout</a></li>
+                            @endif
                         </ul>
                     </div>
 
@@ -94,9 +99,8 @@
                         <label tabindex="0" class="text-sm font-bold">
                             @if (is_null(Auth::user()))
                                 ACCOUNT
-
                             @else
-                               Hai, {{ strtok(Auth::user()->name, " ") }}
+                                Hai, {{ strtok(Auth::user()->name, ' ') }}
                             @endif
 
                         </label>
@@ -110,8 +114,7 @@
                         @else
                             <ul tabindex="0"
                                 class="dropdown-content z-[20] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Invoice</a></li>
-                                <li><a>Profile</a></li>
+                                <li><a href="{{ url('invoice') }}">Invoice</a></li>
                                 <li><a href="{{ url('/logout') }}">Logout</a></li>
 
                             </ul>
