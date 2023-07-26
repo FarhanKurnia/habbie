@@ -4,15 +4,20 @@
 
 @section('content')
 
+    @if (session()->has('error'))
+        <div class="container mx-auto my-4">
+            <livewire:alert :message="session('error')" :background="'bg-danger'" />
+        </div>
+    @endif
     @include('components.public.partials.hero-slider')
-    @include('components.public.partials.content-slider', ['products' => $bodyRecommendation ])
+    @include('components.public.partials.content-slider', ['products' => $bodyRecommendation])
 
     <div class="bg-grey-secondary-50">
         <div class="container mx-auto py-14">
             @include('components.public.partials.title', [
                 'title' => 'Aromatic By Nature All Around the World',
                 'align' => 'center',
-                'color' => 'pink-primary'
+                'color' => 'pink-primary',
             ])
 
             {{-- desktop --}}
@@ -43,8 +48,8 @@
 
     <div class="container mx-auto py-14">
         <div class="grid lg:grid-cols-2 gap-6">
-            @foreach($latestArticles as $articles)
-                @include('components.public.partials.article-card', [ 'articles' => $articles ])
+            @foreach ($latestArticles as $articles)
+                @include('components.public.partials.article-card', ['articles' => $articles])
             @endforeach
         </div>
         <div class="text-center py-4">
