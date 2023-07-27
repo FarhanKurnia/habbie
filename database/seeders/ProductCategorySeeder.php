@@ -14,16 +14,35 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('product_categories')->insert([[
-            'name' => 'Minyak Kayu Putih',
-            'slug' => 'minyak-kayu-putih',
+            'name' => 'Telon Oil Flower',
+            'slug' => 'telon-oil-flower',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'name' => 'Minyak Telon',
-            'slug' => 'minyak-telon',
+            'name' => 'Telon Oil Tea',
+            'slug' => 'telon-oil-tea',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
-        ]]);
+        ]
+        ,
+        [
+            'name' => 'Cajuput Oil Saffron',
+            'slug' => 'cajuput-oil-saffron',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]
+        ,
+        [
+            'name' => 'Cajuput Oil Vanilla',
+            'slug' => 'cajuput-oil-vanilla ',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]
+    
+    
+    
+    
+    ]);
     }
 }
