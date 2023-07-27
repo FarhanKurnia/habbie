@@ -12,13 +12,12 @@
         ])
         <div class="mx-6 lg:w-1/2 lg:mx-auto">
             <img class="pb-6" src="{{ asset('storage/img/img-slide.jpg') }}" alt="minyak telon habbie">
-            <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.<br /><br />Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                anim id est laborum.</p>
+            <p class="text-left">
+                Dimulai tahun 2019, sebuah perusahaan yang berfokus pada produk berbasis Aromatic by Nature.
+                Kompetensi inti kami adalah budaya dan teknologi yang kuat berbasis online.
+                Dengan semangat kami sebagai generasi milenial, kami menyediakan produk dan brand unik yang memiliki nilai tambah bagi masyarakat. 
+                Love, Passion, Innovation, Customer Satisfaction, dan Family, adalah lima pilar nilai inti perusahaan kami.
+                Tagline kami adalah "Delivering love, passion, and kindness."</p>
         </div>
     </div>
 

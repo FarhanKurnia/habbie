@@ -41,13 +41,13 @@ class TestPaymentController extends Controller
         }, $orderProducts);
         
 
-        $date = Carbon::now();
-        $start_rand = rand(5000,99999);
-        $end_rand = rand(5000,99999);
-        $result = $date->format('Y-m-d');
-        $result = explode('-', $result);
-        $result = implode("", $result);
-        $invoiceEncrypt = $start_rand.$result.$end_rand;
+        // $date = Carbon::now();
+        // $start_rand = rand(5000,99999);
+        // $end_rand = rand(5000,99999);
+        // $result = $date->format('Y-m-d');
+        // $result = explode('-', $result);
+        // $result = implode("", $result);
+        // $invoiceEncrypt = $start_rand.$result.$end_rand;
 
         array_push($itemDetails, [ 'id' => rand(1, 999), 'name' => $order['shipping_code'] . " " . $order['shipping_service'], 'quantity' => 1, 'price' => $order['shipping_value']]);
         
@@ -189,7 +189,11 @@ class TestPaymentController extends Controller
                 }
     
                 if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny'){
-                    Order::where('invoice', $order_id)->update([
+                    // Order::where('invoice', $order_id)->update([
+                    //     'status' => 'failed',
+                    // ]);
+                    $order = Order::where('invoice', $order_id)->get();
+                    $order[0]->update([
                         'status' => 'failed',
                     ]);
 

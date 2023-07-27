@@ -24,7 +24,7 @@ class ClientController extends Controller
         //body recommendation
         $bodyRecommendation = $products->where('deleted_at',null)->get()->random(3);
         //latest recommendation
-        $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
+        $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
         //latest articles
         $latestArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->limit(2)->get();
         return view('pages.public.home', compact('bodyRecommendation','latestRecommendation','latestArticles'));
