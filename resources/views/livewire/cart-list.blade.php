@@ -116,7 +116,7 @@
 
             @if (!!Cart::getTotal())
                 <div
-                    class="mt-6 p-4 flex lg:block items-center justify-between bg-grey-secondary-50 lg:w-1/3 ml-auto rounded">
+                    class="mt-6 p-4 flex lg:block items-center justify-between lg:w-1/3 ml-auto rounded">
                     <div class="flex flex-row items-center justify-between gap-4">
                         <p class="lg:text-xl">Total: </p>
                         <p class="lg:text-2xl text-xl font-bold pr-2">
