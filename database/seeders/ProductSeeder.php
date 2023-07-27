@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         [
         'name' => 'Flower Anggrek Bulan',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-01.png',
         'description' => 'Wangi segar dengan sensasi manis diakhir saat telon sudah terkena kulit. Seperti aroma kesegaran hujan dengan harum manis dari bunga anggrek.',
         'price' => 55500,
         'stock' => 50,
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Magnolia',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-02.png',
         'description' => 'Wangi calming. Aroma menenangkan yang lembut, Telon Habbie mencoba mereplikasi suasana tenang melalui aroma magnolia.',
         'price' => 55500,
         'stock' => 50,
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Peony',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-03.png',
         'description' => 'Perpaduan aroma lembut, manis, asam dan adanya hint pahit sehingga memberi kesan aroma everlasting yang tidak membosankan.',
         'price' => 55500,
         'stock' => 50,
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Tulip',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-05.png',
         'description' => 'Aroma yang menggambarkan keunikan dari aroma bunga tulip yang segar.',
         'price' => 55500,
         'stock' => 50,
@@ -72,7 +72,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Lotus',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-06.png',
         'description' => "Wangi yang memberikan sensasi kesegaran dan kelembutan. Aroma lotus memiliki kesan 'semangat' sehingga cocok digunakan sehari-hari.",
         'price' => 55500,
         'stock' => 50,
@@ -86,7 +86,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Petunia',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-07.png',
         'description' => 'Wangi dengan karakter manis yang kuat dengan tambahan aroma asam diakhir. Wanginya memberi sensasi dingin ke segar saat dihirup oleh hidung.',
         'price' => 55500,
         'stock' => 50,
@@ -100,7 +100,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Sakura',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-08.png',
         'description' => 'Menggambarkan sensasi aroma musim semi dari negara Jepang. Wangi lembut dengan sensasi manis dan fresh ditambah ada sedikit aroma pahit di akhir saat sudah meresap ke kulit.',
         'price' => 55500,
         'stock' => 50,
@@ -114,7 +114,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Cactus',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-09.png',
         'description' => 'Wangi yang segar dengan campuran aroma manis unik yang jarang dijumpai di Telon Flower Series.',
         'price' => 55500,
         'stock' => 50,
@@ -128,7 +128,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Pansy',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-10.png',
         'description' => 'Wangi manis dari bunga pansy dengan campuran sensasi sedikit pahit dan asam yang segar eksotis. Memberikan wangi yang akan diingat siapapun yang mencium aroma telon ini.',
         'price' => 55500,
         'stock' => 50,
@@ -142,7 +142,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Fuchsia',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-11.png',
         'description' => 'Wangi manis bunga dengan tambahan sensasi asam dan pahit ditambah ada kesan powdery.',
         'price' => 55500,
         'stock' => 50,
@@ -156,7 +156,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Rose',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-12.png',
         'description' => 'Wangi khas bunga mawar dipadukan dengan wangi asam yang segar dan ringan.',
         'price' => 55500,
         'stock' => 50,
@@ -170,7 +170,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Lily',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-13.png',
         'description' => 'Wangi segar yang lembut, ditambah saat terkena kulit memberikan sensasi manis.',
         'price' => 55500,
         'stock' => 50,
@@ -184,7 +184,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Granium',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-14.png',
         'description' => 'Perpaduan wangi manis gardenia dengan sedikit wangi pahit dan asam yang fresh. Menampilkan wangi elegan yang eksotis.',
         'price' => 55500,
         'stock' => 50,
@@ -196,9 +196,9 @@ class ProductSeeder extends Seeder
         'updated_at' => Carbon::now()
     ],
     [
-        'name' => 'Gardenia',
+        'name' => 'Flower Gardenia',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-15.png',
         'description' => 'Wangi yang memberikan kelembutan dan harum yang manis khas aroma bunga gardenia yang jarang kita temui.',
         'price' => 55500,
         'stock' => 50,
@@ -212,7 +212,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Lemon',
         'category_id'=>1,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/flower-series-16.png',
         'description' => 'Kesegaran wangi citrus dipadukan sedikit wangi pahit dan asam dari bunga jeruk.',
         'price' => 55500,
         'stock' => 50,
@@ -226,7 +226,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Jasmine',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-01.png',
         'description' => 'Wangi harum bunga melati yang manis, dipadukan dengan aroma menenangkan dari wangi teh yang sedikit pahit.',
         'price' => 55500,
         'stock' => 50,
@@ -240,7 +240,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Fresh',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-02.png',
         'description' => 'Wangi unik dari dua kuncup daun teh termuda. Memberikan efek kesegaran dari teh khas Brazil.',
         'price' => 55500,
         'stock' => 50,
@@ -254,7 +254,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Matcha',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-03.png',
         'description' => 'Keharuman teh hijau yang menenangkan dengan sedikit sentuhan aroma pahit khas teh, memberikan sensasi rileks sejak terhirup oleh hidung.',
         'price' => 55500,
         'stock' => 50,
@@ -268,7 +268,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea White',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-05.png',
         'description' => 'Wangi teh yang lembut dengan sedikit sensasi manis yang menyegarkan.',
         'price' => 55500,
         'stock' => 50,
@@ -282,7 +282,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Green Honey',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-06.png',
         'description' => 'Wangi teh yang sedikit pahit menenangkan memberikan sensasi yang lembut dengan tanbahan sensasi manis diakhir.',
         'price' => 55500,
         'stock' => 50,
@@ -296,7 +296,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Black',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-07.png',
         'description' => 'Aroma menenangkan dari seduhan teh. Memberikan wangi yang lembut dan menenangkan dengan sedikit sensasi asam dan pahit.',
         'price' => 55500,
         'stock' => 50,
@@ -310,7 +310,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Oolong',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-08.png',
         'description' => 'Wangi teh yang lembut yang manis dengan memadukan kesan creamy dan sedikit aroma fruity diakhir.',
         'price' => 55500,
         'stock' => 50,
@@ -324,7 +324,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Pu-erh',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-09.png',
         'description' => 'Aroma teh yang lembut dengan karakter yang cenderung silky dan adanya hint floral.',
         'price' => 55500,
         'stock' => 50,
@@ -338,7 +338,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Yellow',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-10.png',
         'description' => 'Sensasi perpaduan wangi teh yang menenangkan dengan sedikit aroma buah citrus diakhir.',
         'price' => 55500,
         'stock' => 50,
@@ -352,7 +352,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Tree',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-11.png',
         'description' => 'Perpaduan wangi seperti aroma kayu putih dan kayu manis sehinggal menampilkan wangi yang terkesan bright.',
         'price' => 55500,
         'stock' => 50,
@@ -366,7 +366,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Bouquet',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-12.png',
         'description' => 'Aroma teh hitam yang kuat berpadu dengan wangi melati dan mawar yang manis dan menenangkan.',
         'price' => 55500,
         'stock' => 50,
@@ -380,7 +380,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Darjeeling',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-13.png',
         'description' => 'Gabungan dari aroma Mustacel yang manis dengan aroma pahit yang musky.',
         'price' => 55500,
         'stock' => 50,
@@ -394,7 +394,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Earl Grey',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-14.png',
         'description' => 'Wangi bergamot dengan karakter citrus yang dominan menghasilkan wangi teh yang unik menyegarkan.',
         'price' => 55500,
         'stock' => 50,
@@ -408,7 +408,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Sencha',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-15.png',
         'description' => 'Aroma flavorfull yang ada pada teh hijau saat dipetik di musim dingin menghasilkan wangi rileks yang lembut dan manis.',
         'price' => 55500,
         'stock' => 50,
@@ -422,7 +422,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Masala',
         'category_id'=>2,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/tea-series-16.png',
         'description' => 'Perpaduan wangi unik teh yang rileks dan lembut dipadukan dengan karakter wangi rempah (jahe, kapulaga, dan kayu manis) menghasilkan wangi yang kompleks dengan intensitas mild.',
         'price' => 55500,
         'stock' => 50,
