@@ -37,7 +37,7 @@ class ClientController extends Controller
         $offers = new Offer();
 
         //offer
-        $offers = $offers->where('deleted_at',null)->paginate(4);
+        $offers = $offers->where('deleted_at',null)->with('product')->orderBy('updated_at', 'DESC')->paginate(4);
         return view('pages.public.offers.index',compact('offers'));   
     }
 
