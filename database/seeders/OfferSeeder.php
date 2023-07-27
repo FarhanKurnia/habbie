@@ -16,8 +16,8 @@ class OfferSeeder extends Seeder
         DB::table('offers')->insert([[
             'name' => 'Buy 3 get 1 free',
             'slug' => 'buy-3-get-1-free',
-            'image' => 'path/image.jpg',
-            'description'=>'Lorem ipsim dolor sit amet',
+            'image' => 'storage/img/sample-offers-01.png',
+            'description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ipsum commodo, consequat dui nec, elementum nibh. Vestibulum luctus massa magna, non vulputate justo ullamcorper quis.',
             'product_id' => 20,
             'status' => 'active',
             'created_at' => Carbon::now(),
@@ -26,8 +26,8 @@ class OfferSeeder extends Seeder
         [
             'name' => 'Buy 3 only 60K',
             'slug' => 'buy-3-only-60k',
-            'image' => 'path/image.jpg',
-            'description'=>'Lorem ipsim dolor sit amet',
+            'image' => 'storage/img/sample-offers-01.png',
+            'description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ipsum commodo, consequat dui nec, elementum nibh. Vestibulum luctus massa magna, non vulputate justo ullamcorper quis.',
             'product_id' => 21,
             'status' => 'active',
             'created_at' => Carbon::now(),
