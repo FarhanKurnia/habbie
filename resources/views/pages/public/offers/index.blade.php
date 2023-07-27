@@ -11,8 +11,8 @@
             'color' => 'pink-primary',
         ])
         <div class="space-y-14">
-            @foreach ($offers as $offer)
-                @include('components.public.partials.content-list', ['offer' => $offer])
+            @foreach ($offers as $index => $offer)
+                @include('components.public.partials.content-list', ['offer' => $offer, $index])
             @endforeach
         </div>
 
