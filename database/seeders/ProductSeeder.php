@@ -519,7 +519,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'Turkish Vanilla',
-        'category_id'=>3,
+        'category_id'=>4,
         'image' => 'storage/img/sample-product.jpg',
         'description' => '',
         'price' => 65000,
@@ -533,7 +533,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'China Vanilla',
-        'category_id'=>3,
+        'category_id'=>4,
         'image' => 'storage/img/sample-product.jpg',
         'description' => '',
         'price' => 65000,
@@ -547,7 +547,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'Mexican Vanilla',
-        'category_id'=>3,
+        'category_id'=>4,
         'image' => 'storage/img/sample-product.jpg',
         'description' => '',
         'price' => 65000,
@@ -561,7 +561,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'Madagascar Vanilla',
-        'category_id'=>3,
+        'category_id'=>4,
         'image' => 'storage/img/sample-product.jpg',
         'description' => '',
         'price' => 65000,
@@ -575,7 +575,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'american vanilla',
-        'category_id'=>3,
+        'category_id'=>4,
         'image' => 'storage/img/sample-product.jpg',
         'description' => '',
         'price' => 65000,
@@ -589,7 +589,7 @@ class ProductSeeder extends Seeder
     ],
     [
         'name' => 'Indonesian Vanilla',
-        'category_id'=>3,
+        'category_id'=>4,
         'image' => 'storage/img/sample-product.jpg',
         'description' => '',
         'price' => 65000,
