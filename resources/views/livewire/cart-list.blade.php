@@ -49,12 +49,12 @@
                             </td>
                             <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap">
                                 <a href="{{ url('products/' . $item['attributes']->slug) }}"
-                                    class="flex flex-row gap-10 items-center">
-                                    <span>
+                                    class="grid grid-cols-4  items-center">
+                                    <span >
                                         <img class="h-20" src="{{ url($item['attributes']->image) }}"
                                             alt="{{ $item['name'] }}">
                                     </span>
-                                    <span class="hover:text-pink-primary">{{ $item['name'] }}</span>
+                                    <span class="col-span-2 hover:text-pink-primary">{{ $item['name'] }}</span>
                                 </a>
                             </td>
                             <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap text-center">
