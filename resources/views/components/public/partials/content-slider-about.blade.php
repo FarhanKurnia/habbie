@@ -3,13 +3,12 @@
         <div id="content-slider" class="py-14">
             @foreach ($contents as $content)
                 <div>
-                    <div class="w-2/3 mx-auto lg:grid lg:grid-cols-2 lg:gap-10  lg:p-10 relative">
-                        <div class="hidden lg:block absolute right-0 top-0 bg-teal px-60 py-36 z-2 rounded-xl"></div>
-                        <div class="image-content h-64 z-10">
-                            <img class="max-h-64 mx-auto" src="{{ url($content['image']) }}"
+                    <div class="w-2/3 mx-auto lg:grid lg:grid-cols-3 lg:gap-10  lg:p-10 relative">
+                        <div class="image-content h-72 z-20 absolute top-24 left-0">
+                            <img class="max-h-72 ml-auto" src="{{ url($content['image']) }}"
                                 alt="{{ $content['title'] }}" />
                         </div>
-                        <div class="text-content z-10 divide-y lg:bg-transparent lg:p-0  bg-teal-shadow p-4 rounded">
+                        <div class="col-span-3 text-content z-10 divide-green divide-y-2 bg-teal py-10 pr-8 rounded-xl pl-24 ml-8">
                             <div class="pb-6">
                                 <h3 class="text-3xl font-bold">{{ $content['title'] }}</h3>
                                 <h5 class="text-grey">{{ $content['subtitle'] }}</h5>
