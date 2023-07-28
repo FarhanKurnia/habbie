@@ -22,7 +22,7 @@ class ClientController extends Controller
         //products 
         $products = new Product();
         //body recommendation
-        $bodyRecommendation = $products->where('deleted_at',null)->get()->random(3);
+        $bodyRecommendation = $products->where([['deleted_at',null],['description','!=','']])->get()->random(3);
         //latest recommendation
         $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
         //latest articles

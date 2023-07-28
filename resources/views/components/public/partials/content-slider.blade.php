@@ -11,7 +11,8 @@
                             <p class="text-gray-400 text-sm text-grey">RECOMMENDATION FOR YOU</p>
                             <h3 class="text-xl font-bold text-pink-primary">{{ $product->name }}</h3>
                             <p class="pb-4">{{ $product->description }}</p>
-                            <a href="{{ url('products/'.$product->slug) }}"><button class="btn btn-primary rounded-full font-bold text-white">Shop Now</button></a>
+                            {{-- <button class="btn btn-primary rounded-full font-bold text-white">Shop Now</button> --}}
+                            <button class="btn btn-primary rounded-full font-bold text-white" onclick="window.location='{{ route("products.show",$product->slug) }}'">Shop Now</button>
                         </div>
                     </div>
                 </div>
