@@ -15,7 +15,8 @@
             <p class="text-left">
                 Dimulai tahun 2019, sebuah perusahaan yang berfokus pada produk berbasis Aromatic by Nature.
                 Kompetensi inti kami adalah budaya dan teknologi yang kuat berbasis online.
-                Dengan semangat kami sebagai generasi milenial, kami menyediakan produk dan brand unik yang memiliki nilai tambah bagi masyarakat. 
+                Dengan semangat kami sebagai generasi milenial, kami menyediakan produk dan brand unik yang memiliki nilai
+                tambah bagi masyarakat.
                 Love, Passion, Innovation, Customer Satisfaction, dan Family, adalah lima pilar nilai inti perusahaan kami.
                 Tagline kami adalah "Delivering love, passion, and kindness."</p>
         </div>
@@ -42,25 +43,27 @@
             @php
                 $contents = [
                     [
-                        'title' => 'Tea Tree',
-                        'image' => 'storage/img/img-slide.jpg',
-                        'subtitle' => 'Australia',
-                        'description' => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem, natus!
-                                    Distinctio
-                                    debitis magnam adipisci. ",
+                        'title' => 'Jasmine Tea',
+                        'image' => 'storage/img/Tea1.png',
+                        'subtitle' => 'Indonesia',
+                        'description' => 'Cerita pembuatan Jasmine Tea bermula di sore hari. Petani memetik kuncup bunga Melati agar mekar di malam hari. Daun teh digabungkan dengan kuncup bunga Melati dalam ruangan aromatik semalam. Aroma Melati menyelimuti teh dengan kelembutan. Saat fajar, petani memanen teh hasil semalam. Proses ini terangkum dalam Habbie Aromatic Telon Oil No 1 Jasmine Tea.',
                     ],
                     [
-                        'title' => 'Tea Tree',
-                        'image' => 'storage/img/img-slide.jpg',
-                        'subtitle' => 'Australia',
-                        'description' => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem, natus!
-                                    Distinctio
-                                    debitis magnam adipisci. ",
+                        'title' => 'Fresh Tea',
+                        'image' => 'storage/img/Tea2.png',
+                        'subtitle' => 'Jepang',
+                        'description' => "Teh terbaik diproduksi dari pucuk daun termuda. Varian Fresh Tea menggunakan 2 pucuk daun minimal proses, tanpa pengeringan, langsung diekstrak minyak aromatiknya. Aroma daun teh segar bunda rasakan dalam Habbie Aromatic Telon Oil No 2 Fresh Tea.",
+                    ],
+                    [
+                        'title' => 'Matcha Tea',
+                        'image' => 'storage/img/Tea3.png',
+                        'subtitle' => 'Jepang',
+                        'description' => "Tradisi minum teh di Jepang pada abad ke-9 menggunakan Matcha sebagai media meditasi menenangkan pikiran. Matcha tinggi tanin, mengurangi stress, tingkatkan mood. Daun teh hijau ditutup 20-30 hari sebelum dipanen untuk tingkatkan tanin dan klorofil. Daun dipanen dan dikeringkan cepat, kadar klorofil terjaga. Batang dipisahkan, daun ditumbuk. Voila, teh klorofil tinggi dengan aroma tanin hadir. FYI Habbie Aromatic Telon Oil No 3 Matcha Tea, cipta ketenangan pikiran.",
                     ],
                 ];
             @endphp
             @include('components.public.partials.content-slider-about', ['contents' => $contents]);
         </div>
-        
+
     </div>
 @endsection
