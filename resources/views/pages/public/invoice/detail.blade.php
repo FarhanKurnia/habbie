@@ -102,9 +102,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <p class="hidden lg:block">Note</p>
+                            <p class="hidden lg:block">Catatan</p>
                             <span class="flex justify-between items-center lg:hidden">
-                                <p class="font-bold text-lg">Note</p>
+                                <p class="font-bold text-lg">Catatan</p>
                                 <p class="text-end text-sm">{{$invoices->note}}</p>
                             </span>
                         </td>
