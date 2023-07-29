@@ -27,6 +27,7 @@ class FormCheckout extends Component
     public $selectedCost;
     public $orderData;
     public $phoneNumber;
+    public $note;
     public $invoice;
     public $totalWeight;
 
@@ -185,6 +186,7 @@ class FormCheckout extends Component
                     'name' => $user->name,
                     'email' => $user->email,
                     'phone' => $this->phoneNumber,
+                    'note' => $this->note,
                     'address' => $this->address,
                     'province' => json_decode($this->selectedProvince, true)['name'],
                     'city' => json_decode($this->selectedCity, true)['name'],

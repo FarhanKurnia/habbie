@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('invoice');
             $table->integer('total');
             $table->integer('total_weight')->nullable();
+            $table->string('note')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

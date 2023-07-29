@@ -8,6 +8,12 @@
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
+            <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Catatan" wire:model="note"
+                required></textarea>
+            @error('note')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
+
             <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Alamat" wire:model="address"
                 required></textarea>
             @error('address')

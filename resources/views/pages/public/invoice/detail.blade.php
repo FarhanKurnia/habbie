@@ -100,6 +100,19 @@
                                 {{ \App\Helpers\CurrencyFormat::data($invoices->sub_total) }}</p>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <p class="hidden lg:block">Note</p>
+                            <span class="flex justify-between items-center lg:hidden">
+                                <p class="font-bold text-lg">Note</p>
+                                <p class="text-end text-sm">{{$invoices->note}}</p>
+                            </span>
+                        </td>
+                        <td class="hidden lg:table-cell"></td>
+                        <td class="hidden lg:table-cell">
+                            <p class="text-center">{{$invoices->note}}</p>
+                        </td>
+                    </tr>
                     <tr class="bg-grey-secondary-50">
                         <td class="flex justify-between items-center lg:table-cell">
                             <span>
@@ -129,6 +142,7 @@
                                 {{ \App\Helpers\CurrencyFormat::data($invoices->total) }}</p>
                         </td>
                     </tr>
+                    
                 </tbody>
             </table>
 
