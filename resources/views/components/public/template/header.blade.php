@@ -29,7 +29,7 @@
                     </li>
                     <li><a class="text-sm font-bold">TESTIMONIAL</a></li>
                     <li><a class="text-sm font-bold">MEMBERSHIP</a></li>
-                    <li><a class="text-sm font-bold">MEDIA</a></li>
+                    <li><a href="{{ url('media') }}" class="text-sm font-bold">MEDIA</a></li>
                 </ul>
 
             </div>
@@ -64,7 +64,7 @@
                             </li>
                             <li><a>Testimonial</a></li>
                             <li><a>Membership</a></li>
-                            <li><a>Media</a></li>
+                            <li><a href="{{ url('media') }}">Media</a></li>
                             @if (is_null(Auth::user()))
                                 <li><a href="{{ url('/login') }}">Login</a></li>
                                 <li><a href="{{ url('/register') }}">Register</a></li>
