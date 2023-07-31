@@ -53,7 +53,7 @@
             @endforeach
         </div>
         <div class="text-center py-4">
-            <button class="btn btn-primary rounded-full font-bold text-white">READ ALL ARTICLES</button>
+            <a href="{{ url('media') }}"><button class="btn btn-primary rounded-full font-bold text-white">READ ALL ARTICLES</button></a>
         </div>
     </div>
 

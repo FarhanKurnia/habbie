@@ -47,6 +47,11 @@ Route::get('membership', function (){
     return view('pages.public.membership');
 });
 
+Route::get('/media', [ClientController::class, 'indexArticles']);
+
+Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+
+
 // Auth
 Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
 Route::get('/register',[AuthController::class,'register'])->name('register')->middleware('guest');

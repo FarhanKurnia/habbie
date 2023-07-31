@@ -126,8 +126,8 @@ class ClientController extends Controller
         //offer
         $oneArticle = $articles->first();
         //review
-        $relatedArticles = $articles->get();
-        return view('test.customer.media.index-article-client',compact('categories','randomRecommendation','oneArticle','relatedArticles'));
+        $relatedArticles = $articles->paginate(2);
+        return view('pages.public.articles.index',compact('categories','randomRecommendation','oneArticle','relatedArticles'));
     }
 
     public function showArticle($slug)
@@ -145,7 +145,7 @@ class ClientController extends Controller
         $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
         //latest recommendation with same category as above
         $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
-        return view('test.customer.media.show-article-client', compact('categories','randomRecommendation','oneArticle','latestArticles'));
+        return view('pages.public.articles.detail', compact('categories','randomRecommendation','oneArticle','latestArticles'));
     }
 
 //view order function
