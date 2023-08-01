@@ -36,6 +36,12 @@ class Product extends Model
 
     // one product has one offer
     public function offer(){
-        return $this->hasOne(Offer::class, 'offer_id');
+        return $this->hasMany(Offer::class, 'offer_id');
     }
+
+    // one product has one body recommendation
+    public function bodyrecommendation(){
+        return $this->hasMany(Body_Recommendation::class, 'body_recommendation_id');
+    }
+
 }

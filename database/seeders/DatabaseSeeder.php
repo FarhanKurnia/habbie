@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Body_Recommendation;
 use App\Models\Product_Category;
 use Illuminate\Database\Seeder;
 
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
             OfferSeeder::class,
             TestimonialSeeder::class,
             ReviewSeeder::class,
+            BodyRecommendationSeeder::class,
         ]);
     }
 }

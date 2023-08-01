@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Article;
+use App\Models\Body_Recommendation;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -21,8 +22,12 @@ class ClientController extends Controller
         $articles = new Article();
         //products 
         $products = new Product();
+        //body_recommendation
+        $bodyrecommendations = new Body_Recommendation();
+
         //body recommendation
-        $bodyRecommendation = $products->where([['deleted_at',null],['description','!=','']])->get()->random(3);
+        // $bodyRecommendation = $products->where([['deleted_at',null],['description','!=','']])->get()->random(3);
+        $bodyRecommendation = $bodyrecommendations->where('deleted_at',null)->with('product')->get();
         //latest recommendation
         $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
         //latest articles
