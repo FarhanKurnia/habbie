@@ -26,7 +26,7 @@ class ClientController extends Controller
         //latest recommendation
         $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
         //latest articles
-        $latestArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->limit(2)->get();
+        $latestArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->limit(2)->get();
         return view('pages.public.home', compact('bodyRecommendation','latestRecommendation','latestArticles'));
     }
 
@@ -117,39 +117,49 @@ class ClientController extends Controller
 // Article function
     public function indexArticles()
     {
-        //products
-        $products = new Product();
         //articles
         $articles = new Article();
 
-        //category
-        $categories = Product_Category::all();
-        //link recommendation
-        $randomRecommendation = $products->all()->random(1);
-        //offer
-        $oneArticle = $articles->first();
-        //review
-        $relatedArticles = $articles->paginate(2);
-        return view('pages.public.articles.index',compact('categories','randomRecommendation','oneArticle','relatedArticles'));
+        //article
+        $oneArticle = $articles->where([['deleted_at',null],['categories','article']])->first();
+        //related article
+        $relatedArticles = $articles->where([['deleted_at',null],['categories','article']])->orderBy('id_article','DESC')->paginate(2);
+        return view('pages.public.articles.index',compact('oneArticle','relatedArticles'));
     }
 
     public function showArticle($slug)
     {
-        //products 
-        $products = new Product();
         //articles
         $articles = new Article();
         
-        //category
-        $categories = Product_Category::where('deleted_at',null)->get();
-        //link recommendation
-        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //find article 
-        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->firstOrFail();
         //latest recommendation with same category as above
         $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
-        return view('pages.public.articles.detail', compact('categories','randomRecommendation','oneArticle','latestArticles'));
+        return view('pages.public.articles.detail', compact('oneArticle','latestArticles'));
     }
+
+// Career function
+public function indexCareers()
+{
+    //articles
+    $articles = new Article();
+
+    //careers
+    $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
+    
+    return view('test.customer.career.index-career-client',compact('careers'));
+}
+
+public function showCareer($slug)
+{
+    //articles
+    $articles = new Article();
+    
+    //find career 
+    $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
+    return view('test.customer.career.show-career-client', compact('career'));
+}
 
 //view order function
     public function order(){

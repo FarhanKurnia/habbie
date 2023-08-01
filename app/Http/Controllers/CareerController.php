@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Article;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-class ArticleController extends Controller
+
+class CareerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +15,16 @@ class ArticleController extends Controller
     {
         //articles
         $articles = new Article();
-
-        $indexArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->paginate(10);
-        return view('test.admin.article.index-article-admin', compact('indexArticles'));
+        //careers
+        $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
+        return view('test.admin.career.index-career-admin',compact('careers'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('test.admin.article.create-article-admin');
+        return view('test.admin.career.create-career-admin');
     }
 
     /**
@@ -44,10 +43,10 @@ class ArticleController extends Controller
             'excerpt' => $excerpt,
             'image' => $request->image,
             'slug' => $slug,
-            'categories' => 'article',
+            'categories' => 'career',
             'user_id' => $request->user_id,
         ]);
-        return redirect()->route('indexArticles');
+        return redirect()->route('indexCareers');    
     }
 
     /**
@@ -55,10 +54,12 @@ class ArticleController extends Controller
      */
     public function show($slug)
     {
-        //Articles
+        //articles
         $articles = new Article();
-        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
-        return view('test.admin.article.show-article-admin', compact('oneArticle'));
+    
+        //find career 
+        $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
+        return view('test.admin.career.show-career-admin', compact('career'));
     }
 
     /**
@@ -69,8 +70,8 @@ class ArticleController extends Controller
         //articles
         $articles = new Article();
 
-        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->with('user')->firstOrFail();
-        return view('test.admin.article.update-article-admin',compact('oneArticle'));
+        $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->with('user')->firstOrFail();
+        return view('test.admin.career.update-career-admin',compact('career'));
     }
 
     /**
@@ -85,25 +86,24 @@ class ArticleController extends Controller
         $getSlug = strtolower($getSlug);
         $excerpt = Str::limit($request->post,250);
 
-        $article = $articles->where([['deleted_at',null],['slug',$slug],['categories','article']])->firstOrFail();
-        $article->update([
+        $career = $articles->where([['deleted_at',null],['slug',$slug],['categories','career']])->firstOrFail();
+        $career->update([
             'title' => $request->title,
             'post' => $request->post,
             'excerpt' => $excerpt,
             'image' => $request->image,
             'slug' => $getSlug,
-            'categories' => 'article',
+            'categories' => 'career',
             'user_id' => $request->user_id,
         ]);
-        if ($article) {
+        if ($career) {
             return redirect()
-                ->route('indexArticles');
+                ->route('indexCareers');
         } else {
             return redirect()
                 ->back()
                 ->withInput();
-        }
-    }
+        }    }
 
     /**
      * Remove the specified resource from storage.
@@ -112,18 +112,17 @@ class ArticleController extends Controller
     {
         //articles
         $articles = new Article();
-        $article = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->firstOrFail();
-        $article->update([
+        $carrer = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
+        $carrer->update([
             'deleted_at' => Carbon::now(),
             'slug' => $slug."-deleted",
         ]);
-        if ($article) {
+        if ($carrer) {
             return redirect()
-                ->route('indexArticles');
+                ->route('indexCareers');
         } else {
             return redirect()
                 ->back()
                 ->withInput();
-        }
-    }
+        }    }
 }

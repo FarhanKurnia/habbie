@@ -9,6 +9,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\TestPaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CareerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,10 +75,15 @@ Route::middleware(['auth','verified','customer'])->group(function () {
 
 
 Route::prefix('test')->group(function () {
-    Route::get('/testimonials', [ClientController::class, 'indexTestimonials']);
+    Route::get('/testimonials', [ClientController::class, 'indexTestimonials'])->name('indexTestimonialClient');
     //Medias
-    Route::get('/media', [ClientController::class, 'indexArticles']);
-    Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+    Route::get('/media', [ClientController::class, 'indexArticles'])->name('indexArticleClient');
+    Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient');
+
+    //Careers
+    Route::get('/career', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
+    Route::get('/career/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
+
     
 
 //admin (login role: admin)
@@ -122,6 +128,16 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/articles/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
         Route::patch('/admin/articles/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
         Route::get('/admin/articles/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
+
+        //Careers
+        Route::get('/admin/careers', [CareerController::class, 'index'])->name('indexCareers');
+        Route::get('/admin/careers/add', [CareerController::class, 'create'])->name('createCareers');
+        Route::post('/admin/careers/store', [CareerController::class, 'store'])->name('storeCareers');
+        Route::get('/admin/careers/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
+        Route::get('/admin/careers/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
+        Route::patch('/admin/careers/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
+        Route::get('/admin/careers/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
+
 
         //Discounts
         Route::get('/admin/discounts', [DiscountController::class, 'index'])->name('indexDiscounts');
