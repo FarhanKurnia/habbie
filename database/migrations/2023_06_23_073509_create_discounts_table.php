@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('rule');
-            $table->string('description');
+            $table->text('description');
             $table->enum('status',['active','non-active']);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

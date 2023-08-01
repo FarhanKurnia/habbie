@@ -16,7 +16,7 @@ class ArticleController extends Controller
         //articles
         $articles = new Article();
 
-        $indexArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->paginate(10);
+        $indexArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->paginate(10);
         return view('test.admin.article.index-article-admin', compact('indexArticles'));
     }
 
@@ -44,6 +44,7 @@ class ArticleController extends Controller
             'excerpt' => $excerpt,
             'image' => $request->image,
             'slug' => $slug,
+            'categories' => 'article',
             'user_id' => $request->user_id,
         ]);
         return redirect()->route('indexArticles');
@@ -68,7 +69,7 @@ class ArticleController extends Controller
         //articles
         $articles = new Article();
 
-        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->with('user')->firstOrFail();
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->with('user')->firstOrFail();
         return view('test.admin.article.update-article-admin',compact('oneArticle'));
     }
 
@@ -84,13 +85,14 @@ class ArticleController extends Controller
         $getSlug = strtolower($getSlug);
         $excerpt = Str::limit($request->post,250);
 
-        $article = $articles->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        $article = $articles->where([['deleted_at',null],['slug',$slug],['categories','article']])->firstOrFail();
         $article->update([
             'title' => $request->title,
             'post' => $request->post,
             'excerpt' => $excerpt,
             'image' => $request->image,
             'slug' => $getSlug,
+            'categories' => 'article',
             'user_id' => $request->user_id,
         ]);
         if ($article) {
@@ -110,7 +112,7 @@ class ArticleController extends Controller
     {
         //articles
         $articles = new Article();
-        $article = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $article = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->firstOrFail();
         $article->update([
             'deleted_at' => Carbon::now(),
             'slug' => $slug."-deleted",
