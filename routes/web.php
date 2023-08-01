@@ -39,9 +39,7 @@ Route::get('cart', function (){
     return view('pages.public.cart');
 });
 
-Route::get('testimonials', function (){
-    return view('pages.public.testimonials');
-});
+Route::get('testimonials', [ClientController::class, 'indexTestimonials']);
 
 Route::get('membership', function (){
     return view('pages.public.membership');
