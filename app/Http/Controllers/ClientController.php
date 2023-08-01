@@ -107,8 +107,11 @@ class ClientController extends Controller
         //offer
         $testimonials = $testimonials->where('deleted_at',null)->get();
         //review
-        $reviews = $reviews->where('deleted_at',null)->get();
-        return view('test.customer.testimonial.testimonial-client',compact('categories','randomRecommendation','testimonials','reviews'));
+        $reviewList = $reviews->where('deleted_at',null)->paginate(6);
+
+        $totalCountReviews = $reviews->count();
+        $totalRateReviews = $reviews->sum('rating') / $totalCountReviews;
+        return view('pages.public.testimonials',compact('categories','randomRecommendation','testimonials','reviewList', 'totalCountReviews', 'totalRateReviews'));
     }
 
 // Article function
