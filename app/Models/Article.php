@@ -10,7 +10,7 @@ class Article extends Model
     protected $table = 'articles';
     protected $primaryKey = 'id_article';
     protected $fillable = [
-        'title', 'post','excerpt', 'image', 'slug','deleted_at','user_id'
+        'title', 'post','excerpt', 'image', 'slug','deleted_at','categories','user_id'
     ];
 
     // many articles owned by one user

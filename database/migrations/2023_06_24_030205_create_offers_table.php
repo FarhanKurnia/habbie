@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('slug');
-            $table->string('description');
+            $table->longText('description');
             $table->enum('status',['active','non-active']);
             $table->unsignedBigInteger('product_id');
             $table->timestamp('deleted_at')->nullable();
