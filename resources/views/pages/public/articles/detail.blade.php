@@ -15,7 +15,7 @@
             </div>
     
             <div class="image lg:w-5/6 py-6 lg:mx-auto">
-                <img src="{{ url($oneArticle->image) }}" alt="$oneArticle->title" class="lg:rounded-lg">
+                <img src="{{ url($oneArticle->image) }}" alt="$oneArticle->title" class="w-full lg:rounded-lg">
             </div>
     
             <div class="content lg:w-3/4 lg:mx-auto mx-10 ">
