@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carrier;
+use App\Models\Career;
 use Illuminate\Http\Request;
 
-class CarrierController extends Controller
+class CareerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class CarrierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Carrier $carrier)
+    public function show(Career $career)
     {
         //
     }
@@ -42,7 +42,7 @@ class CarrierController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Carrier $carrier)
+    public function edit(Career $career)
     {
         //
     }
@@ -50,7 +50,7 @@ class CarrierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Carrier $carrier)
+    public function update(Request $request, Career $career)
     {
         //
     }
@@ -58,7 +58,7 @@ class CarrierController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Carrier $carrier)
+    public function destroy(Career $career)
     {
         //
     }
