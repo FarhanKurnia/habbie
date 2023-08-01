@@ -10,7 +10,7 @@
                         <div class="text-content flex flex-col gap-4">
                             <span>
                                 <h3 class="text-xl font-bold text-pink-primary">{{ $content['name'] }}</h3>
-                                <p class="text-sm text-grey-secondary">{{ $content['info'] }}</p>
+                                <p class="text-sm text-grey-secondary">{{ $content['profesi'] . ", " . $content['lokasi']}}</p>
                             </span>
                             <p>{{ $content['description'] }}</p>
                         </div>
