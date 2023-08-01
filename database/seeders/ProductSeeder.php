@@ -436,7 +436,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Turkish Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/saffron_1.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -450,7 +450,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Afgan Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/saffron_2.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -464,7 +464,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Spanish Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/saffron_3.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -478,7 +478,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Negin Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/saffron_5.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -492,7 +492,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Khasmir Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/saffron_6.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -506,7 +506,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Iran Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/saffron_7.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -520,7 +520,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Turkish Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/vanilla_1.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -534,7 +534,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'China Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/vanilla_2.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -548,7 +548,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Mexican Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/vanilla_3.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -562,7 +562,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Madagascar Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/vanilla_5.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -576,7 +576,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'american vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/vanilla_6.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
@@ -590,7 +590,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Indonesian Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/sample-product.jpg',
+        'image' => 'storage/img/vanilla_7.png',
         'description' => '',
         'price' => 65000,
         'stock' => 50,
