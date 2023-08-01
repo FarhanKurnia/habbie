@@ -146,6 +146,8 @@ class FormCheckout extends Component
         if(!!\Cart::getTotal()){
             $user = Auth::user();
 
+            $this->wrapperNote();
+
             $selectedCost = json_decode($this->selectedCost, true);
             $cartItems = \Cart::getContent();
     
@@ -231,6 +233,12 @@ class FormCheckout extends Component
             });
         }
     
+    }
+
+    public function wrapperNote()
+    {
+        $preTag = "<pre>".$this->note."</pre>";
+        $this->note = $preTag;
     }
 
     public function mount()
