@@ -73,7 +73,10 @@ Route::middleware(['auth','verified','customer'])->group(function () {
     Route::get('invoice',[ClientController::class,'indexInvoiceClient']);
 });
 
-
+// Admin
+Route::get('admin', function (){
+    return view('pages.admin.dashboard');
+});
 
 Route::prefix('test')->group(function () {
     Route::get('/testimonials', [ClientController::class, 'indexTestimonials']);
