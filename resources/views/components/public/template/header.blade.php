@@ -27,7 +27,7 @@
                             <livewire:menu-category-product />
                         </details>
                     </li>
-                    <li><a class="text-sm font-bold">TESTIMONIAL</a></li>
+                    <li><a href="{{ url('testimonials') }}" class="text-sm font-bold">TESTIMONIAL</a></li>
                     <li><a class="text-sm font-bold">MEMBERSHIP</a></li>
                     <li><a href="{{ url('media') }}" class="text-sm font-bold">MEDIA</a></li>
                 </ul>
@@ -62,7 +62,7 @@
                                 <a>Products</a>
                                 <livewire:menu-category-product />
                             </li>
-                            <li><a>Testimonial</a></li>
+                            <li><a href="{{ url('testimonials') }}">Testimonial</a></li>
                             <li><a>Membership</a></li>
                             <li><a href="{{ url('media') }}">Media</a></li>
                             @if (is_null(Auth::user()))
