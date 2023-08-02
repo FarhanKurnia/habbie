@@ -28,7 +28,20 @@
                         </details>
                     </li>
                     <li><a href="{{ url('testimonials') }}" class="text-sm font-bold">TESTIMONIAL</a></li>
-                    <li><a class="text-sm font-bold">MEMBERSHIP</a></li>
+                    <li tabindex="0">
+                        <details>
+                            <summary class="text-sm font-bold">MEMBERSHIP</summary>
+                            <ul class="flex flex-col lg:flex-row p-2 z-20">
+                                <li>
+                                    <ul class="flex flex-col">
+                                        <li><a href="{{ url('membership') }}">Information</a></li>
+                                        <li><a href="{{ url('membership/join') }}">Join Program</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    {{-- <li><a class="text-sm font-bold">MEMBERSHIP</a></li> --}}
                     <li><a href="{{ url('media') }}" class="text-sm font-bold">MEDIA</a></li>
                 </ul>
 
@@ -63,7 +76,17 @@
                                 <livewire:menu-category-product />
                             </li>
                             <li><a href="{{ url('testimonials') }}">Testimonial</a></li>
-                            <li><a>Membership</a></li>
+                            <li>
+                                <a>Membership</a>
+                                <ul class="flex flex-col lg:flex-row p-2 z-20">
+                                    <li>
+                                        <ul class="flex flex-col">
+                                            <li><a href="{{ url('membership') }}">Information</a></li>
+                                            <li><a href="{{ url('membership/join') }}">Join Program</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                             <li><a href="{{ url('media') }}">Media</a></li>
                             @if (is_null(Auth::user()))
                                 <li><a href="{{ url('/login') }}">Login</a></li>
