@@ -1,6 +1,6 @@
 <div class="flex flex-col pb-14">
     <form action="" wire:submit.prevent="submitMembership" method="POST">
-        <div class="lg:py-14 flex flex-col space-y-6 w-full">
+        <div class="pb-14 lg:py-14 flex flex-col space-y-6 w-full">
             <input type="text" class="input input-bordered rounded-full bg-grey-secondary-50 "
                 placeholder="Nama Lengkap" wire:model="name" required>
             @error('name')
@@ -37,6 +37,9 @@
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
+            <span>
+                <p class="text-grey-secondary">Tanggal Lahir</p>
+            </span>
             <input id="datepicker" type="text" class="input input-bordered rounded-full bg-grey-secondary-50 "
                 placeholder="Tanggal Lahir" wire:model="ttl" required>
             @error('ttl')
@@ -95,6 +98,12 @@
                     <option value="{{ json_encode($data) }}">{{ $subdistrict['subdistrict_name'] }}</option>
                 @endforeach
             </select>
+
+            <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="Kode Pos"
+                wire:model="postalCode" required>
+            @error('postalCode')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary text-white rounded-full">Submit</button>
     </form>
