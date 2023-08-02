@@ -46,6 +46,10 @@ Route::get('membership', function (){
     return view('pages.public.membership');
 });
 
+Route::get('membership/join', function (){
+    return view('pages.public.register-membership');
+});
+
 Route::get('/media', [ClientController::class, 'indexArticles']);
 
 Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
