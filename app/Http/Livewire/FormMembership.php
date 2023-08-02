@@ -21,6 +21,7 @@ class FormMembership extends Component
     public $email;
     public $phoneNumber;
     public $membershipData;
+    public $postalCode;
 
     public function fetchData()
     {
@@ -104,7 +105,8 @@ class FormMembership extends Component
             "address" => $this->address,
             "province" => json_decode($this->selectedProvince, true)['name'],
             "city" => json_decode($this->selectedCity, true)['name'],
-            "subdistrict" => json_decode($this->selectedSubdistrict, true)['name']
+            "subdistrict" => json_decode($this->selectedSubdistrict, true)['name'],
+            "postalCode" => $this->postalCode
         ];
 
         dd($this->membershipData);
