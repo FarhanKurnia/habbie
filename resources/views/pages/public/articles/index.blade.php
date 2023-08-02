@@ -5,9 +5,9 @@
     @php
         $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $oneArticle->updated_at)->format('l, d F Y');
     @endphp
-    <img class="w-full" src="{{ url($oneArticle->image) }}" alt="">
     <div class="container mx-auto py-4 divide-y-2 divide-grey-secondary">
-        <div class="pb-10">
+        <img class="w-full object-cover" src="{{ url($oneArticle->image) }}" alt="{{ $oneArticle->title }}">
+        <div class="py-10">
             <div class="text-center pb-6">
                 <h1 class="text-2xl font-bold text-pink-primary">{{ $oneArticle->title }}</h1>
                 <small class="text-grey-secondary">{{ $date }}</small>
