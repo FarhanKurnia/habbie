@@ -61,7 +61,9 @@
     </div>
     <div class="container mx-auto lg:bg-grey-secondary-50 p-10 rounded-lg my-10 text-center flex flex-col gap-4">
         <h3 class="font-bold text-2xl text-grey">Tunggu Apa Lagi, Mombie?</h3>
-        <button class=" btn btn-sm btn-primary mx-auto rounded-full font-bold text-white">Join Member Now!</button>
+        <a href="{{ url('membership/join') }}">
+            <button class=" btn btn-sm btn-primary mx-auto rounded-full font-bold text-white">Join Member Now!</button>
+        </a>
     </div>
 
 @endsection
