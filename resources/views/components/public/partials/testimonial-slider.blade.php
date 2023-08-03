@@ -3,9 +3,9 @@
         <div id="content-slider" class="py-14">
             @foreach ($contents as $content)
                 <div>
-                    <div class="lg:w-2/3 lg:mx-auto mx-8 lg:grid lg:grid-cols-2 lg:gap-10 items-center">
+                    <div class="lg:w-2/3 lg:mx-auto mx-8 lg:grid lg:grid-cols-2 lg:gap-10 space-y-10 lg:space-y-0 items-center">
                         <div class="image-content h-64">
-                            <img class="max-h-64 mx-auto" src="{{ $content['image'] }}" alt="{{ $content['name'] }}" />
+                            <img class="h-full w-full object-cover mx-auto" src="{{ $content['image'] }}" alt="{{ $content['name'] }}" />
                         </div>
                         <div class="text-content flex flex-col gap-4">
                             <span>
