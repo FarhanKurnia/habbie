@@ -10,6 +10,7 @@ use App\Http\Controllers\TestPaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\ResellerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -159,7 +160,6 @@ Route::prefix('test')->group(function () {
     // Route::get('/order/{invoice}',[OrderController::class,'getOrder'])->name('getOrder');
     // Route::get('/invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
     // Route::get('/invoice',[ClientController::class,'indexInvoiceClient']);
-
-    
-
+    Route::get('/reseller',[ClientController::class,'testReseller'])->name('testReseller');
+    Route::post('/joinReseller',[ClientController::class,'joinReseller'])->name('joinReseller');
 });

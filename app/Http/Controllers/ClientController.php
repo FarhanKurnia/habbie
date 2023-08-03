@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Product_Category;
 use App\Models\Testimonial;
 use App\Models\Review;
+use App\Models\Reseller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -166,7 +167,7 @@ public function showCareer($slug)
     return view('test.customer.career.show-career-client', compact('career'));
 }
 
-//view order function
+//test view order function
     public function order(){
         return view('test.customer.order.order-client');
     }
@@ -186,5 +187,45 @@ public function showCareer($slug)
         $id_order = $invoices->id_order;
         $orders = OrderProduct::where('order_id',$id_order)->with('product','discount',)->get();
         return view('pages.public.invoice.detail',compact('invoices','orders'));
+    }
+
+//Reseller 
+    //test view reseller function
+    public function testReseller(Request $request){
+        return view('test.customer.reseller.reseller-client');
+        
+    }
+
+    //join reseller function
+    public function joinReseller(Request $request){
+        $request->validate([
+            'name' => 'required', 
+            'email'=> 'required|email:rfc,dns', 
+            'gender'=> 'required', 
+            'phone'=> 'required', 
+            'birth_date'=> 'required', 
+            'identity_card'=> 'required|unique:resellers', 
+            'address'=> 'required', 
+            'province'=> 'required', 
+            'city'=> 'required',
+            'subdistrict'=> 'required',
+            'postal_code'=> 'required',
+
+        ]);
+        Reseller::create([
+            'name' => $request->name, 
+            'email'=> $request->email, 
+            'gender'=> $request->gender, 
+            'phone'=> $request->phone, 
+            'birth_date'=> $request->birth_date, 
+            'identity_card'=> $request->identity_card, 
+            'identity_card'=> 'active', 
+            'address'=> $request->address, 
+            'province'=> $request->province, 
+            'city'=> $request->city,
+            'subdistrict'=> $request->subdistrict,
+            'postal_code'=> $request->postal_code,
+        ]);
+        return view('test.customer.reseller.reseller-client');
     }
 }
