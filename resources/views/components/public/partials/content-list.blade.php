@@ -1,4 +1,4 @@
-<div class="grid lg:grid-cols-2 gap-6 items-center">
+<div class="grid lg:grid-cols-2 gap-6 items-top">
     <a href="{{ url('/products/'. $offer->product['slug']) }}">
         <div class="bg-grey-secondary-50 p-8 rounded relative">
             @if ($index < 4)                
