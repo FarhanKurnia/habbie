@@ -7,8 +7,47 @@
     <div class="bg-white shadow-md">
         <div class="navbar bg-base-100 container mx-auto">
             <div class="navbar-start lg:w-full">
-                <div class="lg:hidden">
-                    <livewire:cart-info />
+                <div class="mobile flex items-center lg:hidden">
+                    {{-- mobile menu --}}
+                    <div class="dropdown dropdown-start">
+                        <label tabindex="0" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </label>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-20">
+                            <li><a href="{{ url('/offers') }}">Offers</a></li>
+                            <li>
+                                <a>Products</a>
+                                <livewire:menu-category-product />
+                            </li>
+                            <li><a href="{{ url('testimonials') }}">Testimonial</a></li>
+                            <li>
+                                <a>Membership</a>
+                                <ul class="flex flex-col lg:flex-row p-2 z-20">
+                                    <li>
+                                        <ul class="flex flex-col">
+                                            <li><a href="{{ url('membership') }}">Information</a></li>
+                                            <li><a href="{{ url('membership/join') }}">Join Program</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ url('media') }}">Media</a></li>
+                            @if (is_null(Auth::user()))
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('/register') }}">Register</a></li>
+                            @else
+                                {{-- <li><a href="{{ url('/invoice') }}">Invoice</a></li> --}}
+                                <li><a href="{{ url('/invoice') }}">Invoice</a></li>
+                                <li><a href="{{ url('/logout') }}">Logout</a></li>
+                            @endif
+                        </ul>
+                    </div>
+
                 </div>
 
                 {{-- logo desktop --}}
@@ -58,48 +97,10 @@
 
             <div class="navbar-end">
                 {{-- mobile --}}
-                <div class="mobile flex items-center lg:hidden">
-                    {{-- mobile menu --}}
-                    <div class="dropdown dropdown-end">
-                        <label tabindex="0" class="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
-                        </label>
-                        <ul tabindex="0"
-                            class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-20">
-                            <li><a href="{{ url('/offers') }}">Offers</a></li>
-                            <li>
-                                <a>Products</a>
-                                <livewire:menu-category-product />
-                            </li>
-                            <li><a href="{{ url('testimonials') }}">Testimonial</a></li>
-                            <li>
-                                <a>Membership</a>
-                                <ul class="flex flex-col lg:flex-row p-2 z-20">
-                                    <li>
-                                        <ul class="flex flex-col">
-                                            <li><a href="{{ url('membership') }}">Information</a></li>
-                                            <li><a href="{{ url('membership/join') }}">Join Program</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="{{ url('media') }}">Media</a></li>
-                            @if (is_null(Auth::user()))
-                                <li><a href="{{ url('/login') }}">Login</a></li>
-                                <li><a href="{{ url('/register') }}">Register</a></li>
-                            @else
-                                {{-- <li><a href="{{ url('/invoice') }}">Invoice</a></li> --}}
-                                <li><a href="{{ url('/invoice') }}">Invoice</a></li>
-                                <li><a href="{{ url('/logout') }}">Logout</a></li>
-                            @endif
-                        </ul>
-                    </div>
-
+                <div class="lg:hidden">
+                    <livewire:cart-info />
                 </div>
+
 
                 {{-- desktop cart info & log in --}}
                 <div class="hidden lg:flex gap-4 items-center">
