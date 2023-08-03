@@ -14,28 +14,28 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('product_categories')->insert([[
-            'name' => 'Telon Oil Flower',
-            'slug' => 'telon-oil-flower',
+            'name' => 'Aromatic Telon Oil Flower',
+            'slug' => 'aromatic-telon-oil-flower',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'name' => 'Telon Oil Tea',
-            'slug' => 'telon-oil-tea',
+            'name' => 'Aromatic Telon Oil Tea',
+            'slug' => 'aromatic-telon-oil-tea',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
         ,
         [
-            'name' => 'Cajuput Oil Saffron',
-            'slug' => 'cajuput-oil-saffron',
+            'name' => 'Aromatic Cajuput Oil Saffron',
+            'slug' => 'aromatic-cajuput-oil-saffron',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
         ,
         [
-            'name' => 'Cajuput Oil Vanilla',
-            'slug' => 'cajuput-oil-vanilla ',
+            'name' => 'Aromatic Cajuput Oil Vanilla',
+            'slug' => 'aromatic-cajuput-oil-vanilla ',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
