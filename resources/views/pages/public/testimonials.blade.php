@@ -13,7 +13,7 @@
             @include('components.public.partials.testimonial-slider', ['contents' => $testimonials])
         </div>
 
-        <div class="my-8 mx-8 lg:mx-0">
+        <div class="mb-8 mx-8 lg:mx-0">
             <div class="flex justify-start">
                 <span class="flex flex-col text-center gap-2">
                     <p class="text-xs font-bold">Product Reviews</p>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-8 mx-8 lg:mx-0">
+        <div class="lg:w-5/6 lg:mx-auto grid lg:grid-cols-3 gap-8 mx-8 ">
 
             @foreach ($reviewList as $review)
                 <div>
