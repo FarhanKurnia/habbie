@@ -1,4 +1,4 @@
-<div class="dropdown dropdown-start lg:dropdown-end z-10">
+<div class="dropdown dropdown-end z-10">
     <label tabindex="0" class="btn btn-ghost btn-circle lg:bg-grey-secondary-50">
         <div class="indicator">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
