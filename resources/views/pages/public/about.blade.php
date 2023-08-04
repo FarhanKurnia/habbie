@@ -62,7 +62,7 @@
                     ],
                 ];
             @endphp
-            @include('components.public.partials.content-slider-about', ['contents' => $contents]);
+            <livewire:slider-story-product />
         </div>
 
     </div>
