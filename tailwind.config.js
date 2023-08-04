@@ -21,7 +21,9 @@ module.exports = {
       'grey-secondary-50': '#F7F7F7',
       'white': '#FFFFFF',
       'grey-secondary': '#CCCCCC',
-      'danger': '#d81b25'
+      'danger': '#d81b25',
+      'vanilla': '#feecb8',
+      'saffron': '#f3d4f9'
     },
     extend: {},
   },
