@@ -50,6 +50,25 @@ $(document).ready(function () {
 
 });
 
+$(document).ready(function() {
+
+    var contentSlider = $('#content-slider-about');
+    contentSlider.slick({
+        arrows: false,
+        swipe: true,
+    });
+
+    $('.prev-btn').on('click', function() {
+        contentSlider.slick('slickPrev');
+    });
+
+    $('.next-btn').on('click', function() {
+        contentSlider.slick('slickNext');
+    });
+
+
+});
+
 document.addEventListener('livewire:load', function () {
     Livewire.on('showToast', function () {
         console.log('toast');
