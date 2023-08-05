@@ -4,9 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
+use App\Services\MembershipService;
 
 class FormMembership extends Component
 {
+    public $data;
     public $provinces;
     public $cities = [];
     public $subdistricts = [];
@@ -16,12 +18,26 @@ class FormMembership extends Component
     public $selectedSubdistrict;
     public $name;
     public $selectedGender;
-    public $ktp;
-    public $ttl;
+    public $identity_card;
+    public $birth_date;
     public $email;
-    public $phoneNumber;
+    public $phone;
     public $membershipData;
-    public $postalCode;
+    public $postal_code;
+
+    protected $rules = [
+        'name' => 'required', 
+        'email'=> 'required|email:rfc,dns', 
+        'selectedGender'=> 'required', 
+        'phone'=> 'required|min:10', 
+        'birth_date'=> 'required', 
+        'identity_card'=> 'required|unique:resellers|min:15', 
+        'address'=> 'required', 
+        'selectedProvince'=> 'required', 
+        'selectedCity'=> 'required',
+        'selectedSubdistrict'=> 'required',
+        'postal_code'=> 'required|min:4',
+    ];
 
     public function fetchData()
     {
@@ -93,28 +109,54 @@ class FormMembership extends Component
         $this->selectedSubdistrict = null;
     }
 
+    protected function resetInput()
+    {
+        $this->address = '';
+        $this->selectedProvince = null;
+        $this->selectedCity = null;
+        $this->selectedSubdistrict = null;
+        $this->name = '';
+        $this->selectedGender = null;
+        $this->identity_card = '';
+        $this->birth_date = null;
+        $this->email = '';
+        $this->phone = '';
+        $this->membershipData = '';
+        $this->postal_code = '';
+    }
+
     public function submitMembership()
     {
+        $this->validate();
         $this->membershipData = [
             "name" => $this->name,
             "email" => $this->email,
             "gender" => $this->selectedGender,
-            "phoneNumber" => $this->phoneNumber,
-            "ttl" => $this->ttl,
-            "ktp" => $this->ktp,
+            "phone" => $this->phone,
+            "birth_date" => $this->birth_date,
+            "identity_card" => $this->identity_card,
             "address" => $this->address,
             "province" => json_decode($this->selectedProvince, true)['name'],
             "city" => json_decode($this->selectedCity, true)['name'],
             "subdistrict" => json_decode($this->selectedSubdistrict, true)['name'],
-            "postalCode" => $this->postalCode
+            "postal_code" => $this->postal_code
         ];
 
-        dd($this->membershipData);
+        $newMember = new MembershipService($this->membershipData);
+        $newMember->create();
+    
+        $this->resetInput();
+
+        $msg = 'Data Membership Berhasil Dikirim, Sedang dikonfirmasi oleh Habbie';
+        $this->emit('showToast', $msg);
+        
+        $this->emit('loadFlatPickr');
     }
 
     public function mount()
     {
         $this->fetchData();
+
     }
 
     public function render()
