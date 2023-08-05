@@ -1,6 +1,6 @@
 <div class="container mx-auto">
     <div class="relative">
-        <div id="content-slider-about" class="py-4">
+        <div id="content-slider-about" class="pb-4">
             @if (!$loading)
                 @foreach ($selectedData as $data)
                     <div>
