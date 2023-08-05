@@ -20,14 +20,14 @@
                 @endforeach
             </select>
             <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 "
-                placeholder="Nomor KTP ( Sesuai peraturan perundang-undangan )" wire:model="ktp" required>
-            @error('ktp')
+                placeholder="Nomor KTP ( Sesuai peraturan perundang-undangan )" wire:model="identity_card" required>
+            @error('identity_card')
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
             <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 "
-                placeholder="Nomor Telepon ( Terhubung ke WHatsApp Anda )" wire:model="phoneNumber" required>
-            @error('phoneNumber')
+                placeholder="Nomor Telepon ( Terhubung ke WHatsApp Anda )" wire:model="phone" required>
+            @error('phone')
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
@@ -41,8 +41,8 @@
                 <p class="text-grey-secondary">Tanggal Lahir</p>
             </span>
             <input id="datepicker" type="text" class="input input-bordered rounded-full bg-grey-secondary-50 "
-                placeholder="Tanggal Lahir" wire:model="ttl" required>
-            @error('ttl')
+                placeholder="Tanggal Lahir" wire:model="birth_date" required>
+            @error('birth_date')
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
@@ -100,8 +100,8 @@
             </select>
 
             <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="Kode Pos"
-                wire:model="postalCode" required>
-            @error('postalCode')
+                wire:model="postal_code" required>
+            @error('postal_code')
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
         </div>
@@ -112,6 +112,15 @@
         flatpickr("#datepicker", {
             position: 'below',
             dateFormat: 'd-m-Y'
+        });
+
+        document.addEventListener('livewire:load', function() {
+            Livewire.on('loadFlatPickr', function() {
+                flatpickr("#datepicker", {
+                    position: 'below',
+                    dateFormat: 'd-m-Y'
+                });
+            });
         });
     </script>
 </div>
