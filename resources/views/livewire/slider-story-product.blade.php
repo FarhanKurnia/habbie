@@ -15,7 +15,7 @@
                                     <h5 class="text-grey">subtitle</h5>
                                 </div>
                                 <div class="pt-6">
-                                    <p>{{ $data['description'] }}</p>
+                                    <p>{{ $data['story'] }}</p>
                                 </div>
                             </div>
                         </div>

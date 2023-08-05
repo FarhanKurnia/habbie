@@ -10,7 +10,7 @@ class Product extends Model
     protected $table = 'products';
     protected $primaryKey = 'id_product';
     protected $fillable = [
-        'name', 'category_id', 'image', 'description', 'price', 'stock', 'rating', 'weight', 'discount_id', 'slug','deleted_at'
+        'name', 'category_id', 'image', 'description', 'story','price', 'stock', 'rating', 'weight', 'discount_id', 'slug','deleted_at'
     ];
 
     // many products owned by one order
