@@ -2,20 +2,20 @@
     <div class="relative">
         <div id="content-slider-about" class="py-4">
             @if (!$loading)
-                @foreach ($productsByCategory as $product)
+                @foreach ($selectedData as $data)
                     <div>
                         <div class="w-2/3 mx-auto lg:grid lg:grid-cols-3 lg:gap-10 items-center  lg:p-10">
                             <div class="mb-8 lg:mb-0">
-                                <img class="h-64 lg:h-80 lg:ml-auto mx-auto" src="{{ url($product->image) }}" alt="{{ $product->name }}">
+                                <img class="h-64 lg:h-80 lg:ml-auto mx-auto" src="{{ url($data['image']) }}"
+                                    alt="{{ $data['name'] }}">
                             </div>
-                            <div
-                                class="col-span-2 divide-green divide-y-2 bg-grey-secondary-50 p-8 rounded-xl">
+                            <div class="col-span-2 divide-green divide-y-2 bg-grey-secondary-50 p-8 rounded-xl">
                                 <div class="pb-6">
-                                    <h3 class="text-xl lg:text-3xl font-bold">{{ $product->name }}</h3>
+                                    <h3 class="text-xl lg:text-3xl font-bold">{{ $data['name'] }}</h3>
                                     <h5 class="text-grey">subtitle</h5>
                                 </div>
                                 <div class="pt-6">
-                                    <p>{{ $product->description }}</p>
+                                    <p>{{ $data['description'] }}</p>
                                 </div>
                             </div>
                         </div>
@@ -35,8 +35,7 @@
     <div class="lg:w-2/3 mx-auto px-6 my-4 lg:my-0">
         <ul class="grid grid-cols-4 gap-4 items-center justify-between">
             @foreach ($categories as $category)
-                <li class="cursor-pointer lg:p-0"
-                    wire:click="handleIconClick({{ $category->id_category }})">
+                <li class="cursor-pointer lg:p-0" wire:click="handleIconClick({{ $category->id_category }})">
                     <img class="lg:w-1/2 mx-auto p-4 bg-grey-secondary-50 {{ $activeSlide == $category->id_category ? 'border-pink-primary focus:border-pink-primary hover:border-pink-primary' : 'border-grey-secondary-50 hover:border-grey-secondary' }} rounded-full border-2 border-grey-secondary-50"
                         src="{{ url('storage/img/' . trim($category->slug) . '.png') }}" alt="{{ $category->name }}">
                     <p

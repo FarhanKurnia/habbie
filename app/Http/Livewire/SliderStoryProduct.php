@@ -10,12 +10,25 @@ class SliderStoryProduct extends Component
     public $activeSlide;
     public $productsByCategory;
     public $loading = false;
+    public $allProduct;
+    public $selectedData = [];
 
-    
-    protected function getProductsByCategory($categoryId)
+    protected function getAllProduct()
     {
-        $productsByCategory = Product::where('category_id', $categoryId)->with('category')->get();
-        $this->productsByCategory = $productsByCategory;
+        $allProduct = Product::where('deleted_at',null)->get();
+        $this->allProduct = $allProduct;
+    }
+
+    protected function filterProductByCategoryId($categoryId)
+    {
+        $data = collect($this->allProduct)
+        ->where('category_id', $categoryId)
+        ->values()->toArray();
+
+        if(!empty($data)){
+            $this->selectedData = $data;
+        }
+
         $this->emit('slideChanges');
     }
     
@@ -23,7 +36,7 @@ class SliderStoryProduct extends Component
     {
         $this->loading = true;
         $this->activeSlide = $categoryId;
-        $this->getProductsByCategory($categoryId);
+        $this->filterProductByCategoryId($categoryId);
         $this->loading = false;
     }
 
@@ -33,7 +46,8 @@ class SliderStoryProduct extends Component
         $this->categories = Product_Category::where('deleted_at',null)->get();
         $categoryId = $this->categories[0]->id_category;
         $this->activeSlide = $categoryId;
-        $this->getProductsByCategory($categoryId);
+        $this->getAllProduct();
+        $this->filterProductByCategoryId($categoryId);
     }
 
     public function render()
