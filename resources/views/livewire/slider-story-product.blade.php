@@ -15,7 +15,7 @@
                                     <h5 class="text-grey">subtitle</h5>
                                 </div>
                                 <div class="pt-6">
-                                    <p>{{ $data['description'] }}</p>
+                                    <p>{{ $data['story'] }}</p>
                                 </div>
                             </div>
                         </div>
@@ -37,10 +37,10 @@
             @foreach ($categories as $category)
                 <li class="cursor-pointer lg:p-0" wire:click="handleIconClick({{ $category->id_category }})">
                     <img class="lg:w-1/2 mx-auto p-4 bg-grey-secondary-50 {{ $activeSlide == $category->id_category ? 'border-pink-primary focus:border-pink-primary hover:border-pink-primary' : 'border-grey-secondary-50 hover:border-grey-secondary' }} rounded-full border-2 border-grey-secondary-50"
-                        src="{{ url('storage/img/' . trim($category->slug) . '.png') }}" alt="{{ $category->name }}">
+                        src="{{$category->icon}}" alt="{{ $category->name }}">
                     <p
                         class="hidden lg:block text-center text-xs lg:text-sm my-4 {{ $activeSlide == $category->id_category ? 'text-grey' : 'text-grey-secondary' }}">
-                        Aromatic {{ $category->name }} Series</p>
+                        {{ $category->name }} Series</p>
                 </li>
             @endforeach
         </ul>

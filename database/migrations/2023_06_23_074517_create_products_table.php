@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->text('description');
+            $table->longText('story');
             $table->integer('price');
             $table->integer('stock');
             $table->integer('rating');

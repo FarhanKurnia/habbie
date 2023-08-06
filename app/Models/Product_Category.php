@@ -10,7 +10,7 @@ class Product_Category extends Model
     protected $table ='product_categories';
     protected $primaryKey = 'id_category';
     protected $fillable = [
-        'name','slug','deleted_at'
+        'name','slug','icon','deleted_at'
     ];
 
     // one category has many products
