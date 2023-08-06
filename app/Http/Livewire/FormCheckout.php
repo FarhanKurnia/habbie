@@ -30,6 +30,15 @@ class FormCheckout extends Component
     public $note;
     public $invoice;
     public $totalWeight;
+    public $recaptcha;
+
+    protected $rules = [
+        'address' => 'required|min:5',
+        'postalCode' => 'required|min:4',
+        'phoneNumber' => 'required|min:10',
+        'selectedCost' => 'required',
+        'recaptcha' => 'required|captcha',
+    ];
 
     public function fetchData()
     {
@@ -147,25 +156,14 @@ class FormCheckout extends Component
             $user = Auth::user();
 
             $this->wrapperNote();
+            $this->validate();
 
             $selectedCost = json_decode($this->selectedCost, true);
             $cartItems = \Cart::getContent();
     
             $cartTransformed = $cartItems->map(function ($item) {
-                // $sub_total_price = $item->price - $item['attributes']->discount_price;
+
                 $normal_price = $item->price + $item['attributes']->discount_price;
-                // dd([
-                //     'id' => $item->id,
-                //     'name' => $item->name,
-                //     'quantity' => $item->quantity,
-                //     'discount_price' => $item['attributes']->discount_price,
-                //     'discount_id' => $item['attributes']->discount_id,
-                //     // 'price' => $item->price,
-                //     'price' => $normal_price,
-                //     // 'sub_total_price' => $sub_total_price,
-                //     'sub_total_price' => $item->price,
-                //     'total_price' => $item->price * $item->quantity
-                // ]);
                 
                 return [
                     'id' => $item->id,
@@ -173,9 +171,7 @@ class FormCheckout extends Component
                     'quantity' => $item->quantity,
                     'discount_price' => $item['attributes']->discount_price,
                     'discount_id' => $item['attributes']->discount_id,
-                    // 'price' => $item->price,
                     'price' => $normal_price,
-                    // 'sub_total_price' => $sub_total_price,
                     'sub_total_price' => $item->price,
                     'total_price' => $item->price * $item->quantity
                 ];
@@ -199,13 +195,6 @@ class FormCheckout extends Component
                 'total_weight' => $this->totalWeight,
                 'subtotal' =>  \Cart::getTotal()
             ];
-
-            $this->validate([
-                'address' => 'required|min:5',
-                'postalCode' => 'required|min:4',
-                'phoneNumber' => 'required|min:10',
-                'selectedCost' => 'required'
-            ]);
 
             $order = new OrderService($this->orderData);
             $invoice = $order->create();
@@ -237,8 +226,12 @@ class FormCheckout extends Component
 
     public function wrapperNote()
     {
-        $preTag = "<pre>".$this->note."</pre>";
-        $this->note = $preTag;
+        if($this->note){
+            $preTag = "<pre>".$this->note."</pre>";
+            $this->note = $preTag;
+        } else {
+            $this->note = '';
+        }
     }
 
     public function mount()

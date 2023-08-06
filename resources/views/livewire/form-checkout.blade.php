@@ -8,8 +8,7 @@
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
-            <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Catatan" wire:model="note"
-                required></textarea>
+            <textarea class="textarea textarea-bordered bg-grey-secondary-50 font-bold" placeholder="Catatan" wire:model="note"></textarea>
             @error('note')
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
@@ -81,44 +80,63 @@
 
         </div>
 
-        @if (!!$selectedCourier)
-            <div class="flex flex-col space-y-4 w-1/2 form-control pb-14">
-                @php
-                    $costData = $costs['rajaongkir']['results'][0]['costs'] ?? null;
-                    $courierCode = $costs['rajaongkir']['results'][0]['code'] ?? null;
-                    // print_r($costData);
-                    // print_r($courierCode['code'] ?? null);
-                @endphp
-                @if (!!$costData)
-                    <p class="py-4 font-bold">Pilih jenis Ongkir</p>
-                    @foreach ($costData as $index => $cost)
-                        @php
-                            $data = [
-                                'code' => strtoupper($courierCode),
-                                'service' => $cost['service'],
-                                'value' => $cost['cost'][0]['value'],
-                                'etd' => $cost['cost'][0]['etd'],
-                            ];
-                        @endphp
-                        <label class="p-4 rounded-md bg-grey-secondary-50 label cursor-pointer flex flex-row gap-4"
-                            wire:click="setOngkir">
-                            <span class="flex flex-col">
-                                <h4 class="uppercase font-bold">{{ $courierCode . ' ' . $cost['service'] }}</h4>
-                                <p>{{ \App\Helpers\CurrencyFormat::data($cost['cost'][0]['value']) }}</p>
-                                <p class="text-sm">{{ 'Estimasi Pengiriman ' . $cost['cost'][0]['etd'] . ' Hari' }}</p>
-                            </span>
-                            <input type="radio" wire:model="selectedCost" class="radio checked:bg-pink-primary"
-                                value="{{ json_encode($data) }}" required />
-                        </label>
+        <div>
+            @if (!!$selectedCourier)
+                <div class="flex flex-col space-y-4 w-1/2 form-control pb-14">
+                    @php
+                        $costData = $costs['rajaongkir']['results'][0]['costs'] ?? null;
+                        $courierCode = $costs['rajaongkir']['results'][0]['code'] ?? null;
+                        // print_r($costData);
+                        // print_r($courierCode['code'] ?? null);
+                    @endphp
+                    @if (!!$costData)
+                        <p class="py-4 font-bold">Pilih jenis Ongkir</p>
+                        @foreach ($costData as $index => $cost)
+                            @php
+                                $data = [
+                                    'code' => strtoupper($courierCode),
+                                    'service' => $cost['service'],
+                                    'value' => $cost['cost'][0]['value'],
+                                    'etd' => $cost['cost'][0]['etd'],
+                                ];
+                            @endphp
+                            <label class="p-4 rounded-md bg-grey-secondary-50 label cursor-pointer flex flex-row gap-4"
+                                wire:click="setOngkir">
+                                <span class="flex flex-col">
+                                    <h4 class="uppercase font-bold">{{ $courierCode . ' ' . $cost['service'] }}</h4>
+                                    <p>{{ \App\Helpers\CurrencyFormat::data($cost['cost'][0]['value']) }}</p>
+                                    <p class="text-sm">{{ 'Estimasi Pengiriman ' . $cost['cost'][0]['etd'] . ' Hari' }}
+                                    </p>
+                                </span>
+                                <input type="radio" wire:model="selectedCost" class="radio checked:bg-pink-primary"
+                                    value="{{ json_encode($data) }}" required />
+                            </label>
                         @endforeach
 
-                @endif
-            </div>
-        @endif
+                    @endif
+                </div>
+            @endif
+        </div>
+
+        <div class="py-4" wire:ignore>
+            {!! NoCaptcha::display(['data-callback' => 'onCallback']) !!}
+            {!! NoCaptcha::renderJs() !!}
+        </div>
+        <div> 
+            @error('recaptcha')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
+        </div>
 
         <button type="submit" {{ is_null($selectedCost) ? 'disabled' : '' }}
             class="btn btn-primary text-white rounded-full">Submit</button>
 
     </form>
+
+    <script>
+        var onCallback = function () {
+            @this.set('recaptcha', grecaptcha.getResponse());
+        }
+    </script>
 
 </div>
