@@ -105,6 +105,17 @@
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
         </div>
+
+        <div class="py-4" wire:ignore>
+            {!! NoCaptcha::display(['data-callback' => 'onCallback']) !!}
+            {!! NoCaptcha::renderJs() !!}
+        </div>
+        <div> 
+            @error('recaptcha')
+                @include('components.public.partials.error-message', ['message' => $message])
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-primary text-white rounded-full">Submit</button>
     </form>
 
@@ -122,5 +133,9 @@
                 });
             });
         });
+
+        var onCallback = function () {
+            @this.set('recaptcha', grecaptcha.getResponse());
+        }
     </script>
 </div>

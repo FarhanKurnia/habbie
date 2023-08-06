@@ -24,6 +24,7 @@ class FormMembership extends Component
     public $phone;
     public $membershipData;
     public $postal_code;
+    public $recaptcha;
 
     protected $rules = [
         'name' => 'required', 
@@ -37,6 +38,7 @@ class FormMembership extends Component
         'selectedCity'=> 'required',
         'selectedSubdistrict'=> 'required',
         'postal_code'=> 'required|min:4',
+        'recaptcha' => 'required|captcha',
     ];
 
     public function fetchData()
