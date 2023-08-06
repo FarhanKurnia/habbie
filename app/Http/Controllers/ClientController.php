@@ -154,7 +154,7 @@ public function indexCareers()
     //careers
     $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
     
-    return view('test.customer.career.index-career-client',compact('careers'));
+    return view('pages.public.careers.index',compact('careers'));
 }
 
 public function showCareer($slug)
@@ -164,7 +164,7 @@ public function showCareer($slug)
     
     //find career 
     $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
-    return view('test.customer.career.show-career-client', compact('career'));
+    return view('pages.public.careers.detail', compact('career'));
 }
 
 //test view order function
