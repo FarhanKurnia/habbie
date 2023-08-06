@@ -141,31 +141,31 @@ class ClientController extends Controller
         //find article 
         $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->firstOrFail();
         //latest recommendation with same category as above
-        $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
+        $latestArticles = $articles->where([['categories','article'],['deleted_at',null]])->orderBy('id_article', 'DESC')->limit(4)->get();
         return view('pages.public.articles.detail', compact('oneArticle','latestArticles'));
     }
 
 // Career function
-public function indexCareers()
-{
-    //articles
-    $articles = new Article();
+    public function indexCareers()
+    {
+        //articles
+        $articles = new Article();
 
-    //careers
-    $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
-    
-    return view('pages.public.careers.index',compact('careers'));
-}
+        //careers
+        $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
+        
+        return view('pages.public.careers.index',compact('careers'));
+    }
 
-public function showCareer($slug)
-{
-    //articles
-    $articles = new Article();
-    
-    //find career 
-    $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
-    return view('pages.public.careers.detail', compact('career'));
-}
+    public function showCareer($slug)
+    {
+        //articles
+        $articles = new Article();
+        
+        //find career 
+        $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
+        return view('pages.public.careers.detail', compact('career'));
+    }
 
 //test view order function
     public function order(){
