@@ -55,6 +55,10 @@ Route::get('/media', [ClientController::class, 'indexArticles']);
 
 Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
 
+Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
+
+Route::get('/careers/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
+
 
 // Auth
 Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
