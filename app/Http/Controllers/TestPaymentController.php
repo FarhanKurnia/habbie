@@ -188,12 +188,12 @@ class TestPaymentController extends Controller
                     return response()->json(['message' => 'Payment Status Success']);
                 }
     
-                if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny'){
+                if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny' || $transaction_status == 'failure'){
                     // Order::where('invoice', $order_id)->update([
                     //     'status' => 'failed',
                     // ]);
-                    $order = Order::where('invoice', $order_id)->get();
-                    $order[0]->update([
+                    $order = Order::where('invoice', $order_id)->first();
+                    $order->update([
                         'status' => 'failed',
                     ]);
 
