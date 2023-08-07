@@ -18,14 +18,17 @@
         @include('components.admin.template.sidebar')
 
         {{-- Content --}}
-        {{-- Header --}}
-        @include('components.admin.template.navbar')
+            {{-- Header --}}
+        <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+            @include('components.admin.template.navbar')
 
-        {{-- Main Content --}}
-        @yield('content')
+            {{-- Main Content --}}
+            <main class="bg-pink-bloosom bg-opacity-30">
+                @yield('content')
+            </main>
+        </div>
     </div>
 
     @livewireScripts
 </body>
-
 </html>
