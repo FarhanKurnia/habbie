@@ -21,7 +21,11 @@ class DashboardController extends Controller
         $orders_pending = $orders->where('status','pending')->count();
         $orders_process = $orders->where('status','process')->count();
         $orders_done = $orders->where('status','done')->count();
-        return view('test.admin.dashboard.dashboard-admin',compact('user','orders_pending','orders_process','orders_done'));
+        $orders_status = array(
+            'pending'=>$orders_pending,
+            'process'=>$orders_process,
+            'done' =>$orders_done);
+        return view('test.admin.dashboard.dashboard-admin',compact('orders_status','user'));
     }
 
     /**
