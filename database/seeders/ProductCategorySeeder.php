@@ -14,31 +14,31 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('product_categories')->insert([[
-            'name' => 'Aromatic Telon Oil Flower',
-            'slug' => 'aromatic-telon-oil-flower',
+            'name' => 'Aromatic Telon Oil Flower Series',
+            'slug' => 'aromatic-telon-oil-flower-series',
             'icon' => 'storage/img/telon-oil-flower.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'name' => 'Aromatic Telon Oil Tea',
-            'slug' => 'aromatic-telon-oil-tea',
+            'name' => 'Aromatic Telon Oil Tea Series',
+            'slug' => 'aromatic-telon-oil-tea-series',
             'icon' => 'storage/img/telon-oil-tea.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
         ,
         [
-            'name' => 'Aromatic Cajuput Oil Saffron',
-            'slug' => 'aromatic-cajuput-oil-saffron',
+            'name' => 'Aromatic Cajuput Oil Saffron Series',
+            'slug' => 'aromatic-cajuput-oil-saffron-series',
             'icon' => 'storage/img/cajuput-oil-saffron.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
         ,
         [
-            'name' => 'Aromatic Cajuput Oil Vanilla',
-            'slug' => 'aromatic-cajuput-oil-vanilla ',
+            'name' => 'Aromatic Cajuput Oil Vanilla Series',
+            'slug' => 'aromatic-cajuput-oil-vanilla-series',
             'icon' => 'storage/img/cajuput-oil-vanilla.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

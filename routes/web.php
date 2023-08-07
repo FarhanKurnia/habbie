@@ -10,8 +10,10 @@ use App\Http\Controllers\TestPaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResellerController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,9 +100,7 @@ Route::prefix('test')->group(function () {
 //admin (login role: admin)
     Route::middleware(['auth','verified', 'admin'])->group(function () {
         // Dashboard
-        Route::get('/admin/dashboard', function () {
-            return view('test.admin.dashboard.dashboard-admin');
-        })->name('dashboard');
+        Route::get('/admin/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
         //Products
         Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');

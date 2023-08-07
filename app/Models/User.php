@@ -67,12 +67,17 @@ class User extends Authenticatable
     }
 
     // one user has many orders
-    public function user(){
+    public function order(){
         return $this->hasMany(Order::class);
     }
 
     // one user has has many payments
     public function payment(){
         return $this->hasMany(Payment::class);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class,'role_id');
+        
     }
 }
