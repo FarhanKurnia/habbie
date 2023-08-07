@@ -28,7 +28,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="11">Count Dashboard: $order_pending, $order_process, $order_done</th>
+                <th colspan="11">Count Dashboard: $orders_status['pending','process','done']</th>
             </tr>
                 <th>Order Pending</th>
                 <th>Order Process</th>
