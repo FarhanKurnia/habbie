@@ -4,9 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-@php
-// dd($user);    
-@endphp
 <body>
     <table border="1">
         <thead>
@@ -39,9 +36,9 @@
             </tr>
         </thead>
             <tr>
-                <td>{{$orders_pending}}</td>
-                <td>{{$orders_process}}</td>
-                <td>{{$orders_done}}</td>
+                <td>{{$orders_status['pending']}}</td>
+                <td>{{$orders_status['process']}}</td>
+                <td>{{$orders_status['done']}}</td>
             </tr>
     </table>
 </body>
