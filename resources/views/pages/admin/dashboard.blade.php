@@ -155,6 +155,39 @@
             </div>
             <!-- Card Item End -->
         </div>
+        <div class="my-4 bg-white p-4 rounded-lg">
+            <div id="chart"></div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script>
+            var options = {
+                chart: {
+                    type: 'line'
+                },
+                series: [{
+                    name: 'sales',
+                    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+                }],
+                xaxis: {
+                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+                }
+            }
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+            chart.render();
+        </script>
+
+        <div class="w-full my-4">
+            <textarea id="editor"></textarea>
+        </div>
+        <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor 4
+            // instance, using default configuration.
+            CKEDITOR.replace('editor');
+        </script>
+
     </div>
 
 @endsection
