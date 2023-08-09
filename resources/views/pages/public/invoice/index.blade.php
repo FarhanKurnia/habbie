@@ -67,7 +67,7 @@
                                         <p>Invoice #{{ $invoice->invoice }}</p>
                                         {{-- <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p> --}}
                                         {{-- handle failed transaction --}}
-                                        @if ($invoice->status === 'process')
+                                        @if ($invoice->status === 'process' || $invoice->status === 'done' || $invoice->status === 'open')
                                             <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
                                         @else
                                             <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
@@ -121,7 +121,7 @@
                             @endphp
                             {{-- <p class="text-center {{ $status }} ">{{ strtoupper($invoice->status) }}</p> --}}
                             {{-- handle failed transaction --}}
-                            @if ($invoice->status === 'process')
+                            @if ($invoice->status === 'process' || $invoice->status === 'done' || $invoice->status === 'open')
                                 <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
                             @else
                                 <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
