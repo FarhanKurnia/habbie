@@ -9,7 +9,11 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\TestPaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CareerController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResellerController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,17 +43,23 @@ Route::get('cart', function (){
     return view('pages.public.cart');
 });
 
-Route::get('testimonials', function (){
-    return view('pages.public.testimonials');
-});
+Route::get('testimonials', [ClientController::class, 'indexTestimonials']);
 
 Route::get('membership', function (){
     return view('pages.public.membership');
 });
 
+Route::get('membership/join', function (){
+    return view('pages.public.register-membership');
+});
+
 Route::get('/media', [ClientController::class, 'indexArticles']);
 
 Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+
+Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
+
+Route::get('/careers/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
 
 
 // Auth
@@ -79,18 +89,21 @@ Route::get('admin', function (){
 });
 
 Route::prefix('test')->group(function () {
-    Route::get('/testimonials', [ClientController::class, 'indexTestimonials']);
+    Route::get('/testimonials', [ClientController::class, 'indexTestimonials'])->name('indexTestimonialClient');
     //Medias
-    Route::get('/media', [ClientController::class, 'indexArticles']);
-    Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+    Route::get('/media', [ClientController::class, 'indexArticles'])->name('indexArticleClient');
+    Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient');
+
+    //Careers
+    Route::get('/career', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
+    Route::get('/career/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
+
     
 
 //admin (login role: admin)
     Route::middleware(['auth','verified', 'admin'])->group(function () {
         // Dashboard
-        Route::get('/admin/dashboard', function () {
-            return view('test.admin.dashboard.dashboard-admin');
-        })->name('dashboard');
+        Route::get('/admin/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
         //Products
         Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
@@ -128,6 +141,16 @@ Route::prefix('test')->group(function () {
         Route::patch('/admin/articles/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
         Route::get('/admin/articles/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
 
+        //Careers
+        Route::get('/admin/careers', [CareerController::class, 'index'])->name('indexCareers');
+        Route::get('/admin/careers/add', [CareerController::class, 'create'])->name('createCareers');
+        Route::post('/admin/careers/store', [CareerController::class, 'store'])->name('storeCareers');
+        Route::get('/admin/careers/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
+        Route::get('/admin/careers/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
+        Route::patch('/admin/careers/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
+        Route::get('/admin/careers/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
+
+
         //Discounts
         Route::get('/admin/discounts', [DiscountController::class, 'index'])->name('indexDiscounts');
         Route::get('/admin/discounts/add', [DiscountController::class, 'create'])->name('createDiscounts');
@@ -144,7 +167,6 @@ Route::prefix('test')->group(function () {
     // Route::get('/order/{invoice}',[OrderController::class,'getOrder'])->name('getOrder');
     // Route::get('/invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
     // Route::get('/invoice',[ClientController::class,'indexInvoiceClient']);
-
-    
-
+    Route::get('/reseller',[ClientController::class,'testReseller'])->name('testReseller');
+    Route::post('/joinReseller',[ClientController::class,'joinReseller'])->name('joinReseller');
 });

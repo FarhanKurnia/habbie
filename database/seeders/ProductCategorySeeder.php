@@ -14,28 +14,32 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('product_categories')->insert([[
-            'name' => 'Telon Oil Flower',
-            'slug' => 'telon-oil-flower',
+            'name' => 'Aromatic Telon Oil Flower Series',
+            'slug' => 'aromatic-telon-oil-flower-series',
+            'icon' => 'storage/img/telon-oil-flower.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'name' => 'Telon Oil Tea',
-            'slug' => 'telon-oil-tea',
+            'name' => 'Aromatic Telon Oil Tea Series',
+            'slug' => 'aromatic-telon-oil-tea-series',
+            'icon' => 'storage/img/telon-oil-tea.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
         ,
         [
-            'name' => 'Cajuput Oil Saffron',
-            'slug' => 'cajuput-oil-saffron',
+            'name' => 'Aromatic Cajuput Oil Saffron Series',
+            'slug' => 'aromatic-cajuput-oil-saffron-series',
+            'icon' => 'storage/img/cajuput-oil-saffron.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]
         ,
         [
-            'name' => 'Cajuput Oil Vanilla',
-            'slug' => 'cajuput-oil-vanilla ',
+            'name' => 'Aromatic Cajuput Oil Vanilla Series',
+            'slug' => 'aromatic-cajuput-oil-vanilla-series',
+            'icon' => 'storage/img/cajuput-oil-vanilla.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]

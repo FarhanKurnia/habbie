@@ -12,4 +12,10 @@ class Role extends Model
     protected $fillable = [
         'name',
     ];
+
+    // one role owned by many user
+    public function user(){
+        return $this->hasMany(User::class,'user_id');
+        
+    }
 }

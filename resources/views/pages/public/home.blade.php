@@ -14,11 +14,13 @@
 
     <div class="bg-grey-secondary-50">
         <div class="container mx-auto py-14">
-            @include('components.public.partials.title', [
-                'title' => 'Aromatic By Nature All Around the World',
-                'align' => 'center',
-                'color' => 'pink-primary',
-            ])
+            <div class="px-6">
+                @include('components.public.partials.title', [
+                    'title' => 'Aromatic By Nature All Around the World',
+                    'align' => 'center',
+                    'color' => 'pink-primary',
+                ])
+            </div>
 
             {{-- desktop --}}
             <div class="hidden lg:grid lg:grid-cols-4 grid-cols-1 product-item items-center">
@@ -53,7 +55,8 @@
             @endforeach
         </div>
         <div class="text-center py-4">
-            <a href="{{ url('media') }}"><button class="btn btn-primary rounded-full font-bold text-white">READ ALL ARTICLES</button></a>
+            <a href="{{ url('media') }}"><button class="btn btn-primary rounded-full font-bold text-white">READ ALL
+                    ARTICLES</button></a>
         </div>
     </div>
 

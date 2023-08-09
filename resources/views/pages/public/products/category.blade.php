@@ -14,7 +14,7 @@
 
     </div>
     <div class="container mx-auto">
-        <div class="grid grid-cols-2 lg:grid-cols-4 items-center lg:space-y-4 lg:space-x-2">
+        <div class="grid grid-cols-2 lg:grid-cols-4 items-center">
             @foreach ($productsByCat as $index => $product)
                 @include('components.public.partials.product-card', [
                     'product' => $product,

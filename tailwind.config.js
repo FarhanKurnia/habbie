@@ -188,7 +188,9 @@ module.exports = {
         42.5: '10.625rem',
         47.5: '11.875rem',
         75: '18.75rem',
-      },
+      },,
+      'vanilla': '#feecb8',
+      'saffron': '#f3d4f9'
     },
   },
   plugins: [require("daisyui")],

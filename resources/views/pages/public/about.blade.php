@@ -11,7 +11,7 @@
             'color' => 'pink-primary',
         ])
         <div class="mx-6 lg:w-1/2 lg:mx-auto">
-            <img class="pb-6" src="{{ asset('storage/img/img-slide.jpg') }}" alt="minyak telon habbie">
+            <img class="pb-6" src="{{ asset('storage/img/slide-6.png') }}" alt="minyak telon habbie">
             <p class="text-left">
                 Dimulai tahun 2019, sebuah perusahaan yang berfokus pada produk berbasis Aromatic by Nature.
                 Kompetensi inti kami adalah budaya dan teknologi yang kuat berbasis online.
@@ -62,7 +62,7 @@
                     ],
                 ];
             @endphp
-            @include('components.public.partials.content-slider-about', ['contents' => $contents]);
+            <livewire:slider-story-product />
         </div>
 
     </div>

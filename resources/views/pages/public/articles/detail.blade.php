@@ -14,8 +14,8 @@
                 <small class="text-grey-secondary">{{ $date }}</small>
             </div>
     
-            <div class="image lg:w-5/6 py-6 lg:mx-auto">
-                <img src="{{ url($oneArticle->image) }}" alt="$oneArticle->title" class="lg:rounded-lg">
+            <div class="image lg:w-5/6 py-6 lg:mx-auto flex justify-center items-center">
+                <img src="{{ url($oneArticle->image) }}" alt="$oneArticle->title" class="w-full lg:rounded-lg">
             </div>
     
             <div class="content lg:w-3/4 lg:mx-auto mx-10 ">

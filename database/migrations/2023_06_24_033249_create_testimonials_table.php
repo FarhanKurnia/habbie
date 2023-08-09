@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('profesi');
             $table->string('lokasi');
             $table->string('image');
-            $table->string('description');
+            $table->longText('description');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

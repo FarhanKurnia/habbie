@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('id_product');
             $table->string('name');
             $table->string('image');
-            $table->string('description');
+            $table->text('description');
+            $table->longText('story');
             $table->integer('price');
             $table->integer('stock');
             $table->integer('rating');

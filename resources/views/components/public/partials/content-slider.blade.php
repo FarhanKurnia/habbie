@@ -5,14 +5,14 @@
                 <div>
                     <div class="w-2/3 mx-auto lg:grid lg:grid-cols-2 lg:gap-10 items-center space-y-10">
                         <div class="image-content h-64">
-                            <img class="max-h-64 mx-auto" src="{{ $product->image }}" alt="{{ $product->name }}" />
+                            <img class="h-full mx-auto object-cover rounded-xl" src="{{ $product->image }}" alt="{{ $product->name }}" />
                         </div>
                         <div class="text-content">
                             <p class="text-gray-400 text-sm text-grey">RECOMMENDATION FOR YOU</p>
                             <h3 class="text-xl font-bold text-pink-primary">{{ $product->name }}</h3>
                             <p class="pb-4">{{ $product->description }}</p>
                             {{-- <button class="btn btn-primary rounded-full font-bold text-white">Shop Now</button> --}}
-                            <button class="btn btn-primary rounded-full font-bold text-white" onclick="window.location='{{ route("products.show",$product->slug) }}'">Shop Now</button>
+                            <button class="btn btn-primary rounded-full font-bold text-white" onclick="window.location='{{ route("products.show",$product->product->slug) }}'">Shop Now</button>
                         </div>
                     </div>
                 </div>

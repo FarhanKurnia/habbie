@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Article;
+use App\Models\Body_Recommendation;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Product_Category;
 use App\Models\Testimonial;
 use App\Models\Review;
+use App\Models\Reseller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -21,12 +23,16 @@ class ClientController extends Controller
         $articles = new Article();
         //products 
         $products = new Product();
+        //body_recommendation
+        $bodyrecommendations = new Body_Recommendation();
+
         //body recommendation
-        $bodyRecommendation = $products->where([['deleted_at',null],['description','!=','']])->get()->random(3);
+        // $bodyRecommendation = $products->where([['deleted_at',null],['description','!=','']])->get()->random(3);
+        $bodyRecommendation = $bodyrecommendations->where('deleted_at',null)->with('product')->get();
         //latest recommendation
         $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
         //latest articles
-        $latestArticles = $articles->where('deleted_at',null)->with('user')->orderBy('id_article','DESC')->limit(2)->get();
+        $latestArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->limit(2)->get();
         return view('pages.public.home', compact('bodyRecommendation','latestRecommendation','latestArticles'));
     }
 
@@ -107,48 +113,61 @@ class ClientController extends Controller
         //offer
         $testimonials = $testimonials->where('deleted_at',null)->get();
         //review
-        $reviews = $reviews->where('deleted_at',null)->get();
-        return view('test.customer.testimonial.testimonial-client',compact('categories','randomRecommendation','testimonials','reviews'));
+        $reviewList = $reviews->where('deleted_at',null)->paginate(6);
+
+        $totalCountReviews = $reviews->count();
+        $totalRateReviews = $reviews->sum('rating') / $totalCountReviews;
+        return view('pages.public.testimonials',compact('categories','randomRecommendation','testimonials','reviewList', 'totalCountReviews', 'totalRateReviews'));
     }
 
 // Article function
     public function indexArticles()
     {
-        //products
-        $products = new Product();
         //articles
         $articles = new Article();
 
-        //category
-        $categories = Product_Category::all();
-        //link recommendation
-        $randomRecommendation = $products->all()->random(1);
-        //offer
-        $oneArticle = $articles->first();
-        //review
-        $relatedArticles = $articles->paginate(2);
-        return view('pages.public.articles.index',compact('categories','randomRecommendation','oneArticle','relatedArticles'));
+        //article
+        $oneArticle = $articles->where([['deleted_at',null],['categories','article']])->first();
+        //related article
+        $relatedArticles = $articles->where([['deleted_at',null],['categories','article']])->orderBy('id_article','DESC')->paginate(2);
+        return view('pages.public.articles.index',compact('oneArticle','relatedArticles'));
     }
 
     public function showArticle($slug)
     {
-        //products 
-        $products = new Product();
         //articles
         $articles = new Article();
         
-        //category
-        $categories = Product_Category::where('deleted_at',null)->get();
-        //link recommendation
-        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
         //find article 
-        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->firstOrFail();
         //latest recommendation with same category as above
-        $latestArticles = $articles->orderBy('id_article', 'DESC')->limit(4)->get();
-        return view('pages.public.articles.detail', compact('categories','randomRecommendation','oneArticle','latestArticles'));
+        $latestArticles = $articles->where([['categories','article'],['deleted_at',null]])->orderBy('id_article', 'DESC')->limit(4)->get();
+        return view('pages.public.articles.detail', compact('oneArticle','latestArticles'));
     }
 
-//view order function
+// Career function
+    public function indexCareers()
+    {
+        //articles
+        $articles = new Article();
+
+        //careers
+        $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
+        
+        return view('pages.public.careers.index',compact('careers'));
+    }
+
+    public function showCareer($slug)
+    {
+        //articles
+        $articles = new Article();
+        
+        //find career 
+        $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->firstOrFail();
+        return view('pages.public.careers.detail', compact('career'));
+    }
+
+//test view order function
     public function order(){
         return view('test.customer.order.order-client');
     }
@@ -168,5 +187,45 @@ class ClientController extends Controller
         $id_order = $invoices->id_order;
         $orders = OrderProduct::where('order_id',$id_order)->with('product','discount',)->get();
         return view('pages.public.invoice.detail',compact('invoices','orders'));
+    }
+
+//Reseller 
+    //test view reseller function
+    public function testReseller(Request $request){
+        return view('test.customer.reseller.reseller-client');
+        
+    }
+
+    //join reseller function
+    public function joinReseller(Request $request){
+        $request->validate([
+            'name' => 'required', 
+            'email'=> 'required|email:rfc,dns', 
+            'gender'=> 'required', 
+            'phone'=> 'required', 
+            'birth_date'=> 'required', 
+            'identity_card'=> 'required|unique:resellers', 
+            'address'=> 'required', 
+            'province'=> 'required', 
+            'city'=> 'required',
+            'subdistrict'=> 'required',
+            'postal_code'=> 'required',
+
+        ]);
+        Reseller::create([
+            'name' => $request->name, 
+            'email'=> $request->email, 
+            'gender'=> $request->gender, 
+            'phone'=> $request->phone, 
+            'birth_date'=> $request->birth_date, 
+            'identity_card'=> $request->identity_card, 
+            'identity_card'=> 'active', 
+            'address'=> $request->address, 
+            'province'=> $request->province, 
+            'city'=> $request->city,
+            'subdistrict'=> $request->subdistrict,
+            'postal_code'=> $request->postal_code,
+        ]);
+        return view('test.customer.reseller.reseller-client');
     }
 }

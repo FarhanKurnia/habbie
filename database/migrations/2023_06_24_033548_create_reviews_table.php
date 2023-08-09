@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_review');
             $table->string('name');
             $table->enum('rating',[1,2,3,4,5]);
-            $table->string('description');            
+            $table->longText('description');            
             $table->unsignedBigInteger('user_id');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

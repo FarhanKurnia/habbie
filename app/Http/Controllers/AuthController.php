@@ -22,7 +22,8 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|min:4|max:255',
             'email' => 'required|unique:users|max:255|email:dns',
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:8|confirmed',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
         $token = Str::random(128);
         $name = $request->name;
@@ -56,10 +57,16 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email'=>'required|email:dns',
         	'password' => 'required|min:8',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
 
         $remember = $request->has('remember');
 

@@ -41,9 +41,18 @@
                     </div>
 
                     <div>
-                        <a href="{{ url('/request-otp') }}"><p class="text-sm text-pink-primary">Forget Password</p></a>
+                        <a href="{{ url('/request-otp') }}">
+                            <p class="text-sm text-pink-primary">Forget Password</p>
+                        </a>
                     </div>
                 </div>
+
+                {!! NoCaptcha::display() !!}
+                {!! NoCaptcha::renderJs() !!}
+                @error('g-recaptcha-response')
+                    @include('components.public.partials.error-message', ['message' => $message])
+                @enderror
+
                 <button type="submit" value="Proses"
                     class="btn btn-primary w-1/3 mx-auto rounded-full font-bold text-white">Login</button>
             </form>

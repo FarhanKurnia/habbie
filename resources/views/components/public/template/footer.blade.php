@@ -7,7 +7,7 @@
                     <p class="text-lg font-bold text-pink-primary py-4">ABOUT US</p>
                     <div class="flex flex-col space-y-1">
                         <a href="{{ url('about') }}" class="hover:text-grey font-bold">OUR STORY</a>
-                        <a href="#" class="hover:text-grey font-bold">CAREERS</a>
+                        <a href="{{ url('careers') }}" class="hover:text-grey font-bold">CAREERS</a>
                         <a href="#" class="hover:text-grey font-bold">OUR EVENT</a>
                     </div>
                 </div>
@@ -17,12 +17,12 @@
                     <div class="flex flex-row gap-4">
                         <div class="flex flex-col space-y-1">
                             <a href="#" class="hover:text-grey font-bold">OUR STORY</a>
-                            <a href="#" class="hover:text-grey font-bold">CAREERS</a>
+                            <a href="{{ url('careers') }}" class="hover:text-grey font-bold">CAREERS</a>
                             <a href="#" class="hover:text-grey font-bold">OUR EVENT</a>
                         </div>
                         <div class="flex flex-col space-y-1">
                             <a href="#" class="hover:text-grey font-bold">OUR STORY</a>
-                            <a href="#" class="hover:text-grey font-bold">CAREERS</a>
+                            <a href="{{ url('careers') }}" class="hover:text-grey font-bold">CAREERS</a>
                             <a href="#" class="hover:text-grey font-bold">OUR EVENT</a>
                         </div>
                     </div>
