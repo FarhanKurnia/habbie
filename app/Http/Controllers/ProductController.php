@@ -35,7 +35,9 @@ class ProductController extends Controller
         $indexCategories = $categories->where('deleted_at',null)->get();
         $indexDiscounts = $discounts->where('deleted_at',null)->get();
 
-        return view('test.admin.product.create-product-admin',compact('indexCategories','indexDiscounts'));
+        return view('pages.admin.products.create',compact('indexCategories','indexDiscounts'));
+        // return view('test.admin.product.create-product-admin',compact('indexCategories','indexDiscounts'));
+
     }
 
     /**
