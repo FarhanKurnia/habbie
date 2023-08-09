@@ -28,7 +28,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="11">Count Dashboard: $orders_status['pending','process','done']</th>
+                <th colspan="11">Count Dashboard: $orders_status['all_order','process','done']</th>
             </tr>
                 <th>Order Pending</th>
                 <th>Order Process</th>
@@ -36,10 +36,30 @@
             </tr>
         </thead>
             <tr>
-                <td>{{$orders_status['pending']}}</td>
+                <td>{{$orders_status['all_order']}}</td>
                 <td>{{$orders_status['process']}}</td>
                 <td>{{$orders_status['done']}}</td>
             </tr>
+    </table>
+<br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th colspan="11">Count revenue: $revenue->total</th>
+            </tr>
+                <th>Total Revenue</th>
+            </tr>
+        </thead>
+        @php
+            $total=0;
+            foreach ($orders_revenue as $revenue) {
+                $total=$total+$revenue->total;
+            }
+        @endphp
+        <tr>
+            <td>Rp. {{($total)}}</td>
+        </tr>
+
     </table>
 </body>
 </html>
