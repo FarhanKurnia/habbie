@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('city');
             $table->string('subdistrict');
             $table->string('postal_code');
-            $table->enum('status',['pending','failed','process','done']);
+            // $table->enum('status_payment',['unpaid','failed','paid']);
+            // $table->enum('status_order',['open','confirmed','process','done']);
+            // $table->enum('status',['pending','failed','process','done']);
+            $table->enum('status',['open','pending','failed','process','done']);
             $table->integer('sub_total');
             $table->string('resi')->nullable();
             $table->string('shipping_code');
