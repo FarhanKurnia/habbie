@@ -88,6 +88,14 @@ Route::get('admin', function (){
     return view('pages.admin.dashboard');
 });
 
+Route::prefix('admin')->group(function () {
+    Route::get('/', function(){
+        return view('pages.admin.dashboard');
+    });
+
+    Route::get('/products/add', [ProductController::class, 'create'])->name('createProducts');
+});
+
 Route::prefix('test')->group(function () {
     Route::get('/testimonials', [ClientController::class, 'indexTestimonials'])->name('indexTestimonialClient');
     //Medias
