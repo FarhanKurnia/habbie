@@ -20,7 +20,8 @@ class ProductController extends Controller
         $products = new Product();
         $indexProducts = $products->where('deleted_at',null)->with('category')->orderBy('id_product','DESC')->paginate(10);
     
-        return view('test.admin.product.index-product-admin', compact('indexProducts'));
+        return view('pages.admin.products.index', compact('indexProducts'));
+        // return view('test.admin.product.index-product-admin', compact('indexProducts'));
     }
 
     /**
@@ -91,7 +92,8 @@ class ProductController extends Controller
         $indexCategories = $categories->where('deleted_at',null)->get();
         $indexDiscounts = $discounts->where('deleted_at',null)->get();
 
-        return view('test.admin.product.update-product-admin',compact('oneProduct','indexCategories','indexDiscounts'));
+        return view('pages.admin.products.create',compact('oneProduct','indexCategories','indexDiscounts'));
+        // return view('test.admin.product.update-product-admin',compact('oneProduct','indexCategories','indexDiscounts'));
     
     }
 
