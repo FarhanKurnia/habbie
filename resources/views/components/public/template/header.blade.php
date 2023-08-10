@@ -53,7 +53,7 @@
                 {{-- logo desktop --}}
                 <div class="hidden lg:flex logo lg:w-24">
                     <a href="{{ url('/') }}" class="font-bold text-3xl"><img
-                            src="{{ asset('storage/img/logo-habbie.svg') }}"
+                            src="{{ asset('storage/img/logo/logo-habbie.svg') }}"
                             alt="Habbie Aromatic by Nature All Around the world"></a>
                 </div>
 
@@ -90,7 +90,7 @@
             <div class="navbar-center lg:hidden">
                 <div class="w-28">
                     <a href="{{ url('/') }}" class="font-bold text-3xl"><img
-                            src="{{ asset('storage/img/logo-habbie.svg') }}"
+                            src="{{ asset('storage/img/logo/logo-habbie.svg') }}"
                             alt="Habbie Aromatic by Nature All Around the world"></a>
                 </div>
             </div>

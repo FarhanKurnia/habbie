@@ -8,7 +8,7 @@
         @foreach (range(1, 7) as $item)
             
             <div>
-                <img src="{{ asset('storage/img/slide-'.$slide++.'.png') }}" alt="" class=" lg:w-full lg:h-full">
+                <img src="{{ asset('storage/img/slides/slide-'.$slide++.'.png') }}" alt="" class=" lg:w-full lg:h-full">
             </div>
         @endforeach
     </div>

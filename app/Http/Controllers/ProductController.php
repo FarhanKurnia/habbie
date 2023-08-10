@@ -43,15 +43,31 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'description' => 'required',
+            'story' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+        ]);
+        //slug
         $slug = $request->name;
         $slug = preg_replace('/\s+/', '-', $slug);
         $slug = strtolower($slug);
 
+        //image
+	    $image = $request->file('image');
+	    $image_name = time()."_".$image->getClientOriginalName();
+	    $folder = 'storage/img/products';
+        $image->move(public_path($folder), $image_name);
+
         Product::create([
             'name' => $request->name,
-            'image' => 'storage/img/sample-product.jpg',
+            'image' => $folder.'/'.$image_name,
             'slug' => $slug,
             'description' => $request->description,
+            'story' => $request->story,
             'price' => $request->price,
             'stock' => $request->stock,
             'rating' => $request->rating,
@@ -98,17 +114,40 @@ class ProductController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        $request->validate([
+            'name' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'description' => 'required',
+            'story' => 'required',
+            'price' => 'required',
+            'weight' => 'required',
+        ]);
+
         //products
         $products = new Product();
         $getSlug = $request->name;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
         $product = $products->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        
+        //image
+        $update_image ="";
+        if($request->image){
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/products';
+            $image->move(public_path($folder), $image_name);
+            $update_image = $folder.'/'.$image_name;
+        }else{
+            $update_image = $product->image;  
+        }
+
         $product->update([
             'name' => $request->name,
-            'image' => 'storage/img/sample-product.jpg',
+            'image' => $update_image,
             'slug' => $getSlug,
             'description' => $request->description,
+            'story' => $request->story,
             'price' => $request->price,
             'stock' => $request->stock,
             'rating' => $request->rating,

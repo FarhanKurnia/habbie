@@ -15,7 +15,7 @@ class BodyRecommendationSeeder extends Seeder
     {
         DB::table('body_recommendations')->insert([[
             'name' => 'Aromatic Telon Oil Variant Rose',
-            'image' => 'storage/img/body_recommendation_flowerseries_8.png',
+            'image' => 'storage/img/body_recommendations/body_recommendation_flowerseries_8.png',
             'description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam justo enim, mattis et rutrum ut, rhoncus eu velit. Donec mollis vehicula libero vel luctus. Duis non ornare nisl. Fusce rutrum pellentesque tellus, in lacinia libero posuere eu.',
             'product_id' => 11,
             'created_at' => Carbon::now(),
@@ -23,7 +23,7 @@ class BodyRecommendationSeeder extends Seeder
         ],
         [
             'name' => 'Aromatic Cajuput Oil Variant Iran Saffron',
-            'image' => 'storage/img/body_recommendation_saffseries_7.png',
+            'image' => 'storage/img/body_recommendations/body_recommendation_saffseries_7.png',
             'description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam justo enim, mattis et rutrum ut, rhoncus eu velit. Donec mollis vehicula libero vel luctus. Duis non ornare nisl. Fusce rutrum pellentesque tellus, in lacinia libero posuere eu.',
             'product_id' => 36,
             'created_at' => Carbon::now(),
@@ -31,7 +31,7 @@ class BodyRecommendationSeeder extends Seeder
         ],
         [
             'name' => 'Aromatic Telon Oil Variant Tea Bouquet',
-            'image' => 'storage/img/body_recommendation_teaseries_12.png',
+            'image' => 'storage/img/body_recommendations/body_recommendation_teaseries_12.png',
             'description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam justo enim, mattis et rutrum ut, rhoncus eu velit. Donec mollis vehicula libero vel luctus. Duis non ornare nisl. Fusce rutrum pellentesque tellus, in lacinia libero posuere eu.',
             'product_id' => 26,
             'created_at' => Carbon::now(),
@@ -39,7 +39,7 @@ class BodyRecommendationSeeder extends Seeder
         ],
         [
             'name' => 'Aromatic Cajuput Oil Variant Madagascar Vanilla',
-            'image' => 'storage/img/body_recommendation_vanseries_5.png',
+            'image' => 'storage/img/body_recommendations/body_recommendation_vanseries_5.png',
             'description'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam justo enim, mattis et rutrum ut, rhoncus eu velit. Donec mollis vehicula libero vel luctus. Duis non ornare nisl. Fusce rutrum pellentesque tellus, in lacinia libero posuere eu.',
             'product_id' => 40,
             'created_at' => Carbon::now(),

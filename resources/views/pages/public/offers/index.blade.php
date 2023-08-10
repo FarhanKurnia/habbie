@@ -22,7 +22,7 @@
     </div>
 
     <div class="h-64 bg-pink-primary overflow-y-hidden">
-        <img src="{{ asset('storage/img/img-slide.jpg') }}" alt="" class="object-cover opacity-25 h-full w-full">
+        <img src="{{ asset('storage/img/slides/img-slide.jpg') }}" alt="" class="object-cover opacity-25 h-full w-full">
     </div>
 
 
