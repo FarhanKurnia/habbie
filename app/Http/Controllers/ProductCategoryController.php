@@ -15,7 +15,7 @@ class ProductCategoryController extends Controller
         //categories
         $categories = new Product_Category();
 
-        $indexCategories = $categories->where('deleted_at',null)->paginate(10);
+        $indexCategories = $categories->where('deleted_at',null)->latest('id_category')->paginate(10);
 
         return view('test.admin.category.index-category-admin',compact('indexCategories'));
     }
@@ -33,12 +33,25 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        //slug
         $slug = $request->name;
         $slug = preg_replace('/\s+/', '-', $slug);
         $slug = strtolower($slug);
         
+        //icon category product
+	    $icon = $request->file('icon');
+	    $icon_name = time()."_".$icon->getClientOriginalName();
+	    $folder = 'storage/img/categories_product/';
+        $icon->move(public_path($folder), $icon_name);
+
         Product_Category::create([
             'name' => $request->name,
+            'icon' => $folder.$icon_name,
             'slug' => $slug,
         ]);
         return redirect()->route('indexCategories');
@@ -71,15 +84,34 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        $request->validate([
+            'name' => 'required',
+            'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1048',
+        ]);
         //products
         $categories = new Product_Category();
+        $category = $categories->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+
+        //slug
         $getSlug = $request->name;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
-
-        $category = $categories->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        
+        //icon
+        $update_icon ="";
+        if($request->icon){
+            $icon = $request->file('icon');
+            $icon_name = time()."_".$icon->getClientOriginalName();
+            $folder = 'storage/img/categories_product/';
+            $icon->move(public_path($folder), $icon_name);
+            $update_icon = $folder.$icon_name;
+        }else{
+            $update_icon = $category->icon;  
+        }
+ 
         $category->update([
             'name' => $request->name,
+            'icon' => $update_icon,
             'slug' => $getSlug,
         ]);
         if ($category) {

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('discount_id')->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
             
             $table->foreign('category_id')->references('id_category')->on('product_categories')->onDelete('cascade');        

@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         //products
         $products = new Product();
-        $indexProducts = $products->where('deleted_at',null)->with('category')->orderBy('id_product','DESC')->paginate(10);
+        $indexProducts = $products->where('deleted_at',null)->with('category')->latest('id_product')->paginate(10);
     
         return view('test.admin.product.index-product-admin', compact('indexProducts'));
     }
@@ -59,12 +59,12 @@ class ProductController extends Controller
         //image
 	    $image = $request->file('image');
 	    $image_name = time()."_".$image->getClientOriginalName();
-	    $folder = 'storage/img/products';
+	    $folder = 'storage/img/products/';
         $image->move(public_path($folder), $image_name);
 
         Product::create([
             'name' => $request->name,
-            'image' => $folder.'/'.$image_name,
+            'image' => $folder.$image_name,
             'slug' => $slug,
             'description' => $request->description,
             'story' => $request->story,
@@ -135,9 +135,9 @@ class ProductController extends Controller
         if($request->image){
             $image = $request->file('image');
             $image_name = time()."_".$image->getClientOriginalName();
-            $folder = 'storage/img/products';
+            $folder = 'storage/img/products/';
             $image->move(public_path($folder), $image_name);
-            $update_image = $folder.'/'.$image_name;
+            $update_image = $folder.$image_name;
         }else{
             $update_image = $product->image;  
         }
