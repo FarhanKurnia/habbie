@@ -35,7 +35,7 @@
                     <td>{{ $no++}}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->category->name }}</td>
-                    <td>{{ $product->image }}</td>
+                    <td><p style="text-align:center;"><img src="{{ url($product->image) }}" alt="{{ $product->image }}" style="width:20px;height:50px;"></p></td>
                     <td>{{ $product->description }}</td>
                     <td>
                         @php

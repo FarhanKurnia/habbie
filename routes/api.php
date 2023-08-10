@@ -21,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/payment-callback', [TestPaymentController::class, 'callback']);
-Route::post('/payment', [PaymentController::class, 'callback']);
+// Route::post('/payment', [PaymentController::class, 'callback']);
 
 

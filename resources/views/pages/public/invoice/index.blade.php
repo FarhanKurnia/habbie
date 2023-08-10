@@ -43,7 +43,7 @@
                             <a href="{{ url('invoice/' . $invoice->invoice) }}">
                                 <div class="flex flex-col">
                                     <span class="bg-pink-bloosom bg-opacity-40 flex flex-row justify-between items-center p-2 rounded">
-                                        @php
+                                        {{-- @php
                                             $status;
                                             if ($invoice->status === 'process') {
                                                 $status = 'text-green';
@@ -52,9 +52,26 @@
                                             } else {
                                                 $status = 'text-grey-secondary';
                                             }
+                                        @endphp --}}
+                                        
+                                        @php
+                                            $status;
+                                            if ($invoice->status === 'process') {
+                                                $status = 'text-green';
+                                            }elseif ($invoice->status === 'done') {
+                                                $status = 'text-green';
+                                            } else{
+                                                $status = 'text-danger';
+                                            }
                                         @endphp
                                         <p>Invoice #{{ $invoice->invoice }}</p>
-                                        <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
+                                        {{-- <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p> --}}
+                                        {{-- handle failed transaction --}}
+                                        @if ($invoice->status === 'process' || $invoice->status === 'done' || $invoice->status === 'open')
+                                            <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
+                                        @else
+                                            <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
+                                        @endif
                                     </span>
                                     <div class="px-3">
                                         <span class="flex flex-row justify-between items-center pt-2">
@@ -82,7 +99,7 @@
                             </a>
                         </td>
                         <td class="hidden lg:table-cell ">
-                            @php
+                            {{-- @php
                                 $status;
                                 if ($invoice->status === 'process') {
                                     $status = 'text-green';
@@ -91,8 +108,24 @@
                                 } else {
                                     $status = 'text-grey-secondary';
                                 }
+                            @endphp --}}
+                            @php
+                                $status;
+                                if ($invoice->status === 'process') {
+                                    $status = 'text-green';
+                                }elseif ($invoice->status === 'done') {
+                                    $status = 'text-green';
+                                } else{
+                                    $status = 'text-danger';
+                                }
                             @endphp
-                            <p class="text-center {{ $status }} ">{{ strtoupper($invoice->status) }}</p>
+                            {{-- <p class="text-center {{ $status }} ">{{ strtoupper($invoice->status) }}</p> --}}
+                            {{-- handle failed transaction --}}
+                            @if ($invoice->status === 'process' || $invoice->status === 'done' || $invoice->status === 'open')
+                                <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
+                            @else
+                                <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
+                            @endif
                         </td>
                         <td class="hidden lg:table-cell ">
                             <p class="text-center">{{ $invoice->shipping_code . ' ' . $invoice->shipping_service }}</p>
@@ -104,7 +137,7 @@
                             @if ($invoice->payment)
                                 <p class="text-center font-bold">{{ strtoupper($invoice->payment->bank) }}</p>
                             @else
-                                <p class="text-center"></p>
+                                <p class="text-center">-</p>
                             @endif
                         </td>
                     </tr>

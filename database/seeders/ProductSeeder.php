@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         [
         'name' => 'Flower Anggrek Bulan',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-01.png',
+        'image' => 'storage/img/products/flower-series-01.png',
         'description' => 'Wangi segar dengan sensasi manis diakhir saat telon sudah terkena kulit. Seperti aroma kesegaran hujan dengan harum manis dari bunga anggrek.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Magnolia',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-02.png',
+        'image' => 'storage/img/products/flower-series-02.png',
         'description' => 'Wangi calming. Aroma menenangkan yang lembut, Telon Habbie mencoba mereplikasi suasana tenang melalui aroma magnolia.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -46,7 +46,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Peony',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-03.png',
+        'image' => 'storage/img/products/flower-series-03.png',
         'description' => 'Perpaduan aroma lembut, manis, asam dan adanya hint pahit sehingga memberi kesan aroma everlasting yang tidak membosankan.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Tulip',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-05.png',
+        'image' => 'storage/img/products/flower-series-05.png',
         'description' => 'Aroma yang menggambarkan keunikan dari aroma bunga tulip yang segar.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -76,7 +76,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Lotus',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-06.png',
+        'image' => 'storage/img/products/flower-series-06.png',
         'description' => "Wangi yang memberikan sensasi kesegaran dan kelembutan. Aroma lotus memiliki kesan 'semangat' sehingga cocok digunakan sehari-hari.",
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -91,7 +91,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Petunia',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-07.png',
+        'image' => 'storage/img/products/flower-series-07.png',
         'description' => 'Wangi dengan karakter manis yang kuat dengan tambahan aroma asam diakhir. Wanginya memberi sensasi dingin ke segar saat dihirup oleh hidung.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -106,7 +106,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Sakura',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-08.png',
+        'image' => 'storage/img/products/flower-series-08.png',
         'description' => 'Menggambarkan sensasi aroma musim semi dari negara Jepang. Wangi lembut dengan sensasi manis dan fresh ditambah ada sedikit aroma pahit di akhir saat sudah meresap ke kulit.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -121,7 +121,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Cactus',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-09.png',
+        'image' => 'storage/img/products/flower-series-09.png',
         'description' => 'Wangi yang segar dengan campuran aroma manis unik yang jarang dijumpai di Telon Flower Series.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -136,7 +136,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Pansy',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-10.png',
+        'image' => 'storage/img/products/flower-series-10.png',
         'description' => 'Wangi manis dari bunga pansy dengan campuran sensasi sedikit pahit dan asam yang segar eksotis. Memberikan wangi yang akan diingat siapapun yang mencium aroma telon ini.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -151,7 +151,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Fuchsia',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-11.png',
+        'image' => 'storage/img/products/flower-series-11.png',
         'description' => 'Wangi manis bunga dengan tambahan sensasi asam dan pahit ditambah ada kesan powdery.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -166,7 +166,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Rose',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-12.png',
+        'image' => 'storage/img/products/flower-series-12.png',
         'description' => 'Wangi khas bunga mawar dipadukan dengan wangi asam yang segar dan ringan.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -181,7 +181,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Lily',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-13.png',
+        'image' => 'storage/img/products/flower-series-13.png',
         'description' => 'Wangi segar yang lembut, ditambah saat terkena kulit memberikan sensasi manis.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -196,7 +196,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Granium',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-14.png',
+        'image' => 'storage/img/products/flower-series-14.png',
         'description' => 'Perpaduan wangi manis gardenia dengan sedikit wangi pahit dan asam yang fresh. Menampilkan wangi elegan yang eksotis.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Gardenia',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-15.png',
+        'image' => 'storage/img/products/flower-series-15.png',
         'description' => 'Wangi yang memberikan kelembutan dan harum yang manis khas aroma bunga gardenia yang jarang kita temui.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -226,7 +226,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Flower Lemon',
         'category_id'=>1,
-        'image' => 'storage/img/flower-series-16.png',
+        'image' => 'storage/img/products/flower-series-16.png',
         'description' => 'Kesegaran wangi citrus dipadukan sedikit wangi pahit dan asam dari bunga jeruk.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -241,7 +241,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Jasmine',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-01.png',
+        'image' => 'storage/img/products/tea-series-01.png',
         'description' => 'Wangi harum bunga melati yang manis, dipadukan dengan aroma menenangkan dari wangi teh yang sedikit pahit.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -256,7 +256,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Fresh',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-02.png',
+        'image' => 'storage/img/products/tea-series-02.png',
         'description' => 'Wangi unik dari dua kuncup daun teh termuda. Memberikan efek kesegaran dari teh khas Brazil.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -271,7 +271,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Matcha',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-03.png',
+        'image' => 'storage/img/products/tea-series-03.png',
         'description' => 'Keharuman teh hijau yang menenangkan dengan sedikit sentuhan aroma pahit khas teh, memberikan sensasi rileks sejak terhirup oleh hidung.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -286,7 +286,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea White',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-05.png',
+        'image' => 'storage/img/products/tea-series-05.png',
         'description' => 'Wangi teh yang lembut dengan sedikit sensasi manis yang menyegarkan.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -301,7 +301,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Green Honey',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-06.png',
+        'image' => 'storage/img/products/tea-series-06.png',
         'description' => 'Wangi teh yang sedikit pahit menenangkan memberikan sensasi yang lembut dengan tanbahan sensasi manis diakhir.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -316,7 +316,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Black',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-07.png',
+        'image' => 'storage/img/products/tea-series-07.png',
         'description' => 'Aroma menenangkan dari seduhan teh. Memberikan wangi yang lembut dan menenangkan dengan sedikit sensasi asam dan pahit.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -331,7 +331,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Oolong',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-08.png',
+        'image' => 'storage/img/products/tea-series-08.png',
         'description' => 'Wangi teh yang lembut yang manis dengan memadukan kesan creamy dan sedikit aroma fruity diakhir.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -346,7 +346,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Pu-erh',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-09.png',
+        'image' => 'storage/img/products/tea-series-09.png',
         'description' => 'Aroma teh yang lembut dengan karakter yang cenderung silky dan adanya hint floral.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -361,7 +361,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Yellow',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-10.png',
+        'image' => 'storage/img/products/tea-series-10.png',
         'description' => 'Sensasi perpaduan wangi teh yang menenangkan dengan sedikit aroma buah citrus diakhir.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -376,7 +376,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Tree',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-11.png',
+        'image' => 'storage/img/products/tea-series-11.png',
         'description' => 'Perpaduan wangi seperti aroma kayu putih dan kayu manis sehinggal menampilkan wangi yang terkesan bright.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -391,7 +391,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Bouquet',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-12.png',
+        'image' => 'storage/img/products/tea-series-12.png',
         'description' => 'Aroma teh hitam yang kuat berpadu dengan wangi melati dan mawar yang manis dan menenangkan.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -406,7 +406,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Darjeeling',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-13.png',
+        'image' => 'storage/img/products/tea-series-13.png',
         'description' => 'Gabungan dari aroma Mustacel yang manis dengan aroma pahit yang musky.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -421,7 +421,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Earl Grey',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-14.png',
+        'image' => 'storage/img/products/tea-series-14.png',
         'description' => 'Wangi bergamot dengan karakter citrus yang dominan menghasilkan wangi teh yang unik menyegarkan.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -436,7 +436,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Sencha',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-15.png',
+        'image' => 'storage/img/products/tea-series-15.png',
         'description' => 'Aroma flavorfull yang ada pada teh hijau saat dipetik di musim dingin menghasilkan wangi rileks yang lembut dan manis.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -451,7 +451,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Tea Masala',
         'category_id'=>2,
-        'image' => 'storage/img/tea-series-16.png',
+        'image' => 'storage/img/products/tea-series-16.png',
         'description' => 'Perpaduan wangi unik teh yang rileks dan lembut dipadukan dengan karakter wangi rempah (jahe, kapulaga, dan kayu manis) menghasilkan wangi yang kompleks dengan intensitas mild.',
         'story' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac ornare diam. Nullam lacus ante, lobortis a felis vel, interdum sodales magna. Sed viverra nisi ut finibus commodo. Nunc sagittis ipsum vitae nisl eleifend, sit amet dignissim lacus placerat. Nam ultrices, massa quis molestie tristique, enim augue tristique tellus, a mattis nunc dolor et nulla. Curabitur quis commodo tortor, sed pulvinar massa. Suspendisse a urna metus. Suspendisse at arcu dui. Aliquam erat volutpat.',
         'price' => 55500,
@@ -466,7 +466,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Turkish Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/saffron_1.png',
+        'image' => 'storage/img/products/saffron_1.png',
         'description' => 'Wangi dengan aroma powdery yang lembut.Turkish Saffron sangat cocok digunakan untuk aktivitas sehari-hari.',
         'story' => 'Aroma lembut yang menyegarkan ditambah aroma powdery dapat Anda temukan dalam varian Turkish Saffron. Wangi varian ini menggambarkan keceriaan masa kecil saat anak sedang berada di taman bermain. Turkish Saffron sangat cocok Anda digunakan setiap untuk aktivitas sehari-hari.',
         'price' => 65000,
@@ -481,7 +481,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Afghan Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/saffron_2.png',
+        'image' => 'storage/img/products/saffron_2.png',
         'description' => 'Wangi yang memiliki aroma manis yang super soft di awal hirupan diikuti aroma floral serta fruity.',
         'story' => 'Varian Afghan Saffron memiliki aroma manis yang super soft di awal hirupan diikuti aroma floral serta fruity. Varian Afghan Saffron adalah varian yang mampu memunculkan ingatan akan ‘rumah’. Afghan Saffron menggambarkan suasana Minggu pagi saat ibu sedang mencuci bersama si Kecil yang sedang bermain. Varian ini cocok Anda pakai di pagi hari sebelum memulai beraktivitas.',
         'price' => 65000,
@@ -496,7 +496,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Spanish Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/saffron_3.png',
+        'image' => 'storage/img/products/saffron_3.png',
         'description' => 'Wangi dengan aroma manis bunga dipadukan aroma lembut yang tercium pada varian Spanish Saffron memberi kesan mewah yang kuat.',
         'story' => 'Aroma manis bunga dengan paduan aroma lembut yang tercium pada varian Spanish Saffron memberi kesan mewah yang kuat. Wangi varian ini menggambarkan sosok wanita elegan dengan karakter feminim. Spanish Saffron sangat cocok digunakan pada pagi hari ketika Anda ingin memulai menjalani aktivitas.',
         'price' => 65000,
@@ -511,7 +511,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Negin Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/saffron_5.png',
+        'image' => 'storage/img/products/saffron_5.png',
         'description' => 'Memiliki aroma lembut dengan aroma floral yang manis dengan sedikit aroma fruity.',
         'story' => 'Varian Negin Saffron memiliki aroma lembut dengan aroma floral yang manis dengan sedikit aroma fruity. Varian ini mengingatkan kita saat berpiknik bersama keluarga ditemani dengan hamparan bunga dan buah. Kehangatannya yang dihadirkan pada varian ini sangat cocok digunakan pada malam hari sehingga membuat kita yang merasakan dan mecium aromanya menjadi lebih rileks.',
         'price' => 65000,
@@ -526,7 +526,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Khasmir Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/saffron_6.png',
+        'image' => 'storage/img/products/saffron_6.png',
         'description' => 'Memiliki aroma woody yang kuat dengan sedikit aroma floral yang manis. Cocok Anda pakai di siang hari saat sedang beraktivitas.',
         'story' => 'Varian Kashmir Saffron memiliki aroma woody yang kuat dengan sedikit aroma floral yang manis. Varian Kashmir Saffron menggambarkan suasana sejuk di pegunungan yang dikelilingi oleh pepohonan rindang. Varian ini cocok Anda pakai di siang hari saat sedang beraktivitas.',
         'price' => 65000,
@@ -541,7 +541,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Iran Saffron',
         'category_id'=>3,
-        'image' => 'storage/img/saffron_7.png',
+        'image' => 'storage/img/products/saffron_7.png',
         'description' => '',
         'story' => 'Varian Iran Saffron memiliki aroma floral ditambah hint fruity yang lembut. Varian Iran Saffron mengingatkan kita dengan momen masa kecil yakni keceriaan saat menerima hadiah dari orang tua. Varian ini sangat cocok digunakan untuk beraktivitas di siang hari.',
         'price' => 65000,
@@ -556,7 +556,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Turkish Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/vanilla_1.png',
+        'image' => 'storage/img/products/vanilla_1.png',
         'description' => 'Aroma segar dan manis dari bunga berpadu dengan kelembutan vanilla yang memikat hati.',
         'story' => 'Aroma segar dan manis dari bunga berpadu dengan kelembutan vanilla yang memikat hati. Wangi varian ini menggambarkan suasana hamparan bunga yang luas dan beberapa pohon buah yang menyejukkan. Varian ini sangat cocok untuk menemani saat berpergian bersama keluarga, saudara dan teman.',
         'price' => 65000,
@@ -571,7 +571,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'China Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/vanilla_2.png',
+        'image' => 'storage/img/products/vanilla_2.png',
         'description' => 'Memiliki aroma manis fruity dan floral. Varian ini cocok Anda pakai di sore menjelang malam hari.',
         'story' => 'Varian China Vanilla memiliki aroma manis fruity dan floral. Varian China Vanilla mengingatkan kita dengan aroma bubble gum yang manis dan lembut. China Vanilla  menggambarkan keceriaan anak-anak ketika meniup permen karet saat bermain bersama teman-temannya. Varian ini cocok Anda pakai di sore menjelang malam hari.',
         'price' => 65000,
@@ -586,7 +586,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Mexican Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/vanilla_3.png',
+        'image' => 'storage/img/products/vanilla_3.png',
         'description' => 'Wangi dengan aroma autentik yang khas sehingga memberikan kesan hangat saat pertama kali hirup, diikuti wangi manis yang lembut.',
         'story' => 'Aroma autentik yang memberikan kesan hangat layaknya sedang berada di kampung halaman. Wangi varian ini menggambarkan suasana di rumah kakek nenek yang menyejukkan dan penuh dengan memori yang membuat rindu. Varian ini sangat cocok digunakan ketika malam hari menjelang istirahat sebagai penawar rasa rindu kampung halaman.',
         'price' => 65000,
@@ -601,7 +601,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Madagascar Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/vanilla_5.png',
+        'image' => 'storage/img/products/vanilla_5.png',
         'description' => 'Memiliki aroma manis yang kuat dengan sedikit aroma floral yang menenangkan. ',
         'story' => 'Varian Vanilla Madagascar memiliki aroma manis yang kuat dengan sedikit aroma floral yang menenangkan. Varian ini mengingatkan kita dengan makanan tradisional rambut nenek yang memiliki aroma dan rasa yang manis. Vanilla Madagascar sangat cocok dipakai pada malam hari atau saat istirahat setelah melakukan berbagai macam kegiatan yang melelahkan.',
         'price' => 65000,
@@ -616,7 +616,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'american vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/vanilla_6.png',
+        'image' => 'storage/img/products/vanilla_6.png',
         'description' => 'Memiliki aroma manis fruity yang kuat diikuti aroma floral dan woody yang super soft. Cocok Anda pakai pada pagi hari saat akan memulai beraktivitas.',
         'story' => 'Varian American Vanilla memiliki aroma manis fruity yang kuat diikuti aroma floral dan woody yang super soft. Varian American Vanilla menggambarkan suasana segar dari hamparan kebun teh dan buah yang menyejukkan. Varian ini cocok Anda pakai pada pagi hari saat akan memulai beraktivitas.',
         'price' => 65000,
@@ -631,7 +631,7 @@ class ProductSeeder extends Seeder
     [
         'name' => 'Indonesian Vanilla',
         'category_id'=>4,
-        'image' => 'storage/img/vanilla_7.png',
+        'image' => 'storage/img/products/vanilla_7.png',
         'description' => 'Memiliki aroma manis yang lembut dengan aroma fruity dan floral yang kuat.',
         'story' => 'Varian Vanilla Indonesia memiliki aroma manis yang lembut dengan aroma fruity dan floral yang kuat. Vanilla Indonesia menggambarkan kebahagiaan dan keceriaan dari seorang anak kecil ketika hendak pergi bermain bersama teman ataupun keluarga. Varian ini sangat cocok digunakan di tengah kegiatan anak ataupun orangtua sehingga membantu menyegarkan tubuh kembali.',
         'price' => 65000,

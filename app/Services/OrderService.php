@@ -45,7 +45,7 @@ class OrderService {
             'city' => $customer['city'],
             'subdistrict' => $customer['subdistrict'],
             'postal_code' => $customer['postal_code'],
-            'status' => 'pending', 
+            'status' => 'open', 
             'sub_total' => $subtotal,
             'total' => $subtotal + $shipping['value'],
             'shipping_code' => $shipping['code'], 

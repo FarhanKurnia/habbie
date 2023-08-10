@@ -9,13 +9,14 @@
     <table border="1">
         <thead>
             <tr>
-                <th colspan="9">Show one product using: $oneProduct</th>
+                <th colspan="10">Show one product using: $oneProduct</th>
             </tr>
             <tr>
+                <th>image</th>
                 <th>name</th>
                 <th>category_id</th>
-                <th>image</th>
-                <th>description</th>
+                <th>description</th>                
+                <th>story</th>
                 <th>price</th>
                 <th>stock</th>
                 <th>rating</th>
@@ -25,10 +26,11 @@
         </thead>
         <tbody>
             <tr>
+                <td><p style="text-align:center;"><img src="{{ url($oneProduct->image) }}" alt="{{ $oneProduct->image }}" style="width:20px;height:50px;"></p></td>
                 <td>{{ $oneProduct->name }}</td>
                 <td>{{ $oneProduct->category->name }}</td>
-                <td>{{ $oneProduct->image }}</td>
                 <td>{{ $oneProduct->description }}</td>
+                <td>{{ $oneProduct->story }}</td>
                 <td>
                     @php
                         // handle discount

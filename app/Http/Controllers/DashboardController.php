@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Carbon;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,14 +18,14 @@ class DashboardController extends Controller
 
         $user = User::where('id_user',$id_user)->with('role')->firstOrFail();
         $orders = new Order();
-        $orders_pending = $orders->where('status','pending')->count();
         $orders_process = $orders->where('status','process')->count();
         $orders_done = $orders->where('status','done')->count();
+        $orders_revenue =  $orders->where('status','process')->orWhere('status','done')->get();
         $orders_status = array(
-            'pending'=>$orders_pending,
+            'all_order'=>$orders_process+$orders_done,
             'process'=>$orders_process,
             'done' =>$orders_done);
-        return view('test.admin.dashboard.dashboard-admin',compact('orders_status','user'));
+        return view('test.admin.dashboard.dashboard-admin',compact('orders_revenue','orders_status','user'));
     }
 
     /**

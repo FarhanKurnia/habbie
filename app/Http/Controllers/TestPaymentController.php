@@ -21,7 +21,7 @@ class TestPaymentController extends Controller
     {
 
         // query data order from db
-        $order = Order::where([['invoice', $slug], ['status', 'pending']])->firstOrFail();
+        $order = Order::where([['invoice', $slug], ['status', 'open']])->firstOrFail();
         $id_order = $order->id_order;
         $orderProducts = OrderProduct::where('order_id',$id_order)->with('order','product')->get();
         
@@ -40,15 +40,6 @@ class TestPaymentController extends Controller
             ];
         }, $orderProducts);
         
-
-        // $date = Carbon::now();
-        // $start_rand = rand(5000,99999);
-        // $end_rand = rand(5000,99999);
-        // $result = $date->format('Y-m-d');
-        // $result = explode('-', $result);
-        // $result = implode("", $result);
-        // $invoiceEncrypt = $start_rand.$result.$end_rand;
-
         array_push($itemDetails, [ 'id' => rand(1, 999), 'name' => $order['shipping_code'] . " " . $order['shipping_service'], 'quantity' => 1, 'price' => $order['shipping_value']]);
         
         // create payload 
@@ -112,98 +103,169 @@ class TestPaymentController extends Controller
             $hashed = hash("sha512", $order_id.$status_code.$gross_amount.$serverKey);
             
             if($hashed == $request->signature_key){
-    
-                if($transaction_status == 'pending'){
-                    Order::where('invoice', $order_id)->update([
-                        'status' => 'pending',
-                    ]);
+                switch ($transaction_status) {
+                    case 'pending':
+                        Order::where('invoice', $order_id)->update([
+                            'status' => 'pending',
+                        ]);
+                        return response()->json(['message' => 'Payment Status Pending']);
+                        break;
+                    
+                    case 'capture':
+                        Order::where('invoice', $order_id)->update([
+                            'status' => 'process',
+                        ]);
 
-                    return response()->json(['message' => 'Payment Status Pending']);
+                    case 'settlement':
+                        $order = Order::where('invoice', $order_id)->get();
+                        $order[0]->update([
+                            'status' => 'process',
+                        ]);
+                        // $order = Order::where('invoice',$order_id)->get();
+                        // handle VA BANK BCA, BNI ad Payment
+                        // if (!empty($va_number)) {
+                        if ($va_number) {
+                            Payment::create([
+                                'gross_amount' => $gross_amount, 
+                                'va_number' => $va_number,
+                                'bank' => $bank,
+                                'payment_type' => $payment_type,
+                                'transaction_time' => $transaction_time,
+                                'transaction_status' => $transaction_status, 
+                                'transaction_id' => $transaction_id,
+                                'order_id' => $order[0]['id_order'],
+                                'invoice_id' => $order_id
+                            ]);
+                        }else {
+                            // handle Mandiri Bill Payment dan BANK Permata masih fail
+                            Payment::create([
+                                'gross_amount' => $gross_amount, 
+                                'va_number' => $biller_code.$bill_key,
+                                'bank' => 'mandiri',
+                                'payment_type' => 'bill_payment',
+                                'transaction_time' => $transaction_time,
+                                'transaction_status' => $transaction_status, 
+                                'transaction_id' => $transaction_id,
+                                'order_id' => $order[0]['id_order'],
+                                'invoice_id' => $order_id
+                            ]);
+                            
+                            return response()->json(['message' => 'Payment Status Success']);
+                        }
+                        break;
+
+                    case 'expire':
+                        Order::where('invoice', $order_id)->update([
+                            'status' => 'failed',
+                        ]);
+                        return response()->json(['message' => 'Payment Status Failed']);    
+                        break;
+                    
+                    case 'failure':
+                        Order::where('invoice', $order_id)->update([
+                            'status' => 'failed',
+                        ]);
+                        return response()->json(['message' => 'Payment Status Failed']);    
+                        break;
+
+                    default:
+                        Order::where('invoice', $order_id)->update([
+                            'status' => 'failed',
+                        ]);
+                        return response()->json(['message' => 'Payment Status Failed']); 
+                        break;
                 }
+                
+                // if($transaction_status == 'pending'){
+                //     Order::where('invoice', $order_id)->update([
+                //         'status' => 'pending',
+                //     ]);
+
+                //     return response()->json(['message' => 'Payment Status Pending']);
+                // }
     
-                if($transaction_status == 'capture' || $transaction_status == 'settlement'){
-                    $order = Order::where('invoice', $order_id)->get();
-                    $order[0]->update([
-                        'status' => 'process',
-                    ]);
-                    // $order = Order::where('invoice',$order_id)->get();
-                    // handle VA BANK BCA, BNI ad Payment
-                    // if (!empty($va_number)) {
-                    if ($va_number) {
-                        Payment::create([
-                            'gross_amount' => $gross_amount, 
-                            'va_number' => $va_number,
-                            'bank' => $bank,
-                            'payment_type' => $payment_type,
-                            'transaction_time' => $transaction_time,
-                            'transaction_status' => $transaction_status, 
-                            'transaction_id' => $transaction_id,
-                            'order_id' => $order[0]['id_order'],
-                            'invoice_id' => $order_id
-                        ]);
-                      }else {
-                        // handle Mandiri Bill Payment dan BANK Permata masih fail
-                        Payment::create([
-                            'gross_amount' => $gross_amount, 
-                            'va_number' => $biller_code.$bill_key,
-                            'bank' => 'mandiri',
-                            'payment_type' => 'bill_payment',
-                            'transaction_time' => $transaction_time,
-                            'transaction_status' => $transaction_status, 
-                            'transaction_id' => $transaction_id,
-                            'order_id' => $order[0]['id_order'],
-                            'invoice_id' => $order_id
-                        ]);
-                      }
-                    // if($va_number){
-                    //     Payment::create([
-                    //         'gross_amount' => $gross_amount, 
-                    //         'va_number' => $va_number,
-                    //         'bank' => $bank,
-                    //         'payment_type' => $payment_type,
-                    //         'transaction_time' => $transaction_time,
-                    //         'transaction_status' => $transaction_status, 
-                    //         'transaction_id' => $transaction_id,
-                    //         'order_id' => $order[0]['id_order'],
-                    //         'invoice_id' => $order_id
-                    //     ]);
-                    // }
-                    // if($biller_code){
-                    //     $bank = "mandiri";
-                    //     $payment_type = "bill_payment";
-                    //     Payment::create([
-                    //         'gross_amount' => $gross_amount, 
-                    //         'va_number' => $biller_code.$bill_key,
-                    //         'bank' => $bank,
-                    //         'payment_type' => $payment_type,
-                    //         'transaction_time' => $transaction_time,
-                    //         'transaction_status' => $transaction_status, 
-                    //         'transaction_id' => $transaction_id,
-                    //         'order_id' => $order[0]['id_order'],
-                    //         'invoice_id' => $order_id
-                    //     ]);
-                    // }
+                // if($transaction_status == 'capture' || $transaction_status == 'settlement'){
+                //     $order = Order::where('invoice', $order_id)->get();
+                //     $order[0]->update([
+                //         'status' => 'process',
+                //     ]);
+                //     // $order = Order::where('invoice',$order_id)->get();
+                //     // handle VA BANK BCA, BNI ad Payment
+                //     // if (!empty($va_number)) {
+                //     if ($va_number) {
+                //         Payment::create([
+                //             'gross_amount' => $gross_amount, 
+                //             'va_number' => $va_number,
+                //             'bank' => $bank,
+                //             'payment_type' => $payment_type,
+                //             'transaction_time' => $transaction_time,
+                //             'transaction_status' => $transaction_status, 
+                //             'transaction_id' => $transaction_id,
+                //             'order_id' => $order[0]['id_order'],
+                //             'invoice_id' => $order_id
+                //         ]);
+                //       }else {
+                //         // handle Mandiri Bill Payment dan BANK Permata masih fail
+                //         Payment::create([
+                //             'gross_amount' => $gross_amount, 
+                //             'va_number' => $biller_code.$bill_key,
+                //             'bank' => 'mandiri',
+                //             'payment_type' => 'bill_payment',
+                //             'transaction_time' => $transaction_time,
+                //             'transaction_status' => $transaction_status, 
+                //             'transaction_id' => $transaction_id,
+                //             'order_id' => $order[0]['id_order'],
+                //             'invoice_id' => $order_id
+                //         ]);
+                //       }
+                //     // if($va_number){
+                //     //     Payment::create([
+                //     //         'gross_amount' => $gross_amount, 
+                //     //         'va_number' => $va_number,
+                //     //         'bank' => $bank,
+                //     //         'payment_type' => $payment_type,
+                //     //         'transaction_time' => $transaction_time,
+                //     //         'transaction_status' => $transaction_status, 
+                //     //         'transaction_id' => $transaction_id,
+                //     //         'order_id' => $order[0]['id_order'],
+                //     //         'invoice_id' => $order_id
+                //     //     ]);
+                //     // }
+                //     // if($biller_code){
+                //     //     $bank = "mandiri";
+                //     //     $payment_type = "bill_payment";
+                //     //     Payment::create([
+                //     //         'gross_amount' => $gross_amount, 
+                //     //         'va_number' => $biller_code.$bill_key,
+                //     //         'bank' => $bank,
+                //     //         'payment_type' => $payment_type,
+                //     //         'transaction_time' => $transaction_time,
+                //     //         'transaction_status' => $transaction_status, 
+                //     //         'transaction_id' => $transaction_id,
+                //     //         'order_id' => $order[0]['id_order'],
+                //     //         'invoice_id' => $order_id
+                //     //     ]);
+                //     // }
                     
 
-                    return response()->json(['message' => 'Payment Status Success']);
-                }
+                //     return response()->json(['message' => 'Payment Status Success']);
+                // }
     
-                if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny' || $transaction_status == 'failure'){
-                    // Order::where('invoice', $order_id)->update([
-                    //     'status' => 'failed',
-                    // ]);
-                    $order = Order::where('invoice', $order_id)->first();
-                    $order->update([
-                        'status' => 'failed',
-                    ]);
+                // if($transaction_status == 'expire' || $transaction_status == 'cancel' || $transaction_status == 'deny' || $transaction_status == 'failure'){
+                //     // Order::where('invoice', $order_id)->update([
+                //     //     'status' => 'failed',
+                //     // ]);
+                //     $order = Order::where('invoice', $order_id)->first();
+                //     $order->update([
+                //         'status' => 'failed',
+                //     ]);
 
-                    return response()->json(['message' => 'Payment Status Failed']);    
-                }
+                //     return response()->json(['message' => 'Payment Status Failed']);    
+                // }
             }
         } catch(\Throwable $th){
             return $th;
         }
-
     }
 
 }
