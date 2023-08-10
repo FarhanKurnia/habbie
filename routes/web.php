@@ -94,6 +94,18 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::get('/products/add', [ProductController::class, 'create'])->name('createProducts');
+    Route::get('/products', [ProductController::class, 'index'])->name('createProducts');
+    Route::get('/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('storeProducts');
+    Route::patch('/products/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
+
+    // Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
+    // Route::get('/admin/products/add', [ProductController::class, 'create'])->name('createProducts');
+    // Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
+    // Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
+    // Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
+
+
 });
 
 Route::prefix('test')->group(function () {
@@ -114,13 +126,13 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
         //Products
-        Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
-        Route::get('/admin/products/add', [ProductController::class, 'create'])->name('createProducts');
-        Route::post('/admin/products/store', [ProductController::class, 'store'])->name('storeProducts');
-        Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
-        Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
-        Route::patch('/admin/products/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
-        Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
+        // Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
+        // Route::get('/admin/products/add', [ProductController::class, 'create'])->name('createProducts');
+        // Route::post('/admin/products/store', [ProductController::class, 'store'])->name('storeProducts');
+        // Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
+        // Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
+        // Route::patch('/admin/products/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
+        // Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
         //Categories Products
         Route::get('/admin/categories', [ProductCategoryController::class, 'index'])->name('indexCategories');
