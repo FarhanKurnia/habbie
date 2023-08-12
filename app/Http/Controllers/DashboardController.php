@@ -18,9 +18,9 @@ class DashboardController extends Controller
 
         $user = User::where('id_user',$id_user)->with('role')->firstOrFail();
         $orders = new Order();
-        $orders_process = $orders->where('status','process')->count();
-        $orders_done = $orders->where('status','done')->count();
-        $orders_revenue =  $orders->where('status','process')->orWhere('status','done')->get();
+        $orders_process = $orders->where('status_order','process')->count();
+        $orders_done = $orders->where('status_order','done')->count();
+        $orders_revenue =  $orders->where('status_order','process')->orWhere('status_order','done')->get();
         $orders_status = array(
             'all_order'=>$orders_process+$orders_done,
             'process'=>$orders_process,

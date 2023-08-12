@@ -23,10 +23,10 @@
             </div>
             <div class="bg-grey-secondary-50">
                 <span class="rounded lg:text-center">
-                    @if ($invoices->payment)
-                        <p class="p-4 text-green font-bold">Paid </br>@ {{ $invoices->payment->created_at }}</p>
+                    @if ($invoices->status_payment==='paid')
+                        <p class="p-4 text-green font-bold">{{$invoices->status_order}} / {{$invoices->status_payment}} </br>@ {{ $latest_payment->created_at }}</p>
                     @else
-                        <p class="p-4 text-danger">Failed</p>
+                        <p class="p-4 text-danger font-bold">{{$invoices->status_order}} / {{$invoices->status_payment}} ({{$latest_payment->transaction_status}})</p>
                     @endif
                 </span>
             </div>
@@ -135,7 +135,7 @@
                             <p class="text-center">{{ \App\Helpers\CurrencyFormat::data($invoices->shipping_value) }}</p>
                         </td>
                     </tr>
-                    <tr class="{{ $invoices->payment ? 'bg-green' : 'bg-danger' }}  text-white">
+                    <tr class="{{ $invoices->status_payment==='paid' ? 'bg-green' : 'bg-danger' }}  text-white">
                         <td class="flex justify-between items-center lg:table-cell">
                             <h4 class="text-xl font-bold">Total</h4>
                             <p class="text-center font-bold text-lg lg:hidden">
@@ -151,7 +151,7 @@
                 </tbody>
             </table>
 
-            @if ($invoices->payment)
+            @if ($invoices->status_payment==='paid')
                 <div class="py-4">
                     <h4 class="font-bold px-2 text-green">Detail Payment</h4>
                     <table class="min-w-full divide-y divide-gray-200 table">
@@ -159,7 +159,7 @@
                             <tr>
                                 <td>
                                     <p class="font-bold">{{ $invoices->payment->va_number }}</p>
-                                    <p>at {{ $invoices->payment->created_at }}</p>
+                                    <p>at {{ $latest_payment->created_at }}</p>
                                 </td>
                                 <td>
                                     <p class="text-center font-bold">Bank {{ strtoupper($invoices->payment->bank) }}</p>

@@ -11,6 +11,7 @@ use App\Models\Product_Category;
 use App\Models\Testimonial;
 use App\Models\Review;
 use App\Models\Reseller;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -176,7 +177,7 @@ class ClientController extends Controller
     public function indexInvoiceClient(){
         $user = Auth::user();
         $id_user = $user['id_user'];
-        $invoices = Order::where('user_id',$id_user)->with('user','orderproduct','payment')->paginate(5);
+        $invoices = Order::where('user_id',$id_user)->with('user','orderproduct','payment')->latest()->paginate(5);
         return view('pages.public.invoice.index',compact('invoices'));
     }
 
@@ -185,8 +186,9 @@ class ClientController extends Controller
         $id_user = $user['id_user'];
         $invoices = Order::where([['invoice',$invoice],['user_id',$id_user]])->with('user','orderproduct','payment')->firstOrFail();
         $id_order = $invoices->id_order;
+        $latest_payment = Payment::where('order_id',$id_order)->latest()->first();
         $orders = OrderProduct::where('order_id',$id_order)->with('product','discount',)->get();
-        return view('pages.public.invoice.detail',compact('invoices','orders'));
+        return view('pages.public.invoice.detail',compact('invoices','orders','latest_payment'));
     }
 
 //Reseller 

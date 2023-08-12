@@ -37,8 +37,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($invoices as $invoice)
+                @foreach ($invoices as $invoice)                
                     <tr>
+                        {{-- Mobile display --}}
                         <td class="lg:hidden pb-8">
                             <a href="{{ url('invoice/' . $invoice->invoice) }}">
                                 <div class="flex flex-col">
@@ -56,9 +57,7 @@
                                         
                                         @php
                                             $status;
-                                            if ($invoice->status === 'process') {
-                                                $status = 'text-green';
-                                            }elseif ($invoice->status === 'done') {
+                                            if ($invoice->status_order === 'order' || $invoice->status_order === 'process' || $invoice->status_order === 'done') {
                                                 $status = 'text-green';
                                             } else{
                                                 $status = 'text-danger';
@@ -67,8 +66,8 @@
                                         <p>Invoice #{{ $invoice->invoice }}</p>
                                         {{-- <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p> --}}
                                         {{-- handle failed transaction --}}
-                                        @if ($invoice->status === 'process' || $invoice->status === 'done' || $invoice->status === 'open')
-                                            <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
+                                        @if ($invoice->status_order === 'process' || $invoice->status_order === 'done' || $invoice->status_order === 'open')
+                                            <p class="{{ $status }}">{{ strtoupper($invoice->status_order) }}</p>
                                         @else
                                             <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
                                         @endif
@@ -93,6 +92,7 @@
                                 </div>
                             </a>
                         </td>
+                        {{-- Desktop display --}}
                         <td class="hidden lg:table-cell ">
                             <a href="{{ url('invoice/' . $invoice->invoice) }}">
                                 <p class="text-center hover:text-pink-primary">{{ $invoice->invoice }}</p>
@@ -111,18 +111,16 @@
                             @endphp --}}
                             @php
                                 $status;
-                                if ($invoice->status === 'process') {
-                                    $status = 'text-green';
-                                }elseif ($invoice->status === 'done') {
-                                    $status = 'text-green';
+                                if ($invoice->status_order === 'order' || $invoice->status_order === 'process' || $invoice->status_order === 'done') {
+                                    $status = 'text-center text-green';
                                 } else{
-                                    $status = 'text-danger';
+                                    $status = 'text-center text-danger';
                                 }
                             @endphp
                             {{-- <p class="text-center {{ $status }} ">{{ strtoupper($invoice->status) }}</p> --}}
                             {{-- handle failed transaction --}}
-                            @if ($invoice->status === 'process' || $invoice->status === 'done' || $invoice->status === 'open')
-                                <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p>
+                            @if ($invoice->status_order === 'process' || $invoice->status_order === 'done' || $invoice->status_order === 'open')
+                                <p class="{{ $status }}">{{ strtoupper($invoice->status_order) }}</p>
                             @else
                                 <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
                             @endif
@@ -137,7 +135,7 @@
                             @if ($invoice->payment)
                                 <p class="text-center font-bold">{{ strtoupper($invoice->payment->bank) }}</p>
                             @else
-                                <p class="text-center">-</p>
+                                <p class="text-center font-bold text-danger">UNPAID</p>
                             @endif
                         </td>
                     </tr>
