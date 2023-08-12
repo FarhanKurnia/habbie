@@ -18,14 +18,19 @@ class DashboardController extends Controller
 
         $user = User::where('id_user',$id_user)->with('role')->firstOrFail();
         $orders = new Order();
+        $orders_order = $orders->where('status_order','order')->count();
         $orders_process = $orders->where('status_order','process')->count();
+        $orders_failed = $orders->where('status_order','failed')->count();
         $orders_done = $orders->where('status_order','done')->count();
         $orders_revenue =  $orders->where('status_order','process')->orWhere('status_order','done')->get();
         $orders_status = array(
-            'all_order'=>$orders_process+$orders_done,
+            'all_order'=>$orders_order+$orders_process+$orders_failed+$orders_done,
+            'order' => $orders_order,
             'process'=>$orders_process,
+            'failed' =>$orders_failed,
             'done' =>$orders_done);
-        return view('test.admin.dashboard.dashboard-admin',compact('orders_revenue','orders_status','user'));
+        $ordering = $orders->where('status_order','process')->with('orderproduct','payment')->paginate(5);
+        return view('test.admin.dashboard.dashboard-admin',compact('ordering','orders_revenue','orders_status','user'));
     }
 
     /**
