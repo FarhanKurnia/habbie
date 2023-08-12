@@ -40,7 +40,7 @@
                         src="{{$category->icon}}" alt="{{ $category->name }}">
                     <p
                         class="hidden lg:block text-center text-xs lg:text-sm my-4 {{ $activeSlide == $category->id_category ? 'text-grey' : 'text-grey-secondary' }}">
-                        {{ $category->name }} Series</p>
+                        {{ $category->name }}</p>
                 </li>
             @endforeach
         </ul>

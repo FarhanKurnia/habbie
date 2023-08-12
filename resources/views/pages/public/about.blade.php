@@ -26,9 +26,12 @@
         <div class="container mx-auto py-14">
             <div
                 class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:items-center lg:gap-10 lg:justify-center m-6 lg:m-0">
-                @include('components.public.partials.content-card', ['srcImg' => 'icon_reseller_1.png'])
-                @include('components.public.partials.content-card', ['srcImg' => 'icon_reseller_2.png'])
-                @include('components.public.partials.content-card', ['srcImg' => 'icon_reseller_3.png'])
+                @include('components.public.partials.content-card', ['content' => 'Minyak kelapa yang terbaik adalah minyak yang diekstrak dari kelapa segar tanpa campuran bahan kimia. Minyak kelapa merupakan antioksidan yang baik karena mengandung senyawa phenolic. Minyak kelapa yang terkandung dalam campuran minyak telon memiliki khasiat untuk melembabkan kulit. Sifat antimikroba di dalam minyak telon juga memiliki kemampuan untuk melindungi kulit dari mikroorganisme yang menyebabkan infeksi dan gatal-gatal.'],
+                ['srcImg' => 'icon_story1.png'])
+                @include('components.public.partials.content-card', ['content' => 'Minyak adas merupakan minyak essensial yang diekstrak dari tanaman Adas. Tanaman Adas banyak ditemui di daerah timur tengah. Kandungan minyak adas di dalam minyak telon efektif untuk menyembuhkan perut kembung dan pilek akibat influenza.'],
+                ['srcImg' => 'icon_story2.png'])
+                @include('components.public.partials.content-card', ['content' => 'Minyak Kayu putih merupakan hasil penyulingan dari ranting dan daun segar pohon kayu putih. Sineol merupakan zat yang terkandung di dalam minyak kayu putih, zat inilah yang menimbulkan rasa hangat ketika kita mengoleskan minyak kayu putih ke tubuh kita. Sineol juga mampu untuk meredakan gatal-gatal akibat gigitan serangga.'],
+                ['srcImg' => 'icon_story3.png'])
             </div>
         </div>
     </div>
@@ -40,7 +43,7 @@
             'color' => 'grey',
         ])
         <div>
-            @php
+            {{-- @php
                 $contents = [
                     [
                         'title' => 'Jasmine Tea',
@@ -61,7 +64,7 @@
                         'description' => "Tradisi minum teh di Jepang pada abad ke-9 menggunakan Matcha sebagai media meditasi menenangkan pikiran. Matcha tinggi tanin, mengurangi stress, tingkatkan mood. Daun teh hijau ditutup 20-30 hari sebelum dipanen untuk tingkatkan tanin dan klorofil. Daun dipanen dan dikeringkan cepat, kadar klorofil terjaga. Batang dipisahkan, daun ditumbuk. Voila, teh klorofil tinggi dengan aroma tanin hadir. FYI Habbie Aromatic Telon Oil No 3 Matcha Tea, cipta ketenangan pikiran.",
                     ],
                 ];
-            @endphp
+            @endphp --}}
             <livewire:slider-story-product />
         </div>
 
