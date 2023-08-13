@@ -13,6 +13,7 @@
             </tr>
             <tr>
                 <th>No</th>
+                <th>icon</th>
                 <th>name</th>
                 <th>link</th>
             </tr>
@@ -24,6 +25,7 @@
             @foreach($indexCategories as $category)
                 <tr>
                     <td>{{ $no++}}</td>
+                    <td><p style="text-align:center;"><img src="{{ url($category->icon) }}" alt="{{ $category->icon }}" style="width:50px;height:50px;"></p></td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->slug }}</td>
                     <td>

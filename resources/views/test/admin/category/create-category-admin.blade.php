@@ -17,6 +17,10 @@
                 <td><input class="form-control" type="text" name="name" required></td>
             </tr>
             <tr>
+                <td>Icon</td>
+                <td><input class="form-control" type="file" name="icon"></td>
+            </tr>
+            <tr>
                 <td>Submit</td>
                 <td><input type="submit" value="Proses"></td>
             </tr>

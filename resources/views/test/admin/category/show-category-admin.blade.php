@@ -12,12 +12,14 @@
                 <th colspan="2">Show one product using: $oneCategory</th>
             </tr>
             <tr>
+                <th>icon</th>
                 <th>name</th>
                 <th>slug</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td><p style="text-align:center;"><img src="{{ url($oneCategory->icon) }}" alt="{{ $oneCategory->icon }}" style="width:50px;height:50px;"></p></td>
                 <td>{{ $oneCategory->name }}</td>
                 <td>{{ $oneCategory->slug }}</td>
             </tr>

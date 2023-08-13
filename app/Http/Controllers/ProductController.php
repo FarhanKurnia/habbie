@@ -148,9 +148,9 @@ class ProductController extends Controller
         if($request->image){
             $image = $request->file('image');
             $image_name = time()."_".$image->getClientOriginalName();
-            $folder = 'storage/img/products';
+            $folder = 'storage/img/products/';
             $image->move(public_path($folder), $image_name);
-            $update_image = $folder.'/'.$image_name;
+            $update_image = $folder.$image_name;
         }else{
             $update_image = $product->image;  
         }

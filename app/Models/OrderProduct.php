@@ -13,6 +13,7 @@ class OrderProduct extends Model
         'order_id', 'product_id','discount_id',
         'price','discount_price','qty','sub_total_price','total_price',
     ];
+    protected $with = ['product'];
 
     // many order_product product belongs to one order
     public function order(){

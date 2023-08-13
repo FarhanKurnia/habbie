@@ -11,7 +11,7 @@ class Order extends Model
     protected $primaryKey = 'id_order';
     protected $fillable = [
         'name', 'email', 'phone', 'address','province','city','subdistrict',
-        'postal_code', 'status', 'sub_total', 'resi', 'user_id','shipping_code',
+        'postal_code', 'status_order','status_payment', 'sub_total', 'resi', 'user_id','shipping_code',
         'shipping_service','shipping_value','shipping_etd','invoice', 'total', 'total_weight', 'note'
     ];
 
