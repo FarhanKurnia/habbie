@@ -25,7 +25,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-         return view('test.admin.category.create-category-admin');
+        return view('pages.admin.products.categories.create');
     }
 
     /**
