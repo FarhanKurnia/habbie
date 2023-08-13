@@ -7,8 +7,21 @@
 
 @section('content')
     <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
+
+        @if (session()->has('success'))
+            <div class="p-4 bg-teal rounded mb-4">
+                {!! session('success') !!}
+            </div>
+        @endif
+
+        @if (session()->has('error'))
+            <div class="p-4 bg-danger rounded mb-4 text-white">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <h1 class="text-2xl text-grey">{{ $title }}</h1>
-        <form class="grid grid-cols-4 gap-2 my-6" method="POST"
+        <form class="grid grid-cols-4 gap-2 my-6" method="POST" enctype="multipart/form-data"
             action="{{ isset($oneProduct) ? route('updateProducts', $oneProduct->slug) : route('storeProducts') }}">
             @if (isset($oneProduct))
                 @csrf
@@ -58,8 +71,7 @@
                                             <label class="rounded-md cursor-pointer flex items-center gap-2">
                                                 <input type="radio" class="radio radio-xs checked:bg-pink-primary"
                                                     name="discount" value="{{ $item->id_discount }}"
-                                                    {{ isset($oneProduct) && $oneProduct->discount->id_discount === $item->id_discount ? 'checked' : '' }}
-                                                    required />
+                                                    {{ isset($oneProduct) && $oneProduct->discount?->id_discount === $item->id_discount ? 'checked' : '' }}/>
                                                 <span>
                                                     <p class="text-sm font-bold">{{ $item->name }}</p>
                                                     <p class="text-xs">{{ $item->description }}</p>
@@ -92,7 +104,7 @@
                                             class="input input-bordered w-full bg-grey-secondary-50 text-xs"
                                             placeholder="Weight" min="0" required
                                             value="{{ isset($oneProduct) ? $oneProduct->weight : old('weight') }}">
-                                        @error('stock')
+                                        @error('weight')
                                             @include('components.public.partials.error-message', [
                                                 'message' => $message,
                                             ])
@@ -110,7 +122,7 @@
                                         class="input input-bordered w-full bg-grey-secondary-50 text-xs"
                                         placeholder="Rating (0 ~ 5)" min="0" max="5" required
                                         value="{{ isset($oneProduct) ? $oneProduct->rating : old('rating') }}">
-                                    @error('stock')
+                                    @error('rating')
                                         @include('components.public.partials.error-message', [
                                             'message' => $message,
                                         ])
@@ -118,7 +130,12 @@
                                 </span>
                                 <span>
                                     <p class="text-xs mb-2">Write Product Story</p>
-                                    <textarea class="textarea text-sm textarea-bordered w-full" placeholder="Story..">{{ isset($oneProduct) ? $oneProduct->story : old('story') }}</textarea>
+                                    <textarea class="textarea text-sm textarea-bordered w-full" placeholder="Story.." name="story">{{ isset($oneProduct) ? $oneProduct->story : old('story') }}</textarea>
+                                    @error('story')
+                                        @include('components.public.partials.error-message', [
+                                            'message' => $message,
+                                        ])
+                                    @enderror
                                 </span>
                             </div>
                         </div>
@@ -156,8 +173,13 @@
                                 alt="{{ $oneProduct->name }}">
                         @endif
                     </label>
-                    <input type="file" id="product-image"
+                    <input type="file" id="product-image" name="image"
                         class="my-4 file-input file-input-xs file-input-bordered w-full max-w-xs" />
+                    @error('image')
+                        @include('components.public.partials.error-message', [
+                            'message' => $message,
+                        ])
+                    @enderror
                 </div>
             </div>
         </form>
@@ -168,7 +190,7 @@
         CKEDITOR.replace('editor');
 
         @if (isset($oneProduct))
-            CKEDITOR.instances.editor.setData('{{ $oneProduct->description }}');
+            CKEDITOR.instances.editor.setData('{!! $oneProduct->description !!}');
         @endif
     </script>
 @endsection
