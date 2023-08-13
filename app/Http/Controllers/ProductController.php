@@ -8,20 +8,16 @@ use App\Models\Product;
 use App\Models\Product_Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use DataTables;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource Admin.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //products
-        $products = new Product();
-        $indexProducts = $products->where('deleted_at',null)->with('category')->orderBy('id_product','DESC')->paginate(10);
-    
-        return view('pages.admin.products.index', compact('indexProducts'));
-        // return view('test.admin.product.index-product-admin', compact('indexProducts'));
+        return view('pages.admin.products.index');
     }
 
     /**
@@ -46,39 +42,52 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
-            'description' => 'required',
-            'story' => 'required',
-            'price' => 'required',
-            'weight' => 'required',
-        ]);
-        //slug
-        $slug = $request->name;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
+        try {
+            $request->validate([
+                'name' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+                'description' => 'required',
+                'story' => 'required',
+                'price' => 'required',
+                'weight' => 'required',
+            ]);
+            //slug
+            $slug = $request->name;
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $slug = strtolower($slug);
+    
+            //image
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/products';
+            $image->move(public_path($folder), $image_name);
+            
+            // dd($request);
+            $product = Product::create([
+                'name' => $request->name,
+                'image' => $folder.'/'.$image_name,
+                'slug' => $slug,
+                'description' => $request->description,
+                'story' => $request->story,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'rating' => $request->rating,
+                'weight' => $request->weight,
+                'discount_id' => $request->discount,
+                'category_id' => $request->category,
+            ]);
+    
+            return redirect()->route('createProducts')->with([
+                'success' => 'Product has been added successfully <a href="'. url('products/'.$product->slug) .'" target="_blank">See Product</a>'
+            ]);;
 
-        //image
-	    $image = $request->file('image');
-	    $image_name = time()."_".$image->getClientOriginalName();
-	    $folder = 'storage/img/products';
-        $image->move(public_path($folder), $image_name);
-
-        Product::create([
-            'name' => $request->name,
-            'image' => $folder.'/'.$image_name,
-            'slug' => $slug,
-            'description' => $request->description,
-            'story' => $request->story,
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'rating' => $request->rating,
-            'weight' => $request->weight,
-            'discount_id' => $request->discount,
-            'category_id' => $request->category,
-        ]);
-        return redirect()->route('indexProducts');
+        } catch(\Exception $e) {
+            return redirect()
+            ->route('createProducts')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
+        // return redirect()->route('indexProducts');
     }
 
     /**
@@ -126,7 +135,7 @@ class ProductController extends Controller
             'price' => 'required',
             'weight' => 'required',
         ]);
-
+        
         //products
         $products = new Product();
         $getSlug = $request->name;
@@ -145,7 +154,9 @@ class ProductController extends Controller
         }else{
             $update_image = $product->image;  
         }
-
+        
+        // dd($request);
+        
         $product->update([
             'name' => $request->name,
             'image' => $update_image,
@@ -161,7 +172,8 @@ class ProductController extends Controller
         ]);
         if ($product) {
             return redirect()
-                ->route('indexProducts')
+                // ->route('indexProducts')
+                ->route('editProducts', $product->slug)
                 ->with([
                     'success' => 'Post has been updated successfully'
                 ]);
