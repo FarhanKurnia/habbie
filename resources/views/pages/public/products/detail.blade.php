@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="py-4">
-                    <p>{{ $oneProduct->description }}</p>
+                    <p>{!! $oneProduct->description !!}</p>
                 </div>
 
                 <div>
