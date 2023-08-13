@@ -93,17 +93,20 @@ Route::prefix('admin')->group(function () {
         return view('pages.admin.dashboard');
     });
 
-    Route::get('/products/add', [ProductController::class, 'create'])->name('createProducts');
-    Route::get('/products', [ProductController::class, 'index'])->name('createProducts');
-    Route::get('/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('storeProducts');
-    Route::patch('/products/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
+    // products route
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('indexProducts');
+        Route::get('/add', [ProductController::class, 'create'])->name('createProducts');
+        Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
+        Route::post('/store', [ProductController::class, 'store'])->name('storeProducts');
+        Route::patch('/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
+        Route::get('/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
-    // Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
-    // Route::get('/admin/products/add', [ProductController::class, 'create'])->name('createProducts');
-    // Route::get('/admin/products/show/{slug}', [ProductController::class, 'show'])->name('showProducts');
-    // Route::get('/admin/products/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
-    // Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
+        Route::prefix('categories')->group(function () {
+            Route::get('/add', [ProductCategoryController::class, 'create'])->name('createCategories');
+
+        });
+    });
 
 
 });
