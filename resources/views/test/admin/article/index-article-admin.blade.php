@@ -13,11 +13,10 @@
             </tr>
             <tr>
                 <th>No</th>
+                <th>image</th>
                 <th>title</th>
-                <th>slug</th>
                 <th>excerpt</th>
                 <th>user_id</th>
-                <th>link</th>
                 <th>action</th>
             </tr>
         </thead>
@@ -28,11 +27,10 @@
             @foreach($indexArticles as $article)
                 <tr>
                     <td>{{ $no++}}</td>
+                    <td><p style="text-align:center;"><img src="{{ url($article->image) }}" alt="{{ $article->image }}" style="width:50px;height:50px;"></p></td>
                     <td>{{ $article->title }}</td>
-                    <td>{{ $article->slug }}</td>
                     <td>{{ $article->excerpt }}</td>
                     <td>{{ $article->user->name }}</td>
-                    <td>{{ route('showArticles',$article->slug) }}</td>
                     <td>
                         <a href="{{route('showArticles',$article->slug)}}">Show </a>
                         <a href="{{route('editArticles',$article->slug)}}">Edit </a>

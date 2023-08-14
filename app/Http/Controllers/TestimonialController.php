@@ -120,6 +120,7 @@ class TestimonialController extends Controller
             $image_name = time()."_".$image->getClientOriginalName();
             $folder = 'storage/img/testimonials/';
             $image->move(public_path($folder), $image_name);
+            $update_image = $folder.$image_name;
         }else{
             $update_image = $testimonial->image;  
         }

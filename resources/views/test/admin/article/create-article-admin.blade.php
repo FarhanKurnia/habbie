@@ -22,11 +22,7 @@
             </tr>
             <tr>
                 <td>image</td>
-                <td><input class="form-control" type="text" name="image"></td>
-            </tr>
-            <tr>
-                <td>user_id</td>
-                <td><input class="form-control" type="text" name="user_id"></td>
+                <td><input class="form-control" type="file" name="image"></td>
             </tr>
             <tr>
                 <td>Submit</td>
