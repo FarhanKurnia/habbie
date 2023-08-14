@@ -13,12 +13,12 @@
             </tr>
             <tr>
                 <th>No</th>
+                <th>image</th>                
                 <th>name</th>
-                <th>slug</th>
-                <th>image</th>
+                <th>profesi</th>                
+                <th>lokasi</th>
                 <th>description</th>
-                <th>product_id</th>
-                <th>status</th>
+                <th>user_id</th>
                 <th>link</th>
                 <th>action</th>
             </tr>

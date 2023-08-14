@@ -14,6 +14,7 @@ class TestimonialSeeder extends Seeder
     public function run(){
         DB::table('testimonials')->insert([[
             'name' => 'Dea',
+            'slug' => 'dea-wanita-karir-medan',
             'profesi' => 'Wanita Karir',
             'lokasi' => 'Medan',
             'image' => 'storage/img/testimonials/testimonial_dhea.jpeg',
@@ -24,6 +25,7 @@ class TestimonialSeeder extends Seeder
         ],
         [
             'name' => 'Hansel',
+            'slug' => 'hansel-wanita-karir-medan',
             'profesi' => 'Wanita Karir',
             'lokasi' => 'Medan',
             'image' => 'storage/img/testimonials/testimonial_hansel.jpg',
@@ -34,6 +36,7 @@ class TestimonialSeeder extends Seeder
         ],
         [
             'name' => 'Malina',
+            'slug' => 'malina-ibu-rumah-tangga-bogor',
             'profesi' => 'Ibu Rumah Tangga',
             'lokasi' => 'Bogor',
             'image' => 'storage/img/testimonials/testimonial_malina.jpg',
@@ -44,6 +47,7 @@ class TestimonialSeeder extends Seeder
         ],
         [
             'name' => 'Natia',
+            'slug' => 'natia-ibu-rumah-tangga-makassar',
             'profesi' => 'Ibu Rumah Tangga',
             'lokasi' => 'Makassar',
             'image' => 'storage/img/testimonials/testimonial_natia.jpg',
@@ -54,6 +58,7 @@ class TestimonialSeeder extends Seeder
         ],
         [
             'name' => 'Nisa',
+            'slug' => 'nisa-ibu-rumah-tangga-makassar',
             'profesi' => 'Ibu Rumah Tangga',
             'lokasi' => 'Makassar',
             'image' => 'storage/img/testimonials/testimonial_nisa.jpg',

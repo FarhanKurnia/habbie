@@ -10,7 +10,7 @@ class Testimonial extends Model
     protected $table = 'testimonials';
     protected $primaryKey = 'id_testimonial';
     protected $fillable = [
-        'name','description','image','user_id'
+        'name','description','image','user_id','slug','profesi','lokasi','deleted_at'
     ];
 
     // many testimonials owned by one user

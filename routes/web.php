@@ -12,6 +12,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResellerController;
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -156,6 +157,15 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/discounts/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
         Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
         Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
+
+        //Testimonials
+        Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('indexTestimonials');
+        Route::get('/admin/testimonials/add', [TestimonialController::class, 'create'])->name('createTestimonials');
+        Route::post('/admin/testimonials/store', [TestimonialController::class, 'store'])->name('storeTestimonials');
+        Route::get('/admin/testimonials/show/{slug}', [TestimonialController::class, 'show'])->name('showTestimonials');
+        Route::get('/admin/testimonials/edit/{slug}', [TestimonialController::class, 'edit'])->name('editTestimonials');
+        Route::patch('/admin/testimonials/update/{slug}', [TestimonialController::class, 'update'])->name('updateTestimonials');
+        Route::get('/admin/testimonials/delete/{slug}', [TestimonialController::class, 'delete'])->name('deleteTestimonials');
     });
 
 //Debug
