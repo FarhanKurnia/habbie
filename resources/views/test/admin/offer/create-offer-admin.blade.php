@@ -17,10 +17,6 @@
                 <td><input class="form-control" type="text" name="name" required></td>
             </tr>
             <tr>
-                <td>image</td>
-                <td><input class="form-control" type="text" name="image"></td>
-            </tr>
-            <tr>
                 <td>description</td>
                 <td><input class="form-control" type="text" name="description"></td>
             </tr>
@@ -42,6 +38,10 @@
                         @endforeach
                     </select>
                 </td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td><input class="form-control" type="file" name="image"></td>
             </tr>
             <tr>
                 <td>Submit</td>

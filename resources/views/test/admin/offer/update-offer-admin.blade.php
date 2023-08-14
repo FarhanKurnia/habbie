@@ -6,7 +6,7 @@
 </head>
 <body>
     <!-- form update -->
-    <form action="{{ route('updateOffers',$oneOffer->slug) }}" method="POST">
+    <form action="{{ route('updateOffers',$oneOffer->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <table border="1">
@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>Image</td>
-                <td><input class="form-control" type="text" name="image" value="{{ old('image', $oneOffer->image) }}"></td>
+                <td><p style="text-align:center;"><img src="{{ url($oneOffer->image) }}" alt="{{ $oneOffer->image }}" style="width:50px;height:50px;"></p></td>
             </tr>
             <tr>
                 <td>Description</td>
@@ -44,6 +44,10 @@
                         @endforeach
                     </select>
                 </td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td><input class="form-control" type="file" name="image"></td>
             </tr>
             <tr>
                 <td>Submit</td>

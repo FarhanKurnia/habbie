@@ -59,7 +59,7 @@ class ArticleController extends Controller
             'title' => $request->title,
             'post' => $request->post,
             'excerpt' => $excerpt,
-            'image' => $request->image,
+            'image' => $folder.$image_name,
             'slug' => $slug,
             'categories' => 'article',
             'user_id' => $user_id,
