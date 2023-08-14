@@ -13,6 +13,7 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -166,6 +167,10 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/testimonials/edit/{slug}', [TestimonialController::class, 'edit'])->name('editTestimonials');
         Route::patch('/admin/testimonials/update/{slug}', [TestimonialController::class, 'update'])->name('updateTestimonials');
         Route::get('/admin/testimonials/delete/{slug}', [TestimonialController::class, 'delete'])->name('deleteTestimonials');
+        
+        //Users
+        Route::get('/admin/users', [UserController::class, 'index'])->name('indexUsers');
+        Route::get('/admin/users/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
     });
 
 //Debug

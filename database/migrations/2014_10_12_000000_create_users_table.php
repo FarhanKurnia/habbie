@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('name');
+            $table->string('customer_id')->unique();
             $table->string('email')->unique();
             $table->string('token_verification');
             $table->boolean('email_verified');

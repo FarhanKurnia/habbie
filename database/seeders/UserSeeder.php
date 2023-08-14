@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([[
             'name' => 'Farhan',
             'email'=>'farhan@mail.com',
+            'customer_id' => '1000256436541',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => 'Gandhi',
+            'customer_id' => '1000256436542',
             'email'=>'gandhi@mail.com',
             'email_verified' => false,
             'email_verified_at' => null,
@@ -40,9 +42,36 @@ class UserSeeder extends Seeder
         ],
         [
             'name' => 'kurnia',
+            'customer_id' => '1000256436543',
             'email'=>'kurnia@mail.com',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'token_verification' => Str::random(128),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ],
+        [
+            'name' => 'ragil',
+            'customer_id' => '1000256436544',
+            'email'=>'ragil@mail.com',
+            'email_verified' => true,
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'token_verification' => Str::random(128),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ],
+        [
+            'name' => 'syahputra',
+            'customer_id' => '1000256436545',
+            'email'=>'syahputra@mail.com',
+            'email_verified' => false,
+            'email_verified_at' => null,
             'password' => bcrypt('password'),
             'role_id' => 2,
             'token_verification' => Str::random(128),
