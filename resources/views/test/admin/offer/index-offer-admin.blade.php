@@ -14,11 +14,10 @@
             <tr>
                 <th>No</th>
                 <th>image</th>                
-                <th>name</th>
-                <th>profesi</th>                
-                <th>lokasi</th>
+                <th>title</th>
                 <th>description</th>
-                <th>user_id</th>
+                <th>product</th>
+                <th>status</th>
                 <th>link</th>
                 <th>action</th>
             </tr>
@@ -32,7 +31,6 @@
                     <td>{{ $no++}}</td>
                     <td><p style="text-align:center;"><img src="{{ url($offer->image) }}" alt="{{ $offer->image }}" style="width:50px;height:50px;"></p></td>
                     <td>{{ $offer->name }}</td>
-                    <td>{{ $offer->slug }}</td>
                     <td>{{ $offer->description }}</td>
                     <td>{{ $offer->product->name }}</td>
                     <td>{{ $offer->status }}</td>

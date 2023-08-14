@@ -36,6 +36,8 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+
         $request->validate([
             'name' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
@@ -43,6 +45,7 @@ class OfferController extends Controller
             'product_id' => 'required',
             'status' => 'required',
         ]);
+
 
         $slug = $request->name;
         $slug = preg_replace('/\s+/', '-', $slug);
