@@ -67,13 +67,13 @@ class ArticleController extends Controller
                 'excerpt' => $excerpt,
                 'image' => $folder.$image_name,
                 'slug' => $slug,
-                'categories' => $request->categories,
+                'categories' => 'article',
                 'user_id' => $user_id,
                 'image' => $folder.$image_name,
         ]);
 
-            return redirect()->route('createArticles')->with([
-                'success' => 'New article created successfully <a href="'. url('products/'.$article->slug) .'" target="_blank">See Article</a>'
+            return redirect()->route('editArticles', $article->slug)->with([
+                'success' => 'New article created successfully <a class="font-bold text-pink-primary" href="'. url('media/'.$article->slug) .'" target="_blank">See Article</a>'
             ]);
 
             // return redirect()->route('indexArticles');
