@@ -71,7 +71,7 @@
                                             <label class="rounded-md cursor-pointer flex items-center gap-2">
                                                 <input type="radio" class="radio radio-xs checked:bg-pink-primary"
                                                     name="discount" value="{{ $item->id_discount }}"
-                                                    {{ isset($oneProduct) && $oneProduct->discount?->id_discount === $item->id_discount ? 'checked' : '' }}/>
+                                                    {{ isset($oneProduct) && $oneProduct->discount?->id_discount === $item->id_discount ? 'checked' : '' }} />
                                                 <span>
                                                     <p class="text-sm font-bold">{{ $item->name }}</p>
                                                     <p class="text-xs">{{ $item->description }}</p>
@@ -185,12 +185,38 @@
         </form>
     </div>
 
-    <script src="//cdn.ckeditor.com/4.22.1/basic/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('editor');
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+    </style>
 
-        @if (isset($oneProduct))
-            CKEDITOR.instances.editor.setData('{!! $oneProduct->description !!}');
-        @endif
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        '|',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'undo',
+                        'redo'
+                    ]
+                },
+            })
+            .then(editor => {
+                editor.setData('{!! isset($oneProduct) ? $oneProduct->description : '' !!}');
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 @endsection
