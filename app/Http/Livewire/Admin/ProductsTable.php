@@ -189,6 +189,7 @@ final class ProductsTable extends PowerGridComponent
                 ->bladeComponent('admin.partials.modal', [
                         'slug' => 'slug',
                         'title' => 'Delete Product',
+                        'routeName' => 'deleteProducts',
                         'description' => 'Are you sure want to delete this product?',
                         'action' => 'Delete'
                     ])
