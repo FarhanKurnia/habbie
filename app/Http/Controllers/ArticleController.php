@@ -14,10 +14,13 @@ class ArticleController extends Controller
     public function index()
     {
         //articles
-        $articles = new Article();
+        // $articles = new Article();
 
-        $indexArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->paginate(10);
-        return view('test.admin.article.index-article-admin', compact('indexArticles'));
+        // $indexArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->paginate(10);
+        // return view('test.admin.article.index-article-admin', compact('indexArticles'));
+
+        return view('pages.admin.articles.index');
+
     }
 
     /**
@@ -25,7 +28,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('test.admin.article.create-article-admin');
+        // return view('test.admin.article.create-article-admin');
+        return view('pages.admin.articles.create');
+
     }
 
     /**
@@ -33,21 +38,33 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $slug = $request->title;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
-        $excerpt = Str::limit($request->post,250);
+        try {
+            $slug = $request->title;
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $slug = strtolower($slug);
+            $excerpt = Str::limit($request->post,250);
+    
+            $article = Article::create([
+                'title' => $request->title,
+                'post' => $request->post,
+                'excerpt' => $excerpt,
+                'image' => $request->image,
+                'slug' => $slug,
+                'categories' => $request->categories,
+                'user_id' => $request->user_id,
+            ]);
 
-        Article::create([
-            'title' => $request->title,
-            'post' => $request->post,
-            'excerpt' => $excerpt,
-            'image' => $request->image,
-            'slug' => $slug,
-            'categories' => 'article',
-            'user_id' => $request->user_id,
-        ]);
-        return redirect()->route('indexArticles');
+            return redirect()->route('createArticles')->with([
+                'success' => 'New article created successfully <a href="'. url('products/'.$article->slug) .'" target="_blank">See Article</a>'
+            ]);
+
+            // return redirect()->route('indexArticles');
+        } catch(\Exception $e){
+            return redirect()
+            ->route('createArticles')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -70,7 +87,9 @@ class ArticleController extends Controller
         $articles = new Article();
 
         $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','article']])->with('user')->firstOrFail();
-        return view('test.admin.article.update-article-admin',compact('oneArticle'));
+        return view('pages.admin.articles.create',compact('oneArticle'));
+        // return view('test.admin.article.update-article-admin',compact('oneArticle'));
+
     }
 
     /**
@@ -92,16 +111,24 @@ class ArticleController extends Controller
             'excerpt' => $excerpt,
             'image' => $request->image,
             'slug' => $getSlug,
-            'categories' => 'article',
+            'categories' => $request->categories,
             'user_id' => $request->user_id,
         ]);
         if ($article) {
+
             return redirect()
-                ->route('indexArticles');
+            ->route('editArticles', $article->slug)
+            ->with([
+                'success' => 'Updated successfully'
+            ]);
+
         } else {
             return redirect()
                 ->back()
-                ->withInput();
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
         }
     }
 
