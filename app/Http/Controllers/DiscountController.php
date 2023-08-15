@@ -14,10 +14,11 @@ class DiscountController extends Controller
     public function index()
     {
         //discounts
-        $discounts = new Discount();
-        $indexDiscounts = $discounts->where('deleted_at',null)->orderBy('id_discount','DESC')->paginate(10);
+        // $discounts = new Discount();
+        // $indexDiscounts = $discounts->where('deleted_at',null)->orderBy('id_discount','DESC')->paginate(10);
     
-        return view('test.admin.discount.index-discount-admin', compact('indexDiscounts'));
+        // return view('test.admin.discount.index-discount-admin', compact('indexDiscounts'));
+        return view('pages.admin.products.discounts.index');
     }
 
     /**
@@ -25,7 +26,8 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        return view('test.admin.discount.create-discount-admin');
+        return view('pages.admin.products.discounts.create');
+
     }
 
     /**
@@ -33,18 +35,28 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        $slug = $request->name;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
+        try {
+            $slug = $request->name;
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $slug = strtolower($slug);
+    
+            Discount::create([
+                'name' => $request->name,
+                'rule' => $request->rule,
+                'slug' => $slug,
+                'description' => $request->description,
+                'status' => $request->status,
+            ]);
 
-        Discount::create([
-            'name' => $request->name,
-            'rule' => $request->rule,
-            'slug' => $slug,
-            'description' => $request->description,
-            'status' => 'active',
-        ]);
-        return redirect()->route('indexDiscounts');
+            return redirect()->route('createDiscounts')->with([
+                'success' => 'Discount product has been added successfully'
+            ]);
+        } catch(\Exception $e){
+            return redirect()
+            ->route('createDiscounts')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -67,7 +79,7 @@ class DiscountController extends Controller
         $discounts = new Discount();
         $oneDiscount = $discounts->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
 
-        return view('test.admin.discount.update-discount-admin',compact('oneDiscount'));
+        return view('pages.admin.products.discounts.create',compact('oneDiscount'));
     
     }
 
@@ -91,7 +103,10 @@ class DiscountController extends Controller
         ]);
         if ($discount) {
             return redirect()
-                ->route('indexDiscounts');
+                ->route('editDiscounts', $discount->slug)
+                ->with([
+                    'success' => 'Discount product has been updated successfully'
+                ]);
         } else {
             return redirect()
                 ->back()
