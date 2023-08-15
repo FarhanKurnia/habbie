@@ -26,12 +26,23 @@ class AuthController extends Controller
             'g-recaptcha-response' => 'required|captcha'
         ]);
         $token = Str::random(128);
+        
+        //customer_id
+        $date = Carbon::now();
+        $start_rand = 100;
+        $end_rand = rand(10000,99999);
+        $result = $date->format('Y-m-d');
+        $result = explode('-', $result);
+        $result = implode("", $result);
+        $customer_id = $start_rand.$result.$end_rand;
+        
         $name = $request->name;
         $email = $request->email;
         $user = new User;
         $user->create([
             'name' => $name,
             'email' => $email,
+            'customer_id' => $customer_id,
             'password' => bcrypt($request->password) ,
             'role_id' => 2,
             'token_verification' =>$token ,

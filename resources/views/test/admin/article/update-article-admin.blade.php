@@ -6,7 +6,7 @@
 </head>
 <body>
     <!-- form update -->
-    <form action="{{ route('updateArticles',$oneArticle->slug) }}" method="POST">
+    <form action="{{ route('updateArticles',$oneArticle->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <table border="1">
@@ -18,16 +18,16 @@
                 <td><input class="form-control" type="text" name="title" value="{{ old('title', $oneArticle->title) }}" required></td>
             </tr>
             <tr>
-                <td>image</td>
-                <td><input class="form-control" type="text" name="image" value="{{ old('image', $oneArticle->image) }}"></td>
+                <td>Image</td>
+                <td><p style="text-align:center;"><img src="{{ url($oneArticle->image) }}" alt="{{ $oneArticle->image }}" style="width:50px;height:50px;"></p></td>
             </tr>
             <tr>
                 <td>post</td>
                 <td><input class="form-control" type="text" name="post" value="{{ old('post', $oneArticle->post) }}"required></td>
             </tr>
             <tr>
-                <td>user_id</td>
-                <td><input class="form-control" type="text" name="user_id" value="{{ old('user_id', $oneArticle->user_id) }}"required></td>
+                <td>image</td>
+                <td><input class="form-control" type="file" name="image"></td>
             </tr>
             <tr>
                 <td>Submit</td>

@@ -39,7 +39,8 @@ class DiscountController extends Controller
             $slug = $request->name;
             $slug = preg_replace('/\s+/', '-', $slug);
             $slug = strtolower($slug);
-    
+            $slug = str_replace("%","",$slug);
+
             Discount::create([
                 'name' => $request->name,
                 'rule' => $request->rule,

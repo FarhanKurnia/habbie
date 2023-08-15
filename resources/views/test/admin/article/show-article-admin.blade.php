@@ -12,22 +12,20 @@
                 <th colspan="9">Show one Offer using: $oneOffer</th>
             </tr>
             <tr>
-                <th>title</th>
                 <th>image</th>
+                <th>title</th>
                 <th>slug</th>
                 <th>post</th>
                 <th>user_id</th>
-                <th>link</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td><p style="text-align:center;"><img src="{{ url($oneArticle->image) }}" alt="{{ $oneArticle->image }}" style="width:50px;height:50px;"></p></td>
                 <td>{{ $oneArticle->title }}</td>
-                <td>{{ $oneArticle->image }}</td>
                 <td>{{ $oneArticle->slug }}</td>
                 <td>{{ $oneArticle->post }}</td>
                 <td>{{ $oneArticle->user->name }}</td>
-                <td>{{ route('showArticles',$oneArticle->slug) }}</td>
             </tr>
         </tbody>
     </table>

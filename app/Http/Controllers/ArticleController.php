@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -39,20 +39,38 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         try {
-            $slug = $request->title;
+            $request->validate([
+            'title' => 'required',
+            'post' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+
+        ]);
+
+        //user_id
+        $user_id = Auth::user()->id_user;
+
+        //slug
+        $slug = $request->title;
             $slug = preg_replace('/\s+/', '-', $slug);
             $slug = strtolower($slug);
             $excerpt = Str::limit($request->post,250);
     
+        //image
+	    $image = $request->file('image');
+	    $image_name = time()."_".$image->getClientOriginalName();
+	    $folder = 'storage/img/articles/';
+        $image->move(public_path($folder), $image_name);
+
             $article = Article::create([
                 'title' => $request->title,
                 'post' => $request->post,
                 'excerpt' => $excerpt,
-                'image' => $request->image,
+                'image' => $folder.$image_name,
                 'slug' => $slug,
                 'categories' => $request->categories,
-                'user_id' => $request->user_id,
-            ]);
+                'user_id' => $user_id,
+                'image' => $folder.$image_name,
+        ]);
 
             return redirect()->route('createArticles')->with([
                 'success' => 'New article created successfully <a href="'. url('products/'.$article->slug) .'" target="_blank">See Article</a>'
@@ -97,22 +115,44 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        $request->validate([
+            'title' => 'required',
+            'post' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+
+        ]);
+        //user_id
+        $user_id = Auth::user()->id_user;
+
         //articles
-        $articles = new Article();
+        $article = Article::where([['deleted_at',null],['slug',$slug],['categories','article']])->firstOrFail();
+
+        //slug
         $getSlug = $request->title;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
         $excerpt = Str::limit($request->post,250);
 
-        $article = $articles->where([['deleted_at',null],['slug',$slug],['categories','article']])->firstOrFail();
+        //image
+        $update_image ="";
+        if($request->image){
+            $image = $request->file('image');
+	        $image_name = time()."_".$image->getClientOriginalName();
+	        $folder = 'storage/img/articles/';
+            $image->move(public_path($folder), $image_name);
+            $update_image = $folder.$image_name;
+        }else{
+            $update_image = $article->image;  
+        }
+
         $article->update([
             'title' => $request->title,
             'post' => $request->post,
             'excerpt' => $excerpt,
-            'image' => $request->image,
+            'image' => $update_image,
             'slug' => $getSlug,
-            'categories' => $request->categories,
-            'user_id' => $request->user_id,
+            'categories' => 'article',
+            'user_id' => $user_id,
         ]);
         if ($article) {
 

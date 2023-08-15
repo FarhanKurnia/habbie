@@ -36,13 +36,30 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'description' => 'required',
+            'product_id' => 'required',
+            'status' => 'required',
+        ]);
+
+
         $slug = $request->name;
         $slug = preg_replace('/\s+/', '-', $slug);
         $slug = strtolower($slug);
+
+        //image
+	    $image = $request->file('image');
+	    $image_name = time()."_".$image->getClientOriginalName();
+	    $folder = 'storage/img/offers/';
+        $image->move(public_path($folder), $image_name);
         
         Offer::create([
             'name' => $request->name,
-            'image' => $request->image,
+            'image' => $folder.$image_name,
             'slug' => $slug,
             'description' => $request->description,
             'product_id' => $request->product,
@@ -85,15 +102,29 @@ class OfferController extends Controller
      */
     public function update(Request $request, $slug)
     {
+
         //offers
-        $offers = new Offer();
+        $offer = Offer::where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+
         $getSlug = $request->name;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
-        $offer = $offers->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        
+        //image
+        $update_image ="";
+        if($request->image){
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/offers/';
+            $image->move(public_path($folder), $image_name);
+            $update_image = $folder.$image_name;
+        }else{
+            $update_image = $offer->image;  
+        }
+        
         $offer->update([
             'name' => $request->name,
-            'image' => $request->image,
+            'image' => $update_image,
             'slug' => $getSlug,
             'description' => $request->description,
             'product_id' => $request->product,

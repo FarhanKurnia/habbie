@@ -22,7 +22,7 @@ class DiscountSeeder extends Seeder
             'updated_at' => Carbon::now()
         ],
         [
-            'name' => 'Discount 13',
+            'name' => 'Discount 13%',
             'slug' => 'discount-13',
             'rule' => 13,
             'status' => 'active',
@@ -31,7 +31,7 @@ class DiscountSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'name' => 'Discount 18',
+            'name' => 'Discount 18%',
             'slug' => 'discount-18',
             'rule' => 18,
             'status' => 'active',
@@ -40,7 +40,7 @@ class DiscountSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'name' => 'Discount 16',
+            'name' => 'Discount 16%',
             'slug' => 'discount-16',
             'rule' => 16,
             'status' => 'active',
