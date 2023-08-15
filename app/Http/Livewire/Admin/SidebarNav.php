@@ -9,31 +9,36 @@ class SidebarNav extends Component
     public $constantNav = [
         "dashboard" => "Dashboard",
         "products" => [
-            "Products",
-            "List Product",
-            "Category Product",
-            "Discount"
+            [ "name" => "Products", "route_name" => "indexProducts" ],
+            [ "name" => "List Product", "route_name" => "indexProducts" ],
+            [ "name" => "Category Product", "route_name" => "indexCategories" ],
+            [ "name" => "Discount", "route_name" => "indexDiscounts" ]
         ],
-        "orders" => "Orders",
-        "membership" => "Membership",
-        "offers" => "Offers",
-        "media" => [
-            "Media",
-            "List Article",
-            "Category Article"
+        "articles" => [
+            [ "name" => "Articles", "route_name" => "indexArticles" ],
+            [ "name" => "List Article", "route_name" => "indexArticles" ],
         ],
-        "testimonials" => [
-            "Testimonials",
-            "Add Testimonials",
-            "Add Reviews"
-        ],
+        // "orders" => "Orders",
+        // "membership" => "Membership",
+        // "offers" => "Offers",
+        // "media" => [
+        //     "Media",
+        //     "List Article",
+        //     "Category Article"
+        // ],
+        // "testimonials" => [
+        //     "Testimonials",
+        //     "Add Testimonials",
+        //     "Add Reviews"
+        // ],
     ];
 
     public $activeNav;
 
-    public function handleNavClick($nav)
+    public function handleNavClick($nav, $key)
     {
         $this->activeNav = $nav;
+        return redirect()->route($key);
     }
 
     public function render()
