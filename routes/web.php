@@ -12,6 +12,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResellerController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -84,16 +85,14 @@ Route::middleware(['auth','verified','customer'])->group(function () {
 });
 
 // Admin
-Route::get('admin', function (){
-    return view('pages.admin.dashboard');
-});
-
 Route::prefix('admin')->group(function () {
+
+    // Dsshboard
     Route::get('/', function(){
         return view('pages.admin.dashboard');
-    });
+    })->name('dashboard');
 
-    // products route
+    // Products
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('indexProducts');
         Route::get('/add', [ProductController::class, 'create'])->name('createProducts');
@@ -102,10 +101,48 @@ Route::prefix('admin')->group(function () {
         Route::patch('/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
         Route::get('/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
+        // category
         Route::prefix('categories')->group(function () {
+            Route::get('/', [ProductCategoryController::class, 'index'])->name('indexCategories');
             Route::get('/add', [ProductCategoryController::class, 'create'])->name('createCategories');
-
+            Route::get('/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('editCategories');
+            Route::patch('/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
+            Route::post('/store', [ProductCategoryController::class, 'store'])->name('storeCategories');
+            Route::get('/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
         });
+
+        // discount
+        Route::prefix('discounts')->group(function () {
+            Route::get('/', [DiscountController::class, 'index'])->name('indexDiscounts');
+            Route::get('/add', [DiscountController::class, 'create'])->name('createDiscounts');
+            Route::post('/store', [DiscountController::class, 'store'])->name('storeDiscounts');
+            Route::get('/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
+            Route::patch('/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
+            Route::get('/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
+        });
+    });
+
+    // Articles
+    Route::prefix('articles')->group(function () {
+        Route::get('/', [ArticleController::class, 'index'])->name('indexArticles');
+        Route::get('/add', [ArticleController::class, 'create'])->name('createArticles');
+        Route::post('/store', [ArticleController::class, 'store'])->name('storeArticles');
+        Route::get('/show/{slug}', [ArticleController::class, 'show'])->name('showArticles');
+        Route::get('/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
+        Route::patch('/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
+        Route::get('/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
+        Route::post('/image-upload', [UploadController::class, 'storeImage'])->name('imageUpload');
+    });
+
+    // Careers
+    Route::prefix('careers')->group(function () {
+        Route::get('/', [CareerController::class, 'index'])->name('indexCareers');
+        Route::get('/add', [CareerController::class, 'create'])->name('createCareers');
+        Route::post('/store', [CareerController::class, 'store'])->name('storeCareers');
+        Route::get('/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
+        Route::get('/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
+        Route::patch('/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
+        Route::get('/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
     });
 
 
@@ -126,7 +163,7 @@ Route::prefix('test')->group(function () {
 //admin (login role: admin)
     Route::middleware(['auth','verified', 'admin'])->group(function () {
         // Dashboard
-        Route::get('/admin/dashboard', [DashboardController::class,'index'])->name('dashboard');
+        // Route::get('/admin/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
         //Products
         // Route::get('/admin/products', [ProductController::class, 'index'])->name('indexProducts');
@@ -138,13 +175,13 @@ Route::prefix('test')->group(function () {
         // Route::get('/admin/products/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
         //Categories Products
-        Route::get('/admin/categories', [ProductCategoryController::class, 'index'])->name('indexCategories');
-        Route::get('/admin/categories/add', [ProductCategoryController::class, 'create'])->name('createCategories');
-        Route::post('/admin/categories/store', [ProductCategoryController::class, 'store'])->name('storeCategories');
-        Route::get('/admin/categories/show/{slug}', [ProductCategoryController::class, 'show'])->name('showCategories');
-        Route::get('/admin/categories/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('editCategories');
-        Route::patch('/admin/categories/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
-        Route::get('/admin/categories/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
+        // Route::get('/admin/categories', [ProductCategoryController::class, 'index'])->name('indexCategories');
+        // Route::get('/admin/categories/add', [ProductCategoryController::class, 'create'])->name('createCategories');
+        // Route::post('/admin/categories/store', [ProductCategoryController::class, 'store'])->name('storeCategories');
+        // Route::get('/admin/categories/show/{slug}', [ProductCategoryController::class, 'show'])->name('showCategories');
+        // Route::get('/admin/categories/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('editCategories');
+        // Route::patch('/admin/categories/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
+        // Route::get('/admin/categories/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
 
         //Offers
         Route::get('/admin/offers', [OfferController::class, 'index'])->name('indexOffers');
@@ -156,32 +193,32 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/offers/delete/{slug}', [OfferController::class, 'delete'])->name('deleteOffers');
 
         //Articles
-        Route::get('/admin/articles', [ArticleController::class, 'index'])->name('indexArticles');
-        Route::get('/admin/articles/add', [ArticleController::class, 'create'])->name('createArticles');
-        Route::post('/admin/articles/store', [ArticleController::class, 'store'])->name('storeArticles');
-        Route::get('/admin/articles/show/{slug}', [ArticleController::class, 'show'])->name('showArticles');
-        Route::get('/admin/articles/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
-        Route::patch('/admin/articles/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
-        Route::get('/admin/articles/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
+        // Route::get('/admin/articles', [ArticleController::class, 'index'])->name('indexArticles');
+        // Route::get('/admin/articles/add', [ArticleController::class, 'create'])->name('createArticles');
+        // Route::post('/admin/articles/store', [ArticleController::class, 'store'])->name('storeArticles');
+        // Route::get('/admin/articles/show/{slug}', [ArticleController::class, 'show'])->name('showArticles');
+        // Route::get('/admin/articles/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
+        // Route::patch('/admin/articles/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
+        // Route::get('/admin/articles/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
 
         //Careers
-        Route::get('/admin/careers', [CareerController::class, 'index'])->name('indexCareers');
-        Route::get('/admin/careers/add', [CareerController::class, 'create'])->name('createCareers');
-        Route::post('/admin/careers/store', [CareerController::class, 'store'])->name('storeCareers');
-        Route::get('/admin/careers/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
-        Route::get('/admin/careers/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
-        Route::patch('/admin/careers/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
-        Route::get('/admin/careers/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
+        // Route::get('/admin/careers', [CareerController::class, 'index'])->name('indexCareers');
+        // Route::get('/admin/careers/add', [CareerController::class, 'create'])->name('createCareers');
+        // Route::post('/admin/careers/store', [CareerController::class, 'store'])->name('storeCareers');
+        // Route::get('/admin/careers/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
+        // Route::get('/admin/careers/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
+        // Route::patch('/admin/careers/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
+        // Route::get('/admin/careers/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
 
 
         //Discounts
-        Route::get('/admin/discounts', [DiscountController::class, 'index'])->name('indexDiscounts');
-        Route::get('/admin/discounts/add', [DiscountController::class, 'create'])->name('createDiscounts');
-        Route::post('/admin/discounts/store', [DiscountController::class, 'store'])->name('storeDiscounts');
-        Route::get('/admin/discounts/show/{slug}', [DiscountController::class, 'show'])->name('showDiscounts');
-        Route::get('/admin/discounts/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
-        Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
-        Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
+        // Route::get('/admin/discounts', [DiscountController::class, 'index'])->name('indexDiscounts');
+        // Route::get('/admin/discounts/add', [DiscountController::class, 'create'])->name('createDiscounts');
+        // Route::post('/admin/discounts/store', [DiscountController::class, 'store'])->name('storeDiscounts');
+        // Route::get('/admin/discounts/show/{slug}', [DiscountController::class, 'show'])->name('showDiscounts');
+        // Route::get('/admin/discounts/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
+        // Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
+        // Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
     });
 
 //Debug
