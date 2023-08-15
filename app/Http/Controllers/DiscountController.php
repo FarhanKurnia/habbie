@@ -41,7 +41,7 @@ class DiscountController extends Controller
             $slug = strtolower($slug);
             $slug = str_replace("%","",$slug);
 
-            Discount::create([
+            $discount = Discount::create([
                 'name' => $request->name,
                 'rule' => $request->rule,
                 'slug' => $slug,
@@ -49,7 +49,7 @@ class DiscountController extends Controller
                 'status' => $request->status,
             ]);
 
-            return redirect()->route('createDiscounts')->with([
+            return redirect()->route('editDiscounts', $discount->slug)->with([
                 'success' => 'Discount product has been added successfully'
             ]);
         } catch(\Exception $e){
