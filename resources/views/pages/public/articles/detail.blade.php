@@ -19,7 +19,7 @@
             </div>
     
             <div class="content lg:w-3/4 lg:mx-auto mx-10 ">
-                {{ $oneArticle->post }}
+                {!! $oneArticle->post !!}
             </div>
         </div>
 
@@ -30,8 +30,8 @@
                 <div class="flex flex-col gap-1 pb-4">
                     <a href="{{ url('media/'.$article->slug) }}"><img src="{{ url($article->image) }}" alt="{{ $article->title }}" class="rounded"></a>
                     <span class="p-2">
-                        <a href="{{ url('media/'.$article->slug) }}"><p class="font-bold hover:text-pink-primary">{{ $article->title }}</p></a>
-                        <p class="text-sm text-grey-secondary">{{ $article->excerpt }}</p>
+                        <a href="{{ url('media/'.$article->slug) }}"><p class="text-lg font-bold hover:text-pink-primary">{{ $article->title }}</p></a>
+                        {!! $article->excerpt !!}
                     </span>
                 </div>
                 @endforeach
