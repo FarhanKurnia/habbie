@@ -1,5 +1,5 @@
 <ul class="mb-6 flex flex-col gap-1.5 menu bg-boxdark bg-opacity-10 rounded-lg">
-    @foreach ($constantNav as $nav)
+    @foreach ($constantNav as $key => $nav)
         @if (is_array($nav))
             <li tabindex="0">
                 <details open>
@@ -19,16 +19,16 @@
                                 d="M15.4689 9.92822H11.8971C10.9408 9.92822 10.1533 10.7157 10.1533 11.672V15.2438C10.1533 16.2001 10.9408 16.9876 11.8971 16.9876H15.4689C16.4252 16.9876 17.2127 16.2001 17.2127 15.2438V11.7001C17.2127 10.7157 16.4252 9.92822 15.4689 9.92822ZM15.9752 15.272C15.9752 15.5532 15.7502 15.7782 15.4689 15.7782H11.8971C11.6158 15.7782 11.3908 15.5532 11.3908 15.272V11.7001C11.3908 11.4188 11.6158 11.1938 11.8971 11.1938H15.4689C15.7502 11.1938 15.9752 11.4188 15.9752 11.7001V15.272Z"
                                 fill="" />
                         </svg>
-                        {{ $nav[0] }}
+                        {{ $nav[0]['name'] }}
                     </summary>
                     <ul class="p-2">
                         @foreach ($nav as $index => $item)
                             <li class="{{ $index === 0 ? 'hidden' : '' }} my-2"
-                                wire:click="handleNavClick('{{ $item }}')">
-                                <a class="{{ $activeNav === $item ? 'active' : '' }}">
+                                wire:click="handleNavClick('{{ $item['name'] }}', '{{ $item['route_name'] }}')">
+                                <a class="{{ $activeNav === $item['name'] ? 'active' : '' }}">
                                     <p
-                                        class="{{ $activeNav === $item ? 'text-pink-primary' : 'text-white' }} opacity-70">
-                                        {{ $item }}</p>
+                                        class="{{ $activeNav === $item['name'] ? 'text-pink-primary' : 'text-white' }} opacity-70">
+                                        {{ $item['name'] }}</p>
                                 </a>
                             </li>
                         @endforeach
@@ -36,8 +36,9 @@
                 </details>
             </li>
         @else
-            <li >
-                <a wire:click="handleNavClick('{{ $nav }}')" class="{{ $activeNav === $nav ? 'active hover:text-pink-primary' : 'hover:text-white' }} text-white ">
+            <li>
+                <a wire:click="handleNavClick('{{ $nav }}', '{{ $key }}')"
+                    class="{{ $activeNav === $nav ? 'active hover:text-pink-primary' : 'hover:text-white' }} text-white ">
                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="white"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
