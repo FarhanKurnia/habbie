@@ -87,67 +87,80 @@ Route::middleware(['auth','verified','customer'])->group(function () {
 });
 
 // Admin
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth','verified', 'admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
 
-    // Dsshboard
-    Route::get('/', function(){
-        return view('pages.admin.dashboard');
-    })->name('dashboard');
+        // Dsshboard
+        Route::get('/', function(){
+            return view('pages.admin.dashboard');
+        })->name('dashboard');
 
-    // Products
-    Route::prefix('products')->group(function () {
-        Route::get('/', [ProductController::class, 'index'])->name('indexProducts');
-        Route::get('/add', [ProductController::class, 'create'])->name('createProducts');
-        Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
-        Route::post('/store', [ProductController::class, 'store'])->name('storeProducts');
-        Route::patch('/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
-        Route::get('/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
+        // Products
+        Route::prefix('products')->group(function () {
+            Route::get('/', [ProductController::class, 'index'])->name('indexProducts');
+            Route::get('/add', [ProductController::class, 'create'])->name('createProducts');
+            Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('editProducts');
+            Route::post('/store', [ProductController::class, 'store'])->name('storeProducts');
+            Route::patch('/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
+            Route::get('/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
 
-        // category
-        Route::prefix('categories')->group(function () {
-            Route::get('/', [ProductCategoryController::class, 'index'])->name('indexCategories');
-            Route::get('/add', [ProductCategoryController::class, 'create'])->name('createCategories');
-            Route::get('/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('editCategories');
-            Route::patch('/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
-            Route::post('/store', [ProductCategoryController::class, 'store'])->name('storeCategories');
-            Route::get('/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
+            // category
+            Route::prefix('categories')->group(function () {
+                Route::get('/', [ProductCategoryController::class, 'index'])->name('indexCategories');
+                Route::get('/add', [ProductCategoryController::class, 'create'])->name('createCategories');
+                Route::get('/edit/{slug}', [ProductCategoryController::class, 'edit'])->name('editCategories');
+                Route::patch('/update/{slug}', [ProductCategoryController::class, 'update'])->name('updateCategories');
+                Route::post('/store', [ProductCategoryController::class, 'store'])->name('storeCategories');
+                Route::get('/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
+            });
+
+            // discount
+            Route::prefix('discounts')->group(function () {
+                Route::get('/', [DiscountController::class, 'index'])->name('indexDiscounts');
+                Route::get('/add', [DiscountController::class, 'create'])->name('createDiscounts');
+                Route::post('/store', [DiscountController::class, 'store'])->name('storeDiscounts');
+                Route::get('/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
+                Route::patch('/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
+                Route::get('/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
+            });
         });
 
-        // discount
-        Route::prefix('discounts')->group(function () {
-            Route::get('/', [DiscountController::class, 'index'])->name('indexDiscounts');
-            Route::get('/add', [DiscountController::class, 'create'])->name('createDiscounts');
-            Route::post('/store', [DiscountController::class, 'store'])->name('storeDiscounts');
-            Route::get('/edit/{slug}', [DiscountController::class, 'edit'])->name('editDiscounts');
-            Route::patch('/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
-            Route::get('/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
+        // Articles
+        Route::prefix('articles')->group(function () {
+            Route::get('/', [ArticleController::class, 'index'])->name('indexArticles');
+            Route::get('/add', [ArticleController::class, 'create'])->name('createArticles');
+            Route::post('/store', [ArticleController::class, 'store'])->name('storeArticles');
+            Route::get('/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
+            Route::patch('/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
+            Route::get('/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
+            Route::post('/image-upload', [UploadController::class, 'storeImage'])->name('imageUpload');
+            // Route::get('/show/{slug}', [ArticleController::class, 'show'])->name('showArticles');
         });
+
+        // Careers
+        Route::prefix('careers')->group(function () {
+            Route::get('/', [CareerController::class, 'index'])->name('indexCareers');
+            Route::get('/add', [CareerController::class, 'create'])->name('createCareers');
+            Route::post('/store', [CareerController::class, 'store'])->name('storeCareers');
+            Route::get('/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
+            Route::patch('/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
+            Route::get('/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
+            // Route::get('/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
+        });
+
+        // Offers
+        Route::prefix('offers')->group(function () {
+            Route::get('/', [OfferController::class, 'index'])->name('indexOffers');
+            Route::get('/add', [OfferController::class, 'create'])->name('createOffers');
+            Route::post('/store', [OfferController::class, 'store'])->name('storeOffers');
+            Route::get('/edit/{slug}', [OfferController::class, 'edit'])->name('editOffers');
+            Route::patch('/update/{slug}', [OfferController::class, 'update'])->name('updateOffers');
+            Route::get('/delete/{slug}', [OfferController::class, 'delete'])->name('deleteOffers');
+            // Route::get('/show/{slug}', [OfferController::class, 'show'])->name('showOffers');
+        });
+
+
     });
-
-    // Articles
-    Route::prefix('articles')->group(function () {
-        Route::get('/', [ArticleController::class, 'index'])->name('indexArticles');
-        Route::get('/add', [ArticleController::class, 'create'])->name('createArticles');
-        Route::post('/store', [ArticleController::class, 'store'])->name('storeArticles');
-        Route::get('/show/{slug}', [ArticleController::class, 'show'])->name('showArticles');
-        Route::get('/edit/{slug}', [ArticleController::class, 'edit'])->name('editArticles');
-        Route::patch('/update/{slug}', [ArticleController::class, 'update'])->name('updateArticles');
-        Route::get('/delete/{slug}', [ArticleController::class, 'delete'])->name('deleteArticles');
-        Route::post('/image-upload', [UploadController::class, 'storeImage'])->name('imageUpload');
-    });
-
-    // Careers
-    Route::prefix('careers')->group(function () {
-        Route::get('/', [CareerController::class, 'index'])->name('indexCareers');
-        Route::get('/add', [CareerController::class, 'create'])->name('createCareers');
-        Route::post('/store', [CareerController::class, 'store'])->name('storeCareers');
-        Route::get('/show/{slug}', [CareerController::class, 'show'])->name('showCareers');
-        Route::get('/edit/{slug}', [CareerController::class, 'edit'])->name('editCareers');
-        Route::patch('/update/{slug}', [CareerController::class, 'update'])->name('updateCareers');
-        Route::get('/delete/{slug}', [CareerController::class, 'delete'])->name('deleteCareers');
-    });
-
-
 });
 
 Route::prefix('test')->group(function () {
@@ -186,13 +199,13 @@ Route::prefix('test')->group(function () {
         // Route::get('/admin/categories/delete/{slug}', [ProductCategoryController::class, 'delete'])->name('deleteCategories');
 
         //Offers
-        Route::get('/admin/offers', [OfferController::class, 'index'])->name('indexOffers');
-        Route::get('/admin/offers/add', [OfferController::class, 'create'])->name('createOffers');
-        Route::post('/admin/offers/store', [OfferController::class, 'store'])->name('storeOffers');
-        Route::get('/admin/offers/show/{slug}', [OfferController::class, 'show'])->name('showOffers');
-        Route::get('/admin/offers/edit/{slug}', [OfferController::class, 'edit'])->name('editOffers');
-        Route::patch('/admin/offers/update/{slug}', [OfferController::class, 'update'])->name('updateOffers');
-        Route::get('/admin/offers/delete/{slug}', [OfferController::class, 'delete'])->name('deleteOffers');
+        // Route::get('/admin/offers', [OfferController::class, 'index'])->name('indexOffers');
+        // Route::get('/admin/offers/add', [OfferController::class, 'create'])->name('createOffers');
+        // Route::post('/admin/offers/store', [OfferController::class, 'store'])->name('storeOffers');
+        // Route::get('/admin/offers/show/{slug}', [OfferController::class, 'show'])->name('showOffers');
+        // Route::get('/admin/offers/edit/{slug}', [OfferController::class, 'edit'])->name('editOffers');
+        // Route::patch('/admin/offers/update/{slug}', [OfferController::class, 'update'])->name('updateOffers');
+        // Route::get('/admin/offers/delete/{slug}', [OfferController::class, 'delete'])->name('deleteOffers');
 
         //Articles
         // Route::get('/admin/articles', [ArticleController::class, 'index'])->name('indexArticles');
