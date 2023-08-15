@@ -77,9 +77,9 @@ class ProductController extends Controller
                 'category_id' => $request->category,
             ]);
     
-            return redirect()->route('createProducts')->with([
+            return redirect()->route('editProducts', $product->slug)->with([
                 'success' => 'Product has been added successfully <a href="'. url('products/'.$product->slug) .'" target="_blank">See Product</a>'
-            ]);;
+            ]);
 
         } catch(\Exception $e) {
             return redirect()
@@ -154,8 +154,6 @@ class ProductController extends Controller
         }else{
             $update_image = $product->image;  
         }
-        
-        // dd($request);
         
         $product->update([
             'name' => $request->name,

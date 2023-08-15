@@ -12,12 +12,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        //categories
-        $categories = new Product_Category();
-
-        $indexCategories = $categories->where('deleted_at',null)->latest('id_category')->paginate(10);
-
-        return view('test.admin.category.index-category-admin',compact('indexCategories'));
+        return view('pages.admin.products.categories.index');
     }
 
     /**
@@ -33,28 +28,38 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required',
+                'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            //slug
+            $slug = $request->name;
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $slug = strtolower($slug);
+            
+            //icon category product
+            $icon = $request->file('icon');
+            $icon_name = time()."_".$icon->getClientOriginalName();
+            $folder = 'storage/img/categories_product/';
+            $icon->move(public_path($folder), $icon_name);
+    
+            $category = Product_Category::create([
+                'name' => $request->name,
+                'icon' => $folder.$icon_name,
+                'slug' => $slug,
+            ]);
+            return redirect()->route('editCategories', $category->slug)->with([
+                'success' => 'Category product has been added successfully'
+            ]);
 
-        //slug
-        $slug = $request->name;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
-        
-        //icon category product
-	    $icon = $request->file('icon');
-	    $icon_name = time()."_".$icon->getClientOriginalName();
-	    $folder = 'storage/img/categories_product/';
-        $icon->move(public_path($folder), $icon_name);
-
-        Product_Category::create([
-            'name' => $request->name,
-            'icon' => $folder.$icon_name,
-            'slug' => $slug,
-        ]);
-        return redirect()->route('indexCategories');
+        } catch(\Exception $e){
+            return redirect()
+            ->route('createCategories')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -76,7 +81,7 @@ class ProductCategoryController extends Controller
         //categories
         $categories = new Product_Category();
         $oneCategory = $categories->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
-        return view('test.admin.category.update-category-admin',compact('oneCategory'));
+        return view('pages.admin.products.categories.create',compact('oneCategory'));
     }
 
     /**
@@ -116,7 +121,10 @@ class ProductCategoryController extends Controller
         ]);
         if ($category) {
             return redirect()
-                ->route('indexCategories');
+                ->route('editCategories', $category->slug)
+                ->with([
+                    'success' => 'Category product has been updated successfully'
+                ]);
         } else {
             return redirect()
                 ->back()
