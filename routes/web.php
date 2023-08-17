@@ -254,6 +254,11 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/orders/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
         Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editResi'])->name('editResi');
         Route::patch('/admin/orders/update/{invoice}', [OrderController::class, 'updateResi'])->name('updateResi');
+
+        //Resellers
+        Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');
+        Route::get('/admin/resellers/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
+
     });
 
 //Debug

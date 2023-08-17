@@ -17,13 +17,14 @@ class MembershipService {
     {
 
         $reseller = Reseller::create([
+            'reseller_id' => $data['reseller_id'], 
             'name' => $data['name'], 
             'email'=> $data['email'], 
             'gender'=> $data['gender'], 
             'phone'=> $data['phone'], 
             'birth_date'=> Carbon::parse($data['birth_date']), 
             'identity_card'=> $data['identity_card'], 
-            'status'=> 'active', 
+            'status'=> 'request', 
             'address'=> $data['address'], 
             'province'=> $data['province'], 
             'city'=> $data['city'],

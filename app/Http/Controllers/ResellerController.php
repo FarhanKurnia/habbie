@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reseller;
 use Illuminate\Http\Request;
+use LDAP\Result;
 
 class ResellerController extends Controller
 {
@@ -12,7 +13,8 @@ class ResellerController extends Controller
      */
     public function index()
     {
-        //
+        $resellers = Reseller::orderBy('created_at','DESC')->paginate(10);
+        return view('test.admin.reseller.index-reseller-admin',compact('resellers'));
     }
 
     /**
@@ -20,7 +22,7 @@ class ResellerController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -28,7 +30,7 @@ class ResellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -36,7 +38,7 @@ class ResellerController extends Controller
      */
     public function show(Reseller $reseller)
     {
-        //
+        
     }
 
     /**
@@ -50,9 +52,19 @@ class ResellerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reseller $reseller)
+    public function update($reseller_id)
     {
-        //
+        $reseller = Reseller::where('reseller_id',$reseller_id)->firstOrFail();
+        if($reseller->status == 'active'){
+            $reseller->update([
+                'status' => 'non-active'
+            ]);
+        }else{
+            $reseller->update([
+                'status' => 'active'
+            ]);
+        }
+        return redirect()->route('indexResellers');
     }
 
     /**

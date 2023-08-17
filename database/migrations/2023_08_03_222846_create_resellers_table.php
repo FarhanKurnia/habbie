@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('resellers', function (Blueprint $table) {
             $table->id('id_reseller');
+            $table->string('reseller_id');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->enum('gender',['pria','wanita']);
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->date('birth_date');
             $table->string('identity_card')->unique();
-            $table->enum('status',['active','non-active']);
+            $table->enum('status',['request','active','non-active']);
             $table->string('address');
             $table->string('province');
             $table->string('city');

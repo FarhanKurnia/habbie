@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
-
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use App\Services\MembershipService;
@@ -130,7 +130,16 @@ class FormMembership extends Component
     public function submitMembership()
     {
         $this->validate();
+        //Reseller_id
+        $date = Carbon::now();
+        $start_rand = 200;
+        $end_rand = rand(10000,99999);
+        $result = $date->format('Y-m-d');
+        $result = explode('-', $result);
+        $result = implode("", $result);
+        $reseller_id = $start_rand.$result.$end_rand;
         $this->membershipData = [
+            "reseller_id" => $reseller_id,
             "name" => $this->name,
             "email" => $this->email,
             "gender" => $this->selectedGender,
