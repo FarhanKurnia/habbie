@@ -36,7 +36,7 @@ class OrderController extends Controller
     public function editResi($invoice)
     {
         //categories
-        $order = Order::where('invoice',$invoice)->with('user','payment','orderproduct')->firstOrFail();
+        $order = Order::where([['invoice',$invoice],['status_order','process']])->with('user','payment','orderproduct')->firstOrFail();
         return view('test.admin.order.edit-resi-order-admin',compact('order'));
     }
 
@@ -49,7 +49,7 @@ class OrderController extends Controller
             'resi' => 'required'
         ]);
         //categories
-        $order = Order::where('invoice',$invoice)->firstOrFail();
+        $order = Order::where([['invoice',$invoice],['status_order','process']])->firstOrFail();
         $order->update([
             'status_order' => 'done',
             'resi' => $request->resi,
