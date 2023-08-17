@@ -4,19 +4,74 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display all listing of the resource.
      */
     public function index()
     {
-        //
+        $orders = Order::paginate(10);
+        return view('test.admin.order.index-order-admin',compact('orders'));
     }
+
+    /**
+     * Display a listing of the resource by status_order: order, process, cancel, failed and done.
+     */
+    public function indexStatusOrders($status)
+    {
+        $orders = Order::where('status_order',$status)->paginate(10);
+        return view('test.admin.order.index-order-status-admin',compact('orders'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function editResi($invoice)
+    {
+        //categories
+        $order = Order::where('invoice',$invoice)->with('user','payment','orderproduct')->firstOrFail();
+        return view('test.admin.order.edit-resi-order-admin',compact('order'));
+    }
+
+    /**
+     * update the form for editing the specified resource.
+     */
+    public function updateResi(Request $request,$invoice)
+    {
+        $request->validate([
+            'resi' => 'required'
+        ]);
+        //categories
+        $order = Order::where('invoice',$invoice)->firstOrFail();
+        $order->update([
+            'status_order' => 'done',
+            'resi' => $request->resi,
+        ]);
+
+        if ($order) {
+            return redirect()
+                ->route('indexStatusOrders', $order['status_order'])
+                ->with([
+                    'success' => 'Resi has been updated successfully'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
+        
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -146,18 +201,14 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show($invoice)
     {
-        //
+        $order = Order::where('invoice',$invoice)->with('user','payment','orderproduct')->firstOrFail();
+        $payments = Payment::where('invoice_id',$invoice)->orderBy('created_at','DESC')->get();
+        return view ('test.admin.order.show-order-admin',compact('order','payments'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
