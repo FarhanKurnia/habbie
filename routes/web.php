@@ -159,6 +159,16 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             // Route::get('/show/{slug}', [OfferController::class, 'show'])->name('showOffers');
         });
 
+        //Testimonials
+        Route::prefix('testimonials')->group(function () {
+            Route::get('/', [TestimonialController::class, 'index'])->name('indexTestimonials');
+            Route::get('/add', [TestimonialController::class, 'create'])->name('createTestimonials');
+            Route::post('/store', [TestimonialController::class, 'store'])->name('storeTestimonials');
+            Route::get('/show/{slug}', [TestimonialController::class, 'show'])->name('showTestimonials');
+            Route::get('/edit/{slug}', [TestimonialController::class, 'edit'])->name('editTestimonials');
+            Route::patch('/update/{slug}', [TestimonialController::class, 'update'])->name('updateTestimonials');
+            Route::get('/delete/{slug}', [TestimonialController::class, 'delete'])->name('deleteTestimonials');
+        });
 
     });
 });
@@ -235,14 +245,14 @@ Route::prefix('test')->group(function () {
         // Route::patch('/admin/discounts/update/{slug}', [DiscountController::class, 'update'])->name('updateDiscounts');
         // Route::get('/admin/discounts/delete/{slug}', [DiscountController::class, 'delete'])->name('deleteDiscounts');
 
-        //Testimonials
-        Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('indexTestimonials');
-        Route::get('/admin/testimonials/add', [TestimonialController::class, 'create'])->name('createTestimonials');
-        Route::post('/admin/testimonials/store', [TestimonialController::class, 'store'])->name('storeTestimonials');
-        Route::get('/admin/testimonials/show/{slug}', [TestimonialController::class, 'show'])->name('showTestimonials');
-        Route::get('/admin/testimonials/edit/{slug}', [TestimonialController::class, 'edit'])->name('editTestimonials');
-        Route::patch('/admin/testimonials/update/{slug}', [TestimonialController::class, 'update'])->name('updateTestimonials');
-        Route::get('/admin/testimonials/delete/{slug}', [TestimonialController::class, 'delete'])->name('deleteTestimonials');
+        // //Testimonials
+        // Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('indexTestimonials');
+        // Route::get('/admin/testimonials/add', [TestimonialController::class, 'create'])->name('createTestimonials');
+        // Route::post('/admin/testimonials/store', [TestimonialController::class, 'store'])->name('storeTestimonials');
+        // Route::get('/admin/testimonials/show/{slug}', [TestimonialController::class, 'show'])->name('showTestimonials');
+        // Route::get('/admin/testimonials/edit/{slug}', [TestimonialController::class, 'edit'])->name('editTestimonials');
+        // Route::patch('/admin/testimonials/update/{slug}', [TestimonialController::class, 'update'])->name('updateTestimonials');
+        // Route::get('/admin/testimonials/delete/{slug}', [TestimonialController::class, 'delete'])->name('deleteTestimonials');
         
         //Users
         Route::get('/admin/users', [UserController::class, 'index'])->name('indexUsers');
