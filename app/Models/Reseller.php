@@ -10,6 +10,6 @@ class Reseller extends Model
     protected $table = 'resellers';
     protected $primaryKey = 'id_reseller';
     protected $fillable = [
-        'name', 'email', 'gender', 'phone', 'birth_date', 'identity_card', 'status', 'address', 'province', 'city','subdistrict','postal_code'
+        'name','reseller_id', 'email', 'gender', 'phone', 'birth_date', 'identity_card', 'status', 'address', 'province', 'city','subdistrict','postal_code'
     ];
 }

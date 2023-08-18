@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             TestimonialSeeder::class,
             ReviewSeeder::class,
             BodyRecommendationSeeder::class,
+            ResellerSeeder::class,
         ]);
     }
 }

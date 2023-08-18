@@ -94,6 +94,8 @@ class DiscountController extends Controller
         $getSlug = $request->name;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
+        $getSlug = str_replace("%","",$getSlug);
+
         $discount = $discounts->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
         $discount->update([
             'name' => $request->name,

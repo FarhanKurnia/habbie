@@ -257,6 +257,18 @@ Route::prefix('test')->group(function () {
         //Users
         Route::get('/admin/users', [UserController::class, 'index'])->name('indexUsers');
         Route::get('/admin/users/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
+
+        //Orders
+        Route::get('/admin/orders', [OrderController::class, 'index'])->name('indexOrders');
+        Route::get('/admin/orders/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
+        Route::get('/admin/orders/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
+        Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editResi'])->name('editResi');
+        Route::patch('/admin/orders/update/{invoice}', [OrderController::class, 'updateResi'])->name('updateResi');
+
+        //Resellers
+        Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');
+        Route::get('/admin/resellers/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
+
     });
 
 //Debug
