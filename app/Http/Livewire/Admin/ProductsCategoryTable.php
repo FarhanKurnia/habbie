@@ -158,7 +158,7 @@ final class ProductsCategoryTable extends PowerGridComponent
             Button::add('delete')
                 ->bladeComponent('admin.partials.modal', [
                         'slug' => 'slug',
-                        'title' => 'Delete Categori',
+                        'title' => 'Delete Category',
                         'routeName' => 'deleteCategories',
                         'description' => 'Are you sure want to delete this category?',
                         'action' => 'Delete'
