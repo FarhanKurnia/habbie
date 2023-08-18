@@ -13,9 +13,7 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        $testimonials = Testimonial::where('deleted_at',null)->with('user')->paginate(5);
-        return view('test.admin.testimonial.index-testimonial-admin',compact('testimonials'));
-
+        return view('pages.admin.testimonials.index');
     }
 
     /**
@@ -23,7 +21,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        return view('test.admin.testimonial.create-testimonial-admin');
+        return view('pages.admin.testimonials.create');
     }
 
     /**
@@ -31,41 +29,52 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
-            'description' => 'required',
-            'profesi' => 'required',
-            'lokasi' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+                'description' => 'required',
+                'profesi' => 'required',
+                'lokasi' => 'required',
+            ]);
+    
+            //user
+            $user_id = Auth::user()->id_user;
+    
+            //slug
+            $name = $request->name;
+            $profesi = $request->profesi;
+            $lokasi = $request->lokasi;
+            $slug = $name.'-'.$profesi.'-'.$lokasi;
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $slug = strtolower($slug);
+    
+            //image
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/testimonials/';
+            $image->move(public_path($folder), $image_name);
+    
+            $testimoni = Testimonial::create([
+                'name' => $name,
+                'profesi' => $profesi,
+                'lokasi' => $lokasi,
+                'slug' => $slug,
+                'description' => $request->description,
+                'image' => $folder.$image_name,
+                'user_id' => $user_id,
+            ]);
+            
+            return redirect()->route('editTestimonials', $testimoni->slug)->with([
+                'success' => 'Product has been added successfully <a href="'. url('testimonials') .'" target="_blank">See Testimoni</a>'
+            ]);
 
-        //user
-        $user_id = Auth::user()->id_user;
-
-        //slug
-        $name = $request->name;
-        $profesi = $request->profesi;
-        $lokasi = $request->lokasi;
-        $slug = $name.'-'.$profesi.'-'.$lokasi;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
-
-        //image
-	    $image = $request->file('image');
-	    $image_name = time()."_".$image->getClientOriginalName();
-	    $folder = 'storage/img/testimonials/';
-        $image->move(public_path($folder), $image_name);
-
-        Testimonial::create([
-            'name' => $name,
-            'profesi' => $profesi,
-            'lokasi' => $lokasi,
-            'slug' => $slug,
-            'description' => $request->description,
-            'image' => $folder.$image_name,
-            'user_id' => $user_id,
-        ]);
-        return redirect()->route('indexTestimonials');
+        } catch(\Exception $e){
+            return redirect()
+            ->route('createTestimonials')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -82,8 +91,8 @@ class TestimonialController extends Controller
      */
     public function edit($slug)
     {
-        $testimonial = Testimonial::where([['deleted_at',null],['slug',$slug]])->firstOrFail();
-        return view('test.admin.testimonial.update-testimonial-admin',compact('testimonial'));
+        $oneTestimoni = Testimonial::where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        return view('pages.admin.testimonials.create',compact('oneTestimoni'));
     }
 
     /**
@@ -136,9 +145,9 @@ class TestimonialController extends Controller
         ]);
         if ($testimonial) {
             return redirect()
-                ->route('indexTestimonials')
+                ->route('editTestimonials', $testimonial->slug)
                 ->with([
-                    'success' => 'Post has been updated successfully'
+                    'success' => 'Testimoni has been updated successfully'
                 ]);
         } else {
             return redirect()
