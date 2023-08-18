@@ -40,26 +40,25 @@ class ArticleController extends Controller
     {
         try {
             $request->validate([
-            'title' => 'required',
-            'post' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+                'title' => 'required',
+                'post' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            ]);
 
-        ]);
+            //user_id
+            $user_id = Auth::user()->id_user;
 
-        //user_id
-        $user_id = Auth::user()->id_user;
-
-        //slug
-        $slug = $request->title;
-            $slug = preg_replace('/\s+/', '-', $slug);
-            $slug = strtolower($slug);
-            $excerpt = Str::limit($request->post,250);
+            //slug
+            $slug = $request->title;
+                $slug = preg_replace('/\s+/', '-', $slug);
+                $slug = strtolower($slug);
+                $excerpt = Str::limit($request->post,250);
     
-        //image
-	    $image = $request->file('image');
-	    $image_name = time()."_".$image->getClientOriginalName();
-	    $folder = 'storage/img/articles/';
-        $image->move(public_path($folder), $image_name);
+            //image
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/articles/';
+            $image->move(public_path($folder), $image_name);
 
             $article = Article::create([
                 'title' => $request->title,
@@ -70,7 +69,7 @@ class ArticleController extends Controller
                 'categories' => 'article',
                 'user_id' => $user_id,
                 'image' => $folder.$image_name,
-        ]);
+            ]);
 
             return redirect()->route('editArticles', $article->slug)->with([
                 'success' => 'New article created successfully <a class="font-bold text-pink-primary" href="'. url('media/'.$article->slug) .'" target="_blank">See Article</a>'
