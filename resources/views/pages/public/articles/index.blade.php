@@ -13,7 +13,7 @@
                 <small class="text-grey-secondary">{{ $date }}</small>
             </div>
             <div class="lg:w-3/4 lg:mx-auto mx-10">
-                {{ $oneArticle->post }}
+                {!! $oneArticle->post !!}
             </div>
         </div>
 
