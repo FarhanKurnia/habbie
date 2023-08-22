@@ -230,4 +230,26 @@ class ClientController extends Controller
         ]);
         return view('test.customer.reseller.reseller-client');
     }
+
+//Search 
+    //search function
+    public function search(Request $request){
+        $search = $request->input('search');
+        if($search){
+            $products = Product::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->get();
+            $article = Article::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('post', 'LIKE', "%{$search}%")
+            ->get();
+            $result = $products->merge($article);
+            $data_count = $result->count();
+            return view('test.customer.search.search-client', compact('result','data_count'));
+        } else{
+            return view('test.customer.search.search-client');
+        }
+    }
+    
 }

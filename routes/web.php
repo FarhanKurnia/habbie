@@ -58,7 +58,7 @@ Route::get('membership/join', function (){
 
 Route::get('/media', [ClientController::class, 'indexArticles']);
 
-Route::get('/media/{slug}', [ClientController::class, 'showArticle']);
+Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient');
 
 Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
 
@@ -172,6 +172,10 @@ Route::prefix('test')->group(function () {
     //Careers
     Route::get('/career', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
     Route::get('/career/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
+
+    //search
+    Route::get('/search', [ClientController::class, 'search'])->name('search');
+
 
     
 
