@@ -17,8 +17,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(10);
-        return view('test.admin.order.index-order-admin',compact('orders'));
+        // $orders = Order::paginate(10);
+        return view('pages.admin.orders.index');
     }
 
     /**
@@ -37,7 +37,7 @@ class OrderController extends Controller
     {
         //categories
         $order = Order::where([['invoice',$invoice],['status_order','process']])->with('user','payment','orderproduct')->firstOrFail();
-        return view('test.admin.order.edit-resi-order-admin',compact('order'));
+        return view('pages.admin.orders.edit',compact('order'));
     }
 
     /**
