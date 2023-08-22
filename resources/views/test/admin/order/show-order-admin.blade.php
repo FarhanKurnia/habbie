@@ -131,8 +131,6 @@
     </table>
 <br>
 {{-- update resi --}}
-@if($order->resi == null && $order->status_order == 'process')
-    <a href="{{route('editResi',$order->invoice)}}">Process </a>
-@endif
+<a href="{{route('editOrders',$order->invoice)}}">Update </a>
 </body>
 </html>

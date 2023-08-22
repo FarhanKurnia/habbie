@@ -26,34 +26,41 @@ class OrderController extends Controller
      */
     public function indexStatusOrders($status)
     {
-        $orders = Order::where('status_order',$status)->paginate(10);
+        $orders = Order::where('status_order',$status)->orderBy('id_order','DESC')->paginate(10);
         return view('test.admin.order.index-order-status-admin',compact('orders'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function editResi($invoice)
+    public function editOrders($invoice)
     {
         //categories
-        $order = Order::where([['invoice',$invoice],['status_order','process']])->with('user','payment','orderproduct')->firstOrFail();
-        return view('pages.admin.orders.edit',compact('order'));
+        $order = Order::where('invoice',$invoice)->with('user','payment','orderproduct')->firstOrFail();
+        return view('test.admin.order.edit-resi-order-admin',compact('order'));
     }
 
-    /**
-     * update the form for editing the specified resource.
-     */
-    public function updateResi(Request $request,$invoice)
+    public function updateOrders(Request $request,$invoice)
     {
-        $request->validate([
-            'resi' => 'required'
-        ]);
-        //categories
-        $order = Order::where([['invoice',$invoice],['status_order','process']])->firstOrFail();
-        $order->update([
-            'status_order' => 'done',
-            'resi' => $request->resi,
-        ]);
+        // $request->validate([
+        //     'resi' => 'required'
+        // ]);
+        //orders
+        $status = $request->status_order;
+        $resi = $request->resi;
+        $order = Order::where([['invoice',$invoice]])->firstOrFail();
+        if($resi){
+            $order->update([
+                'status_order' => $status,
+                'resi' => $resi,
+            ]);
+        }else{
+            $order->update([
+                'status_order' => $status,
+                'resi' => null,
+            ]);
+        }
+        
 
         if ($order) {
             return redirect()
@@ -69,7 +76,6 @@ class OrderController extends Controller
                     'error' => 'Some problem has occured, please try again'
                 ]);
         }
-        
     }
 
 
