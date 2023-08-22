@@ -49,8 +49,8 @@
                 <td>Rp. {{ $order->total }}</td>
             </tr>
             <tr>
-                <th>status</th>
-                <td>{{ $order->status_order}} [{{ $order->status_payment}}]</td>
+                <th>payment</th>
+                <td>{{ $order->status_payment}}</td>
             </tr>
             <tr>
                 <th>status</th>
