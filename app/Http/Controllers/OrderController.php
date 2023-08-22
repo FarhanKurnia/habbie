@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function indexStatusOrders($status)
     {
-        $orders = Order::where('status_order',$status)->paginate(10);
+        $orders = Order::where('status_order',$status)->orderBy('id_order','DESC')->paginate(10);
         return view('test.admin.order.index-order-status-admin',compact('orders'));
     }
 
