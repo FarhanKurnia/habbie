@@ -252,8 +252,11 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/orders', [OrderController::class, 'index'])->name('indexOrders');
         Route::get('/admin/orders/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
         Route::get('/admin/orders/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
-        Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editResi'])->name('editResi');
-        Route::patch('/admin/orders/update/{invoice}', [OrderController::class, 'updateResi'])->name('updateResi');
+        Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editOrders'])->name('editOrders');
+        Route::patch('/admin/orders/update/{invoice}', [OrderController::class, 'updateOrders'])->name('updateOrders');
+        // Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editResi'])->name('editResi');
+        // Route::patch('/admin/orders/process/{invoice}', [OrderController::class, 'processOrder'])->name('processOrder');
+        // Route::get('/admin/orders/cancel/{invoice}', [OrderController::class, 'cancelOrder'])->name('cancelOrder');
 
         //Resellers
         Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');

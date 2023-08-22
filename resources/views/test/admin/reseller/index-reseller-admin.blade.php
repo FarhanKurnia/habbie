@@ -12,8 +12,6 @@
                 <th colspan="11">Resellers</th>
             </tr>
             <tr>
-                {{-- 'name','seller_id', 'email', 'gender', 'phone', 'birth_date', 'identity_card', 'status', 'address', 'province', 'city','subdistrict','postal_code' --}}
-
                 <th>No</th>
                 <th>Reseller_id</th>   
                 {{-- <th>Identity Card</th>              --}}
