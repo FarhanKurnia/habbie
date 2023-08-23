@@ -14,10 +14,7 @@ class OfferController extends Controller
     public function index()
     {
         //offers
-        $offers = new Offer();
-        $indexOffers = $offers->where('deleted_at',null)->with('product')->orderBy('id_offer','DESC')->paginate(10);
-    
-        return view('test.admin.offer.index-offer-admin', compact('indexOffers'));
+        return view('pages.admin.offers.index');
     }
 
     /**
@@ -26,8 +23,8 @@ class OfferController extends Controller
     public function create()
     {
         $products = new Product();
-        $indexProduct = $products->where('deleted_at',null)->get();
-        return view('test.admin.offer.create-offer-admin',compact('indexProduct'));
+        $indexProducts = $products->where('deleted_at',null)->get();
+        return view('pages.admin.offers.create',compact('indexProducts'));
      
     }
 
@@ -36,36 +33,45 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        try {
+            $request->validate([
+                'name' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+                'description' => 'required',
+                'product' => 'required',
+                'status' => 'required',
+            ]);
+    
+    
+            $slug = $request->name;
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $slug = strtolower($slug);
+    
+            //image
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/offers/';
+            $image->move(public_path($folder), $image_name);
+            
+            $offer = Offer::create([
+                'name' => $request->name,
+                'image' => $folder.$image_name,
+                'slug' => $slug,
+                'description' => $request->description,
+                'product_id' => $request->product,
+                'status' => $request->status,
+            ]);
+            
+            return redirect()->route('editOffers', $offer->slug)->with([
+                'success' => 'Product has been added successfully <a href="'. url('offers/'.$offer->slug) .'" target="_blank">See Offers</a>'
+            ]);
 
-        $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
-            'description' => 'required',
-            'product_id' => 'required',
-            'status' => 'required',
-        ]);
-
-
-        $slug = $request->name;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
-
-        //image
-	    $image = $request->file('image');
-	    $image_name = time()."_".$image->getClientOriginalName();
-	    $folder = 'storage/img/offers/';
-        $image->move(public_path($folder), $image_name);
-        
-        Offer::create([
-            'name' => $request->name,
-            'image' => $folder.$image_name,
-            'slug' => $slug,
-            'description' => $request->description,
-            'product_id' => $request->product,
-            'status' => $request->status,
-        ]);
-        return redirect()->route('indexOffers');
+        } catch(\Exception $e){
+            return redirect()
+            ->route('createOffers')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -93,7 +99,7 @@ class OfferController extends Controller
         $oneOffer = $offers->where([['slug',$slug],['deleted_at',null]])->with('product')->firstOrFail();
         $indexProducts = $products->where('deleted_at',null)->get();
 
-        return view('test.admin.offer.update-offer-admin',compact('oneOffer','indexProducts'));
+        return view('pages.admin.offers.create',compact('oneOffer','indexProducts'));
     
     }
 
@@ -132,11 +138,17 @@ class OfferController extends Controller
         ]);
         if ($offer) {
             return redirect()
-                ->route('indexOffers');
+                ->route('editOffers', $offer->slug)
+                ->with([
+                    'success' => 'Offer has been updated successfully'
+                ]);
         } else {
             return redirect()
                 ->back()
-                ->withInput();
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
         }
     }
 

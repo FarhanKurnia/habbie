@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Product_Category;
+use App\Models\Offer;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -10,13 +10,13 @@ use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
 
-final class ProductsCategoryTable extends PowerGridComponent
+final class OffersTable extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
 
-    public string $primaryKey = 'product_categories.id_category ';
-    public string $sortField = 'product_categories.id_category';
+    public string $primaryKey = 'offers.id_offer ';
+    public string $sortField = 'offers.id_offer';
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ final class ProductsCategoryTable extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Product_Category::query()->whereNull('deleted_at')->orderBy('updated_at', 'DESC');
+        return Offer::query()->whereNull('deleted_at')->orderBy('updated_at', 'DESC');
     }
 
     /*
@@ -87,12 +87,12 @@ final class ProductsCategoryTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('icon', function ($model) {
-                    return '<img class="h-24 rounded-full border-2 border-pink-primary bg-grey-secondary-50 mx-auto p-6 my-4" src="'.url($model->icon).'">';
+            ->addColumn('image', function ($model) {
+                    return '<img class="h-24 my-4 mx-auto" src="'.url($model->image).'">';
             })
             ->addColumn('name', function($model){
                 return '
-                    <a href="'.route('editCategories', $model->slug).'">
+                    <a href="'.route('editOffers', $model->slug).'">
                         <p class="font-bold text-lg text-primary">'.$model->name.'</p>
                     </a>
                 ';
@@ -116,7 +116,7 @@ final class ProductsCategoryTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Icon', 'icon'),
+            Column::make('IMage', 'image'),
             Column::make('Name', 'name')->searchable(),
         ];
     }
@@ -152,15 +152,15 @@ final class ProductsCategoryTable extends PowerGridComponent
             Button::add('edit')
                 ->caption('Edit')
                 ->class('btn bg-teal-shadow hover:bg-teal-shadow  bg-opacity-75')
-                ->route('editCategories', ['slug' => 'slug'])
+                ->route('editOffers', ['slug' => 'slug'])
                 ->target('_self')
             ,
             Button::add('delete')
                 ->bladeComponent('admin.partials.modal', [
                         'slug' => 'slug',
-                        'title' => 'Delete Category',
-                        'routeName' => 'deleteCategories',
-                        'description' => 'Are you sure want to delete this category?',
+                        'title' => 'Delete Offer',
+                        'routeName' => 'deleteOffers',
+                        'description' => 'Are you sure want to delete this offer?',
                         'action' => 'Delete'
                     ])
             ,
@@ -198,10 +198,10 @@ final class ProductsCategoryTable extends PowerGridComponent
     public function header(): array
     {
         return [
-            Button::add('add-new-category')
-                ->caption('Add New Category')
+            Button::add('add-new-offer')
+                ->caption('Add New Offer')
                 ->class('btn bg-pink-primary text-white hover:bg-pink-primary bg-opacity-75')
-                ->route('createCategories', [])
+                ->route('createOffers', [])
                 ->target('_self'),
         ];
     }

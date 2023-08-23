@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -14,17 +15,16 @@ class CareerController extends Controller
     public function index()
     {
         //articles
-        $articles = new Article();
-        //careers
-        $careers = $articles->where([['deleted_at',null],['categories','career']])->orderBy('id_article','DESC')->paginate(5);
-        return view('test.admin.career.index-career-admin',compact('careers'));
+        return view('pages.admin.careers.index');
+
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('test.admin.career.create-career-admin');
+        return view('pages.admin.careers.create');
+
     }
 
     /**
@@ -32,21 +32,49 @@ class CareerController extends Controller
      */
     public function store(Request $request)
     {
-        $slug = $request->title;
-        $slug = preg_replace('/\s+/', '-', $slug);
-        $slug = strtolower($slug);
-        $excerpt = Str::limit($request->post,250);
+        try {
+            $request->validate([
+                'title' => 'required',
+                'post' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            ]);
 
-        Article::create([
-            'title' => $request->title,
-            'post' => $request->post,
-            'excerpt' => $excerpt,
-            'image' => $request->image,
-            'slug' => $slug,
-            'categories' => 'career',
-            'user_id' => $request->user_id,
-        ]);
-        return redirect()->route('indexCareers');    
+            //user_id
+            $user_id = Auth::user()->id_user;
+
+            //slug
+            $slug = $request->title;
+                $slug = preg_replace('/\s+/', '-', $slug);
+                $slug = strtolower($slug);
+                $excerpt = Str::limit($request->post,250);
+    
+            //image
+            $image = $request->file('image');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $folder = 'storage/img/careers/';
+            $image->move(public_path($folder), $image_name);
+
+            $article = Article::create([
+                'title' => $request->title,
+                'post' => $request->post,
+                'excerpt' => $excerpt,
+                'image' => $folder.$image_name,
+                'slug' => $slug,
+                'categories' => 'career',
+                'user_id' => $user_id,
+                'image' => $folder.$image_name,
+            ]);
+
+            return redirect()->route('editCareers', $article->slug)->with([
+                'success' => 'New carrer created successfully <a class="font-bold text-pink-primary" href="'. url('media/'.$article->slug) .'" target="_blank">See Career</a>'
+            ]);
+
+        } catch (\Exception $e){
+            return redirect()
+            ->route('createCareers')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }  
     }
 
     /**
@@ -70,8 +98,8 @@ class CareerController extends Controller
         //articles
         $articles = new Article();
 
-        $career = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->with('user')->firstOrFail();
-        return view('test.admin.career.update-career-admin',compact('career'));
+        $oneArticle = $articles->where([['slug',$slug],['deleted_at',null],['categories','career']])->with('user')->firstOrFail();
+        return view('pages.admin.careers.create',compact('oneArticle'));
     }
 
     /**
@@ -79,31 +107,63 @@ class CareerController extends Controller
      */
     public function update(Request $request, $slug)
     {
+
+        $request->validate([
+            'title' => 'required',
+            'post' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+
+        ]);
+        //user_id
+        $user_id = Auth::user()->id_user;
+
         //articles
-        $articles = new Article();
+        $article = Article::where([['deleted_at',null],['slug',$slug],['categories','career']])->firstOrFail();
+
+        //slug
         $getSlug = $request->title;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
         $excerpt = Str::limit($request->post,250);
 
-        $career = $articles->where([['deleted_at',null],['slug',$slug],['categories','career']])->firstOrFail();
-        $career->update([
+        //image
+        $update_image ="";
+        if($request->image){
+            $image = $request->file('image');
+	        $image_name = time()."_".$image->getClientOriginalName();
+	        $folder = 'storage/img/careers/';
+            $image->move(public_path($folder), $image_name);
+            $update_image = $folder.$image_name;
+        }else{
+            $update_image = $article->image;  
+        }
+
+        $article->update([
             'title' => $request->title,
             'post' => $request->post,
             'excerpt' => $excerpt,
-            'image' => $request->image,
+            'image' => $update_image,
             'slug' => $getSlug,
             'categories' => 'career',
-            'user_id' => $request->user_id,
+            'user_id' => $user_id,
         ]);
-        if ($career) {
+        if ($article) {
+
             return redirect()
-                ->route('indexCareers');
+            ->route('editCareers', $article->slug)
+            ->with([
+                'success' => 'Updated successfully'
+            ]);
+
         } else {
             return redirect()
                 ->back()
-                ->withInput();
-        }    }
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }  
+    }
 
     /**
      * Remove the specified resource from storage.

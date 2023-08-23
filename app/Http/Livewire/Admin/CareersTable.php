@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Product_Category;
+use App\Models\Article;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -10,13 +10,13 @@ use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
 
-final class ProductsCategoryTable extends PowerGridComponent
+final class CareersTable extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
 
-    public string $primaryKey = 'product_categories.id_category ';
-    public string $sortField = 'product_categories.id_category';
+    public string $primaryKey = 'articles.id_article';
+    public string $sortField = 'articles.id_article';
 
     /*
     |--------------------------------------------------------------------------
@@ -48,11 +48,11 @@ final class ProductsCategoryTable extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Product_Category>
+     * @return Builder<\App\Models\Article>
      */
     public function datasource(): Builder
     {
-        return Product_Category::query()->whereNull('deleted_at')->orderBy('updated_at', 'DESC');
+        return Article::query()->where('categories', 'career')->whereNull('deleted_at')->with('user')->orderBy('updated_at', 'DESC');;
     }
 
     /*
@@ -87,16 +87,22 @@ final class ProductsCategoryTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('icon', function ($model) {
-                    return '<img class="h-24 rounded-full border-2 border-pink-primary bg-grey-secondary-50 mx-auto p-6 my-4" src="'.url($model->icon).'">';
+            ->addColumn('title', function ($model) {
+                return '<p class="text-lg px-2">'.$model->title.'</p>';
             })
-            ->addColumn('name', function($model){
-                return '
-                    <a href="'.route('editCategories', $model->slug).'">
-                        <p class="font-bold text-lg text-primary">'.$model->name.'</p>
-                    </a>
-                ';
+            ->addColumn('image', function ($model) {
+                return '<img class="h-36 mx-auto p-2" src="'.url($model->image).'">';
+            })
+            ->addColumn('user_id', function ($model) {
+                return '<p class="text-lg px-2">'.$model->user?->name.'</p>';
             });
+            // ->addColumn('image')
+            // ->addColumn('categories')
+            // ->addColumn('updated_at', function ($model) {
+            //     // $date = Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
+            //     return '<p class="text-lg px-2">'.$model->updated_at.'</p>';
+
+            // });
     }
 
     /*
@@ -116,8 +122,11 @@ final class ProductsCategoryTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Icon', 'icon'),
-            Column::make('Name', 'name')->searchable(),
+            Column::make('Image', 'image'),
+            Column::make('Title', 'title')->searchable(),
+            Column::make('User', 'user_id'),
+            // Column::make('Categories', 'categories')->searchable(),
+            // Column::make('Update at', 'created_at_formatted', 'updated_at')->sortable(),
         ];
     }
 
@@ -140,33 +149,31 @@ final class ProductsCategoryTable extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Product_Category Action Buttons.
+     * PowerGrid Article Action Buttons.
      *
      * @return array<int, Button>
      */
 
-    
-    public function actions(): array
-    {
-        return [
-            Button::add('edit')
-                ->caption('Edit')
-                ->class('btn bg-teal-shadow hover:bg-teal-shadow  bg-opacity-75')
-                ->route('editCategories', ['slug' => 'slug'])
-                ->target('_self')
-            ,
-            Button::add('delete')
-                ->bladeComponent('admin.partials.modal', [
-                        'slug' => 'slug',
-                        'title' => 'Delete Category',
-                        'routeName' => 'deleteCategories',
-                        'description' => 'Are you sure want to delete this category?',
-                        'action' => 'Delete'
-                    ])
-            ,
-        ];
-    }
-    
+     public function actions(): array
+     {
+         return [
+             Button::add('edit')
+                 ->caption('Edit')
+                 ->class('btn bg-teal-shadow hover:bg-teal-shadow  bg-opacity-75')
+                 ->route('editCareers', ['slug' => 'slug'])
+                 ->target('_self')
+             ,
+             Button::add('delete')
+                 ->bladeComponent('admin.partials.modal', [
+                         'slug' => 'slug',
+                         'title' => 'Delete Careers',
+                         'routeName' => 'deleteCareers',
+                         'description' => 'Are you sure want to delete this career?',
+                         'action' => 'Delete'
+                     ])
+             ,
+         ];
+     }
 
     /*
     |--------------------------------------------------------------------------
@@ -177,7 +184,7 @@ final class ProductsCategoryTable extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Product_Category Action Rules.
+     * PowerGrid Article Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -189,7 +196,7 @@ final class ProductsCategoryTable extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($product_-category) => $product_-category->id === 1)
+                ->when(fn($article) => $article->id === 1)
                 ->hide(),
         ];
     }
@@ -198,10 +205,10 @@ final class ProductsCategoryTable extends PowerGridComponent
     public function header(): array
     {
         return [
-            Button::add('add-new-category')
-                ->caption('Add New Category')
+            Button::add('add-new-careers')
+                ->caption('Add New Careers')
                 ->class('btn bg-pink-primary text-white hover:bg-pink-primary bg-opacity-75')
-                ->route('createCategories', [])
+                ->route('createCareers', [])
                 ->target('_self'),
         ];
     }

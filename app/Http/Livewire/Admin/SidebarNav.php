@@ -14,10 +14,14 @@ class SidebarNav extends Component
             [ "name" => "Category Product", "route_name" => "indexCategories" ],
             [ "name" => "Discount", "route_name" => "indexDiscounts" ]
         ],
-        "articles" => [
-            [ "name" => "Articles", "route_name" => "indexArticles" ],
+        "media" => [
+            [ "name" => "Media", "route_name" => "media" ],
             [ "name" => "List Article", "route_name" => "indexArticles" ],
+            [ "name" => "List Career", "route_name" => "indexCareers" ],
         ],
+        "indexOffers" => 'Offers',
+        "indexTestimonials" => 'Testimonials',
+        
         // "orders" => "Orders",
         // "membership" => "Membership",
         // "offers" => "Offers",
