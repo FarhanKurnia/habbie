@@ -173,6 +173,15 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             Route::get('/delete/{slug}', [TestimonialController::class, 'delete'])->name('deleteTestimonials');
         });
 
+        //Orders
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('indexOrders');
+            Route::get('/edit/{invoice}', [OrderController::class, 'editOrders'])->name('editOrders');
+            Route::patch('/update/{invoice}', [OrderController::class, 'updateOrders'])->name('updateOrders');
+            // Route::get('/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
+            // Route::get('/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
+        });
+
     });
 });
 
@@ -265,15 +274,12 @@ Route::prefix('test')->group(function () {
         Route::get('/admin/users', [UserController::class, 'index'])->name('indexUsers');
         Route::get('/admin/users/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
 
-        //Orders
-        Route::get('/admin/orders', [OrderController::class, 'index'])->name('indexOrders');
-        Route::get('/admin/orders/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
-        Route::get('/admin/orders/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
-        Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editOrders'])->name('editOrders');
-        Route::patch('/admin/orders/update/{invoice}', [OrderController::class, 'updateOrders'])->name('updateOrders');
+        // //Orders
+        // Route::get('/admin/orders', [OrderController::class, 'index'])->name('indexOrders');
+        // Route::get('/admin/orders/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
+        // Route::get('/admin/orders/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
         // Route::get('/admin/orders/edit/{invoice}', [OrderController::class, 'editResi'])->name('editResi');
-        // Route::patch('/admin/orders/process/{invoice}', [OrderController::class, 'processOrder'])->name('processOrder');
-        // Route::get('/admin/orders/cancel/{invoice}', [OrderController::class, 'cancelOrder'])->name('cancelOrder');
+        // Route::patch('/admin/orders/update/{invoice}', [OrderController::class, 'updateResi'])->name('updateResi');
 
         //Resellers
         Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');

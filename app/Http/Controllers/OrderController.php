@@ -17,18 +17,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('id_order','DESC')->paginate(10);
-        return view('test.admin.order.index-order-admin',compact('orders'));
+        // $orders = Order::paginate(10);
+        return view('pages.admin.orders.index');
     }
 
     /**
      * Display a listing of the resource by status_order: order, process, cancel, failed and done.
      */
-    public function indexStatusOrders($status)
-    {
-        $orders = Order::where('status_order',$status)->orderBy('id_order','DESC')->paginate(10);
-        return view('test.admin.order.index-order-status-admin',compact('orders'));
-    }
+    // public function indexStatusOrders($status)
+    // {
+    //     $orders = Order::where('status_order',$status)->orderBy('id_order','DESC')->paginate(10);
+    //     return view('pages.admin.orders.edit',compact('orders'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -37,7 +37,7 @@ class OrderController extends Controller
     {
         //categories
         $order = Order::where('invoice',$invoice)->with('user','payment','orderproduct')->firstOrFail();
-        return view('test.admin.order.edit-resi-order-admin',compact('order'));
+        return view('pages.admin.orders.edit',compact('order'));
     }
 
     public function updateOrders(Request $request,$invoice)
@@ -64,9 +64,9 @@ class OrderController extends Controller
 
         if ($order) {
             return redirect()
-                ->route('indexStatusOrders', $order['status_order'])
+                ->route('editOrders', $order['invoice'])
                 ->with([
-                    'success' => 'Resi has been updated successfully'
+                    'success' => 'Order data has been updated successfully'
                 ]);
         } else {
             return redirect()
