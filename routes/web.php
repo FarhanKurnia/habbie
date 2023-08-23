@@ -90,10 +90,13 @@ Route::middleware(['auth','verified','customer'])->group(function () {
 Route::middleware(['auth','verified', 'admin'])->group(function () {
     Route::prefix('admin')->group(function () {
 
-        // Dsshboard
-        Route::get('/', function(){
-            return view('pages.admin.dashboard');
-        })->name('dashboard');
+        // Dashboard
+        // Route::get('/', function(){
+        //     return view('pages.admin.dashboard');
+        // })->name('dashboard');
+
+        Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+
 
         // Products
         Route::prefix('products')->group(function () {

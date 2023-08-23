@@ -9,34 +9,19 @@
             <div
                 class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
-                    <svg class="fill-primary dark:fill-white" width="22" height="16" viewBox="0 0 22 16" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11 15.1156C4.19376 15.1156 0.825012 8.61876 0.687512 8.34376C0.584387 8.13751 0.584387 7.86251 0.687512 7.65626C0.825012 7.38126 4.19376 0.918762 11 0.918762C17.8063 0.918762 21.175 7.38126 21.3125 7.65626C21.4156 7.86251 21.4156 8.13751 21.3125 8.34376C21.175 8.61876 17.8063 15.1156 11 15.1156ZM2.26876 8.00001C3.02501 9.27189 5.98126 13.5688 11 13.5688C16.0188 13.5688 18.975 9.27189 19.7313 8.00001C18.975 6.72814 16.0188 2.43126 11 2.43126C5.98126 2.43126 3.02501 6.72814 2.26876 8.00001Z"
-                            fill="" />
-                        <path
-                            d="M11 10.9219C9.38438 10.9219 8.07812 9.61562 8.07812 8C8.07812 6.38438 9.38438 5.07812 11 5.07812C12.6156 5.07812 13.9219 6.38438 13.9219 8C13.9219 9.61562 12.6156 10.9219 11 10.9219ZM11 6.625C10.2437 6.625 9.625 7.24375 9.625 8C9.625 8.75625 10.2437 9.375 11 9.375C11.7563 9.375 12.375 8.75625 12.375 8C12.375 7.24375 11.7563 6.625 11 6.625Z"
-                            fill="" />
+                    <svg class="fill-primary dark:fill-white" aria-hidden="true" 
+                        xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+                        <path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
                     </svg>
                 </div>
 
                 <div class="mt-4 flex items-end justify-between">
                     <div>
                         <h4 class="text-title-md font-bold text-black dark:text-white">
-                            $3.456K
+                            {{$orders_status['done']}}
                         </h4>
-                        <span class="text-sm font-medium">Total views</span>
+                        <span class="text-sm font-medium">Total Order Done</span>
                     </div>
-
-                    <span class="flex items-center gap-1 text-sm font-medium text-meta-3">
-                        0.43%
-                        <svg class="fill-meta-3" width="10" height="11" viewBox="0 0 10 11" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                                fill="" />
-                        </svg>
-                    </span>
                 </div>
             </div>
             <!-- Card Item End -->
@@ -62,20 +47,10 @@
                 <div class="mt-4 flex items-end justify-between">
                     <div>
                         <h4 class="text-title-md font-bold text-black dark:text-white">
-                            $45,2K
+                            {{$orders_status['process']}}
                         </h4>
-                        <span class="text-sm font-medium">Total Profit</span>
+                        <span class="text-sm font-medium">Total Order Process</span>
                     </div>
-
-                    <span class="flex items-center gap-1 text-sm font-medium text-meta-3">
-                        4.35%
-                        <svg class="fill-meta-3" width="10" height="11" viewBox="0 0 10 11" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                                fill="" />
-                        </svg>
-                    </span>
                 </div>
             </div>
             <!-- Card Item End -->
@@ -98,20 +73,10 @@
                 <div class="mt-4 flex items-end justify-between">
                     <div>
                         <h4 class="text-title-md font-bold text-black dark:text-white">
-                            2.450
+                            {{$product_categories['all']}}
                         </h4>
                         <span class="text-sm font-medium">Total Product</span>
                     </div>
-
-                    <span class="flex items-center gap-1 text-sm font-medium text-meta-3">
-                        2.59%
-                        <svg class="fill-meta-3" width="10" height="11" viewBox="0 0 10 11" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                                fill="" />
-                        </svg>
-                    </span>
                 </div>
             </div>
             <!-- Card Item End -->
@@ -137,48 +102,146 @@
                 <div class="mt-4 flex items-end justify-between">
                     <div>
                         <h4 class="text-title-md font-bold text-black dark:text-white">
-                            3.456
+                            {{$customers}}
                         </h4>
-                        <span class="text-sm font-medium">Total Users</span>
+                        <span class="text-sm font-medium">Total Customers</span>
                     </div>
-
-                    <span class="flex items-center gap-1 text-sm font-medium text-meta-5">
-                        0.95%
-                        <svg class="fill-meta-5" width="10" height="11" viewBox="0 0 10 11" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5.64284 7.69237L9.09102 4.33987L10 5.22362L5 10.0849L-8.98488e-07 5.22362L0.908973 4.33987L4.35716 7.69237L4.35716 0.0848701L5.64284 0.0848704L5.64284 7.69237Z"
-                                fill="" />
-                        </svg>
-                    </span>
                 </div>
             </div>
             <!-- Card Item End -->
         </div>
+
+        
+        <!-- Chart Start -->
         <div class="my-4 bg-white p-4 rounded-lg">
-            <div id="chart"></div>
+            <div id="chart_order"></div>
         </div>
+
+        <div class="flex flex-wrap -mb-4 -mx-2 my-4 bg-white p-4 rounded-lg">
+            <div class="items-center justify-center">
+                <div id="pie_chart_order"></div>
+            </div>
+            <div class="items-center justify-center">
+                <div id="pie_chart_product"></div>
+            </div>
+        </div>
+        <!-- Chart End -->
+
+        {{-- chart library --}}
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+        {{-- area chart --}}
         <script>
             var options = {
                 chart: {
-                    type: 'line'
+                    type: 'area',
+                    height: 350,
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'straight'
+                },
+                title: {
+                    text: 'Order Graph',
+                    align: 'left'
+                },
+                subtitle: {
+                    text: 'Graph of order Monthly in current Year',
+                    align: 'left'
                 },
                 series: [{
-                    name: 'sales',
-                    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+                    name: 'Order',
+                    data: [{{$graph_montly['january']}}, 
+                            {{$graph_montly['february']}},
+                            {{$graph_montly['march']}},
+                            {{$graph_montly['april']}},
+                            {{$graph_montly['may']}},
+                            {{$graph_montly['june']}},
+                            {{$graph_montly['july']}},
+                            {{$graph_montly['august']}},
+                            {{$graph_montly['september']}},
+                            {{$graph_montly['october']}},
+                            {{$graph_montly['november']}},
+                            {{$graph_montly['december']}},]
                 }],
                 xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+                    categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','October','November','December']
+                },
+                yaxis: {
+                    opposite: false
+                },
+                legend: {
+                    horizontalAlign: 'left'
                 }
             }
-
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-
+            var chart = new ApexCharts(document.querySelector("#chart_order"), options);
             chart.render();
         </script>
 
-        <div class="w-full my-4">
+        {{-- pie chart order --}}
+        <script>
+            var options = {
+                series: [{{$orders_status['order']}}, {{$orders_status['process']}}, {{$orders_status['done']}}, {{$orders_status['failed']}}],
+                chart: {
+                    width: 380,
+                    type: 'pie',
+                },
+                labels: ['Order', 'Process', 'Done', 'Failed'],
+                title: {
+                    text: 'Status Order',
+                    align: 'left'
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+        };
+            var chart = new ApexCharts(document.querySelector("#pie_chart_order"), options);
+            chart.render();
+        </script>
+
+        {{-- donut chart product --}}
+        <script>
+            var options = {
+                series: [{{$product_categories['flower']}}, {{$product_categories['tea']}},{{$product_categories['saffron']}},{{$product_categories['vanilla']}}],
+                chart: {
+                    width: 520,
+                    type: 'donut',
+                },
+                labels: ['Aromatic Telon Oil Flower Series', 'Aromatic Telon Oil Tea Series', 'Aromatic Cajuput Oil Saffron Series', 'Aromatic Cajuput Oil Vanilla Series'],
+                title: {
+                    text: 'Product Categories',
+                    align: 'left'
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+            var chart = new ApexCharts(document.querySelector("#pie_chart_product"), options);
+            chart.render();
+        </script>
+
+        {{-- <div class="w-full my-4">
             <textarea id="editor"></textarea>
         </div>
         <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
@@ -186,7 +249,7 @@
             // Replace the <textarea id="editor1"> with a CKEditor 4
             // instance, using default configuration.
             CKEDITOR.replace('editor');
-        </script>
+        </script> --}}
 
     </div>
 
