@@ -8,6 +8,7 @@ class SidebarNav extends Component
 {
     public $constantNav = [
         "dashboard" => "Dashboard",
+        "indexOrders" => 'Orders',
         "products" => [
             [ "name" => "Products", "route_name" => "indexProducts" ],
             [ "name" => "List Product", "route_name" => "indexProducts" ],
@@ -21,20 +22,6 @@ class SidebarNav extends Component
         ],
         "indexOffers" => 'Offers',
         "indexTestimonials" => 'Testimonials',
-        
-        // "orders" => "Orders",
-        // "membership" => "Membership",
-        // "offers" => "Offers",
-        // "media" => [
-        //     "Media",
-        //     "List Article",
-        //     "Category Article"
-        // ],
-        // "testimonials" => [
-        //     "Testimonials",
-        //     "Add Testimonials",
-        //     "Add Reviews"
-        // ],
     ];
 
     public $activeNav;
