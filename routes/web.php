@@ -173,10 +173,10 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
         //Orders
         Route::prefix('orders')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('indexOrders');
-            Route::get('/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
-            Route::get('/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
-            Route::get('/edit/{invoice}', [OrderController::class, 'editResi'])->name('editResi');
-            Route::patch('/update/{invoice}', [OrderController::class, 'updateResi'])->name('updateResi');
+            Route::get('/edit/{invoice}', [OrderController::class, 'editOrders'])->name('editOrders');
+            Route::patch('/update/{invoice}', [OrderController::class, 'updateOrders'])->name('updateOrders');
+            // Route::get('/{status}', [OrderController::class, 'indexStatusOrders'])->name('indexStatusOrders');
+            // Route::get('/show/{invoice}', [OrderController::class, 'show'])->name('showOrders');
         });
 
     });
