@@ -6,7 +6,7 @@
         <ul class="menu menu-horizontal px-1">
             <li tabindex="0">
               <details>
-                <summary>{{$user->name}} ({{$user->role->name}})</summary>
+                <summary>{{Auth::user()->name}}</summary>
                 <ul class="p-2">
                   <li><a>Profile</a></li>
                   <li><a>Logout</a></li>

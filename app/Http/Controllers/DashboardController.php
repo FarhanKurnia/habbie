@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $id_user = Auth::user()->id_user;
 
-        $user = User::where('id_user',$id_user)->with('role')->firstOrFail();
+        // $user = User::where('id_user',$id_user)->with('role')->firstOrFail();
         $customers = User::where('role_id',2)->count();
         $products = new Product();
         $all_products = $products->where('deleted_at',null)->count();
@@ -98,7 +98,7 @@ class DashboardController extends Controller
 
         
         // return view('test.admin.dashboard.dashboard-admin',compact('ordering','orders_revenue','orders_status','user'));
-        return view('pages.admin.dashboard',compact('ordering','orders_revenue','orders_status','user','customers','graph_montly','product_categories'));
+        return view('pages.admin.dashboard',compact('ordering','orders_revenue','orders_status','customers','graph_montly','product_categories'));
     }
     
 
