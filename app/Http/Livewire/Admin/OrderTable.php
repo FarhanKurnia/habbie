@@ -182,7 +182,7 @@ final class OrderTable extends PowerGridComponent
  
          return [
              Button::add('edit')
-                 ->caption('Edit')
+                 ->caption('Update')
                  ->class('btn bg-teal-shadow hover:bg-teal-shadow  bg-opacity-75')
                  ->route('editOrders', ['invoice' => 'inv'])
                  ->target('_self')
