@@ -118,7 +118,7 @@
                                         <tr>
                                             <td>Information</td>
                                             <td>{!! 'transaction : ' .
-                                                $order->payment->transaction_status .
+                                                $order->status_payment .
                                                 ' </br> ' .
                                                 str_replace('_', ' ', $order->payment->payment_type) .
                                                 ' : ' .
