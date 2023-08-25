@@ -85,6 +85,12 @@ Route::middleware(['auth','verified','customer'])->group(function () {
     Route::get('checkout', [CheckoutController::class, 'show']);
     Route::get('invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
     Route::get('invoice',[ClientController::class,'indexInvoiceClient']);
+
+    // fe belum dibikin
+    Route::get('profile',[UserController::class,'profile'])->name('profile');
+    Route::patch('update-profile',[UserController::class,'updateProfile'])->name('updateProfile');
+
+
 });
 
 // Admin
@@ -300,7 +306,6 @@ Route::prefix('test')->group(function () {
     });
 
 //Debug
-    Route::get('/profile',[AuthController::class,'profile'])->name('profile');
     Route::get('/order',[OrderController::class,'store'])->name('order');
     // Route::get('/order/{invoice}',[OrderController::class,'getOrder'])->name('getOrder');
     // Route::get('/invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');

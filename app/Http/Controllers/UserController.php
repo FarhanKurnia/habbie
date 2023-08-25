@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,6 +43,26 @@ class UserController extends Controller
         $user_id = $user->id_user;
         $orders = Order::where([['user_id',$user_id]])->with('orderproduct','payment')->get();
         return view('test.admin.user.show-user-admin',compact('user','orders'));
+    }
+
+    public function profile(){
+        $id_user = Auth::user()->id_user;
+        $user = User::where('id_user',$id_user)->firstOrFail();
+        return view('test.customer.user.profile',compact('user'));
+        
+    }
+
+    public function updateProfile(Request $request){
+        $request->validate([
+            'name'=> 'required'
+        ]);
+        $id_user = Auth::user()->id_user;
+        $user = User::where('id_user',$id_user)->firstOrFail();
+        $user->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('profile');
+        
     }
 
     /**
