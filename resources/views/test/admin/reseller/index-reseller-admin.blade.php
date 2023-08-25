@@ -46,11 +46,12 @@
                     <td>
                         @if($reseller->status == 'active')
                             {{-- active --}}
-                            <a href="{{route('updateResellers',$reseller->reseller_id)}}">non-activate </a>
+                            <a href="{{route('changeStatusResellers',$reseller->reseller_id)}}">non-activate </a>
                         @else
                             {{-- request/non-active --}}
-                            <a href="{{route('updateResellers',$reseller->reseller_id)}}">activate </a>    
+                            <a href="{{route('changeStatusResellers',$reseller->reseller_id)}}">activate </a>    
                         @endif
+                        <a href="{{route('editResellers',$reseller->reseller_id)}}">edit</a>
                     </td>
                 </tr>
             @endforeach

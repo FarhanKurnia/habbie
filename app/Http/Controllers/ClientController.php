@@ -221,7 +221,7 @@ class ClientController extends Controller
             'phone'=> $request->phone, 
             'birth_date'=> $request->birth_date, 
             'identity_card'=> $request->identity_card, 
-            'identity_card'=> 'active', 
+            'status'=> 'request', 
             'address'=> $request->address, 
             'province'=> $request->province, 
             'city'=> $request->city,

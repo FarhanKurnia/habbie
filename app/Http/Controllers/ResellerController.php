@@ -44,15 +44,49 @@ class ResellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reseller $reseller)
+    public function edit($reseller_id)
     {
-        //
+        $reseller = Reseller::where('reseller_id',$reseller_id)->firstOrFail();
+        return view('test.admin.reseller.update-reseller-admin',compact('reseller'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($reseller_id)
+    public function update(Request $request, $reseller_id)
+    {
+        // dd($request);
+        $request->validate([
+            'name' => 'required', 
+            'gender'=> 'required', 
+            'phone'=> 'required', 
+            'birth_date'=> 'required', 
+            'identity_card'=> 'required', 
+            'address'=> 'required', 
+            'province'=> 'required', 
+            'city'=> 'required',
+            'subdistrict'=> 'required',
+            'postal_code'=> 'required',
+
+        ]);
+        $reseller = Reseller::where('reseller_id',$reseller_id)->firstOrFail();
+        $reseller->update([
+            'name' => $request->name, 
+            'gender'=> $request->gender, 
+            'phone'=> $request->phone, 
+            'birth_date'=> $request->birth_date, 
+            'identity_card'=> $request->identity_card, 
+            'address'=> $request->address, 
+            'province'=> $request->province, 
+            'city'=> $request->city,
+            'subdistrict'=> $request->subdistrict,
+            'postal_code'=> $request->postal_code,
+        ]);
+        return redirect()->route('indexResellers');
+    }
+
+
+    public function changeStatus($reseller_id)
     {
         $reseller = Reseller::where('reseller_id',$reseller_id)->firstOrFail();
         if($reseller->status == 'active'){

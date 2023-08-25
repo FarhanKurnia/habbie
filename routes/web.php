@@ -284,8 +284,10 @@ Route::prefix('test')->group(function () {
 
         //Resellers
         Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');
-        Route::get('/admin/resellers/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
-        
+        Route::get('/admin/resellers/change-status/{reseller_id}', [ResellerController::class, 'changeStatus'])->name('changeStatusResellers');
+        Route::get('/admin/resellers/edit/{reseller_id}', [ResellerController::class, 'edit'])->name('editResellers');
+        Route::patch('/admin/resellers/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
+
         //Reviews
         Route::get('/admin/reviews',[ReviewController::class,'index'])->name('indexReviews');
         Route::get('/admin/reviews/add', [ReviewController::class, 'create'])->name('createReviews');
