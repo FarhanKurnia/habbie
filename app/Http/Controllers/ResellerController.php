@@ -55,7 +55,6 @@ class ResellerController extends Controller
      */
     public function update(Request $request, $reseller_id)
     {
-        // dd($request);
         $request->validate([
             'name' => 'required', 
             'gender'=> 'required', 

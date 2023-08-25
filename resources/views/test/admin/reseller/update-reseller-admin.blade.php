@@ -9,9 +9,6 @@
     <form action="{{ route('updateResellers',$reseller->reseller_id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
-
-        {{-- 'name','reseller_id', 'email', 'gender', 'phone', 'birth_date', 'identity_card', 'status', 'address', 'province', 'city','subdistrict','postal_code' --}}
-
         <table border="1">
             <tr>
                 <th colspan="10">Form Update Reseller</th>
