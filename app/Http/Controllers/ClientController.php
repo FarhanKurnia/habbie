@@ -109,16 +109,16 @@ class ClientController extends Controller
         //reviews
         $reviews = new Review();
 
-        //link recommendation
-        $randomRecommendation = $products->where('deleted_at',null)->get()->random(1);
-        //offer
+        //testimonial
         $testimonials = $testimonials->where('deleted_at',null)->get();
         //review
-        $reviewList = $reviews->where('deleted_at',null)->paginate(6);
+        $reviewList = $reviews->where('deleted_at',null)->orderBy('id_review','DESC')->paginate(6);
 
         $totalCountReviews = $reviews->count();
         $totalRateReviews = $reviews->sum('rating') / $totalCountReviews;
-        return view('pages.public.testimonials',compact('categories','randomRecommendation','testimonials','reviewList', 'totalCountReviews', 'totalRateReviews'));
+        $totalRateReviews = round($totalRateReviews, 2);
+
+        return view('pages.public.testimonials',compact('categories','testimonials','reviewList', 'totalCountReviews', 'totalRateReviews'));
     }
 
 // Article function

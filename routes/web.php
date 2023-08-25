@@ -16,6 +16,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReviewController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -185,6 +186,8 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
     });
 });
 
+
+// START TESTING PAGE HERE
 Route::prefix('test')->group(function () {
     Route::get('/testimonials', [ClientController::class, 'indexTestimonials'])->name('indexTestimonialClient');
     //Medias
@@ -198,8 +201,6 @@ Route::prefix('test')->group(function () {
     //search
     Route::get('/search', [ClientController::class, 'search'])->name('search');
 
-
-    
 
 //admin (login role: admin)
     Route::middleware(['auth','verified', 'admin'])->group(function () {
@@ -284,6 +285,15 @@ Route::prefix('test')->group(function () {
         //Resellers
         Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');
         Route::get('/admin/resellers/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
+        
+        //Reviews
+        Route::get('/admin/reviews',[ReviewController::class,'index'])->name('indexReviews');
+        Route::get('/admin/reviews/add', [ReviewController::class, 'create'])->name('createReviews');
+        Route::post('/admin/reviews/store', [ReviewController::class, 'store'])->name('storeReviews');        
+        Route::get('/admin/reviews/edit/{id_review}',[ReviewController::class,'edit'])->name('editReviews');
+        Route::patch('/admin/reviews/update/{id_review}',[ReviewController::class,'update'])->name('updateReviews');
+        Route::get('/admin/reviews/delete/{id_review}', [ReviewController::class, 'delete'])->name('deleteReviews');
+
 
     });
 
