@@ -97,13 +97,24 @@ class DiscountController extends Controller
         $getSlug = str_replace("%","",$getSlug);
 
         $discount = $discounts->where([['deleted_at',null],['slug',$slug]])->firstOrFail();
+        $id_discount = $discount->id_discount;
+        $status = $request->status;
+
         $discount->update([
             'name' => $request->name,
             'rule' => $request->rule,
             'slug' => $getSlug,
             'description' => $request->description,
-            'status' => $request->status,
+            'status' => $status,
         ]);
+        if ($status == 'non-active') {
+            $products = Product::where('discount_id',$id_discount)->get();
+            foreach($products as $product){
+                $product->update([
+                    'discount_id' => null
+                ]);
+            }
+        }
         if ($discount) {
             return redirect()
                 ->route('editDiscounts', $discount->slug)

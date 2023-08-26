@@ -115,7 +115,7 @@ class ProductController extends Controller
 
         $oneProduct = $products->where([['slug',$slug],['deleted_at',null]])->with('category')->firstOrFail();
         $indexCategories = $categories->where('deleted_at',null)->get();
-        $indexDiscounts = $discounts->where('deleted_at',null)->get();
+        $indexDiscounts = $discounts->where([['deleted_at',null],['status','active']])->get();
 
         return view('pages.admin.products.create',compact('oneProduct','indexCategories','indexDiscounts'));
         // return view('test.admin.product.update-product-admin',compact('oneProduct','indexCategories','indexDiscounts'));
