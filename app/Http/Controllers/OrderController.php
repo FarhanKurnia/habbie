@@ -9,15 +9,30 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
     /**
      * Display all listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $orders = Order::paginate(10);
+        if($request->has('status')) {
+            try {
+
+                $this->validate($request, [
+                    'status' => 'required|in:order,process,cancel,failed,done'
+                ]);
+
+                $status = $request->query('status');
+
+                return view('pages.admin.orders.status', compact('status'));
+            } catch (ValidationException $e){
+                abort(404);
+            }
+        }
+
         return view('pages.admin.orders.index');
     }
 
