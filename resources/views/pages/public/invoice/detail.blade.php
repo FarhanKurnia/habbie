@@ -26,7 +26,7 @@
                     @if ($invoices->status_payment==='paid')
                         <p class="p-4 text-green font-bold">{{$invoices->status_order}} / {{$invoices->status_payment}} </br>@ {{ $latest_payment->created_at }}</p>
                     @else
-                        <p class="p-4 text-danger font-bold">{{$invoices->status_order}} / {{$invoices->status_payment}} ({{$latest_payment->transaction_status}})</p>
+                        <p class="p-4 text-danger font-bold">{{$invoices->status_order}} / {{$invoices->status_payment}} ({{$latest_payment?->transaction_status}})</p>
                     @endif
                 </span>
             </div>

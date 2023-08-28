@@ -109,20 +109,20 @@
                                     $status = 'text-grey-secondary';
                                 }
                             @endphp --}}
-                            @php
+                            {{-- @php
                                 $status;
                                 if ($invoice->status_order === 'order' || $invoice->status_order === 'process' || $invoice->status_order === 'done') {
                                     $status = 'text-center text-green';
                                 } else{
                                     $status = 'text-center text-danger';
                                 }
-                            @endphp
+                            @endphp --}}
                             {{-- <p class="text-center {{ $status }} ">{{ strtoupper($invoice->status) }}</p> --}}
                             {{-- handle failed transaction --}}
                             @if ($invoice->status_order === 'process' || $invoice->status_order === 'done' || $invoice->status_order === 'open')
-                                <p class="{{ $status }}">{{ strtoupper($invoice->status_order) }}</p>
+                                <p class="text-center text-green">{{ strtoupper($invoice->status_order) }}</p>
                             @else
-                                <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
+                                <p class="text-center text-danger">{{ strtoupper('Failed') }}</p>
                             @endif
                         </td>
                         <td class="hidden lg:table-cell ">
