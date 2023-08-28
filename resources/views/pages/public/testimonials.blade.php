@@ -99,7 +99,7 @@
                     </div>
                     <div class="bg-grey-secondary-50 p-4 rounded-b-lg flex flex-col gap-4">
                         <p class="text-right text-sm text-gray">{{ $date }}</p>
-                        <p class="text-pink-primary">{{ $review['description'] }}.</p>
+                        <p class="text-pink-primary">{!! $review['description'] !!}.</p>
                     </div>
                 </div>
             @endforeach
