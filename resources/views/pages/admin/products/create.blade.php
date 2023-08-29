@@ -67,6 +67,15 @@
                                 <span>
                                     <p class="text-xs mb-2">Choose Product Discount</p>
                                     <div class="my-4 flex flex-col gap-4">
+                                        <label class="rounded-md cursor-pointer flex items-center gap-2">
+                                            <input type="radio" class="radio radio-xs checked:bg-pink-primary"
+                                                name="discount" value="{{ null }}"
+                                                {{ isset($oneProduct) && !$oneProduct->discount ? 'checked' : '' }} />
+                                            <span>
+                                                <p class="text-sm font-bold">No Discount</p>
+                                                <p class="text-xs">Set produk tidak pakai diskon</p>
+                                            </span>
+                                        </label>
                                         @foreach ($indexDiscounts as $item)
                                             <label class="rounded-md cursor-pointer flex items-center gap-2">
                                                 <input type="radio" class="radio radio-xs checked:bg-pink-primary"

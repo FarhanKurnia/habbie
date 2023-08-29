@@ -23,15 +23,37 @@
                     </summary>
                     <ul class="p-2">
                         @foreach ($nav as $index => $item)
-                            <li class="{{ $index === 0 ? 'hidden' : '' }} my-2"
-                                wire:click="handleNavClick('{{ $item['name'] }}', '{{ $item['route_name'] }}')">
-                                <a class="{{ $activeNav === $item['name'] ? 'active' : '' }}">
-                                    <p
-                                        class="{{ $activeNav === $item['name'] ? 'text-pink-primary' : 'text-white' }} opacity-70">
-                                        {{ $item['name'] }}</p>
-                                </a>
-                            </li>
+                            @if (isset($item['data']))
+                                <li tabindex="0">
+                                    <details open>
+                                        <summary class="text-white hover:text-white">
+                                            {{ $item['name'] }}
+                                        </summary>
+                                        <ul class="p-2">
+                                            @foreach ($item['data'] as $subitem)
+                                                <li class="my-2" wire:click="handleNavClick('{{ $subitem['name'] }}', '{{ $subitem['route_name'] }}', '{{ json_encode($subitem['query']) }}')">
+                                                    <a class="{{ $activeNav === $subitem['name'] ? 'active' : '' }}">
+                                                        <p
+                                                            class="{{ $activeNav === $subitem['name'] ? 'text-pink-primary' : 'text-white' }} opacity-70">
+                                                            {{ $subitem['name'] }}</p>
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </details>
+                                </li>
+                            @else
+                                <li class="{{ $index === 0 ? 'hidden' : '' }} my-2"
+                                    wire:click="handleNavClick('{{ $item['name'] }}', '{{ $item['route_name'] }}')">
+                                    <a class="{{ $activeNav === $item['name'] ? 'active' : '' }}">
+                                        <p
+                                            class="{{ $activeNav === $item['name'] ? 'text-pink-primary' : 'text-white' }} opacity-70">
+                                            {{ $item['name'] }}</p>
+                                    </a>
+                                </li>
+                            @endif
                         @endforeach
+
                     </ul>
                 </details>
             </li>

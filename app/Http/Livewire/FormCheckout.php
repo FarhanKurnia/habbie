@@ -37,7 +37,6 @@ class FormCheckout extends Component
         'postalCode' => 'required|min:4',
         'phoneNumber' => 'required|min:10',
         'selectedCost' => 'required',
-        'recaptcha' => 'required|captcha',
     ];
 
     public function fetchData()

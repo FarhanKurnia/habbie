@@ -14,8 +14,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where('deleted_at',null)->orderBy('id_review','DESC')->paginate(10);
-        return view('test.admin.review.index-review-admin',compact('reviews'));
+        return view('pages.admin.reviews.index');
+
     }
 
     /**
@@ -23,7 +23,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('test.admin.review.create-review-admin');
+        return view('pages.admin.reviews.create');
     }
 
     /**
@@ -44,7 +44,10 @@ class ReviewController extends Controller
                 'description' => $request->description,
                 'user_id' => $user_id
             ]);
-            return redirect()->route('indexReviews');
+
+            return redirect()->route('editReviews', $review->id_review)->with([
+                'success' => 'New article created successfully <a class="font-bold text-pink-primary" href="'. url('testimonials') .'" target="_blank">See Review</a>'
+            ]);
         } catch(\Exception $e){
             return redirect()
             ->route('createReviews')->with([
@@ -67,7 +70,7 @@ class ReviewController extends Controller
     public function edit($id_review)
     {
         $review = Review::where([['deleted_at',null],['id_review',$id_review]])->firstOrFail();
-        return view('test.admin.review.update-review-admin',compact('review'));
+        return view('pages.admin.reviews.create',compact('review'));
     }
 
     /**
@@ -91,7 +94,10 @@ class ReviewController extends Controller
         ]);
         if ($review) {
             return redirect()
-                ->route('indexReviews');
+                ->route('editReviews', $review->id_review)
+                ->with([
+                    'success' => 'Updated successfully'
+                ]);
         } else {
             return redirect()
                 ->back()

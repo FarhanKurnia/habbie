@@ -86,8 +86,6 @@
                     @php
                         $costData = $costs['rajaongkir']['results'][0]['costs'] ?? null;
                         $courierCode = $costs['rajaongkir']['results'][0]['code'] ?? null;
-                        // print_r($costData);
-                        // print_r($courierCode['code'] ?? null);
                     @endphp
                     @if (!!$costData)
                         <p class="py-4 font-bold">Pilih jenis Ongkir</p>
@@ -118,25 +116,9 @@
             @endif
         </div>
 
-        <div class="py-4" wire:ignore>
-            {!! NoCaptcha::display(['data-callback' => 'onCallback']) !!}
-            {!! NoCaptcha::renderJs() !!}
-        </div>
-        <div> 
-            @error('recaptcha')
-                @include('components.public.partials.error-message', ['message' => $message])
-            @enderror
-        </div>
-
         <button type="submit" {{ is_null($selectedCost) ? 'disabled' : '' }}
             class="btn btn-primary text-white rounded-full">Submit</button>
 
     </form>
-
-    <script>
-        var onCallback = function () {
-            @this.set('recaptcha', grecaptcha.getResponse());
-        }
-    </script>
 
 </div>

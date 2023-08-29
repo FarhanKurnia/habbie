@@ -8,7 +8,19 @@ class SidebarNav extends Component
 {
     public $constantNav = [
         "dashboard" => "Dashboard",
-        "indexOrders" => 'Orders',
+        "indexOrders" => [
+            ["name" => "Orders", "route_name" => 'indexOrders'],
+            ["name" => "All Orders", "route_name" => 'indexOrders'],
+            ["name" => "Order Status", "route_name" => 'indexOrders',
+                "data" => [
+                            ["name" => "Done", "route_name" => 'indexOrders', "query" => ['status' => 'done'] ],
+                            ["name" => "Failed", "route_name" => 'indexOrders', "query" => ['status' => 'failed']],
+                            ["name" => "Order", "route_name" => 'indexOrders', "query" => ['status' => 'order']],
+                            ["name" => "Process", "route_name" => 'indexOrders', "query" => ['status' => 'process']],
+                            ["name" => "Cancel", "route_name" => 'indexOrders', "query" => ['status' => 'cancel']],
+                        ]
+            ]
+        ],
         "products" => [
             [ "name" => "Products", "route_name" => "indexProducts" ],
             [ "name" => "List Product", "route_name" => "indexProducts" ],
@@ -22,13 +34,19 @@ class SidebarNav extends Component
         ],
         "indexOffers" => 'Offers',
         "indexTestimonials" => 'Testimonials',
+        "indexReviews" => "Reviews"
     ];
 
     public $activeNav;
 
-    public function handleNavClick($nav, $key)
+    public function handleNavClick($nav, $key, $query = null )
     {
         $this->activeNav = $nav;
+
+        if ($query) {
+            return redirect()->route($key, json_decode($query, true));
+        }
+
         return redirect()->route($key);
     }
 
