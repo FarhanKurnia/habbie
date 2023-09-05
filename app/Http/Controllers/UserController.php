@@ -13,8 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where([['deleted_at',null],['role_id',2]])->with('role')->paginate(10);
-        return view('test.admin.user.index-user-admin',compact('users'));
+        return view('pages.admin.users.index');
+
     }
 
     /**
@@ -42,26 +42,61 @@ class UserController extends Controller
         $user = User::where([['deleted_at',null],['customer_id',$customer_id]])->with('role')->firstOrFail();
         $user_id = $user->id_user;
         $orders = Order::where([['user_id',$user_id]])->with('orderproduct','payment')->get();
-        return view('test.admin.user.show-user-admin',compact('user','orders'));
+        return view('pages.admin.users.detail',compact('user','orders'));
     }
 
     public function profile(){
-        $id_user = Auth::user()->id_user;
-        $user = User::where('id_user',$id_user)->firstOrFail();
-        return view('test.customer.user.profile',compact('user'));
+        try {
+            $id_user = Auth::user()->id_user;
+            $user = User::where('id_user',$id_user)->firstOrFail();
+    
+            if($user->role->name === "admin"){
+                return view('pages.admin.users.profile',compact('user'))->with([
+                    'success' => 'Profile data has been updated successfully'
+                ]);
+            }
+    
+            return view('pages.public.profile',compact('user'))->with([
+                'success' => 'Profile data has been updated successfully'
+            ]);
+
+        } catch(Exception $e){
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
+
+
         
     }
 
     public function updateProfile(Request $request){
-        $request->validate([
-            'name'=> 'required'
-        ]);
-        $id_user = Auth::user()->id_user;
-        $user = User::where('id_user',$id_user)->firstOrFail();
-        $user->update([
-            'name' => $request->name
-        ]);
-        return redirect()->route('profile');
+        try {
+            $request->validate([
+                'name'=> 'required'
+            ]);
+            $id_user = Auth::user()->id_user;
+            $user = User::where('id_user',$id_user)->firstOrFail();
+            $user->update([
+                'name' => $request->name
+            ]);
+
+            return redirect()
+                ->route('profile')
+                ->with([
+                    'success' => 'Profile data has been updated successfully'
+                ]);
+        } catch(Exception $e){
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
         
     }
 
