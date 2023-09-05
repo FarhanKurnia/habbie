@@ -8,8 +8,8 @@
               <details>
                 <summary>{{Auth::user()->name}}</summary>
                 <ul class="p-2">
-                  <li><a>Profile</a></li>
-                  <li><a>Logout</a></li>
+                  <li><a href="{{ route('profileAdmin') }}">Profile</a></li>
+                  <li><a href="{{ route('logout') }}">Logout</a></li>
                 </ul>
               </details>
             </li>
