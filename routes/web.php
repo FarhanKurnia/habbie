@@ -245,4 +245,10 @@ Route::prefix('test')->group(function () {
     // Route::get('/invoice',[ClientController::class,'indexInvoiceClient']);
     Route::get('/reseller',[ClientController::class,'testReseller'])->name('testReseller');
     Route::post('/joinReseller',[ClientController::class,'joinReseller'])->name('joinReseller');
+    
+    //Subcribe
+    Route::get('/indexSubscribe',[ClientController::class,'indexSubscriber'])->name('indexSubscriber');
+    Route::get('/subscribe', function () { return view('test.customer.subscriber.subscribe-client');});
+    Route::post('/subscribe',[ClientController::class,'subscribe'])->name('subscribe');
+    Route::get('/unsubscribe/{email}', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
 });

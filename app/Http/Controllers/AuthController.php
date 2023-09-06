@@ -109,6 +109,7 @@ class AuthController extends Controller
         if($user->email_verified == false){
             $user->update([
                 'email_verified' => true,
+                'subscribe' => true,
                 'email_verified_at' => Carbon::now(),
             ]);
             $log = 'Email berhasil diverifikasi';

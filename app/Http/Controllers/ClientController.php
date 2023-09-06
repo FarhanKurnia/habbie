@@ -12,6 +12,8 @@ use App\Models\Testimonial;
 use App\Models\Review;
 use App\Models\Reseller;
 use App\Models\Payment;
+use App\Models\Subscriber;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -251,5 +253,68 @@ class ClientController extends Controller
             return view('test.customer.search.search-client');
         }
     }
-    
+
+//Subscribe
+    //index subscriber function
+    function indexSubscriber(){
+        $users = User::where('subscribe',true)->get();
+        $subs = Subscriber::where('subscribe',true)->get();
+
+        $email_user[]= [];
+        foreach($users as $index => $user){
+            $email_user[$index] = $user;
+        };
+        $email_subscriber[] = [];
+        foreach($subs as $index => $sub){
+            $email_subscriber[$index] = $sub;
+        };
+        $subscribers=(array_merge($email_user,$email_subscriber));
+        return view('test.customer.subscriber.index-subscribe-client',compact('subscribers'));
+        
+    }
+    //subscribe function
+    function subscribe(Request $request){
+        $request->validate([
+            'email' => 'required|max:255|email:dns',
+        ]);
+        $user = User::where('email',$request->email)->first();
+        $subscriber = Subscriber::where('email',$request->email)->first();
+        if ($user != null) {
+            $user->update([
+                'subscribe' => true
+            ]);
+            return with('Email successfully subscribed');
+        } elseif ($subscriber == null ) {
+            Subscriber::create([
+                'email' => $request->email,
+                'subscribe' => true
+            ]);
+            return with('Email successfully subscribed');
+        } elseif ($subscriber != null){
+            $subscriber->update([
+                'subscribe' => true
+            ]);
+            return with('Email successfully subscribed');
+        } else{
+            return with('Email already subscribed');
+        }
+    }
+    //unsubscribe function
+    function unsubscribe($email){
+        $user = User::where('email',$email)->first();
+        $subscriber = Subscriber::where('email',$email)->first();
+        if ($user != null){
+            $user->update([
+                'subscribe' => false,
+            ]);
+            return with('Email successfully unsubscribed');
+        }elseif ($subscriber != null) {
+            $subscriber->update([
+                'subscribe' => false
+            ]);
+            return with('Email successfully unsubscribed');
+        } else{
+            return with('Email not subscribed');
+        }
+    }
 }
