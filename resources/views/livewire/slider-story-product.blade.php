@@ -12,7 +12,6 @@
                             <div class="col-span-2 divide-green divide-y-2 bg-grey-secondary-50 p-8 rounded-xl">
                                 <div class="pb-6">
                                     <h3 class="text-xl lg:text-3xl font-bold">{{ $data['name'] }}</h3>
-                                    <h5 class="text-grey">subtitle</h5>
                                 </div>
                                 <div class="pt-6">
                                     <p>{{ $data['story'] }}</p>

@@ -26,7 +26,7 @@
             @enderror
 
             <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 "
-                placeholder="Nomor Telepon ( Terhubung ke WHatsApp Anda )" wire:model="phone" required>
+                placeholder="Nomor Telepon ( Terhubung ke WhatsApp Anda )" wire:model="phone" required>
             @error('phone')
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
@@ -56,7 +56,7 @@
                 @include('components.public.partials.error-message', ['message' => $message])
             @enderror
 
-            <select class="select rounded-full bg-grey-secondary-50" wire:model="selectedProvince" required>
+            <select class="select select-bordered rounded-full bg-grey-secondary-50" wire:model="selectedProvince" required>
                 <option value="">Pilih Provinsi</option>
                 @foreach ($provinces as $province)
                     @php
@@ -70,7 +70,7 @@
             </select>
 
             <select wire:model="selectedCity" {{ is_null($selectedProvince) ? 'disabled' : ' ' }}
-                class="select rounded-full bg-grey-secondary-50 {{ is_null($selectedProvince) ? 'opacity-30' : 'opacity-100 ' }}"
+                class="select rounded-full select-bordered bg-grey-secondary-50 {{ is_null($selectedProvince) ? 'opacity-30' : 'opacity-100 ' }}"
                 required>
                 <option>PIlih Kota/Kabupaten</option>
                 @foreach ($cities as $city)
@@ -85,7 +85,7 @@
             </select>
 
             <select wire:model="selectedSubdistrict" {{ is_null($selectedCity) ? 'disabled' : '' }}
-                class="select rounded-full bg-grey-secondary-50 {{ is_null($selectedCity) ? 'opacity-30' : 'opacity-100 ' }}"
+                class="select rounded-full select-bordered bg-grey-secondary-50 {{ is_null($selectedCity) ? 'opacity-30' : 'opacity-100 ' }}"
                 required>
                 <option>Pilih Kecamatan</option>
                 @foreach ($subdistricts as $subdistrict)
