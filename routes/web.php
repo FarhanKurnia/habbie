@@ -88,8 +88,7 @@ Route::middleware(['auth','verified','customer'])->group(function () {
 
     // fe belum dibikin
     Route::get('profile',[UserController::class,'profile'])->name('profile');
-    Route::patch('update-profile',[UserController::class,'updateProfile'])->name('updateProfile');
-
+    Route::patch('update-profile',[UserController::class,'updateProfile'])->name('updateProfileClient');
 
 });
 
@@ -195,48 +194,22 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             Route::get('/delete/{id_review}', [ReviewController::class, 'delete'])->name('deleteReviews');
         });
 
-    });
-});
-
-
-// START TESTING PAGE HERE
-Route::prefix('test')->group(function () {
-    Route::get('/testimonials', [ClientController::class, 'indexTestimonials'])->name('indexTestimonialClient');
-    //Medias
-    Route::get('/media', [ClientController::class, 'indexArticles'])->name('indexArticleClient');
-    Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient');
-
-    //Careers
-    Route::get('/career', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
-    Route::get('/career/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
-
-    //search
-    Route::get('/search', [ClientController::class, 'search'])->name('search');
-
-
-//admin (login role: admin)
-    Route::middleware(['auth','verified', 'admin'])->group(function () {
-  
-        //Users
-        Route::get('/admin/users', [UserController::class, 'index'])->name('indexUsers');
-        Route::get('/admin/users/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
-
         //Resellers
-        Route::get('/admin/resellers', [ResellerController::class, 'index'])->name('indexResellers');
-        Route::get('/admin/resellers/change-status/{reseller_id}', [ResellerController::class, 'changeStatus'])->name('changeStatusResellers');
-        Route::get('/admin/resellers/edit/{reseller_id}', [ResellerController::class, 'edit'])->name('editResellers');
-        Route::patch('/admin/resellers/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
+        Route::prefix('resellers')->group(function () {
+            Route::get('/', [ResellerController::class, 'index'])->name('indexResellers');
+            Route::get('/change-status/{reseller_id}', [ResellerController::class, 'changeStatus'])->name('changeStatusResellers');
+            Route::get('/edit/{reseller_id}', [ResellerController::class, 'edit'])->name('editResellers');
+            Route::patch('/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
+        });
 
-        // //Reviews
-        // Route::get('/admin/reviews',[ReviewController::class,'index'])->name('indexReviews');
-        // Route::get('/admin/reviews/add', [ReviewController::class, 'create'])->name('createReviews');
-        // Route::post('/admin/reviews/store', [ReviewController::class, 'store'])->name('storeReviews');        
-        // Route::get('/admin/reviews/edit/{id_review}',[ReviewController::class,'edit'])->name('editReviews');
-        // Route::patch('/admin/reviews/update/{id_review}',[ReviewController::class,'update'])->name('updateReviews');
-        // Route::get('/admin/reviews/delete/{id_review}', [ReviewController::class, 'delete'])->name('deleteReviews');
+        //Users
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('indexUsers');
+            Route::get('/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
+            Route::get('/profile', [UserController::class, 'profile'])->name('');
+            Route::patch('/update', [UserController::class, 'updateProfile'])->name('updateProfile');
+        });
 
-
-    });
 
 //Debug
     Route::get('/order',[OrderController::class,'store'])->name('order');
@@ -251,4 +224,22 @@ Route::prefix('test')->group(function () {
     Route::get('/subscribe', function () { return view('test.customer.subscriber.subscribe-client');});
     Route::post('/subscribe',[ClientController::class,'subscribe'])->name('subscribe');
     Route::get('/unsubscribe/{email}', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
+
+    });
 });
+
+
+// // START TESTING PAGE HERE
+// Route::prefix('test')->group(function () {
+
+
+
+// //admin (login role: admin)
+//     Route::middleware(['auth','verified', 'admin'])->group(function () {
+  
+//         //Users
+//         Route::get('/admin/users', [UserController::class, 'index'])->name('indexUsers');
+//         Route::get('/admin/users/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
+
+
+// });

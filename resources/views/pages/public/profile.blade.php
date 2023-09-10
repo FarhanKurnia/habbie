@@ -1,23 +1,20 @@
-@extends('layouts.admin-layout')
-@section('title', 'Profile')
+@extends('layouts.base-layout')
+
+@section('title', 'Edit Profile')
+
 @section('content')
-    <div class="mx-auto max-w-screen-2xl h-screen p-4 md:p-6 2xl:p-10">
 
-        @if (session()->has('success'))
-            <div class="p-4 bg-teal rounded mb-4">
-                {!! session('success') !!}
-            </div>
-        @endif
+    <div class="container mx-auto py-14">
+        <div class="lg:w-1/3 mx-auto px-6 lg:px-0">
+            @if (session()->has('error'))
+                <livewire:alert :message="session('error')" :background="'bg-danger'" />
+            @endif
 
-        @if (session()->has('error'))
-            <div class="p-4 bg-danger rounded mb-4 text-white">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <div class="my-6 flex flex-col gap-6">
-            <form class="bg-white p-4 rounded grid grid-cols-1 lg:grid-cols-3 gap-10" method="POST"
-                enctype="multipart/form-data" action="{{ route('updateProfile') }}">
+            @if (session()->has('success'))
+                <livewire:alert :message="session()->get('success')" :background="'bg-green'" />
+            @endif
+            <form class="bg-white p-4 rounded" method="POST" enctype="multipart/form-data"
+                action="{{ route('updateProfileClient') }}">
                 @csrf
                 @method('PATCH')
                 <div class="col-span-2">

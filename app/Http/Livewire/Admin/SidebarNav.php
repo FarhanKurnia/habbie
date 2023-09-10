@@ -34,7 +34,9 @@ class SidebarNav extends Component
         ],
         "indexOffers" => 'Offers',
         "indexTestimonials" => 'Testimonials',
-        "indexReviews" => "Reviews"
+        "indexReviews" => "Reviews",
+        "indexResellers" => "Resellers",
+        "indexUsers" => "Users"
     ];
 
     public $activeNav;
