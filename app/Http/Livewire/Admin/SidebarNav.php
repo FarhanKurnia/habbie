@@ -13,10 +13,10 @@ class SidebarNav extends Component
             ["name" => "All Orders", "route_name" => 'indexOrders'],
             ["name" => "Order Status", "route_name" => 'indexOrders',
                 "data" => [
-                            ["name" => "Done", "route_name" => 'indexOrders', "query" => ['status' => 'done'] ],
-                            ["name" => "Failed", "route_name" => 'indexOrders', "query" => ['status' => 'failed']],
                             ["name" => "Order", "route_name" => 'indexOrders', "query" => ['status' => 'order']],
                             ["name" => "Process", "route_name" => 'indexOrders', "query" => ['status' => 'process']],
+                            ["name" => "Done", "route_name" => 'indexOrders', "query" => ['status' => 'done'] ],
+                            ["name" => "Failed", "route_name" => 'indexOrders', "query" => ['status' => 'failed']],
                             ["name" => "Cancel", "route_name" => 'indexOrders', "query" => ['status' => 'cancel']],
                         ]
             ]
