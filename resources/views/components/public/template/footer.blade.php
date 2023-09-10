@@ -40,11 +40,15 @@
                     <p class="text-lg font-bold py-4">NEWSLETTER</p>
                     <div class="flex flex-col space-y-1">
                         <p class="hover:text-grey">Sign Up to get Exclusive Promo and Update</p>
-                        <div class="flex lg:flex-row flex-col gap-3">
-                            <input type="text" placeholder="Your Email"
-                                class="input input-bordered lg:w-2/3 max-w-xs rounded-full" />
-                            <button class="btn btn-primary lg:w-1/3 rounded-full font-bold text-white">Subscribe</button>
-                        </div>
+                        <!-- form subscribe -->
+                        {{-- Note: Form sudah jalan tapi setelah subscribe belum menampilkan toast --}}
+                        <form action="{{ route('subscribe') }}" method="POST" enctype="multipart/form-data">
+                            <div class="flex lg:flex-row flex-col gap-3">
+                                {{ csrf_field() }}
+                                <input class="input input-bordered lg:w-2/3 max-w-xs rounded-full" type="text" name="email" placeholder="Your Email" required>
+                                <input class="btn btn-primary lg:w-1/3 rounded-full font-bold text-white" type="submit" value="Subscribe">    
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
