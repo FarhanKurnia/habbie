@@ -206,7 +206,7 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
         Route::prefix('users')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('indexUsers');
             Route::get('/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
-            Route::get('/profile', [UserController::class, 'profile'])->name('');
+            Route::get('/profile', [UserController::class, 'profile'])->name('profileAdmin');
             Route::patch('/update', [UserController::class, 'updateProfile'])->name('updateProfile');
         });
 
