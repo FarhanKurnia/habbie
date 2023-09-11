@@ -19,7 +19,7 @@
             </div>
     
             <div class="content lg:w-3/4 lg:mx-auto mx-10 ">
-                {{ $career->post }}
+                {!! $career->post !!}
             </div>
         </div>
     </div>

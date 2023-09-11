@@ -4,7 +4,7 @@
     </a>
     <a href="{{ route('products.show', [$product->slug]) }}">
         <div class="card-body text-center">
-            <h3 class="font-bold lg:text-lg hover:text-pink-primary">{{ $product->name }}</h3>
+            <h3 class="font-bold lg:text-lg hover:text-pink-primary">{{ \Illuminate\Support\Str::limit($product->name, 15, '...') }}</h3>
             <div class="pt-4">
                 <p class="text-sm lg:text-md">{{ $product->category->name }}</p>
 
@@ -28,6 +28,8 @@
                 @else
                     <p class="font-semibold text-lg">{{ \App\Helpers\CurrencyFormat::data($product->price) }}</p>
                     <br />
+                    <br />
+
                 @endif
             </div>
     </a>

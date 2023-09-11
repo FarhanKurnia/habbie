@@ -69,11 +69,11 @@ $(document).ready(function() {
 
 });
 
-document.addEventListener('livewire:load', function () {
-    Livewire.on('showToast', function () {
-        console.log('toast');
-        setTimeout(function () {
-            Livewire.emit('hideToast', false);
-        }, 1000);
-    });
-});
+// document.addEventListener('livewire:load', function () {
+//     Livewire.on('showToast', function () {
+//         // console.log('toast');
+//         // Livewire.emit('hideToast', false);
+//         // setTimeout(function () {
+//         // }, 2000);
+//     });
+// });

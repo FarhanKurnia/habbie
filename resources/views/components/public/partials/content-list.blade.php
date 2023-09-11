@@ -12,7 +12,7 @@
             <h3 class="text-2xl font-bold text-pink-primary lg:py-4">{{ $offer['name'] }}</h3>
             <p>{!! $offer['description'] !!}</p>
             <a href="{{ $offer['status'] === 'non-active' ? '#' : url('/products/'. $offer->product['slug']) }}">
-                <button {{ $offer['status'] === 'non-active' ? 'disabled' : '' }} class="btn btn-primary rounded-full font-bold text-white my-6">Shop Now</button>
+                <button {{ $offer['status'] === 'non-active' ? 'disabled' : '' }} class="btn btn-primary btn-sm rounded-full font-bold text-white my-6">Shop Now</button>
             </a>
         </div>
     </a>

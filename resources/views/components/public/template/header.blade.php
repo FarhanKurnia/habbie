@@ -18,7 +18,7 @@
                             </svg>
                         </label>
                         <ul tabindex="0"
-                            class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-20">
+                            class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-ful z-20">
                             <li><a href="{{ url('/offers') }}">Offers</a></li>
                             <li>
                                 <a>Products</a>
@@ -97,9 +97,9 @@
 
             <div class="navbar-end">
                 {{-- mobile --}}
-                <div class="lg:hidden">
+                {{-- <div class="lg:hidden">
                     <livewire:cart-info />
-                </div>
+                </div> --}}
 
 
                 {{-- desktop cart info & log in --}}
@@ -108,7 +108,7 @@
                     <livewire:search />
 
                     {{-- login desktop --}}
-                    <div class="dropdown dropdown-hover">
+                    <div class="hidden lg:flex dropdown dropdown-hover">
                         <label tabindex="0" class="text-sm font-bold">
                             @if (is_null(Auth::user()))
                                 ACCOUNT
