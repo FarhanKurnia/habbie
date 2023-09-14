@@ -74,6 +74,6 @@ document.addEventListener('livewire:load', function () {
         console.log('toast');
         setTimeout(function () {
             Livewire.emit('hideToast', false);
-        }, 1000);
+        }, 3000);
     });
 });
