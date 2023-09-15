@@ -228,7 +228,9 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
     });
 });
 
-
+Route::get('/test-email', function () {
+    return view('pages.mail.order');
+});
 // // START TESTING PAGE HERE
 // Route::prefix('test')->group(function () {
 
