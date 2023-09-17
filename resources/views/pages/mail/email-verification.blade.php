@@ -1,23 +1,31 @@
-{{-- <h3>Halo, {{ $nama }} !</h3>
-<p>{{ $website }}</p>
- 
-<p>Selamat datang di <a href="citra.net.id">Citranet</a></p>
-<p>Test kirim email dengan laravel.</p> --}}
+@extends('layouts.base-email-layout')
+@section('title', $data['title'])
+@section('content')
+    @include('components.mail.partials.title', [
+        'title' => $data['title'],
+        'align' => 'left',
+        'color' => 'grey',
+    ])
 
-@component('mail::message')
-# {{ $data['title'] }}
+    <div class="py-4 text-sm">
+        <p>Hi {{ $data['name'] }}!,</p>
+        <p>Terima kasih telah melakukan registrasi melalui Habbie. Untuk melakukan verifikasi akun, anda dapat menekan
+            tombol berikut. <br>
+        </p>
+        <div class="flex justify-center">
+            <a href="{{ $data['url'] }}" target="_blank">
+                <button class="btn btn-sm btn-primary rounded font-bold my-2 text-white text-xs">Verifikasi
+                    Akun</button>
+            </a>
+        </div>
+        <p>
+            Atau akses melalui <a class="italic underline font-bold" href="{{ $data['url'] }}">link</a> berikut<br>
+        </p>
+        <p>
+            Sekian, terima kasih,<br>
+            Best Regards<br>
+            Farhan Kurnia
+        </p>
+    </div>
 
-Hi {{$data['name']}}!,<br>
-Terima kasih telah melakukan registrasi melalui Habbie. <br>
-Untuk melakukan verifikasi akun, anda dapat menekan tombol berikut. <br>
-@component('mail::button', ['url' => $data['url']])
-Verify
-@endcomponent
-
-Atau akses melalui <a href="{{$data['url']}}">link</a> berikut<br>
-
-Sekian, terima kasih,<br>
-Best Regards<br>
-Farhan Kurnia
-<br>
-@endcomponent
+@endsection
