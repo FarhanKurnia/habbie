@@ -1,11 +1,11 @@
 <div>
     <div class="grid grid-cols-2 text-white">
         <div>
-            <ul class="text-sm">
-                <li><a class="hover:text-pink-primary" href="">Our Products</a></li>
-                <li><a class="hover:text-pink-primary"  href="">Join Membership</a></li>
-                <li><a class="hover:text-pink-primary"  href="">Offers</a></li>
-                <li><a class="hover:text-pink-primary"  href="">Blog</a></li>
+            <ul class="text-sm text-pink-primary underline">
+                <li><a target="_blank" href="{{ url('products') }}">Our Products</a></li>
+                <li><a target="_blank" href="{{ url('membership/join') }}">Join Membership</a></li>
+                <li><a target="_blank" href="{{ url('offers') }}">Offers</a></li>
+                <li><a target="_blank" href="{{ url('media') }}">Blog</a></li>
             </ul>
         </div>
         <div>
