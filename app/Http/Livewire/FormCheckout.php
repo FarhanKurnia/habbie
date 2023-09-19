@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\Invoice;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
+
 
 class FormCheckout extends Component
 {
@@ -195,10 +197,14 @@ class FormCheckout extends Component
                 'subtotal' =>  \Cart::getTotal()
             ];
 
+           
             $order = new OrderService($this->orderData);
             $invoice = $order->create();
 
             \Cart::clear();
+
+            
+
 
             return redirect()->to('/payment/' . $invoice);
 

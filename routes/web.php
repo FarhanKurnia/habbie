@@ -228,9 +228,19 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
     });
 });
 
-Route::get('/test-email', function () {
+Route::get('/test-email-invoice', function () {
+    return view('pages.mail.invoice');
+});
+
+Route::get('/test-email-order', function () {
     return view('pages.mail.order');
 });
+
+Route::get('/test-email-offer', function () {
+    return view('pages.mail.offer');
+});
+
+
 // // START TESTING PAGE HERE
 // Route::prefix('test')->group(function () {
 

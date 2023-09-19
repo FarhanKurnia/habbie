@@ -3,6 +3,8 @@
 namespace App\Services;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Invoice;
 use Carbon\Carbon;
 
 class OrderService {
@@ -87,13 +89,19 @@ class OrderService {
         });
     }
 
+    protected function mailInvoice($orderData, $invoice){
+        $customer = $orderData['customer'];
+        $orderData['invoice'] = $invoice;
+        Mail::to($customer['email'])->send(new Invoice($orderData));
+    }
+
     public function create()
     {
         $orderData = $this->orderData;
         $invoice = $this->generateInvoice();
         $orderId = $this->insertOrder($orderData, $invoice);
-
         $this->insertOrderProduct($orderData, $orderId);
+        $this->mailInvoice($orderData,$invoice);
 
         return $invoice;
 
