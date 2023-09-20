@@ -13,7 +13,8 @@
                 <small class="text-grey-secondary">{{ $date }}</small>
             </div>
             <div class="lg:w-3/4 lg:mx-auto mx-10">
-                {!! $oneArticle->post !!}
+                {!! $oneArticle->excerpt !!}
+                <a href="{{ route('showArticleClient', $oneArticle['slug']) }}" class="text-pink-primary italic">Read More</a>
             </div>
         </div>
 

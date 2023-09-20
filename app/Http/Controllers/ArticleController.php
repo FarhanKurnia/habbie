@@ -52,7 +52,7 @@ class ArticleController extends Controller
             $slug = $request->title;
                 $slug = preg_replace('/\s+/', '-', $slug);
                 $slug = strtolower($slug);
-                $excerpt = Str::limit($request->post,250);
+                $excerpt = $request->excerpt ? $request->excerpt : Str::limit($request->post,250);
     
             //image
             $image = $request->file('image');
@@ -130,7 +130,9 @@ class ArticleController extends Controller
         $getSlug = $request->title;
         $getSlug = preg_replace('/\s+/', '-', $getSlug);
         $getSlug = strtolower($getSlug);
-        $excerpt = Str::limit($request->post,250);
+        $excerpt = $request->excerpt ? $request->excerpt : Str::limit($request->post,250);
+        // $excerpt = Str::limit($request->post,250);
+
 
         //image
         $update_image ="";

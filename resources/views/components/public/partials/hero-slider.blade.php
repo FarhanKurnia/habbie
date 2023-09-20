@@ -1,4 +1,4 @@
-<div class="container mx-auto ">
+<div class=" mx-auto ">
     <div class="slider relative overflow-x-hidden">
         @php
             

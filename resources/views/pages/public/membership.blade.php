@@ -42,8 +42,10 @@
             ],
         ];
     @endphp
-    <div class="container mx-auto pb-10">
+    <div class="mx-auto">
         <img class="w-full object-cover" src="{{ url('storage/img/slides/slide-4.png') }}" alt="Membership Program">
+    </div>
+    <div class="container mx-auto pb-10">
         <div class="pt-14">
             <div class="text-center">
                 <h3 class="font-bold text-2xl text-pink-primary">Mitra Habbie</h3>

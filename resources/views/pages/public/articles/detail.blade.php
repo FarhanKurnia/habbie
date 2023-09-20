@@ -32,6 +32,7 @@
                     <span class="p-2">
                         <a href="{{ url('media/'.$article->slug) }}"><p class="text-lg font-bold hover:text-pink-primary">{{ $article->title }}</p></a>
                         {!! $article->excerpt !!}
+                        {{-- {{ $article }} --}}
                     </span>
                 </div>
                 @endforeach
