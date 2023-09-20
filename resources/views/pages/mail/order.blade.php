@@ -26,7 +26,7 @@
 
         <div class="flex flex-col my-4">
             @foreach ($order[0]->orderproduct as $item)
-                <div class="grid grid-cols-4 items-center p-4 {{ $status_order === 'failed' || $status_order === 'cancel' ?  'bg-danger' : 'bg-green'  }} bg-opacity-5 my-2">
+                <div class="grid grid-cols-4 items-center p-4 {{ $item->status_order === 'failed' || $item->status_order === 'cancel' ?  'bg-danger' : 'bg-green'  }} bg-opacity-5 my-2">
                     <div>
                         <img class="h-14 mx-auto" src="{{ url($item->product->image) }}" alt="{{ $item->product->name }}">
                     </div>
@@ -62,7 +62,7 @@
                     <td>{{ \App\Helpers\CurrencyFormat::data($order[0]['shipping_value']) }}</td>
 
                 </tr>
-                <tr class="text-white {{ $status === 'failed' || $status === 'cancel' ? 'bg-danger' : 'bg-green' }}">
+                <tr class="text-white {{ $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel' ? 'bg-danger' : 'bg-green' }}">
                     <td>Total</td>
                     <td class="font-bold">{{ \App\Helpers\CurrencyFormat::data($order[0]['total']+$order[0]['shipping_value']) }}</td>
                 </tr>

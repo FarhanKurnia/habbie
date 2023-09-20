@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([[
             'name' => 'Farhan',
-            'email'=>'farhan@mail.com',
+            'email'=>'farhan@habbie.com',
             'customer_id' => '1000256436541',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'Gandhi',
             'customer_id' => '1000256436542',
-            'email'=>'gandhi@mail.com',
+            'email'=>'gandhi@habbie.com',
             'email_verified' => false,
             'email_verified_at' => null,
             'password' => bcrypt('password'),
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'kurnia',
             'customer_id' => '1000256436543',
-            'email'=>'kurnia@mail.com',
+            'email'=>'kurnia@habbie.com',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'ragil',
             'customer_id' => '1000256436544',
-            'email'=>'ragil@mail.com',
+            'email'=>'ragil@habbie.com',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'syahputra',
             'customer_id' => '1000256436545',
-            'email'=>'syahputra@mail.com',
+            'email'=>'syahputra@habbie.com',
             'email_verified' => false,
             'email_verified_at' => null,
             'password' => bcrypt('password'),
