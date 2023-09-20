@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\OrderSuccess;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateSnapTokenService;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\OrderProduct;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cookie;
 use Carbon\Carbon;
 use App\Services\Midtrans\CallbackService;
@@ -83,6 +86,13 @@ class TestPaymentController extends Controller
         return view('pages.public.payment', compact('snapToken', 'order', 'orderStatus', 'orderProducts', 'invoice'));
 
     }
+
+    // public function emailOrder($order_id){
+    //     $order = Order::where('id_order',$order_id)->with('orderproduct','payment')->get();
+    //     $email = $order[0]['email'];
+    //     Mail::to($email)->send(new OrderSuccess($order));
+    // }
+
 
     public function callback(Request $request)
     {
@@ -180,9 +190,10 @@ class TestPaymentController extends Controller
                         //         'order_id' => $order[0]['id_order'],
                         //         'invoice_id' => $order_id
                         //     ]);
-                            
-                            return response()->json(['message' => 'Payment Status Success']);
                         }
+                            // emailOrder($order_id);
+                            Mail::to($order[0]['email'])->send(new OrderSuccess($order));
+                            return response()->json(['message' => 'Payment Status Success']);
                         break;
 
                     case 'expire':
