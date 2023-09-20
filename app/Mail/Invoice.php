@@ -33,7 +33,7 @@ class Invoice extends Mailable
     public function build()
     {
         return $this->markdown('/pages/mail/invoice')
-                    ->subject('Invoice')
+                    ->subject('Invoice Habbie')
                     ->with('orderData', $this->orderData);
     }
     // /**

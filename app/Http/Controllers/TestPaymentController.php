@@ -87,13 +87,6 @@ class TestPaymentController extends Controller
 
     }
 
-    // public function emailOrder($order_id){
-    //     $order = Order::where('id_order',$order_id)->with('orderproduct','payment')->get();
-    //     $email = $order[0]['email'];
-    //     Mail::to($email)->send(new OrderSuccess($order));
-    // }
-
-
     public function callback(Request $request)
     {
         try {
@@ -191,7 +184,6 @@ class TestPaymentController extends Controller
                         //         'invoice_id' => $order_id
                         //     ]);
                         }
-                            // emailOrder($order_id);
                             Mail::to($order[0]['email'])->send(new OrderSuccess($order));
                             return response()->json(['message' => 'Payment Status Success']);
                         break;

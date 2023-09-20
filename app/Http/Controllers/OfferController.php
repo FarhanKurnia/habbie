@@ -5,6 +5,11 @@ use App\Models\Product;
 use App\Models\Offer;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Offering;
+use App\Models\Subscriber;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
@@ -61,6 +66,34 @@ class OfferController extends Controller
                 'product_id' => $request->product,
                 'status' => $request->status,
             ]);
+
+            // $emails = array();
+            // $subscriber = Subscriber::where('subscribe',true)->pluck('email');
+            // $user = User::where('subscribe',true)->pluck('email');
+            // $emails[] = $subscriber;
+            // $emails[] = $user;
+
+            //User and Subscriber model
+            $users = User::where('subscribe',true)->pluck('email');
+            $subs = Subscriber::where('subscribe',true)->pluck('email');
+
+            //Add and merge email User and Subscriber
+            $email_user= array();
+            foreach($users as $index => $user){
+                $email_user[$index] = $user;
+            };
+            $email_subscriber = array();
+            foreach($subs as $index => $sub){
+                $email_subscriber[$index] = $sub;
+            };
+            $email_subscribers=(array_merge($email_user,$email_subscriber));
+            Mail::bcc($email_subscribers)->send(new Offering($offer));
+
+
+            //send email to subscriber
+            // foreach ($subscribers as $index => $subscriber) {
+            //     Mail::bcc($subscriber[$index]['email'])->send(new Offering($offer));
+            // }
             
             return redirect()->route('editOffers', $offer->slug)->with([
                 'success' => 'Product has been added successfully <a href="'. url('offers/'.$offer->slug) .'" target="_blank">See Offers</a>'

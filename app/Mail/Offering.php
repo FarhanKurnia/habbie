@@ -9,10 +9,10 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderSuccess extends Mailable
+class Offering extends Mailable
 {
     use Queueable, SerializesModels;
-    public $order;
+    public $offer;
 
 
     /**
@@ -20,9 +20,9 @@ class OrderSuccess extends Mailable
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct($offer)
     {
-        $this->order = $order;
+        $this->offer = $offer;
     }
 
     /**
@@ -32,9 +32,8 @@ class OrderSuccess extends Mailable
      */
     public function build()
     {
-        return $this->markdown('/pages/mail/order')
-                    ->subject('Order Process Habbie')
-                    ->with('order', $this->order);
+        return $this->markdown('/pages/mail/offer')
+                    ->subject('Special Offer Habbie')
+                    ->with('offer', $this->offer);
     }
-
 }

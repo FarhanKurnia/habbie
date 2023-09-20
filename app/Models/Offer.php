@@ -13,6 +13,9 @@ class Offer extends Model
         'name','slug', 'image', 'description', 'product_id', 'status','deleted_at'
     ];
 
+    protected $with = ['product'];
+
+
     // one offers has many products
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
