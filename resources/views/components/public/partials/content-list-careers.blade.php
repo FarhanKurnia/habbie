@@ -1,11 +1,6 @@
 <div class="grid lg:grid-cols-2 gap-6 items-top">
     <a href="{{ route('showCareerClient', $data['slug']) }}">
         <div class="bg-grey-secondary-50 rounded relative">
-            @if ($index < 4)                
-                <span class="bg-danger py-2 px-8 absolute left-0 top-4 rounded-r-full">
-                    <p class="text-white font-bold text-xl">New</p> 
-                </span>
-            @endif
                 <img src="{{ $data['image'] }}" class="w-full rounded-xl" />
         </div>
         <div>
