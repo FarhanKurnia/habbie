@@ -228,16 +228,8 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
     });
 });
 
-Route::get('/test-email-invoice', function () {
-    return view('pages.mail.invoice');
-});
-
-Route::get('/test-email-order', function () {
-    return view('pages.mail.order');
-});
-
-Route::get('/test-email-offer', function () {
-    return view('pages.mail.offer');
+Route::get('/unsubscribe', function () {
+    return view('pages.public.unsubscribe');
 });
 
 
