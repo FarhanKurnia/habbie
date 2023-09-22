@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reseller;
+use App\Models\TermReseller;
 use Illuminate\Http\Request;
 use LDAP\Result;
 
@@ -115,6 +116,30 @@ class ResellerController extends Controller
             ]);
         }
         return redirect()->route('indexResellers');
+    }
+
+    public function setTermReseller(Request $request, $slug){
+        $request->validate([
+            'information' => 'required',
+            'term' => 'required']
+        );
+        $term_reseller = TermReseller::where('slug',$slug)->firstOrFail();
+        $term_reseller->update([
+            'information' => $request->information,
+            'term' => $request->term
+        ]);
+        return view('test.admin.reseller.get-term-reseller-admin',compact('term_reseller'));
+
+    }
+
+    public function getTermReseller($slug){
+        $term_reseller = TermReseller::where('slug',$slug)->firstOrFail();
+        return view('test.admin.reseller.get-term-reseller-admin',compact('term_reseller'));
+    }
+
+    public function membership(){
+       $term = TermReseller::first();
+       return view('pages.public.membership',compact('term'));
     }
 
     /**

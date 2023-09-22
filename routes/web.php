@@ -43,9 +43,7 @@ Route::get('cart', function (){
     return view('pages.public.cart');
 }); //cart
 Route::get('testimonials', [ClientController::class, 'indexTestimonials']); //testimonials
-Route::get('membership', function (){
-    return view('pages.public.membership');
-}); //membership
+Route::get('membership',[ResellerController::class, 'membership']); //membership
 Route::get('membership/join', function (){
     return view('pages.public.register-membership');
 }); //join membership
@@ -59,6 +57,11 @@ Route::post('/unsubscribe', [ClientController::class, 'unsubscribe'])->name('uns
 Route::get('/unsubscribe', function () { 
     return view('pages.public.unsubscribe-form');
 });
+
+// Term n Condition Reseller Membership
+Route::get('/term/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller'); // edit
+Route::patch('/term/{slug}', [ResellerController::class, 'setTermReseller'])->name('setTermReseller'); //update
+
 
 
 // Auth
@@ -220,6 +223,29 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
 
     });
 });
+
+
+// ========= Debug New Feature ==================
+// Route::get('/term-reseller/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller');
+// Route::patch('/term-reseller/{slug}', [ResellerController::class, 'setTermReseller'])->name('setTermReseller');
+
+
+
+
+
+
+
+
+
+// ========= Gudang ==================
+// Route::get('membership', function (){
+//     return view('pages.public.membership');
+// }); //membership
+
+// Route::get('/term-reseller', function () {
+//     return view('test.admin.reseller.set-term-reseller-admin');
+// });
+
 
 // Route::get('/unsubscribe', function () {
 //     return view('pages.public.unsubscribe');

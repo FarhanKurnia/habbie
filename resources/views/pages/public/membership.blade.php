@@ -56,7 +56,8 @@
     <div class="py-10 bg-pink-bloosom">
         <div class="px-6 text-center lg:w-1/2 lg:mx-auto mx-6flex flex-col gap-4">
             <h3 class="font-bold text-2xl text-pink-primary py-5">Mengapa Menjadi Reseller Habbie</h3>
-            <p class= "text-justify pb-6">Untung banget loh Bie, dengan menjadi reseller, maka untuk harga product perbotol menjadi Rp 45.500. Selain itu, terdapat <strong>DISKON KHUSUS</strong> lain untuk Reseller Habbie yaitu: setiap pembelian 50-249 botol akan mendapatkan diskon sebesar 4% sehingga harga tiap product menjadi 43.700 per botol dan setiap pembelian >250 botol maka akan mendapatkan diskon sebesar 7% sehingga harga product menjadi Rp. 42.300 per botol. Harga juga sudah termasuk PPN 11% ya 😊</p>
+            <p class= "text-justify pb-6">{{$term->information}}</p>
+            {{-- <p class= "text-justify pb-6">Untung banget loh Bie, dengan menjadi reseller, maka untuk harga product perbotol menjadi Rp 45.500. Selain itu, terdapat <strong>DISKON KHUSUS</strong> lain untuk Reseller Habbie yaitu: setiap pembelian 50-249 botol akan mendapatkan diskon sebesar 4% sehingga harga tiap product menjadi 43.700 per botol dan setiap pembelian >250 botol maka akan mendapatkan diskon sebesar 7% sehingga harga product menjadi Rp. 42.300 per botol. Harga juga sudah termasuk PPN 11% ya 😊</p> --}}
             {{-- <button class="btn btn-sm btn-primary mx-auto rounded-full font-bold text-white ">Term & Condition</button> --}}
         </div>
     </div>
@@ -70,9 +71,12 @@
     <div class="container lg:mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 my-10 lg:py-10 items-center">
         <div class="flex flex-col gap-4">
             <h3 class="font-bold text-2xl text-pink-primary">Syarat Reseller Habbie</h3>
-            <p>1. Mengorder paket reseller minimal 50 botol<br>2. Mengirimkan identitas berupa KTP &/ NPWP<br>
-                3. Mengisi identitas dan informasi sosial media baik toko online maupun offline
+            <p>
+                {!! $term->term !!}
             </p>
+            {{-- <p>1. Mengorder paket reseller minimal 50 botol<br>2. Mengirimkan identitas berupa KTP &/ NPWP<br>
+                3. Mengisi identitas dan informasi sosial media baik toko online maupun offline
+            </p> --}}
         </div>
         <div>
             <img class="w-full lg:w-full lg:object-cover lg:h-80" src="{{ url('storage/img/mitras/mitra_thumbnail2.JPG') }}" alt="">
