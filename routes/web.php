@@ -58,9 +58,7 @@ Route::get('/unsubscribe', function () {
     return view('pages.public.unsubscribe-form');
 });
 
-// Term n Condition Reseller Membership
-Route::get('/term/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller'); // edit
-Route::patch('/term/{slug}', [ResellerController::class, 'setTermReseller'])->name('setTermReseller'); //update
+
 
 
 
@@ -196,6 +194,10 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             Route::get('/edit/{reseller_id}', [ResellerController::class, 'edit'])->name('editResellers');
             Route::patch('/update/{reseller_id}', [ResellerController::class, 'update'])->name('updateResellers');
         });
+
+        // Term n Condition Reseller Membership
+        Route::get('/term/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller'); // edit
+        Route::patch('/term/{slug}', [ResellerController::class, 'setTermReseller'])->name('setTermReseller'); //update
 
         //Users
         Route::prefix('users')->group(function () {
