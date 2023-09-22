@@ -114,9 +114,10 @@ final class ProductsTable extends PowerGridComponent
             ->addColumn('image', function ($model) {
                 return '<img class="h-24 mx-auto p-2" src="'.url($model->image).'">';
             })
-            ->addColumn('stock', function ($model){
-                return '<p class="text-lg px-2">'.$model->stock.'</p>';
-            });
+            // ->addColumn('stock', function ($model){
+            //     return '<p class="text-lg px-2">'.$model->stock.'</p>';
+            // })
+            ;
     }
 
     /*
@@ -138,7 +139,7 @@ final class ProductsTable extends PowerGridComponent
         return [
             Column::make('Image', 'image'),
             Column::make('Product Name', 'name')->searchable(),
-            Column::make('Stock', 'stock'),
+            // Column::make('Stock', 'stock'),
             // Column::make('Created at', 'created_at_formatted', 'created_at')
             //     ->sortable(),
         ];

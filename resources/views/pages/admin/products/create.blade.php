@@ -94,7 +94,7 @@
                             <div id="inventory" class="tab-content flex flex-col gap-4">
                                 <p class="text-xs mb-2 text-pink-primary font-bold">Inventory</p>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <span>
+                                    {{-- <span>
                                         <p class="text-xs mb-2">Set Product Stock</p>
                                         <input type="number" name="stock"
                                             class="input input-bordered w-full bg-grey-secondary-50 text-xs"
@@ -105,7 +105,7 @@
                                                 'message' => $message,
                                             ])
                                         @enderror
-                                    </span>
+                                    </span> --}}
 
                                     <span>
                                         <p class="text-xs mb-2">Set Product Weight (gram)</p>
