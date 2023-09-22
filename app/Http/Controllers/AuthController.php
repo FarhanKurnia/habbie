@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Verification;
 use App\Mail\ForgetPassword;
+use App\Models\Subscriber;
 use Carbon\Carbon;
 use Livewire\Livewire;
 
@@ -38,6 +39,12 @@ class AuthController extends Controller
         
         $name = $request->name;
         $email = $request->email;
+
+        $subscribe = Subscriber::where('email',$email)->first();
+        if($subscribe){
+            $subscribe->delete();
+        }
+
         $user = new User;
         $user->create([
             'name' => $name,
@@ -45,6 +52,7 @@ class AuthController extends Controller
             'customer_id' => $customer_id,
             'password' => bcrypt($request->password) ,
             'role_id' => 2,
+            'subscribe' => true,
             'token_verification' =>$token ,
             'email_verified' => false,
         ]);

@@ -300,21 +300,30 @@ class ClientController extends Controller
         }
     }
     //unsubscribe function
-    function unsubscribe($email){
-        $user = User::where('email',$email)->first();
-        $subscriber = Subscriber::where('email',$email)->first();
-        if ($user != null){
-            $user->update([
-                'subscribe' => false,
-            ]);
-            return with('Email successfully unsubscribed');
-        }elseif ($subscriber != null) {
-            $subscriber->update([
-                'subscribe' => false
-            ]);
-            return with('Email successfully unsubscribed');
-        } else{
-            return with('Email not subscribed');
+    function unsubscribe(Request $request){
+        $email = $request->query('email');
+        if ($email) {
+            $user = User::where('email',$email)->first();
+            $subscriber = Subscriber::where('email',$email)->first();
+            if ($user != null && $user->subscribe == true){
+                $user->update([
+                    'subscribe' => false,
+                ]);
+                return view('pages.public.unsubscribe')->with('response','Your Email successfully unsubscribed and you will not receive email offers from');
+            }elseif ($subscriber != null && $subscriber->subscribe == true) {
+                $subscriber->update([
+                    'subscribe' => false
+                ]);
+                return view('pages.public.unsubscribe')->with('response','Your Email successfully unsubscribed and you will not receive email offers from');
+            } elseif ($user!= null && $user->subscribe == false || $subscriber!=null && $subscriber->subscribe == false){
+                return abort('404');
+            } else{
+                return abort('404');
+                // return view('pages.public.unsubscribe')->with('response','Email not subscribed yet, you need to subscribe to receive email offers from');
+            }
+        }else{
+            return abort('404');
         }
+        
     }
 }

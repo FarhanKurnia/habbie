@@ -29,42 +29,32 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [ClientController::class, 'indexHome'])->name('home');
 
+// Public Routes
+Route::get('/', [ClientController::class, 'indexHome'])->name('home'); //home
 Route::get('/about', function () {
     return view('pages.public.about');
-});
-
-Route::get('/offers', [ClientController::class, 'indexOffers']);
-
-Route::get('/products', [ClientController::class, 'indexProducts']);
-
-Route::get('/products/{slug}', [ClientController::class, 'showProduct'])->name('products.show');
-
+}); //about
+Route::get('/offers', [ClientController::class, 'indexOffers']); //offers
+Route::get('/products', [ClientController::class, 'indexProducts']); //products
+Route::get('/products/{slug}', [ClientController::class, 'showProduct'])->name('products.show'); //show product
 Route::get('products/categories/{slug}', [ClientController::class, 'indexProductsByCat']);
-
 Route::get('cart', function (){
     return view('pages.public.cart');
-});
-
-Route::get('testimonials', [ClientController::class, 'indexTestimonials']);
-
+}); //cart
+Route::get('testimonials', [ClientController::class, 'indexTestimonials']); //testimonials
 Route::get('membership', function (){
     return view('pages.public.membership');
-});
-
+}); //membership
 Route::get('membership/join', function (){
     return view('pages.public.register-membership');
-});
-
-Route::get('/media', [ClientController::class, 'indexArticles']);
-
-Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient');
-
-Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient');
-
-Route::get('/careers/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient');
-
+}); //join membership
+Route::get('/media', [ClientController::class, 'indexArticles']); //articles
+Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient'); //show article
+Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient'); //careers
+Route::get('/careers/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient'); //show career
+Route::post('/subscribe',[ClientController::class,'subscribe'])->name('subscribe');
+Route::get('/unsubscribe', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
 
 // Auth
 Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');
@@ -79,27 +69,24 @@ Route::post('/login',[AuthController::class,'authenticate'])->name('authenticate
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 
-
+// Customer Routes
 Route::middleware(['auth','verified','customer'])->group(function () {
     Route::get('payment/{slug}', [TestPaymentController::class, 'show']);
     Route::get('checkout', [CheckoutController::class, 'show']);
     Route::get('invoice/{invoice}',[ClientController::class,'showInvoiceClient'])->name('showInvoiceClient');
     Route::get('invoice',[ClientController::class,'indexInvoiceClient']);
 
-    // fe belum dibikin
     Route::get('profile',[UserController::class,'profile'])->name('profile');
     Route::patch('update-profile',[UserController::class,'updateProfile'])->name('updateProfileClient');
 
 });
 
-// Admin
+// Admin Routes
 Route::middleware(['auth','verified', 'admin'])->group(function () {
     Route::prefix('admin')->group(function () {
-
         // Dashboard
         Route::get('/', [DashboardController::class,'index'])->name('dashboard');
-
-
+        
         // Products
         Route::prefix('products')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('indexProducts');
@@ -208,6 +195,9 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             Route::get('/show/{customer_id}', [UserController::class, 'show'])->name('showUsers');
             Route::get('/profile', [UserController::class, 'profile'])->name('profileAdmin');
             Route::patch('/update', [UserController::class, 'updateProfile'])->name('updateProfile');
+        
+        //Subcribe
+        Route::get('/indexSubscribe',[ClientController::class,'indexSubscriber'])->name('indexSubscriber');
         });
 
 
@@ -219,18 +209,16 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
     Route::get('/reseller',[ClientController::class,'testReseller'])->name('testReseller');
     Route::post('/joinReseller',[ClientController::class,'joinReseller'])->name('joinReseller');
     
-    //Subcribe
-    Route::get('/indexSubscribe',[ClientController::class,'indexSubscriber'])->name('indexSubscriber');
-    Route::get('/subscribe', function () { return view('test.customer.subscriber.subscribe-client');});
-    Route::post('/subscribe',[ClientController::class,'subscribe'])->name('subscribe');
-    Route::get('/unsubscribe/{email}', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
+    
+    // Route::get('/subscribe', function () { return view('test.customer.subscriber.subscribe-client');});
+    
 
     });
 });
 
-Route::get('/unsubscribe', function () {
-    return view('pages.public.unsubscribe');
-});
+// Route::get('/unsubscribe', function () {
+//     return view('pages.public.unsubscribe');
+// });
 
 
 // // START TESTING PAGE HERE
