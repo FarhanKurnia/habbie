@@ -42,6 +42,13 @@
             <a href="{{ url('offers') }}" target="_blank" class="text-pink-primary italic underline font-bold">List Spesial Offers</a>
         </p>
 
+        <br>
+        <br>
+        <p>
+            Klik <a href=" {{ url('/unsubscribe') }}">link</a> berikut ntuk berhenti berlangganan email penawaran Habbie
+        </p>
+
+
     </div>
 
 

@@ -54,7 +54,12 @@ Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('sho
 Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient'); //careers
 Route::get('/careers/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient'); //show career
 Route::post('/subscribe',[ClientController::class,'subscribe'])->name('subscribe');
-Route::get('/unsubscribe', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
+Route::post('/unsubscribe', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
+// Route::get('/subscribe', function () { return view('test.customer.subscriber.subscribe-client');});
+Route::get('/unsubscribe', function () { 
+    return view('pages.public.unsubscribe-form');
+});
+
 
 // Auth
 Route::get('/verification/{token}',[AuthController::class,'verification'])->name('verification');

@@ -87,8 +87,9 @@ class OfferController extends Controller
                 $email_subscriber[$index] = $sub;
             };
             $email_subscribers=(array_merge($email_user,$email_subscriber));
-            Mail::bcc($email_subscribers)->send(new Offering($offer));
-
+            if($email_subscriber){
+                Mail::bcc($email_subscribers)->send(new Offering($offer));
+            }
 
             //send email to subscriber
             // foreach ($subscribers as $index => $subscriber) {

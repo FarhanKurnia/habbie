@@ -301,29 +301,33 @@ class ClientController extends Controller
     }
     //unsubscribe function
     function unsubscribe(Request $request){
-        $email = $request->query('email');
-        if ($email) {
+        $request->validate([
+            'email' => 'required|max:255|email:dns',
+        ]);
+        $email = $request->email;
+        // if ($email) {
             $user = User::where('email',$email)->first();
             $subscriber = Subscriber::where('email',$email)->first();
             if ($user != null && $user->subscribe == true){
                 $user->update([
                     'subscribe' => false,
                 ]);
-                return view('pages.public.unsubscribe')->with('response','Your Email successfully unsubscribed and you will not receive email offers from');
+                return view('pages.public.unsubscribe')->with('response','Kamu berhasil berhenti berlangganan dan selanjutnya kamu tidak akan menerima email penawaran dari');
             }elseif ($subscriber != null && $subscriber->subscribe == true) {
                 $subscriber->update([
                     'subscribe' => false
                 ]);
-                return view('pages.public.unsubscribe')->with('response','Your Email successfully unsubscribed and you will not receive email offers from');
+                return view('pages.public.unsubscribe')->with('response','Kamu berhasil berhenti berlangganan dan selanjutnya kamu tidak akan menerima email penawaran dari');
+                // return view('pages.public.unsubscribe')->with('response','Your Email successfully unsubscribed and you will not receive email offers from');
             } elseif ($user!= null && $user->subscribe == false || $subscriber!=null && $subscriber->subscribe == false){
-                return abort('404');
+                return view('pages.public.unsubscribe')->with('response','Email kamu tidak terdaftar berlangganan, daftar sekarang untuk mendapatkan penawaran menarik dari');
             } else{
-                return abort('404');
+                return view('pages.public.unsubscribe')->with('response','Email kamu tidak terdaftar, daftar sekarang untuk mendapatkan penawaran menarik dari');
                 // return view('pages.public.unsubscribe')->with('response','Email not subscribed yet, you need to subscribe to receive email offers from');
             }
-        }else{
-            return abort('404');
-        }
+        // }else{
+        //     return view('pages.public.unsubscribe-form');
+        // }
         
     }
 }
