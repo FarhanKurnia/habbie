@@ -101,6 +101,9 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             Route::post('/store', [ProductController::class, 'store'])->name('storeProducts');
             Route::patch('/update/{slug}', [ProductController::class, 'update'])->name('updateProducts');
             Route::get('/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
+            route::get('/active/{slug}',[ProductController::class, 'active'])->name('active');
+            route::get('/non-active/{slug}',[ProductController::class, 'nonactive'])->name('nonactive');
+
 
             // category
             Route::prefix('categories')->group(function () {
@@ -229,6 +232,7 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
 
 
 // ========= Debug New Feature ==================
+
 // Route::get('/term-reseller/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller');
 // Route::patch('/term-reseller/{slug}', [ResellerController::class, 'setTermReseller'])->name('setTermReseller');
 

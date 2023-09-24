@@ -24,6 +24,7 @@ class ProductSeeder extends Seeder
         'rating' => 5,
         'weight' => 1,
         'slug' => 'flower-anggrek-bulan',
+        'status' => 'active',
         'discount_id' => 1,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -39,6 +40,7 @@ class ProductSeeder extends Seeder
         'rating' => 5,
         'weight' => 1,
         'slug' => 'flower-magnolia',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -54,7 +56,8 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-peony',
-        'discount_id' => null,
+        'status' => 'active',
+        'discount_id' => null,        
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
@@ -69,6 +72,7 @@ class ProductSeeder extends Seeder
         'rating' => 5,
         'weight' => 1,
         'slug' => 'flower-tulip',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -84,6 +88,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-lotus',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -99,6 +104,7 @@ class ProductSeeder extends Seeder
         'rating' => 5,
         'weight' => 1,
         'slug' => 'flower-petunia',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -114,6 +120,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-sakura',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -129,6 +136,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-cactus',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -144,6 +152,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-pansy',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -159,6 +168,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-fuchsia',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -174,6 +184,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-rose',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -189,6 +200,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-lily',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -204,6 +216,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-granium',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -219,6 +232,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-gardenia',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -234,6 +248,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'flower-lemon',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -249,6 +264,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-jasmine',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -264,6 +280,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-fresh',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -279,6 +296,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-matcha',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -294,6 +312,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-white',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -309,6 +328,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-green-honey',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -324,6 +344,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-black',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -339,6 +360,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-oolong',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -354,6 +376,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-pu-erh',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -369,6 +392,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-yellow',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -384,6 +408,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-tree',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -399,6 +424,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-bouquet',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -414,6 +440,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-darjeeling',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -429,6 +456,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-earl-grey',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -444,6 +472,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-sencha',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -459,6 +488,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'tea-masala',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -474,6 +504,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'turkish-saffron',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -489,6 +520,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'afgan-saffron',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -504,6 +536,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'spanish-saffron',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -519,6 +552,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'negin-saffron',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -534,6 +568,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'khasmir-saffron',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -549,6 +584,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'iran-saffron',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -564,6 +600,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'turkish-vanilla',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -579,6 +616,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'china-vanilla',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -594,6 +632,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'mexican-vanilla',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -609,6 +648,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'madagascar-vanilla',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -624,6 +664,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'american-vanilla',
+        'status' => 'active',
         'discount_id' => null,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
@@ -639,6 +680,7 @@ class ProductSeeder extends Seeder
         'rating' => 4,
         'weight' => 1,
         'slug' => 'indonesian-vanilla',
+        'status' => 'active',
         'discount_id' => 2,
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
