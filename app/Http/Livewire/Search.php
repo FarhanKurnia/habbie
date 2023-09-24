@@ -17,8 +17,8 @@ class Search extends Component
     public function render()
     {
         if ($this->searchTerm) {
-            $this->productResults = Product::where('deleted_at', null)->where('name', 'LIKE', "%{$this->searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$this->searchTerm}%")
+            $this->productResults = Product::where([['deleted_at', null],['status','active']])->where([['name', 'LIKE', "%{$this->searchTerm}%"],['status','active']])
+                ->orWhere([['description', 'LIKE', "%{$this->searchTerm}%"],['status','active']])
                 ->get();
 
             $this->articleResults = Article::where('deleted_at', null)->where('title', 'LIKE', "%{$this->searchTerm}%")
