@@ -118,23 +118,33 @@ class ResellerController extends Controller
         return redirect()->route('indexResellers');
     }
 
-    public function setTermReseller(Request $request, $slug){
-        $request->validate([
-            'information' => 'required',
-            'term' => 'required']
-        );
-        $term_reseller = TermReseller::where('slug',$slug)->firstOrFail();
-        $term_reseller->update([
-            'information' => $request->information,
-            'term' => $request->term
-        ]);
-        return view('test.admin.reseller.get-term-reseller-admin',compact('term_reseller'));
+    public function setTermReseller(Request $request){
+        try {
+            $request->validate([
+                'information' => 'required',
+                'term' => 'required']
+            );
+            $term_reseller = TermReseller::where('slug', 'term-reseller')->firstOrFail();
+            $term_reseller->update([
+                'information' => $request->information,
+                'term' => $request->term
+            ]);
+            return redirect()->route('termReseller')->with([
+                'success' => 'Term has been added successfully']);
+        } catch(\Exception $e){
+            return redirect()
+            ->route('termReseller')->with([
+                'error' => 'An error occurred: ' . $e->getMessage()
+            ]);
+        }
 
     }
 
-    public function getTermReseller($slug){
-        $term_reseller = TermReseller::where('slug',$slug)->firstOrFail();
-        return view('test.admin.reseller.get-term-reseller-admin',compact('term_reseller'));
+    public function getTermReseller(){
+        $term_reseller = TermReseller::where('slug', 'term-reseller')->firstOrFail();
+        return view('pages.admin.term-reseller.edit',compact('term_reseller'));
+
+        // return view('test.admin.reseller.get-term-reseller-admin',compact('term_reseller'));
     }
 
     public function membership(){
