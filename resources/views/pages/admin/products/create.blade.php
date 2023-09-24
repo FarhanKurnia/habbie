@@ -157,6 +157,16 @@
             <div class="mx-2 flex flex-col gap-4">
                 <button type="submit" value="Proses"
                     class="btn btn-primary text-white ">{{ isset($oneProduct) ? 'Update' : 'Publish' }}</button>
+                
+                @if(isset($oneProduct))
+                    <div class="p-4 bg-white border border-grey-secondary rounded-lg">
+                        <p class="text-gray-secondary">Status</p>
+                        <div class="my-4">
+                            <livewire:admin.toggle :productId="$oneProduct->id_product"/>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="p-4 bg-white border border-grey-secondary rounded-lg">
                     <p class="text-gray-secondary">Choose Category</p>
 
