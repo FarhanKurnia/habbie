@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image');
             $table->text('description');
             $table->unsignedBigInteger('product_id');
+            $table->string('slug');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 

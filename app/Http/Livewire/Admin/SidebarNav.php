@@ -27,6 +27,7 @@ class SidebarNav extends Component
             [ "name" => "Category Product", "route_name" => "indexCategories" ],
             [ "name" => "Discount", "route_name" => "indexDiscounts" ]
         ],
+        "indexRecommendations" => 'Recommendations',
         "media" => [
             [ "name" => "Media", "route_name" => "media" ],
             [ "name" => "List Article", "route_name" => "indexArticles" ],
