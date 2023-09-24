@@ -106,18 +106,15 @@ final class ProductsTable extends PowerGridComponent
                     </span>
                 </a>';
             })
-
-           /** Example of custom column using a closure **/
-            // ->addColumn('name_lower', fn (Product $model) => strtolower(e($model->name)))
-
             ->addColumn('category_id')
             ->addColumn('image', function ($model) {
                 return '<img class="h-24 mx-auto p-2" src="'.url($model->image).'">';
             })
-            // ->addColumn('stock', function ($model){
-            //     return '<p class="text-lg px-2">'.$model->stock.'</p>';
-            // })
-            ;
+            ->addColumn('status', function ($model) {
+                return $model->status === 'active' ? '<p class="text-green">Active</p>' : '<p class="text-danger">Non Active</p>';
+            })
+
+        ;
     }
 
     /*
@@ -139,9 +136,7 @@ final class ProductsTable extends PowerGridComponent
         return [
             Column::make('Image', 'image'),
             Column::make('Product Name', 'name')->searchable(),
-            // Column::make('Stock', 'stock'),
-            // Column::make('Created at', 'created_at_formatted', 'created_at')
-            //     ->sortable(),
+            Column::make('Status', 'status'),
         ];
     }
 
