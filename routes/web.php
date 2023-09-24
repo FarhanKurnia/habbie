@@ -196,8 +196,9 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
         });
 
         // Term n Condition Reseller Membership
-        Route::get('/term/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller'); // edit
-        Route::patch('/term/{slug}', [ResellerController::class, 'setTermReseller'])->name('setTermReseller'); //update
+        // Route::get('/term/{slug}', [ResellerController::class, 'getTermReseller'])->name('getTermReseller'); // edit
+        Route::get('/term-reseller', [ResellerController::class, 'getTermReseller'])->name('termReseller'); // edit
+        Route::patch('/term-reseller', [ResellerController::class, 'setTermReseller'])->name('setTermReseller'); //update
 
         //Users
         Route::prefix('users')->group(function () {
