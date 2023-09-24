@@ -95,8 +95,8 @@ class BodyRecommendationController extends Controller
         $recommendations = new Body_Recommendation();
         $products = new Product();
 
-        $oneRecommendation = $recommendations->where([['slug',$slug],['deleted_at',null],['status','active']])->with('product')->firstOrFail();
-        $indexProducts = $products->where('deleted_at',null)->get();
+        $oneRecommendation = $recommendations->where([['slug',$slug],['deleted_at',null]])->with('product')->firstOrFail();
+        $indexProducts = $products->where([['deleted_at',null],['status','active']])->get();
 
         return view('pages.admin.recommendation.create',compact('indexProducts','oneRecommendation'));
     
