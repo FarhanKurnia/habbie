@@ -10,7 +10,7 @@ class HeaderRecommendation extends Component
 
     public function mount(){
         $products = new Product();
-        $this->product = $products->all()->random(1);
+        $this->product = $products->where([['deleted_at',null],['status','active']])->get()->random(1);
     }
 
     public function render()

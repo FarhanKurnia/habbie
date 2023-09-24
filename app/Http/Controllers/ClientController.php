@@ -33,7 +33,7 @@ class ClientController extends Controller
         // $bodyRecommendation = $products->where([['deleted_at',null],['description','!=','']])->get()->random(3);
         $bodyRecommendation = $bodyrecommendations->where('deleted_at',null)->with('product')->get();
         //latest recommendation
-        $latestRecommendation = $products->where('deleted_at',null)->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
+        $latestRecommendation = $products->where([['deleted_at',null],['status','active']])->with('category')->with('discount')->orderBy('discount_id', 'DESC')->limit(4)->get();
         //latest articles
         $latestArticles = $articles->where([['deleted_at',null],['categories','article']])->with('user')->orderBy('id_article','DESC')->limit(2)->get();
         return view('pages.public.home', compact('bodyRecommendation','latestRecommendation','latestArticles'));
@@ -57,7 +57,7 @@ class ClientController extends Controller
         $products = new Product();
 
         //all products
-        $allProduct = $products->where('deleted_at',null)->paginate(8);
+        $allProduct = $products->where([['deleted_at',null],['status','active']])->paginate(8);
         return view('pages.public.products.index', compact('allProduct'));
     }
 
@@ -69,7 +69,7 @@ class ClientController extends Controller
         $category = Product_Category::where([['slug',$slug],['deleted_at',null]])->firstOrFail();
         $cat = $category->id_category;
         //all products
-        $productsByCat = $products->where('category_id',$cat)->with('category')->paginate(8);
+        $productsByCat = $products->where([['category_id',$cat],['deleted_at',null],['status','active']])->with('category')->paginate(8);
         return view('pages.public.products.category', compact('category','productsByCat'));
     }
 
@@ -78,10 +78,10 @@ class ClientController extends Controller
         //products 
         $products = new Product();
         //product
-        $oneProduct = $products->where([['slug',$slug],['deleted_at',null]])->with('category')->firstOrFail();
+        $oneProduct = $products->where([['slug',$slug],['deleted_at',null],['status','active']])->with('category')->firstOrFail();
         //latest recommendation with same category as above
         $category_id = $oneProduct->category_id;
-        $latestRecommendation = $products->where([['category_id',$category_id],['deleted_at',null]])->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
+        $latestRecommendation = $products->where([['category_id',$category_id],['deleted_at',null],['status','active']])->with('category')->with('discount')->orderBy('id_product', 'DESC')->limit(4)->get();
         return view('pages.public.products.detail', compact('oneProduct','latestRecommendation'));
     }
 
@@ -239,8 +239,8 @@ class ClientController extends Controller
         $search = $request->input('search');
         if($search){
             $products = Product::query()
-            ->where('name', 'LIKE', "%{$search}%")
-            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->where([['name', 'LIKE', "%{$search}%"],['status','active']])
+            ->orWhere([['description', 'LIKE', "%{$search}%"],['status','active']])
             ->get();
             $article = Article::query()
             ->where('title', 'LIKE', "%{$search}%")

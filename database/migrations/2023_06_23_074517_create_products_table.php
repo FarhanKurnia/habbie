@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->integer('weight');
             $table->string('slug')->unique();
+            $table->enum('status',['active','non-active']);
             $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();

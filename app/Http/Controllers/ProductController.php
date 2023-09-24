@@ -70,6 +70,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'story' => $request->story,
                 'price' => $request->price,
+                'status' => 'active',
                 // 'stock' => $request->stock,
                 'stock' => 100,
                 'rating' => $request->rating,
@@ -185,6 +186,38 @@ class ProductController extends Controller
                     'error' => 'Some problem has occured, please try again'
                 ]);
         }
+    }
+
+    public function active($slug){
+        $products = new Product();
+        $product = $products->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $product->update([
+            'status' => 'active',
+        ]);
+        if ($product) {
+            return redirect()
+                ->route('indexProducts');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput();
+        }    
+    }
+
+    public function nonactive($slug){
+        $products = new Product();
+        $product = $products->where([['slug',$slug],['deleted_at',null]])->firstOrFail();
+        $product->update([
+            'status' => 'non-active',
+        ]);
+        if ($product) {
+            return redirect()
+                ->route('indexProducts');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput();
+        }    
     }
 
     /**
