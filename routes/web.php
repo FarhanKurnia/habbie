@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BodyRecommendationController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\TestPaymentController;
 use App\Http\Controllers\OrderController;
@@ -93,6 +94,16 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
         // Dashboard
         Route::get('/', [DashboardController::class,'index'])->name('dashboard');
         
+        // Body Recommendations
+        Route::prefix('recommendations')->group(function () {
+            Route::get('/', [BodyRecommendationController::class, 'index'])->name('indexRecommendations');
+            Route::get('/add', [BodyRecommendationController::class, 'create'])->name('createRecommendations');
+            Route::get('/edit/{slug}', [BodyRecommendationController::class, 'edit'])->name('editRecommendations');
+            Route::post('/store', [BodyRecommendationController::class, 'store'])->name('storeRecommendations');
+            Route::patch('/update/{slug}', [BodyRecommendationController::class, 'update'])->name('updateRecommendations');
+            Route::get('/delete/{slug}', [BodyRecommendationController::class, 'delete'])->name('deleteRecommendations');
+        });
+        
         // Products
         Route::prefix('products')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('indexProducts');
@@ -103,7 +114,8 @@ Route::middleware(['auth','verified', 'admin'])->group(function () {
             Route::get('/delete/{slug}', [ProductController::class, 'delete'])->name('deleteProducts');
             route::get('/active/{slug}',[ProductController::class, 'active'])->name('active');
             route::get('/non-active/{slug}',[ProductController::class, 'nonactive'])->name('nonactive');
-
+        
+        
 
             // category
             Route::prefix('categories')->group(function () {
