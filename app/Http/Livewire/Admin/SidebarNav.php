@@ -35,8 +35,12 @@ class SidebarNav extends Component
         "indexOffers" => 'Offers',
         "indexTestimonials" => 'Testimonials',
         "indexReviews" => "Reviews",
-        "indexResellers" => "Resellers",
-        "indexUsers" => "Users"
+        "reseller" => [
+            [ "name" => "Resellers", "route_name" => "reseller" ],
+            [ "name" => "List Reseller", "route_name" => "indexResellers" ],
+            [ "name" => "Term Reseller", "route_name" => "termReseller" ]
+        ],
+        "indexUsers" => "Users",
     ];
 
     public $activeNav;
