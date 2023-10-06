@@ -21,10 +21,10 @@
                 </div>
             @endforeach
         </div>
-        <button class="prev-btn absolute bottom-1/2 lg:ml-10">
+        <button class="prev-btn absolute bottom-1/2 lg:ml-10 ml-4">
             <span class="text-gray-500 text-3xl">❮</span>
         </button>
-        <button class="next-btn absolute bottom-1/2 right-0 lg:mr-10">
+        <button class="next-btn absolute bottom-1/2 right-0 lg:mr-10 mr-4">
             <span class="text-gray-500 text-3xl">❯</span>
         </button>
     </div>
