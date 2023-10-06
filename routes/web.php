@@ -32,25 +32,27 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 // Public Routes
-Route::get('/', [ClientController::class, 'indexHome'])->name('home'); //home
+Route::get('/', [ClientController::class, 'indexHome'])->name('home')->middleware('lscache:max-age=300;public'); //home
+
 Route::get('/about', function () {
     return view('pages.public.about');
-}); //about
+})->middleware('lscache:max-age=300;public'); //about
+
 Route::get('/offers', [ClientController::class, 'indexOffers']); //offers
-Route::get('/products', [ClientController::class, 'indexProducts']); //products
+Route::get('/products', [ClientController::class, 'indexProducts'])->middleware('lscache:max-age=300;public'); //products
 Route::get('/products/{slug}', [ClientController::class, 'showProduct'])->name('products.show'); //show product
-Route::get('products/categories/{slug}', [ClientController::class, 'indexProductsByCat']);
+Route::get('products/categories/{slug}', [ClientController::class, 'indexProductsByCat'])->middleware('lscache:max-age=300;public');
 Route::get('cart', function (){
     return view('pages.public.cart');
 }); //cart
-Route::get('testimonials', [ClientController::class, 'indexTestimonials']); //testimonials
+Route::get('testimonials', [ClientController::class, 'indexTestimonials'])->middleware('lscache:max-age=300;public'); //testimonials
 Route::get('membership',[ResellerController::class, 'membership']); //membership
 Route::get('membership/join', function (){
     return view('pages.public.register-membership');
 }); //join membership
-Route::get('/media', [ClientController::class, 'indexArticles']); //articles
+Route::get('/media', [ClientController::class, 'indexArticles'])->middleware('lscache:max-age=300;public'); //articles
 Route::get('/media/{slug}', [ClientController::class, 'showArticle'])->name('showArticleClient'); //show article
-Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient'); //careers
+Route::get('/careers', [ClientController::class, 'indexCareers'])->name('indexCareerClient')->middleware('lscache:max-age=300;public'); //careers
 Route::get('/careers/{slug}', [ClientController::class, 'showCareer'])->name('showCareerClient'); //show career
 Route::post('/subscribe',[ClientController::class,'subscribe'])->name('subscribe');
 Route::post('/unsubscribe', [ClientController::class, 'unsubscribe'])->name('unsubscribe');
