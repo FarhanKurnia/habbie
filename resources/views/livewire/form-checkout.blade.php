@@ -1,6 +1,6 @@
 <div class="flex flex-col pb-14">
     <form action="" wire:submit.prevent="submitOrder" method="POST">
-        <div class="lg:py-14 flex flex-col space-y-6 w-full">
+        <div class="lg:py-8 flex flex-col space-y-6 w-full">
 
             <input type="number" class="input input-bordered rounded-full bg-grey-secondary-50 " placeholder="No.HP"
                 wire:model="phoneNumber" required>

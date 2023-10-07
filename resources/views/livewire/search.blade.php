@@ -1,4 +1,4 @@
-<div class="relative w-42 ">
+<div class="relative w-40 ">
     <input wire:model.debounce.500ms="searchTerm" type="text" placeholder="Search"
         class="w-full px-4 py-2 pr-12 rounded-full bg-grey-secondary-50 focus:outline-none" />
     <span class="absolute right-0 top-0 mt-1 mr-2 px-4 py-2 rounded-full  focus:outline-none">
@@ -11,7 +11,7 @@
     <div class="relative">
         <div class=" p-4 bg-white rounded shadow overflow-y-auto w-full {{ empty($searchTerm) ? "hidden" : "absolute" }} {{ $dataCount !== 0 ? 'h-96' : '' }}">
             @if ($productResults->isNotEmpty())
-                <h3 class="font-bold py-2">Product Results</h3>
+                <h3 class="font-bold py-2 text-sm">Product Results</h3>
                 <ul class="space-y-6">
                     @foreach ($productResults as $product)
                         <li>
@@ -22,7 +22,7 @@
                                             alt="{{ $product->name }}">
                                     </div>
                                     <div class="col-span-2">
-                                        <p class="hover:text-pink-primary">{{ $product->name }}</p>
+                                        <p class="hover:text-pink-primary text-sm">{{ $product->name }}</p>
                                         <div class="text-sm">
                                             @if ($product->discount_id)
                                                 @php
@@ -32,15 +32,15 @@
                                                     $discountPrice = $normalPrice - $discountPrice;
                                                     $discountName = $product->discount->name;
                                                 @endphp
-                                                <div class="lg:flex lg:items-center lg:gap-2 ">
-                                                    <p class="text-grey-secondary lg:text-right">
+                                                <div class="lg:flex-col lg:items-center lg:gap-2 text-sm">
+                                                    <p class="text-grey-secondary lg:text-left">
                                                         <s>{{ \App\Helpers\CurrencyFormat::data($normalPrice) }}</s>
                                                     </p>
                                                     <p class="font-semibold lg:text-left text-pink-primary">
                                                         {{ \App\Helpers\CurrencyFormat::data($discountPrice) }}</p>
                                                 </div>
                                             @else
-                                                <p class="font-semibold text-pink-primary">
+                                                <p class="font-semibold text-pink-primary text-sm">
                                                     {{ \App\Helpers\CurrencyFormat::data($product->price) }}</p>
                                             @endif
                                         </div>
@@ -56,19 +56,19 @@
             @endif
 
             @if ($articleResults->isNotEmpty())
-                <h3 class="font-bold py-2 mt-4">Article Results</h3>
+                <h3 class="font-bold py-2 mt-4 text-sm">Article Results</h3>
                 <ul>
                     @foreach ($articleResults as $article)
-                    <li>
+                    <li class="my-4">
                         <a href="{{ $article->categories === 'article' ? route('showArticleClient', $article->slug) : route('showCareerClient', $article->slug) }}">
 
-                            <span class="grid grid-cols-3 gap-4 items-center">
-                                <div>
-                                    <img class="w-full  mx-auto " src="{{ url($article->image) }}"
+                            <span class="grid grid-cols-3 gap-2 items-center">
+                                <div class="col-span-2">
+                                    <img class="w-full mx-auto " src="{{ url($article->image) }}"
                                         alt="{{ $article->title }}">
                                 </div>
-                                <div class="col-span-2">
-                                    <p class="hover:text-pink-primary">{{ $article->title }}</p>
+                                <div class="">
+                                    <p class="hover:text-pink-primary text-sm">{{ $article->title }}</p>
                                     <small></small>
                                 </div>
                             </span>
@@ -79,9 +79,9 @@
             @endif
 
             @if ($dataCount > 0)
-                <p class="font-bold text-pink-primary py-2 mt-4">Total Results: {{ $dataCount }}</p>
+                <p class="font-bold text-pink-primary py-2 mt-4 text-sm">Total Results: {{ $dataCount }}</p>
             @else
-                <p class="font-bold text-center text-pink-primary py-2 mt-4">No results found.</p>
+                <p class="font-bold text-center text-pink-primary py-2 mt-4 text-sm">No results found.</p>
             @endif
         </div>
     </div>

@@ -3,7 +3,7 @@
 @section('title', 'Checkout Orders')
 
 @section('content')
-    <div class="container mx-auto px-6 lg:px-0">
+    <div class="container mx-auto px-6 pt-8 lg:px-0">
         @include('components.public.partials.title', [
             'title' => 'Form Checkout',
             'align' => 'left',
