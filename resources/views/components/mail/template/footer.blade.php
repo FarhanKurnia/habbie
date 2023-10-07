@@ -9,9 +9,10 @@
             </ul>
         </div>
         <div>
-            <p class="text-sm">Alamat: </p>
-            <p class="text-sm">Email: </p>
-            <p class="text-sm">Phone / WA: </p>
+            <p class="text-sm">Alamat: Jl. Kranggan No.20, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta, Daerah 
+Istimewa Yogyakarta 55233</p>
+            <p class="text-sm">Email: careline@habbie.co.id </p>
+            <p class="text-sm">Phone / WA: (0274) 5025200 / +62 812-2954-8993</p>
         </div>
     </div>
 

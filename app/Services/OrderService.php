@@ -92,7 +92,7 @@ class OrderService {
     protected function mailInvoice($orderData, $invoice){
         $customer = $orderData['customer'];
         $orderData['invoice'] = $invoice;
-        Mail::to($customer['email'])->send(new Invoice($orderData));
+        Mail::to($customer['email'])->bcc('order@habbie.co.id')->send(new Invoice($orderData));
     }
 
     public function create()

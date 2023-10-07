@@ -88,7 +88,7 @@ class OfferController extends Controller
             };
             $email_subscribers=(array_merge($email_user,$email_subscriber));
             if($email_subscriber){
-                Mail::bcc($email_subscribers)->send(new Offering($offer));
+                Mail::to('no-reply@habbie.co.id')->bcc($email_subscribers)->send(new Offering($offer));
             }
 
             //send email to subscriber

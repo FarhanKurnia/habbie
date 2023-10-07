@@ -184,7 +184,7 @@ class TestPaymentController extends Controller
                         //         'invoice_id' => $order_id
                         //     ]);
                         }
-                            Mail::to($order[0]['email'])->send(new OrderSuccess($order));
+                            Mail::to($order[0]['email'])->bcc('order@habbie.co.id')->send(new OrderSuccess($order));
                             return response()->json(['message' => 'Payment Status Success']);
                         break;
 

@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([[
             'name' => 'Farhan',
-            'email'=>'farhan@habbie.com',
+            'email'=>'farhan@habbie.co.id',
             'customer_id' => '1000256436541',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
@@ -27,10 +27,36 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
+	[
+            'name' => 'Admin',
+            'email'=>'admin@habbie.co.id',
+            'customer_id' => '1000256436101',
+            'email_verified' => true,
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('password'),
+            'role_id' => 1,
+            'token_verification' => Str::random(128),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ],
+	[
+            'name' => 'Customer',
+            'email'=>'customer@habbie.co.id',
+            'customer_id' => '2000256436222',
+            'email_verified' => true,
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'token_verification' => Str::random(128),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ],
         [
             'name' => 'Gandhi',
             'customer_id' => '1000256436542',
-            'email'=>'gandhi@habbie.com',
+            'email'=>'gandhi@habbie.co.id',
             'email_verified' => false,
             'email_verified_at' => null,
             'password' => bcrypt('password'),
@@ -43,7 +69,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'kurnia',
             'customer_id' => '1000256436543',
-            'email'=>'kurnia@habbie.com',
+            'email'=>'kurnia@habbie.co.id',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
@@ -56,7 +82,7 @@ class UserSeeder extends Seeder
         [
             'name' => 'ragil',
             'customer_id' => '1000256436544',
-            'email'=>'ragil@habbie.com',
+            'email'=>'ragil@habbie.co.id',
             'email_verified' => true,
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('password'),
