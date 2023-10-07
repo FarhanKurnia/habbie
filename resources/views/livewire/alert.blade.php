@@ -1,6 +1,6 @@
 <div>
     @if ($visible)
-        <div class="{{ $background }} text-white rounded-lg p-2 font-bold flex justify-between items-center">
+        <div class="{{ $background }} text-white p-4 font-bold flex justify-center gap-6 items-center">
             <p>{{ $message }}</p>
             <button wire:click="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

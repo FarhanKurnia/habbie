@@ -4,11 +4,11 @@
 
 @section('content')
 
-    @if (session()->has('error'))
-        <div class="container mx-auto my-4">
+    {{-- @if (session()->has('error'))
+        <div class="mx-auto pt-4">
             <livewire:alert :message="session('error')" :background="'bg-danger'" />
         </div>
-    @endif
+    @endif --}}
     @include('components.public.partials.hero-slider')
     @include('components.public.partials.content-slider', ['products' => $bodyRecommendation])
 
