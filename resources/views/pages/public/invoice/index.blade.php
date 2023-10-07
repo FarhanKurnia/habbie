@@ -20,7 +20,7 @@
                     </th>
                     <th
                         class="hidden md:table-cell px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        <p class="font-bold text-sm">Status</p>
+                        <p class="font-bold text-sm">Status Order</p>
                     </th>
                     <th
                         class="hidden md:table-cell px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -32,18 +32,19 @@
                     </th>
                     <th
                         class="hidden md:table-cell px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        <p class="font-bold text-sm">Payment</p>
+                        <p class="font-bold text-sm">Status Payment</p>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($invoices as $invoice)                
+                @foreach ($invoices as $invoice)
                     <tr>
                         {{-- Mobile display --}}
                         <td class="lg:hidden pb-8">
                             <a href="{{ url('invoice/' . $invoice->invoice) }}">
                                 <div class="flex flex-col">
-                                    <span class="bg-pink-bloosom bg-opacity-40 flex flex-row justify-between items-center p-2 rounded">
+                                    <span
+                                        class="bg-pink-bloosom bg-opacity-40 flex flex-row justify-between items-center p-2 rounded">
                                         {{-- @php
                                             $status;
                                             if ($invoice->status === 'process') {
@@ -54,22 +55,23 @@
                                                 $status = 'text-grey-secondary';
                                             }
                                         @endphp --}}
-                                        
+
                                         @php
                                             $status;
-                                            if ($invoice->status_order === 'order' || $invoice->status_order === 'process' || $invoice->status_order === 'done') {
+                                            if ($invoice->status_order === 'process' || $invoice->status_order === 'done') {
                                                 $status = 'text-green';
-                                            } else{
+                                            } else {
                                                 $status = 'text-danger';
                                             }
                                         @endphp
                                         <p>Invoice #{{ $invoice->invoice }}</p>
-                                        {{-- <p class="{{ $status }}">{{ strtoupper($invoice->status) }}</p> --}}
-                                        {{-- handle failed transaction --}}
-                                        @if ($invoice->status_order === 'process' || $invoice->status_order === 'done' || $invoice->status_order === 'open')
+
+                                        @if ($invoice->status_order === 'order')
+                                            <p class="text-grey">{{ strtoupper($invoice->status_order) }}</p>
+                                        @elseif ($invoice->status_order === 'cancel' || $invoice->status_order === 'failed')
                                             <p class="{{ $status }}">{{ strtoupper($invoice->status_order) }}</p>
                                         @else
-                                            <p class="{{ $status }}">{{ strtoupper('Failed') }}</p>
+                                            <p class="{{ $status }}">{{ strtoupper($invoice->status_order) }}</p>
                                         @endif
                                     </span>
                                     <div class="px-3">
@@ -94,8 +96,8 @@
                         </td>
                         {{-- Desktop display --}}
                         <td class="hidden lg:table-cell ">
-                            <a href="{{ url('invoice/' . $invoice->invoice) }}">
-                                <p class="text-center hover:text-pink-primary">{{ $invoice->invoice }}</p>
+                            <a href="{{ $invoice->status_order ==='order' && $invoice->status_payment ==='unpaid' ? '#' : url('invoice/' . $invoice->invoice) }}">
+                                <p class="text-center {{ $invoice->status_order ==='order' && $invoice->status_payment ==='unpaid' ? 'opacity-20' : 'hover:text-pink-primary' }} ">{{ $invoice->invoice }}</p>
                             </a>
                         </td>
                         <td class="hidden lg:table-cell ">
@@ -119,10 +121,30 @@
                             @endphp --}}
                             {{-- <p class="text-center {{ $status }} ">{{ strtoupper($invoice->status) }}</p> --}}
                             {{-- handle failed transaction --}}
-                            @if ($invoice->status_order === 'process' || $invoice->status_order === 'done' || $invoice->status_order === 'open')
+                            {{-- @if ($invoice->status_order === 'process' || $invoice->status_order === 'done' || $invoice->status_order === 'open')
                                 <p class="text-center text-green">{{ strtoupper($invoice->status_order) }}</p>
                             @else
                                 <p class="text-center text-danger">{{ strtoupper('Failed') }}</p>
+                            @endif --}}
+
+
+                            @if ($invoice->status_order === 'order')
+                                <span class="flex gap-4 items-center justify-center">
+                                    <p class="text-grey">{{ strtoupper($invoice->status_order) }}</p>
+                                    @php
+                                        $currentDate = new DateTime();
+                                        $invoiceDate = new DateTime($invoice->created_at); 
+                                    @endphp
+
+                                    {{-- if invoice date is still at same day, show button pay --}}
+                                    @if (($invoice->status_payment === 'unpaid' || $invoice->status_payment === 'pending' ) && $currentDate->format('Y-m-d') == $invoiceDate->format('Y-m-d')) 
+                                        <a href="{{ url('payment/' . $invoice->invoice) }}" class="btn btn-sm bg-grey hover:bg-green text-white">Pay Now</a>
+                                    @endif
+                                </span>
+                            @elseif ($invoice->status_order === 'cancel' || $invoice->status_order === 'failed')
+                                <p class="{{ $status }} text-center">{{ strtoupper($invoice->status_order) }}</p>
+                            @else
+                                <p class="{{ $status }} text-center">{{ strtoupper($invoice->status_order) }}</p>
                             @endif
                         </td>
                         <td class="hidden lg:table-cell ">
@@ -132,8 +154,10 @@
                             <p class="text-center">{{ \App\Helpers\CurrencyFormat::data($invoice->total) }}</p>
                         </td>
                         <td class="hidden lg:table-cell ">
-                            @if ($invoice->payment)
-                                <p class="text-center font-bold">{{ strtoupper($invoice->payment->bank) }}</p>
+                            @if ($invoice->status_payment === 'pending')
+                                <p class="text-center font-bold">{{ strtoupper($invoice->status_payment) }}</p>
+                            @elseif ($invoice->status_payment === 'paid')
+                                <p class="text-center font-bold text-green">{{ strtoupper($invoice->status_payment) }}</p>
                             @else
                                 <p class="text-center font-bold text-danger">UNPAID</p>
                             @endif
