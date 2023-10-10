@@ -27,9 +27,9 @@
         <div class="flex flex-col my-4">
             @foreach ($order[0]->orderproduct as $item)
                 <div class="grid grid-cols-4 items-center p-4 {{ $item->status_order === 'failed' || $item->status_order === 'cancel' ?  'bg-danger' : 'bg-green'  }} bg-opacity-5 my-2">
-                    <div>
+                    {{-- <div>
                         <img class="h-14 mx-auto" src="{{ url($item->product->image) }}" alt="{{ $item->product->name }}">
-                    </div>
+                    </div> --}}
                     <div class="col-span-3 flex flex-col">
                         <a href="#" class="font-bold text-sm hover:text-pink-primary">{{ $item->product->name }}</a>
                         <span class="flex gap-2">

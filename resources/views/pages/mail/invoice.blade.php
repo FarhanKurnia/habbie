@@ -33,11 +33,16 @@
                 <td>{{ $orderData['customer']['phone'] }}</td>
             </tr>
             <tr>
-                <td>Alamat Pengiriman</td>
+                <td>Alamat</td>
                 <td>{{$orderData['customer']['address']}}, {{$orderData['customer']['subdistrict']}}, {{$orderData['customer']['city']}}, {{$orderData['customer']['province']}}, {{$orderData['customer']['postal_code']}}</td>
             </tr>
+            {{-- <tr>
+                <td>Catatan</td>
+                <td>{!! $orderData['customer']['note']!!}</td>
+            </tr> --}}
         </table>
-
+        <br>
+        <br>
         <table class="table table-zebra bg-opacity-40 my-4">
             <thead>
                 <tr>
@@ -86,7 +91,15 @@
                 </tr>
             </tbody>
         </table>
-        <p>Note</p>
-        {!! $orderData['customer']['note'] !!}
+        <br>
+        <p>Catatan<br>
+            {!! $orderData['customer']['note']!!}
+        </p>
+        <br>
+        <br>
+        <div class="py-4">
+            Salam hangat,<br>
+            Admin Habbie
+        </div>
     </div>
 @endsection

@@ -9,17 +9,17 @@
 
 <body class="bg-grey-secondary-50 px-4">
     <div class="w-1/2 mx-auto">
-        <header class="container bg-pink-bloosom py-4 bg-opacity-60">
+        {{-- <header class="container bg-pink-bloosom py-4 bg-opacity-60">
             @include('components.mail.template.header')
-        </header>
+        </header> --}}
     
         <main class="container bg-white p-4">
             @yield('content')
         </main>
     
-        <footer class="container bg-grey p-8">
+        {{-- <footer class="container bg-grey p-8">
             @include('components.mail.template.footer')
-        </footer>
+        </footer> --}}
     </div>
 </body>
 
