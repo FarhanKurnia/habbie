@@ -32,7 +32,7 @@ class Offering extends Mailable
      */
     public function build()
     {
-        return $this->markdown('/pages/mail/offer')
+        return $this->view('/pages/mail/offer')
                     ->subject('Special Offer Habbie')
                     ->with('offer', $this->offer);
     }
