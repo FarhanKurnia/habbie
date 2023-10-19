@@ -16,6 +16,7 @@ use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -61,8 +62,7 @@ Route::get('/unsubscribe', function () {
     return view('pages.public.unsubscribe-form');
 });
 
-
-
+// Route::get('/test-email', [TestController::class, 'mailTest']);
 
 
 // Auth
