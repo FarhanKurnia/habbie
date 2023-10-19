@@ -32,7 +32,7 @@ class OrderSuccess extends Mailable
      */
     public function build()
     {
-        return $this->markdown('/pages/mail/order')
+        return $this->view('/pages/mail/order')
                     ->subject('Order Process Habbie')
                     ->with('order', $this->order);
     }
