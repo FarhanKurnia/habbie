@@ -1,31 +1,29 @@
 @extends('layouts.base-email-layout')
 @section('title', $data['title'])
 @section('content')
-    @include('components.mail.partials.title', [
-        'title' => $data['title'],
-        'align' => 'left',
-        'color' => 'grey',
-    ])
+    <div style="width:100%; text-align: center;">
+        <h3 style="font-weight: bold; font-size: 18px">{{ $data['title'] }}</h3>
+    </div>
 
-    <div class="py-4 text-sm">
+    <div style="padding-top: 4px; padding-bottom: 4px;">
         <p>Hi {{ $data['name'] }}!,</p>
         <p>Terima kasih telah melakukan registrasi melalui Habbie. Untuk melakukan verifikasi akun, anda dapat menekan
             tombol berikut. <br>
         </p>
-        <div class="flex justify-center">
+        <div style="width:100%; text-align: center;">
             <a href="{{ $data['url'] }}" target="_blank">
-                <button class="btn btn-sm btn-primary rounded font-bold my-2 text-white text-xs">Verifikasi
+                <button class="cta-button">Verifikasi
                     Akun</button>
             </a>
         </div>
         <p>
-            Atau akses melalui <a class="italic underline font-bold" href="{{ $data['url'] }}">link</a> berikut<br>
+            Atau akses melalui <a style=" font-style: italic;" href="{{ $data['url'] }}">link</a> berikut<br>
         </p>
         <p>
             Sekian, terima kasih,<br>
             Best Regards<br>
-            Farhan Kurnia
+            Admin Habbie
         </p>
-    </div>
+    </div> 
 
 @endsection

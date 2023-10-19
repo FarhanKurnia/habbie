@@ -2,104 +2,158 @@
 @section('title', 'Order Information')
 @section('content')
 
+<div style="width:100%; text-align: center;">
+    <h3 style="font-weight: bold; font-size: 20px">
+        {{ $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel'
+            ? 'Maaf Order Anda Gagal Kami Proses'
+            : 'Terima Kasih, Order sudah kami terima' }}
+    </h3>
+</div>
 
-    @php
-        $status = 'done'; // 'process', 'cancel', 'failed', 'done', 'order'  
-    @endphp
+<div>
+    <div style="padding-top: 4px; padding-bottom: 4px;">
 
-    @include('components.mail.partials.title', [
-        'title' =>
-            $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel'
-                ? 'Maaf Order Anda Gagal Kami Proses'
-                : 'Terima Kasih, Order sudah kami terima',
-        'align' => 'left',
-        'color' => $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel' ? 'danger' : 'green',
-    ])
+        <h3 style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;color:#000000">Order
+            #{{ $order[0]['invoice'] }}</h3>
 
-    <div class="py-4">
-        <h3 class="font-bold text-xl">Order #{{$order[0]['invoice']}}</h3>
+        <p>
+            {{ $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel' ? 'Mohon maaf order Anda gagal untuk kami proses. Silahkan hubungi kami untuk informasinya' : 'Order Anda telah kami terima, saat ini sedang kami lakukan proses dan selanjutnya akan dikirim sesuai estimasi pengiriman.' }}<br></br>
+            Berikut untuk detail order Anda:
+        </p>
+    </div>
 
+    <div>
+        <div>
+            <table style="width: 100%;">
+                @foreach ($order[0]->orderproduct as $item)
+                    <tr>
+                        <td style="width:25%;text-align:center;">
+                            <img src="{{ url($item->product->image) }}" style="height: 80px;padding: 8px;">
+                        </td>
+                        <td>
+                            <div>
+                                <a href=""
+                                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#de586c;font-weight: bold">
+                                    {{ $item->product->name }}
+                                </a><br></br>
+                                <span>
+                                    @if (isset($item['discount_id']))
+                                        <s>
+                                            {{ \App\Helpers\CurrencyFormat::data($item['total_price'] + $item['discount_price']) }}
+                                        </s>
+                                    @endif
 
-        <p class="text-sm">
-            {{ $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel' ? 'Mohon maaf order Anda gagal untuk kami proses. Silahkan hubungi kami untuk informasinya' : 'Order Anda telah kami terima, saat ini sedang kami lakukan proses dan selanjutnya akan dikirim sesuai estimasi pengiriman.' }}
-            </br> Berikut untuk detail order Anda:</p>
-
-        <div class="flex flex-col my-4">
-            @foreach ($order[0]->orderproduct as $item)
-                <div class="grid grid-cols-4 items-center p-4 {{ $item->status_order === 'failed' || $item->status_order === 'cancel' ?  'bg-danger' : 'bg-green'  }} bg-opacity-5 my-2">
-                    {{-- <div>
-                        <img class="h-14 mx-auto" src="{{ url($item->product->image) }}" alt="{{ $item->product->name }}">
-                    </div> --}}
-                    <div class="col-span-3 flex flex-col">
-                        <a href="#" class="font-bold text-sm hover:text-pink-primary">{{ $item->product->name }}</a>
-                        <span class="flex gap-2">
-                            @if (isset($item['discount_id']))
-                                <s class="text-xs text-grey">
-                                    {{ \App\Helpers\CurrencyFormat::data($item['total_price']+$item['discount_price']) }}
-                                </s>
-                            @endif
-                            <p class="text-xs font-bold text-grey">
-                                {{\App\Helpers\CurrencyFormat::data($item['total_price']) }}
-                            </p>
-                            <p class="text-xs">{{ ' x ' . $item['qty'] }}</p>
-                        </span>
-                    </div>
-                </div>
-            @endforeach
-            <table class="table">
-                <tr>
-                    <td>Subtotal</td>
-                    <td>{{ \App\Helpers\CurrencyFormat::data($order[0]['total']) }}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Pengiriman</p>
-                        <span class="text-xs text-grey">
-                            <p>{{$order[0]['shipping_code']}} {{$order[0]['shipping_service']}}</p>
-                            <p>{{$order[0]['shipping_etd']}} hari</p>
-                        </span>
-                    </td>
-                    <td>{{ \App\Helpers\CurrencyFormat::data($order[0]['shipping_value']) }}</td>
-
-                </tr>
-                <tr class="text-white {{ $order[0]['status_order'] === 'failed' || $order[0]['status_order'] === 'cancel' ? 'bg-danger' : 'bg-green' }}">
-                    <td>Total</td>
-                    <td class="font-bold">{{ \App\Helpers\CurrencyFormat::data($order[0]['total']+$order[0]['shipping_value']) }}</td>
-                </tr>
+                                    {{ \App\Helpers\CurrencyFormat::data($item['total_price']) }}
+                                </span><br></br>
+                                <small>{{ ' x ' . $item['qty'] }}</small>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             </table>
+
         </div>
+
+        <table class="table" style="width: 100%;">
+            <tr>
+                <td style="width:25%;">
+                    <p>Subtotal</p>
+                </td>
+                <td>
+                    {{ \App\Helpers\CurrencyFormat::data($order[0]['total']) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pengiriman<br></br>
+                    <small>
+                        {{ $order[0]['shipping_code'] }} {{ $order[0]['shipping_service'] }}
+                    </small><br></br>
+                    <small>{{ $order[0]['shipping_etd'] }} hari</small>
+                </td>
+                <td>{{ \App\Helpers\CurrencyFormat::data($order[0]['shipping_value']) }}</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Total</p>
+                </td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#de586c;font-weight: bold">
+                    {{ \App\Helpers\CurrencyFormat::data($order[0]['total'] + $order[0]['shipping_value']) }}
+                </td>
+            </tr>
+        </table>
 
     </div>
 
+    <div>
+        <h3>Informasi Pemesan</h3>
+        <table class="table" style="width: 100%;">
 
-    <div class="py-4">
-        <h3 class="font-bold">Informasi Pemesan</h3>
-        <table class="table">
             <tr>
-                <td>Nama</td>
-                <td>{{$order[0]['name']}}</td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    Nama
+                </td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    {{ $order[0]['name'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    Email
+                </td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    {{ $order[0]['email'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    Phone
+                </td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    {{ $order[0]['phone'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    Alamat Pengiriman
+                </td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    {{$order[0]['address']}}, {{$order[0]['subdistrict']}}, {{$order[0]['city']}}, {{$order[0]['province']}}, {{$order[0]['postal_code']}}
+                </td>
             </tr>
             <tr>
-                <td>Email</td>
-                <td>{{$order[0]['email']}}</td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    Note</td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    {!! $order[0]['note'] !!}
+                </td>
             </tr>
             <tr>
-                <td>Phone</td>
-                <td>{{$order[0]['phone']}}</td>
-            </tr>
-            <tr>
-                <td>Alamat Pengiriman</td>
-                <td>{{$order[0]['address']}}, {{$order[0]['subdistrict']}}, {{$order[0]['city']}}, {{$order[0]['province']}}, {{$order[0]['postal_code']}}</td>
-            </tr>
-            <tr>
-                <td>Note</td>
-                <td>{!! $order[0]['note'] !!}</td>
-            </tr>
-            <tr>
-                <td>Pembayaran</td>
-                <td>{{ $order[0]->payment->bank }}</td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    Pembayaran
+                </td>
+                <td
+                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#000000;font-weight: bold;width:25%;">
+                    {{ $order[0]->payment->bank }}
+                </td>
             </tr>
         </table>
     </div>
+</div>
 
 @endsection

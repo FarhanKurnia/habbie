@@ -6,49 +6,55 @@
         $user = [
             'name' => 'Bagus Gandhi',
         ];
-        
+
         // $offer = [
         //     'name' => 'Buy 3 get 1 free',
         //     'image' => 'storage/img/offers/sample-offers-01.png',
         //     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ipsum commodo, consequat.',
         //     'product' => 'tea-green-honey',
         // ];
-        
+
     @endphp
+    
+    <div style="width:100%; text-align: center;">
+        <h3 style="font-weight: bold; font-size: 24px">Special Offer</h3>
+    </div>
 
-    @include('components.mail.partials.title', [
-        'title' => 'Special Offers',
-        'align' => 'left',
-        'color' => 'grey',
-    ])
-
-    <div class="py-4 text-sm">
-        <p><b>Hai Mom Bie</b>,</p>
-        <p>Khusus untuk kamu, saat ini Habbie memiliki <b><i>Special Offers</i></b> yang sayang banget untuk kamu lewatkan loh!</p>
-
-        <div class="flex-col space-y-2 items-center my-4 gap-4 p-4 bg-grey-secondary-50">
-            <div>
-                <img class="w-full mx-auto" src="{{ url($offer['image']) }}" alt="{{ $offer['name'] }}">
-            </div>
-            <h3 class="font-bold text-pink-primary text-lg">{{ $offer['name'] }}</h3>
-            <p>{!! $offer['description'] !!}</p>
-            <a href="{{ url('/products/'.$offer->product->slug)}}" target="_blank">
-                <button class="btn btn-sm btn-primary rounded-full font-bold my-2 text-white text-xs">Lihat Produk</button>
-            </a>
+    <div>
+        <div style="padding-top: 4px; padding-bottom: 4px;">
+            <p style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;color:#000000"><strong>Hai
+                    Mom Bie</strong><br />
+                Khusus untuk kamu, saat ini Habbie memiliki <b><i>Special Offers</i></b> yang sayang banget untuk kamu
+                lewatkan
+                loh!
+            </p>
         </div>
+        <div style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;color:#000000">
+            <img style="width: 100%" src="{{ url($offer['image']) }}" alt="{{ $offer['name'] }}">
+            <h3 style="text-align: center;">{{ $offer['name'] }}</h3>
+            <p>{!! $offer['description'] !!}</p>
 
-        <p>
-            Tunggu apa lagi! Kunjungi Habbie Store sekarang dan temukan penawaran menarik lain yang kami siapkan hanya untuk kamu. 
-            <a href="{{ url('offers') }}" target="_blank" class="text-pink-primary italic underline font-bold">List Spesial Offers</a>
-        </p>
+            <div style="width:100%; text-align: center;">
+                <a href="{{ url('/products/' . $offer->product->slug) }}" target="_blank">
+                    <button class="cta-button">
+                        Lihat Produk
+                    </button>
+                </a>
+            </div>
 
-        <br>
-        <br>
-        <p>
-            Klik <a href=" {{ url('/unsubscribe') }}">link</a> berikut ntuk berhenti berlangganan email penawaran Habbie
-        </p>
-
-
+            <p>
+                Tunggu apa lagi! Kunjungi Habbie Store sekarang dan temukan penawaran menarik lain yang kami siapkan hanya
+                untuk
+                kamu.
+                <a href="{{ url('offers') }}" target="_blank" class="text-pink-primary italic underline font-bold">List
+                    Spesial
+                    Offers</a>
+            </p>
+            <small style="color:dimgray">
+                Klik <i><a href=" {{ url('/unsubscribe') }}">link</a></i> berikut ntuk berhenti berlangganan email penawaran
+                Habbie
+            </small>
+        </div>
     </div>
 
 
