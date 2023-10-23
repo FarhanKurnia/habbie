@@ -74,7 +74,7 @@
                 @foreach ($orderData['products'] as $item)
                     <tr>
                         <td style="padding:8px; display: flex; justify-content: center; align-items: center;">
-                            <img src="{{ url($item['image']) }}" style="height: 40px;padding: 8px;">
+                            {{-- <img src="{{ url($item['image']) }}" style="height: 40px;padding: 8px;"> --}}
                             <a>{{ $item['name'] }}</a>
                         </td>
                         <td style="padding:8px;">
