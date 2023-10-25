@@ -23,10 +23,15 @@
                             'name' => 'Tokopedia',
                             'url' => 'https://www.tokopedia.com/habbie',
                         ],
+                        // [
+                        //     'img' => 'bukalapak.png',
+                        //     'name' => 'Buka Lapak',
+                        //     'url' => 'https://www.bukalapak.com/u/habbie_id',
+                        // ],
                         [
-                            'img' => 'bukalapak.png',
-                            'name' => 'Buka Lapak',
-                            'url' => 'https://www.bukalapak.com/u/habbie_id',
+                            'img' => 'lazada.png',
+                            'name' => 'Lazada',
+                            'url' => 'https://www.lazada.co.id/shop/habbie/',
                         ],
                     ];
                     
@@ -41,11 +46,11 @@
                             'name' => 'Zalora',
                             'url' => 'https://www.zalora.co.id/habbie/',
                         ],
-                        [
-                            'img' => 'lazada.png',
-                            'name' => 'Lazada',
-                            'url' => 'https://www.lazada.co.id/shop/habbie/',
-                        ],
+                        // [
+                        //     'img' => 'lazada.png',
+                        //     'name' => 'Lazada',
+                        //     'url' => 'https://www.lazada.co.id/shop/habbie/',
+                        // ],
                     ];
                     
                     $sosmed = [
@@ -103,7 +108,7 @@
                 <div class="mb-4 lg:w-1/5">
                     <p class="text-lg font-bold text-pink-primary py-4">HELP</p>
                     <div class="flex flex-col space-y-1">
-                        <p class="hover:text-grey font-bold">FIXED LINE (0274) 5025200</p>
+                        <p class="hover:text-grey font-bold">FIXED LINE (0274) 561168</p>
                         <p class="hover:text-grey font-bold">CARELINE@HABBIE.CO.ID</p>
                     </div>
                 </div>
