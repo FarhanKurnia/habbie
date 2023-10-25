@@ -57,7 +57,7 @@ class AuthController extends Controller
             'email_verified' => false,
         ]);
         $data = [
-            'title' => 'Email Verification',
+            'title' => 'Habbie Email Verification ',
             'name' => $name,
             'url' => route('verification',$token),
         ];
@@ -162,7 +162,7 @@ class AuthController extends Controller
         if($user>0){
             User::where([['deleted_at',null],['email',$email]])->update(['otp'=>$otp]);
             $data = [
-                'title' => 'Email Forget Password',
+                'title' => 'Habbie Email Forget Password ',
                 'otp' => $otp,
                 'url' => route('forgetPassword'),
             ];

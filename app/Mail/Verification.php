@@ -71,7 +71,8 @@ class Verification extends Mailable
     public function build()
     {
         return $this->view('/pages/mail/email-verification')
-                    ->subject('Verification Account')
+                    // ->subject('Verification Account')
+                    ->subject($this->data['title'])
                     ->with('data', $this->data);
     }
 }

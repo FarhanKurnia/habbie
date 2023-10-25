@@ -1,5 +1,5 @@
 @extends('layouts.base-email-layout')
-@section('title', 'Special Offers')
+{{-- @section('title', 'Special Offers') --}}
 @section('content')
 
     @php

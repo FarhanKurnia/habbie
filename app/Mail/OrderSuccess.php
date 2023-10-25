@@ -33,7 +33,7 @@ class OrderSuccess extends Mailable
     public function build()
     {
         return $this->view('/pages/mail/order')
-                    ->subject('Order Process Habbie')
+                    ->subject('Order Information #'.$this->order[0]['invoice'])
                     ->with('order', $this->order);
     }
 

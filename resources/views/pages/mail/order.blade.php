@@ -1,5 +1,5 @@
 @extends('layouts.base-email-layout')
-@section('title', 'Order Information')
+{{-- @section('title', 'Order Information') --}}
 @section('content')
 
 <div style="width:100%; text-align: center;">

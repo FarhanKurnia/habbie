@@ -1,12 +1,12 @@
 @extends('layouts.base-email-layout')
-@section('title', $data['title'])
+{{-- @section('title', $data['title']) --}}
 @section('content')
-    <div style="width:100%; text-align: center;">
-        <h3 style="font-weight: bold; font-size: 18px">{{ $data['title'] }}</h3>
-    </div>
+    {{-- <div style="width:100%; text-align: center;">
+        <h3 style="font-weight: bold; font-size: 18px">Email Verification</h3>
+    </div> --}}
 
     <div style="padding-top: 4px; padding-bottom: 4px;">
-        <p>Hi {{ $data['name'] }}!,</p>
+        <p>Hai {{ $data['name'] }}!</p>
         <p>Terima kasih telah melakukan registrasi melalui Habbie. Untuk melakukan verifikasi akun, anda dapat menekan
             tombol berikut. <br>
         </p>
