@@ -219,9 +219,12 @@
             <tr>
                <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
                   <![endif]-->
-        <div style="background:#5e5e5e;background-color:#5e5e5e;margin:0px auto;max-width:600px">
+                  
+        {{-- <div style="background:#5e5e5e;background-color:#5e5e5e;margin:0px auto;max-width:600px"> --}}
+        <div style="background:#f9d6d4;background-color:#f9d6d4;margin:0px auto;max-width:600px">
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
-                style="background:#5e5e5e;background-color:#5e5e5e;border-collapse:collapse;width:100%">
+                {{-- style="background:#5e5e5e;background-color:#5e5e5e;border-collapse:collapse;width:100%"> --}}
+                style="background:#f9d6d4;background-color:#f9d6d4;border-collapse:collapse;width:100%">
                 <tbody>
                     <tr>
                         <td
@@ -246,64 +249,65 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr style="display: flex; align-items: center; justify-content: center;">
+                                            {{-- <tr style="display: flex;
+                                            flex-wrap: wrap;
+                                            justify-content: center;">
 
-                                            {{-- tiktok --}}
-                                            <td style="padding: 4px;">
-                                                <a href="https://www.tiktok.com/@habbie_id" title="TikTok"
-                                                    target="_blank">
-                                                    <img src="https://testing.habbie.co.id/storage/img/socmed-icon/tiktok.png" alt="TikTok" title="TikTok"
-                                                        width="32"
-                                                        style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                </a>
-                                            </td>
+                                                {{-- tiktok 
+                                                <td style="padding: 4px; text-align:center; vertical-align:middle;">
+                                                    <a href="https://www.tiktok.com/@habbie_id" title="TikTok"
+                                                        target="_blank">
+                                                        <img src="https://testing.habbie.co.id/storage/img/socmed-icon/tiktok.png" alt="TikTok" title="TikTok"
+                                                            width="32"
+                                                            style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                                                    </a>
+                                                </td>
 
-                                            {{-- youtube --}}
-                                            <td style="padding: 4px;">
-                                                <a href="https://www.youtube.com/channel/UC4AhTYS99l6Bw-0S0PfMwtA" title="Youtube"
-                                                    target="_blank">
-                                                    <img src="https://testing.habbie.co.id/storage/img/socmed-icon/youtube.png" alt="TikTok" title="TikTok"
-                                                        width="32"
-                                                        style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                </a>
-                                            </td>
+                                                {{-- youtube
+                                                <td style="padding: 4px; text-align:center; vertical-align:middle;">
+                                                    <a href="https://www.youtube.com/channel/UC4AhTYS99l6Bw-0S0PfMwtA" title="Youtube"
+                                                        target="_blank">
+                                                        <img src="https://testing.habbie.co.id/storage/img/socmed-icon/youtube.png" alt="TikTok" title="TikTok"
+                                                            width="32"
+                                                            style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                                                    </a>
+                                                </td>
 
-                                            {{-- instagram --}}
-                                            <td style="padding: 4px;">
-                                                <a href="https://www.instagram.com/habbie_id/" title="Instagram"
-                                                    target="_blank">
-                                                    <img src="https://testing.habbie.co.id/storage/img/socmed-icon/instagram.png" alt="TikTok" title="TikTok"
-                                                        width="32"
-                                                        style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                </a>
-                                            </td>
+                                                {{-- instagram
+                                                <td style="padding: 4px; text-align:center; vertical-align:middle;">
+                                                    <a href="https://www.instagram.com/habbie_id/" title="Instagram"
+                                                        target="_blank">
+                                                        <img src="https://testing.habbie.co.id/storage/img/socmed-icon/instagram.png" alt="TikTok" title="TikTok"
+                                                            width="32"
+                                                            style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                                                    </a>
+                                                </td>
 
-                                            {{-- facebook --}}
-                                            <td style="padding: 4px;">
-                                                <a href="https://www.facebook.com/habbie.id/" title="Facebook"
-                                                    target="_blank">
-                                                    <img src="https://testing.habbie.co.id/storage/img/socmed-icon/facebook.png" alt="TikTok" title="TikTok"
-                                                        width="32"
-                                                        style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                </a>
-                                            </td>
+                                                {{-- facebook
+                                                <td style="padding: 4px; text-align:center; vertical-align:middle;">
+                                                    <a href="https://www.facebook.com/habbie.id/" title="Facebook"
+                                                        target="_blank">
+                                                        <img src="https://testing.habbie.co.id/storage/img/socmed-icon/facebook.png" alt="TikTok" title="TikTok"
+                                                            width="32"
+                                                            style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                                                    </a>
+                                                </td>
 
-                                            {{-- whatsapp --}}
-                                            <td style="padding: 4px;">
-                                                <a href="https://wa.me/628112735510" title="WhatsApp"
-                                                    target="_blank">
-                                                    <img src="https://testing.habbie.co.id/storage/img/socmed-icon/whatsapp.png" alt="TikTok" title="TikTok"
-                                                        width="32"
-                                                        style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                {{-- whatsapp
+                                                <td style="padding: 4px; text-align:center; vertical-align:middle;">
+                                                    <a href="https://wa.me/628112735510" title="WhatsApp"
+                                                        target="_blank">
+                                                        <img src="https://testing.habbie.co.id/storage/img/socmed-icon/whatsapp.png" alt="TikTok" title="TikTok"
+                                                            width="32"
+                                                            style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                                                    </a>
+                                                </td>
+                                            </tr> --}}
                                         <tr>
-
                                             <td align="center"
                                                 style="border-collapse:collapse;font-size:0px;padding:10px 25px;word-break:break-word">
                                                 <div
-                                                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:13px;line-height:2;text-align:center;color:#ffffff">
+                                                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:13px;line-height:2;text-align:center;color:#000000">
                                                     Kranggan No.20, Cokrodiningratan, Kec. Jetis, Kota Yogyakarta,
                                                     Daerah Istimewa Yogyakarta 55233 </div>
                                             </td>
@@ -312,19 +316,19 @@
                                             <td align="center"
                                                 style="border-collapse:collapse;font-size:0px;padding:10px 25px;word-break:break-word">
                                                 <div
-                                                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.25;text-align:center;color:#ffffff">
+                                                    style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.25;text-align:center;color:#000000">
                                                     <p
-                                                        style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.25;text-align:center;color:#ffffff">
-                                                        <a rel="noopener" style="color:#ffffff"
+                                                        style="font-family:Lato,Helvetica,Arial,sans-serif;font-size:12px;line-height:1.25;text-align:center;color:#000000">
+                                                        <a rel="noopener" style="color:#000000"
                                                             href="https://testing.habbie.co.id/public/products"
                                                             target="_blank">Our Product</a> |
-                                                        <a rel="noopener" style="color:#ffffff"
+                                                        <a rel="noopener" style="color:#000000"
                                                             href="https://testing.habbie.co.id/membership"
                                                             target="_blank">Join Membership</a>  |
-                                                        <a rel="noopener" style="color:#ffffff"
+                                                        <a rel="noopener" style="color:#000000"
                                                             href="https://testing.habbie.co.id/offers"
                                                             target="_blank">Offers</a> |
-                                                        <a rel="noopener" style="color:#ffffff"
+                                                        <a rel="noopener" style="color:#000000"
                                                             href="https://testing.habbie.co.id/media"
                                                             target="_blank">Blog</a>
                                                     </p>
